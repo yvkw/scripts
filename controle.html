@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Produção</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #dataHora {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .botoes, .seletor {
+      margin-bottom: 20px;
+    }
+
+    .botoes button {
+      margin-right: 10px;
+      padding: 8px 14px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .botoes input[type="file"] {
+      display: none;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #003366;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      border: 1px solid #003366;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #003366;
+      color: white;
+      font-size: 14px;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Controle de Produção</h1>
+    <div id="dataHora"></div>
+  </header>
+
+  <div class="botoes">
+    <button onclick="limparTudo()">Limpar Tudo</button>
+    <button onclick="exportarBackup()">Exportar Backup</button>
+    <button onclick="document.getElementById('importBackup').click()">Importar Backup</button>
+    <input type="file" id="importBackup" accept=".json" onchange="importarBackup(event)">
+  </div>
+
+  <div class="seletor">
+    <label for="selecionarProjeto"><strong>Selecionar Projeto:</strong></label>
+    <select id="selecionarProjeto" onchange="mostrarProjeto()">
+      <option value="biblicas">Figuras Bíblicas</option>
+      <option value="historicas">Figuras Históricas</option>
+      <option value="antigas">Vidas Antigas</option>
+    </select>
+  </div>
+
+  <div id="projeto-biblicas">
+    <h2>Figuras Bíblicas</h2>
+    <table>
+      <tr>
+        <th>VÍDEO</th>
+        <th>CRIAR ROTEIRO</th>
+        <th>INFORMAÇÕES</th>
+        <th>PROMPTS IMAGENS</th>
+        <th>GERAR IMAGENS</th>
+        <th>RECORTAR IMAGENS</th>
+        <th>EDITAR VÍDEO</th>
+      </tr>
+      <tr><td><strong>001</strong></td><td><input type="checkbox" id="bib001-roteiro"></td><td><input type="checkbox" id="bib001-infos"></td><td><input type="checkbox" id="bib001-prompts"></td><td><input type="checkbox" id="bib001-imgs"></td><td><input type="checkbox" id="bib001-recorte"></td><td><input type="checkbox" id="bib001-editar"></td></tr>
+      <tr><td><strong>002</strong></td><td><input type="checkbox" id="bib002-roteiro"></td><td><input type="checkbox" id="bib002-infos"></td><td><input type="checkbox" id="bib002-prompts"></td><td><input type="checkbox" id="bib002-imgs"></td><td><input type="checkbox" id="bib002-recorte"></td><td><input type="checkbox" id="bib002-editar"></td></tr>
+      <tr><td><strong>003</strong></td><td><input type="checkbox" id="bib003-roteiro"></td><td><input type="checkbox" id="bib003-infos"></td><td><input type="checkbox" id="bib003-prompts"></td><td><input type="checkbox" id="bib003-imgs"></td><td><input type="checkbox" id="bib003-recorte"></td><td><input type="checkbox" id="bib003-editar"></td></tr>
+    </table>
+  </div>
+
+  <div id="projeto-historicas" style="display:none;">
+    <h2>Figuras Históricas</h2>
+    <table>
+      <tr>
+        <th>VÍDEO</th>
+        <th>CRIAR ROTEIRO</th>
+        <th>INFORMAÇÕES</th>
+        <th>PROMPTS IMAGENS</th>
+        <th>GERAR IMAGENS</th>
+        <th>RECORTAR IMAGENS</th>
+        <th>EDITAR VÍDEO</th>
+      </tr>
+      <tr><td><strong>001</strong></td><td><input type="checkbox" id="hist001-roteiro"></td><td><input type="checkbox" id="hist001-infos"></td><td><input type="checkbox" id="hist001-prompts"></td><td><input type="checkbox" id="hist001-imgs"></td><td><input type="checkbox" id="hist001-recorte"></td><td><input type="checkbox" id="hist001-editar"></td></tr>
+      <tr><td><strong>002</strong></td><td><input type="checkbox" id="hist002-roteiro"></td><td><input type="checkbox" id="hist002-infos"></td><td><input type="checkbox" id="hist002-prompts"></td><td><input type="checkbox" id="hist002-imgs"></td><td><input type="checkbox" id="hist002-recorte"></td><td><input type="checkbox" id="hist002-editar"></td></tr>
+      <tr><td><strong>003</strong></td><td><input type="checkbox" id="hist003-roteiro"></td><td><input type="checkbox" id="hist003-infos"></td><td><input type="checkbox" id="hist003-prompts"></td><td><input type="checkbox" id="hist003-imgs"></td><td><input type="checkbox" id="hist003-recorte"></td><td><input type="checkbox" id="hist003-editar"></td></tr>
+    </table>
+  </div>
+
+  <div id="projeto-antigas" style="display:none;">
+    <h2>Vidas Antigas</h2>
+    <table>
+      <tr>
+        <th>VÍDEO</th>
+        <th>CRIAR ROTEIRO</th>
+        <th>INFORMAÇÕES</th>
+        <th>PROMPTS IMAGENS</th>
+        <th>GERAR IMAGENS</th>
+        <th>RECORTAR IMAGENS</th>
+        <th>EDITAR VÍDEO</th>
+      </tr>
+      <tr><td><strong>001</strong></td><td><input type="checkbox" id="vida001-roteiro"></td><td><input type="checkbox" id="vida001-infos"></td><td><input type="checkbox" id="vida001-prompts"></td><td><input type="checkbox" id="vida001-imgs"></td><td><input type="checkbox" id="vida001-recorte"></td><td><input type="checkbox" id="vida001-editar"></td></tr>
+      <tr><td><strong>002</strong></td><td><input type="checkbox" id="vida002-roteiro"></td><td><input type="checkbox" id="vida002-infos"></td><td><input type="checkbox" id="vida002-prompts"></td><td><input type="checkbox" id="vida002-imgs"></td><td><input type="checkbox" id="vida002-recorte"></td><td><input type="checkbox" id="vida002-editar"></td></tr>
+      <tr><td><strong>003</strong></td><td><input type="checkbox" id="vida003-roteiro"></td><td><input type="checkbox" id="vida003-infos"></td><td><input type="checkbox" id="vida003-prompts"></td><td><input type="checkbox" id="vida003-imgs"></td><td><input type="checkbox" id="vida003-recorte"></td><td><input type="checkbox" id="vida003-editar"></td></tr>
+    </table>
+  </div>
+
+  <script>
+    function formatarDataHora() {
+      const agora = new Date();
+      const opcoes = { day: 'numeric', month: 'long', year: 'numeric' };
+      const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      const data = agora.toLocaleDateString('pt-BR', opcoes);
+      document.getElementById('dataHora').textContent = `${hora} - ${data}`;
+    }
+    formatarDataHora();
+    setInterval(formatarDataHora, 60000);
+
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      const id = checkbox.id;
+      const saved = localStorage.getItem(id);
+      if (saved === 'true') checkbox.checked = true;
+      checkbox.addEventListener('change', () => {
+        localStorage.setItem(id, checkbox.checked);
+      });
+    });
+
+    function limparTudo() {
+      if (confirm('Tem certeza que deseja limpar todas as marcações?')) {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = false;
+          localStorage.removeItem(checkbox.id);
+        });
+      }
+    }
+
+    function exportarBackup() {
+      const dados = {};
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        dados[checkbox.id] = checkbox.checked;
+      });
+      const blob = new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `backup-cronograma-${new Date().toISOString().slice(0, 10)}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importarBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const dados = JSON.parse(e.target.result);
+          for (let id in dados) {
+            const checkbox = document.getElementById(id);
+            if (checkbox) {
+              checkbox.checked = dados[id];
+              localStorage.setItem(id, dados[id]);
+            }
+          }
+          alert("Backup importado com sucesso!");
+        } catch {
+          alert("Erro ao importar o arquivo.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function mostrarProjeto() {
+      const selecionado = document.getElementById("selecionarProjeto").value;
+      const projetos = ["biblicas", "historicas", "antigas"];
+      projetos.forEach(p => {
+        document.getElementById("projeto-" + p).style.display = (p === selecionado) ? "block" : "none";
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Instrução com Tema</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px;
+    }
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .bloco {
+      background-color: #f5f5f5;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .copiar-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    h2 {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador de Instrução com Tema</h1>
+  <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
+
+  <input type="text" id="tema" placeholder="Digite o tema aqui...">
+  <button onclick="gerarInstrucao()">Gerar Instrução</button>
+
+  <div id="resultado" class="bloco" style="display:none;"></div>
+
+  <h2>Dividir Texto em Partes</h2>
+  <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
+  <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
+  <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
+
+  <div id="partes"></div>
+
+  <h2>Salvar Roteiro como .txt</h2>
+  <p>Cole o roteiro completo abaixo e clique para salvar:</p>
+  <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
+  <button onclick="salvarComoTxt()">Salvar como .txt</button>
+
+  <script>
+    function gerarInstrucao() {
+      const tema = document.getElementById('tema').value.trim();
+      const resultado = document.getElementById('resultado');
+      resultado.innerHTML = '';
+
+      if (!tema) {
+        resultado.style.display = 'block';
+        resultado.textContent = 'Por favor, digite um tema.';
+        return;
+      }
+
+      const instrucao = `Escreva (3 parágrafos sendo início, meio e fim) sobre o tema "${tema}" com aproximadamente (300 tokens) cada parágrafo, com uma expressão (narrativa).`;
+
+      const botaoCopiar = document.createElement('button');
+      botaoCopiar.className = 'copiar-btn';
+      botaoCopiar.textContent = 'Copiar';
+      botaoCopiar.onclick = function () {
+        navigator.clipboard.writeText(instrucao).then(() => {
+          botaoCopiar.textContent = 'Copiado!';
+          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+        });
+      };
+
+      resultado.style.display = 'block';
+      resultado.appendChild(botaoCopiar);
+      resultado.appendChild(document.createTextNode(instrucao));
+    }
+
+    function dividirTextoEmPartes() {
+      const texto = document.getElementById('textoCompleto').value.trim();
+      const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
+      const container = document.getElementById('partes');
+      container.innerHTML = '';
+
+      const instrucoes = [
+        {
+          titulo: 'Início',
+          texto: 'Desenvolva essa introdução de forma consistente utilizando (500 tokens), utilizando uma linguagem simples, clara e tecnicas de storytelling. O foco deve ser no começo da história, sem entrar no meio ou na conclusão:'
+        },
+        {
+          titulo: 'Meio',
+          texto: 'Desenvolva esse texto com no mínimo de (2.000 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir a introdução da história e não mencione o final ou a conclusão.'
+        },
+        {
+          titulo: 'Fim',
+          texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara. Fique apenas com o fechamento do conteúdo, evitando incluir partes da introdução ou do meio da história.'
+        }
+      ];
+
+      partes.forEach((paragrafo, index) => {
+        if (instrucoes[index]) {
+          const bloco = document.createElement('div');
+          bloco.className = 'bloco';
+
+          const titulo = document.createElement('strong');
+          titulo.textContent = instrucoes[index].titulo;
+
+          const botao = document.createElement('button');
+          botao.className = 'copiar-btn';
+          botao.textContent = 'Copiar';
+
+          const conteudo = `${instrucoes[index].texto}\n\n${paragrafo}`;
+
+          botao.onclick = function () {
+            navigator.clipboard.writeText(conteudo).then(() => {
+              botao.textContent = 'Copiado!';
+              setTimeout(() => botao.textContent = 'Copiar', 2000);
+            });
+          };
+
+          bloco.appendChild(titulo);
+          bloco.appendChild(botao);
+          bloco.appendChild(document.createTextNode('\n' + conteudo));
+          container.appendChild(bloco);
+        }
+      });
+    }
+
+    async function salvarComoTxt() {
+      const texto = document.getElementById('roteiroParaSalvar').value.trim();
+      if (!texto) {
+        alert("Por favor, cole seu roteiro antes de salvar.");
+        return;
+      }
+
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: "roteiro.txt",
+          types: [{
+            description: 'Arquivo de Texto',
+            accept: { 'text/plain': ['.txt'] }
+          }]
+        });
+
+        const writable = await handle.createWritable();
+        await writable.write(texto);
+        await writable.close();
+        alert("Arquivo salvo com sucesso!");
+      } catch (e) {
+        console.error("Erro ao salvar:", e);
+      }
+    }
+  </script>
+</body>
+</html>

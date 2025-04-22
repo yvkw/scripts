@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Facilitador - Página Inicial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: block;
+      width: 220px;
+      padding: 12px;
+      margin: 8px 0;
+      font-size: 1em;
+      text-align: center;
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1></h1>
+  <button class="btn" onclick="window.open('MODELAR.HTML', '_blank')">MODELAR ROTEIRO</button>
+  <button class="btn" onclick="window.open('ROTEIRO.HTML', '_blank')">CRIAR ROTEIRO</button>
+  <button class="btn" onclick="window.open('GERADOR.HTML', '_blank')">GERADOR DE PROMPTS</button>
+  <button class="btn" onclick="window.open('ESTILO.HTML', '_blank')">ESTILOS DE IMAGENS</button>
+  <button class="btn" onclick="window.open('INFOS.HTML', '_blank')">INFORMAÇÕES</button>
+  <button class="btn" onclick="window.open('legendasrt.html', '_blank')">LEGENDA SRT</button>
+  <button class="btn" onclick="window.open('http://127.0.0.1:5000/', '_blank')">REMOVER SILÊNCIO</button>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Organizar e Reescrever Texto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .bloco {
+      background-color: #f4f4f4;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      position: relative;
+    }
+    .copiar-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #resultadoOrganizado {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #partesReescritas .bloco, #resultadoStorytelling {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .titulo-parte {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Organizar e Reescrever Texto</h1>
+
+  <h2>Organizar Texto com Correção Ortográfica</h2>
+  <textarea id="textoOrganizar" placeholder="Cole o texto aqui..."></textarea>
+  <button onclick="organizarTexto()">Organizar Texto</button>
+  <div id="resultadoOrganizado" class="bloco" style="display:none;"></div>
+
+  <h2>Reescrever Texto em Partes</h2>
+  <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
+  <button onclick="reescreverTexto()">Reescrever Texto</button>
+  <div id="partesReescritas"></div>
+
+  <h2>Reescrever com Técnicas de Storytelling</h2>
+  <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
+  <button onclick="gerarStorytelling()">Reescrever com Storytelling</button>
+  <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
+
+  <script>
+    function criarBotaoCopiar(texto) {
+      const botao = document.createElement('button');
+      botao.className = 'copiar-btn';
+      botao.textContent = 'Copiar';
+      botao.onclick = () => {
+        navigator.clipboard.writeText(texto).then(() => {
+          botao.textContent = 'Copiado!';
+          setTimeout(() => botao.textContent = 'Copiar', 2000);
+        });
+      };
+      return botao;
+    }
+
+    function organizarTexto() {
+      const texto = document.getElementById('textoOrganizar').value.trim();
+      const mensagem = "Organize todo o texto abaixo em parágrafos com um limite padrão de caracteres para cada parágrafo e faça a correção ortográfica:";
+      const resultado = `${mensagem}\n\n${texto}`;
+      const saida = document.getElementById('resultadoOrganizado');
+      saida.innerHTML = '';
+      saida.appendChild(criarBotaoCopiar(resultado));
+      saida.appendChild(document.createTextNode(resultado));
+      saida.style.display = 'block';
+    }
+
+    function reescreverTexto() {
+      const texto = document.getElementById('textoReescrever').value.trim();
+      const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
+      const container = document.getElementById('partesReescritas');
+      container.innerHTML = '';
+      const instrucao = "Reescreva esse texto da forma mais dinâmica possível para que até uma criança consiga entender, como se tivesse conversando com uma pessoa, e de uma forma que não pareça que foi plagiado:";
+
+      for (let i = 0; i < paragrafos.length; i += 5) {
+        const grupo = paragrafos.slice(i, i + 5).join('\n\n');
+        const resultado = `${instrucao}\n\n${grupo}`;
+
+        const bloco = document.createElement('div');
+        bloco.className = 'bloco';
+
+        const titulo = document.createElement('span');
+        titulo.className = 'titulo-parte';
+        titulo.textContent = `PARTE ${Math.floor(i / 5) + 1}`;
+        bloco.appendChild(titulo);
+
+        bloco.appendChild(criarBotaoCopiar(resultado));
+        bloco.appendChild(document.createTextNode(resultado));
+        container.appendChild(bloco);
+      }
+    }
+
+    function gerarStorytelling() {
+      const texto = document.getElementById('textoStorytelling').value.trim();
+      const instrucao = "Reescreva esse texto utilizando técnicas de storytelling:";
+      const resultado = `${instrucao}\n\n${texto}`;
+      const saida = document.getElementById('resultadoStorytelling');
+      saida.innerHTML = '';
+      saida.appendChild(criarBotaoCopiar(resultado));
+      saida.appendChild(document.createTextNode(resultado));
+      saida.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
