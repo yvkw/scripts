@@ -30,14 +30,12 @@
       text-align: left;
     }
     .calendar {
-      overflow-x: auto;
-      display: flex;
-      flex-wrap: nowrap;
-      scroll-snap-type: x mandatory;
-
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 10px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      scroll-snap-type: x mandatory;
     }
     .day {
       background: #fff;
@@ -79,113 +77,122 @@
 <div class="day" data-day="1">
 <h3>Segunda-feira</h3>
 <progress id="progress-s" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
-
-            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('s-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
-              <div id="s-fb" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fb-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟤 Figuras Bíblicas</strong><br/>
+<label><input type="checkbox" data-id="fb-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
 <label><input type="checkbox" data-id="fb-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
 <label><input type="checkbox" data-id="fb-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
 <label><input type="checkbox" data-id="fb-s-criar-informações1" class="check-s" /> Criar informações 1</label>
 <label><input type="checkbox" data-id="fb-s-criar-informações2" class="check-s" /> Criar informações 2</label>
 <label><input type="checkbox" data-id="fb-s-criar-informações3" class="check-s" /> Criar informações 3</label>
-</div></div>
-
-            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('s-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
-              <div id="s-fh" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fh-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<label><input type="checkbox" data-id="fb-s-gerar-prompts1" class="check-s" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="fb-s-gerar-prompts2" class="check-s" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="fb-s-gerar-prompts3" class="check-s" /> Gerar prompts 3</label>
+</div>
+<div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🔵 Figuras Históricas</strong><br/>
+<label><input type="checkbox" data-id="fh-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
 <label><input type="checkbox" data-id="fh-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
 <label><input type="checkbox" data-id="fh-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
 <label><input type="checkbox" data-id="fh-s-criar-informações1" class="check-s" /> Criar informações 1</label>
 <label><input type="checkbox" data-id="fh-s-criar-informações2" class="check-s" /> Criar informações 2</label>
 <label><input type="checkbox" data-id="fh-s-criar-informações3" class="check-s" /> Criar informações 3</label>
-</div></div>
-
-            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('s-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
-              <div id="s-va" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="va-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<label><input type="checkbox" data-id="fh-s-gerar-prompts1" class="check-s" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="fh-s-gerar-prompts2" class="check-s" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="fh-s-gerar-prompts3" class="check-s" /> Gerar prompts 3</label>
+</div>
+<div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟢 Vidas Antigas</strong><br/>
+<label><input type="checkbox" data-id="va-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
 <label><input type="checkbox" data-id="va-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
 <label><input type="checkbox" data-id="va-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
 <label><input type="checkbox" data-id="va-s-criar-informações1" class="check-s" /> Criar informações 1</label>
 <label><input type="checkbox" data-id="va-s-criar-informações2" class="check-s" /> Criar informações 2</label>
 <label><input type="checkbox" data-id="va-s-criar-informações3" class="check-s" /> Criar informações 3</label>
-</div></div>
+<label><input type="checkbox" data-id="va-s-gerar-prompts1" class="check-s" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="va-s-gerar-prompts2" class="check-s" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="va-s-gerar-prompts3" class="check-s" /> Gerar prompts 3</label>
+</div>
 </div>
 <div class="day" data-day="2">
 <h3>Terça-feira</h3>
 <progress id="progress-t" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
-
-            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('t-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
-              <div id="t-fb" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fb-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
-<label><input type="checkbox" data-id="fb-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
-<label><input type="checkbox" data-id="fb-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟤 Figuras Bíblicas</strong><br/>
 <label><input type="checkbox" data-id="fb-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
 <label><input type="checkbox" data-id="fb-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
 <label><input type="checkbox" data-id="fb-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
-</div></div>
-
-            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('t-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
-              <div id="t-fh" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fh-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
-<label><input type="checkbox" data-id="fh-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
-<label><input type="checkbox" data-id="fh-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<label><input type="checkbox" data-id="fb-t-recortar-imagens1" class="check-t" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="fb-t-recortar-imagens2" class="check-t" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="fb-t-recortar-imagens3" class="check-t" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="fb-t-criar-thumb1" class="check-t" /> Criar thumb 1</label>
+<label><input type="checkbox" data-id="fb-t-criar-thumb2" class="check-t" /> Criar thumb 2</label>
+<label><input type="checkbox" data-id="fb-t-criar-thumb3" class="check-t" /> Criar thumb 3</label>
+</div>
+<div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🔵 Figuras Históricas</strong><br/>
 <label><input type="checkbox" data-id="fh-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
 <label><input type="checkbox" data-id="fh-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
 <label><input type="checkbox" data-id="fh-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
-</div></div>
-
-            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('t-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
-              <div id="t-va" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="va-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
-<label><input type="checkbox" data-id="va-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
-<label><input type="checkbox" data-id="va-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<label><input type="checkbox" data-id="fh-t-recortar-imagens1" class="check-t" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="fh-t-recortar-imagens2" class="check-t" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="fh-t-recortar-imagens3" class="check-t" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="fh-t-criar-thumb1" class="check-t" /> Criar thumb 1</label>
+<label><input type="checkbox" data-id="fh-t-criar-thumb2" class="check-t" /> Criar thumb 2</label>
+<label><input type="checkbox" data-id="fh-t-criar-thumb3" class="check-t" /> Criar thumb 3</label>
+</div>
+<div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟢 Vidas Antigas</strong><br/>
 <label><input type="checkbox" data-id="va-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
 <label><input type="checkbox" data-id="va-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
 <label><input type="checkbox" data-id="va-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
-</div></div>
+<label><input type="checkbox" data-id="va-t-recortar-imagens1" class="check-t" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="va-t-recortar-imagens2" class="check-t" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="va-t-recortar-imagens3" class="check-t" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="va-t-criar-thumb1" class="check-t" /> Criar thumb 1</label>
+<label><input type="checkbox" data-id="va-t-criar-thumb2" class="check-t" /> Criar thumb 2</label>
+<label><input type="checkbox" data-id="va-t-criar-thumb3" class="check-t" /> Criar thumb 3</label>
+</div>
 </div>
 <div class="day" data-day="3">
 <h3>Quarta-feira</h3>
 <progress id="progress-q" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
-
-            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('q-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
-              <div id="q-fb" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fb-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
-<label><input type="checkbox" data-id="fb-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
-<label><input type="checkbox" data-id="fb-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+<div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟤 Figuras Bíblicas</strong><br/>
+<label><input type="checkbox" data-id="fb-q-converter-legenda1" class="check-q" /> Converter legenda 1</label>
+<label><input type="checkbox" data-id="fb-q-converter-legenda2" class="check-q" /> Converter legenda 2</label>
+<label><input type="checkbox" data-id="fb-q-converter-legenda3" class="check-q" /> Converter legenda 3</label>
+<label><input type="checkbox" data-id="fb-q-remover-silêncio-legenda1" class="check-q" /> Remover Silêncio Legenda 1</label>
+<label><input type="checkbox" data-id="fb-q-remover-silêncio-legenda2" class="check-q" /> Remover Silêncio Legenda 2</label>
+<label><input type="checkbox" data-id="fb-q-remover-silêncio-legenda3" class="check-q" /> Remover Silêncio Legenda 3</label>
 <label><input type="checkbox" data-id="fb-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
 <label><input type="checkbox" data-id="fb-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
 <label><input type="checkbox" data-id="fb-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
-</div></div>
-
-            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('q-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
-              <div id="q-fh" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="fh-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
-<label><input type="checkbox" data-id="fh-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
-<label><input type="checkbox" data-id="fh-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+</div>
+<div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🔵 Figuras Históricas</strong><br/>
+<label><input type="checkbox" data-id="fh-q-converter-legenda1" class="check-q" /> Converter legenda 1</label>
+<label><input type="checkbox" data-id="fh-q-converter-legenda2" class="check-q" /> Converter legenda 2</label>
+<label><input type="checkbox" data-id="fh-q-converter-legenda3" class="check-q" /> Converter legenda 3</label>
+<label><input type="checkbox" data-id="fh-q-remover-silêncio-legenda1" class="check-q" /> Remover Silêncio Legenda 1</label>
+<label><input type="checkbox" data-id="fh-q-remover-silêncio-legenda2" class="check-q" /> Remover Silêncio Legenda 2</label>
+<label><input type="checkbox" data-id="fh-q-remover-silêncio-legenda3" class="check-q" /> Remover Silêncio Legenda 3</label>
 <label><input type="checkbox" data-id="fh-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
 <label><input type="checkbox" data-id="fh-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
 <label><input type="checkbox" data-id="fh-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
-</div></div>
-
-            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
-              <button onclick="toggleSection('q-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
-              <div id="q-va" style="display: none; padding-left: 10px;">
-            <label><input type="checkbox" data-id="va-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
-<label><input type="checkbox" data-id="va-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
-<label><input type="checkbox" data-id="va-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+</div>
+<div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+<strong>🟢 Vidas Antigas</strong><br/>
+<label><input type="checkbox" data-id="va-q-converter-legenda1" class="check-q" /> Converter legenda 1</label>
+<label><input type="checkbox" data-id="va-q-converter-legenda2" class="check-q" /> Converter legenda 2</label>
+<label><input type="checkbox" data-id="va-q-converter-legenda3" class="check-q" /> Converter legenda 3</label>
+<label><input type="checkbox" data-id="va-q-remover-silêncio-legenda1" class="check-q" /> Remover Silêncio Legenda 1</label>
+<label><input type="checkbox" data-id="va-q-remover-silêncio-legenda2" class="check-q" /> Remover Silêncio Legenda 2</label>
+<label><input type="checkbox" data-id="va-q-remover-silêncio-legenda3" class="check-q" /> Remover Silêncio Legenda 3</label>
 <label><input type="checkbox" data-id="va-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
 <label><input type="checkbox" data-id="va-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
 <label><input type="checkbox" data-id="va-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
-</div></div>
+</div>
 </div>
 <div class="day" data-day="4">
 <h3>Quinta-feira</h3>
@@ -202,12 +209,12 @@
 </div>
 </div>
 
-  <div class="buttons">
-    <button onclick="exportBackup()">Exportar Backup</button>
-    <button onclick="importBackup()">Importar Backup</button>
-    <button onclick="clearAll()">Limpar Tudo</button>
-    <input type="file" id="fileInput" style="display:none"/>
-  </div>
+<div class="buttons">
+  <button onclick="exportBackup()">Exportar Backup</button>
+  <button onclick="importBackup()">Importar Backup</button>
+  <button onclick="clearAll()">Limpar Tudo</button>
+  <input type="file" id="fileInput" style="display:none"/>
+</div>
 <script>
   const dateElement = document.getElementById('date');
   const todayDate = new Date();
@@ -226,6 +233,22 @@
     checkbox.addEventListener('change', () => {
       localStorage.setItem(id, checkbox.checked);
     });
+  });
+
+  const dias = ['s','t','q','qi','sex','sab','dom'];
+  dias.forEach(dia => {
+    const checkboxes = document.querySelectorAll(`.check-${dia}`);
+    const progress = document.getElementById(`progress-${dia}`);
+    if (progress && checkboxes.length > 0) {
+      const updateProgress = () => {
+        const total = checkboxes.length;
+        const checked = Array.from(checkboxes).filter(c => c.checked).length;
+        progress.max = total;
+        progress.value = checked;
+      };
+      checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+      updateProgress();
+    }
   });
 
   function exportBackup() {
@@ -271,28 +294,6 @@
       });
     }
   }
-
-  function toggleSection(id) {
-    const section = document.getElementById(id);
-    section.style.display = section.style.display === 'none' ? 'block' : 'none';
-  }
-
-  // Progresso por dia
-  const dias = ['s','t','q','qi','sex','sab','dom'];
-  dias.forEach(dia => {
-    const checkboxes = document.querySelectorAll(`.check-${dia}`);
-    const progress = document.getElementById(`progress-${dia}`);
-    if (progress && checkboxes.length > 0) {
-      const updateProgress = () => {
-        const total = checkboxes.length;
-        const checked = Array.from(checkboxes).filter(c => c.checked).length;
-        progress.max = total;
-        progress.value = checked;
-      };
-      checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
-      updateProgress();
-    }
-  });
 </script>
 </body>
 </html>
