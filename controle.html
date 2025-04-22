@@ -24,11 +24,6 @@
     .week {
       margin-bottom: 20px;
     }
-    .week h2 {
-      font-size: 18px;
-      margin: 5px 0;
-      text-align: left;
-    }
     .calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
@@ -60,10 +55,12 @@
       border: none;
       padding: 5px;
       border-radius: 6px;
-      cursor: default;
+      cursor: pointer;
     }
     .video-group {
       margin-top: 5px;
+      padding: 5px;
+      border-radius: 4px;
     }
     .video-group > button {
       width: 100%;
@@ -100,9 +97,16 @@
   <h1>Cronograma – Canais YouTube</h1>
   <div id="date"></div>
 
+  <div class="buttons">
+    <button onclick="expandAll()">Expandir Tudo</button>
+    <button onclick="exportBackup()">Exportar Backup</button>
+    <button onclick="importBackup()">Importar Backup</button>
+    <button onclick="clearAll()">Limpar Tudo</button>
+    <input type="file" id="fileInput" style="display:none"/>
+  </div>
+
   <div class="week">
     <div class="calendar">
-      
       <!-- Segunda-feira -->
       <div class="day" data-day="1">
         <h3>Segunda-feira</h3>
@@ -110,9 +114,8 @@
 
         <!-- Figuras Bíblicas -->
         <div class="canal">
-          <button style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
+          <button onclick="toggleSection('s-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
           <div id="s-fb" style="display: block;">
-            <!-- Vídeo 01 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v1')">Vídeo 01</button>
               <div id="s-fb-v1" style="display: none;">
@@ -121,7 +124,6 @@
                 <label><input type="checkbox" data-id="fb-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 02 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v2')">Vídeo 02</button>
               <div id="s-fb-v2" style="display: none;">
@@ -130,7 +132,6 @@
                 <label><input type="checkbox" data-id="fb-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 03 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v3')">Vídeo 03</button>
               <div id="s-fb-v3" style="display: none;">
@@ -144,9 +145,8 @@
 
         <!-- Figuras Históricas -->
         <div class="canal">
-          <button style="background:#cfe2ff;">🔵 Figuras Históricas</button>
+          <button onclick="toggleSection('s-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
           <div id="s-fh" style="display: block;">
-            <!-- Vídeo 01 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v1')">Vídeo 01</button>
               <div id="s-fh-v1" style="display: none;">
@@ -155,7 +155,6 @@
                 <label><input type="checkbox" data-id="fh-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 02 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v2')">Vídeo 02</button>
               <div id="s-fh-v2" style="display: none;">
@@ -164,7 +163,6 @@
                 <label><input type="checkbox" data-id="fh-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 03 -->
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v3')">Vídeo 03</button>
               <div id="s-fh-v3" style="display: none;">
@@ -178,9 +176,8 @@
 
         <!-- Vidas Antigas -->
         <div class="canal">
-          <button style="background:#d1e7dd;">🟢 Vidas Antigas</button>
+          <button onclick="toggleSection('s-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
           <div id="s-va" style="display: block;">
-            <!-- Vídeo 01 -->
             <div class="video-group">
               <button onclick="toggleSection('s-va-v1')">Vídeo 01</button>
               <div id="s-va-v1" style="display: none;">
@@ -189,7 +186,6 @@
                 <label><input type="checkbox" data-id="va-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 02 -->
             <div class="video-group">
               <button onclick="toggleSection('s-va-v2')">Vídeo 02</button>
               <div id="s-va-v2" style="display: none;">
@@ -198,7 +194,6 @@
                 <label><input type="checkbox" data-id="va-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
               </div>
             </div>
-            <!-- Vídeo 03 -->
             <div class="video-group">
               <button onclick="toggleSection('s-va-v3')">Vídeo 03</button>
               <div id="s-va-v3" style="display: none;">
@@ -216,97 +211,91 @@
         <h3>Terça-feira</h3>
         <progress id="progress-t" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
 
-        <!-- Figuras Bíblicas -->
         <div class="canal">
-          <button style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
+          <button onclick="toggleSection('t-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
           <div id="t-fb" style="display: block;">
-            <!-- Vídeo 01 -->
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v1')">Vídeo 01</button>
               <div id="t-fb-v1" style="display: none;">
                 <label><input type="checkbox" data-id="fb-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fb-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fb-t-video1-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
-            <!-- Vídeo 02 -->
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v2')">Vídeo 02</button>
               <div id="t-fb-v2" style="display: none;">
                 <label><input type="checkbox" data-id="fb-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fb-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fb-t-video2-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
-            <!-- Vídeo 03 -->
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v3')">Vídeo 03</button>
               <div id="t-fb-v3" style="display: none;">
                 <label><input type="checkbox" data-id="fb-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fb-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fb-t-video3-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Figuras Históricas -->
         <div class="canal">
-          <button style="background:#cfe2ff;">🔵 Figuras Históricas</button>
+          <button onclick="toggleSection('t-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
           <div id="t-fh" style="display: block;">
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v1')">Vídeo 01</button>
               <div id="t-fh-v1" style="display: none;">
                 <label><input type="checkbox" data-id="fh-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fh-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fh-t-video1-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v2')">Vídeo 02</button>
               <div id="t-fh-v2" style="display: none;">
                 <label><input type="checkbox" data-id="fh-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fh-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fh-t-video2-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v3')">Vídeo 03</button>
               <div id="t-fh-v3" style="display: none;">
                 <label><input type="checkbox" data-id="fh-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="fh-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="fh-t-video3-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Vidas Antigas -->
         <div class="canal">
-          <button style="background:#d1e7dd;">🟢 Vidas Antigas</button>
+          <button onclick="toggleSection('t-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
           <div id="t-va" style="display: block;">
             <div class="video-group">
               <button onclick="toggleSection('t-va-v1')">Vídeo 01</button>
               <div id="t-va-v1" style="display: none;">
                 <label><input type="checkbox" data-id="va-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="va-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="va-t-video1-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-va-v2')">Vídeo 02</button>
               <div id="t-va-v2" style="display: none;">
                 <label><input type="checkbox" data-id="va-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="va-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="va-t-video2-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-va-v3')">Vídeo 03</button>
               <div id="t-va-v3" style="display: none;">
                 <label><input type="checkbox" data-id="va-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
+                <label><input type="checkbox" data-id="va-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
-                <label><input type="checkbox" data-id="va-t-video3-criar-thumb" class="check-t" /> Criar thumb</label>
               </div>
             </div>
           </div>
@@ -318,93 +307,90 @@
         <h3>Quarta-feira</h3>
         <progress id="progress-q" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
 
-        <!-- Figuras Bíblicas -->
         <div class="canal">
-          <button style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
+          <button onclick="toggleSection('q-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
           <div id="q-fb" style="display: block;">
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v1')">Vídeo 01</button>
               <div id="q-fb-v1" style="display: none;">
-                <label><input type="checkbox" data-id="fb-q-video1-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fb-q-video1-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fb-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fb-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v2')">Vídeo 02</button>
               <div id="q-fb-v2" style="display: none;">
-                <label><input type="checkbox" data-id="fb-q-video2-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fb-q-video2-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fb-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fb-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v3')">Vídeo 03</button>
               <div id="q-fb-v3" style="display: none;">
-                <label><input type="checkbox" data-id="fb-q-video3-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fb-q-video3-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fb-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fb-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Figuras Históricas -->
         <div class="canal">
-          <button style="background:#cfe2ff;">🔵 Figuras Históricas</button>
+          <button onclick="toggleSection('q-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
           <div id="q-fh" style="display: block;">
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v1')">Vídeo 01</button>
               <div id="q-fh-v1" style="display: none;">
-                <label><input type="checkbox" data-id="fh-q-video1-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fh-q-video1-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fh-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fh-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v2')">Vídeo 02</button>
               <div id="q-fh-v2" style="display: none;">
-                <label><input type="checkbox" data-id="fh-q-video2-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fh-q-video2-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fh-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fh-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v3')">Vídeo 03</button>
               <div id="q-fh-v3" style="display: none;">
-                <label><input type="checkbox" data-id="fh-q-video3-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="fh-q-video3-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="fh-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="fh-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Vidas Antigas -->
         <div class="canal">
-          <button style="background:#d1e7dd;">🟢 Vidas Antigas</button>
+          <button onclick="toggleSection('q-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
           <div id="q-va" style="display: block;">
             <div class="video-group">
               <button onclick="toggleSection('q-va-v1')">Vídeo 01</button>
               <div id="q-va-v1" style="display: none;">
-                <label><input type="checkbox" data-id="va-q-video1-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="va-q-video1-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="va-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="va-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-va-v2')">Vídeo 02</button>
               <div id="q-va-v2" style="display: none;">
-                <label><input type="checkbox" data-id="va-q-video2-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="va-q-video2-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="va-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="va-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-va-v3')">Vídeo 03</button>
               <div id="q-va-v3" style="display: none;">
-                <label><input type="checkbox" data-id="va-q-video3-converter-legenda" class="check-q" /> Converter legenda</label>
-                <label><input type="checkbox" data-id="va-q-video3-remover-silencio" class="check-q" /> Remover silêncio legenda</label>
+                <label><input type="checkbox" data-id="va-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
+                <label><input type="checkbox" data-id="va-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
               </div>
             </div>
@@ -412,100 +398,96 @@
         </div>
       </div>
 
-      <!-- Quinta a Domingo vazios (dias 4,5,6,0) -->
+      <!-- Quinta a Domingo vazios -->
       <div class="day" data-day="4"><h3>Quinta-feira</h3></div>
       <div class="day" data-day="5"><h3>Sexta-feira</h3></div>
       <div class="day" data-day="6"><h3>Sábado</h3></div>
       <div class="day" data-day="0"><h3>Domingo</h3></div>
-
     </div>
   </div>
 
-  <div class="buttons">
-    <button onclick="exportBackup()">Exportar Backup</button>
-    <button onclick="importBackup()">Importar Backup</button>
-    <button onclick="clearAll()">Limpar Tudo</button>
-    <input type="file" id="fileInput" style="display:none"/>
-  </div>
-
   <script>
+    // data e destaque do dia
     const dateElement = document.getElementById('date');
     const todayDate = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = todayDate.toLocaleDateString('pt-BR', options);
     dateElement.textContent = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-
     const currentDay = todayDate.getDay();
-    document.querySelectorAll(`.day[data-day="${currentDay}"]`).forEach(day => {
-      day.classList.add("today");
-    });
+    document.querySelectorAll(`.day[data-day="${currentDay}"]`).forEach(day => day.classList.add("today"));
 
-    // restore checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      const id = checkbox.dataset.id;
-      checkbox.checked = localStorage.getItem(id) === 'true';
-      checkbox.addEventListener('change', () => {
-        localStorage.setItem(id, checkbox.checked);
+    // restaura checkboxes
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      const id = cb.dataset.id;
+      cb.checked = localStorage.getItem(id) === 'true';
+      cb.addEventListener('change', () => {
+        localStorage.setItem(id, cb.checked);
       });
     });
 
+    // alterna visibilidade de qualquer seção (canal ou vídeo)
     function toggleSection(id) {
-      const section = document.getElementById(id);
-      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
     }
 
-    // abre todos os canais automaticamente
-    document.querySelectorAll('.canal > div').forEach(section => {
-      section.style.display = 'block';
-    });
+    // expande tudo
+    function expandAll() {
+      document.querySelectorAll('.canal > div, .video-group > div').forEach(el => el.style.display = 'block');
+    }
 
+    // progresso diário
     const dias = ['s','t','q','qi','sex','sab','dom'];
     dias.forEach(dia => {
-      const checkboxes = document.querySelectorAll(`.check-${dia}`);
       const progress = document.getElementById(`progress-${dia}`);
-      if (progress && checkboxes.length > 0) {
-        const updateProgress = () => {
-          progress.max = checkboxes.length;
-          progress.value = Array.from(checkboxes).filter(c => c.checked).length;
+      const checks = document.querySelectorAll(`.check-${dia}`);
+      if (progress && checks.length) {
+        const update = () => {
+          progress.max = checks.length;
+          progress.value = Array.from(checks).filter(c => c.checked).length;
         };
-        checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
-        updateProgress();
+        checks.forEach(c => c.addEventListener('change', update));
+        update();
       }
     });
+    // marca vídeo completo
+    document.querySelectorAll('.video-group').forEach(group => {
+      const boxes = group.querySelectorAll('input[type="checkbox"]');
+      const updateGroup = () => {
+        if (boxes.length && Array.from(boxes).every(b => b.checked)) {
+          group.style.background = '#d4edda';
+        } else {
+          group.style.background = '';
+        }
+      };
+      boxes.forEach(b => b.addEventListener('change', updateGroup));
+      updateGroup();
+    });
 
+    // backup/import/limpar
     function exportBackup() {
       const data = {};
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        data[cb.dataset.id] = cb.checked;
-      });
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => data[cb.dataset.id] = cb.checked);
       const now = new Date();
-      const filename = `backup_cronograma_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}-${String(now.getMinutes()).padStart(2,'0')}.json`;
+      const fn = `backup_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}-${String(now.getMinutes()).padStart(2,'0')}.json`;
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      a.click();
+      a.href = url; a.download = fn; a.click();
       URL.revokeObjectURL(url);
     }
-
-    function importBackup() {
-      document.getElementById('fileInput').click();
-    }
-    document.getElementById('fileInput').addEventListener('change', function () {
+    function importBackup() { document.getElementById('fileInput').click(); }
+    document.getElementById('fileInput').addEventListener('change', function(){
       const file = this.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function (e) {
-        const data = JSON.parse(e.target.result);
-        Object.keys(data).forEach(key => {
-          localStorage.setItem(key, data[key]);
-        });
+      reader.onload = e => {
+        const d = JSON.parse(e.target.result);
+        Object.keys(d).forEach(k => localStorage.setItem(k, d[k]));
         location.reload();
       };
       reader.readAsText(file);
     });
-
     function clearAll() {
       if (confirm("Tem certeza que deseja limpar todas as marcações?")) {
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
