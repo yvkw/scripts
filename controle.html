@@ -121,7 +121,7 @@
         <!-- Figuras Bíblicas -->
         <div class="canal">
           <button onclick="toggleSection('s-fb')" style="background:#d9cfc3;">
-            🟤 Figuras Bíblicas
+            🔴 Figuras Bíblicas
           </button>
           <div id="s-fb">
             <div class="video-group">
@@ -154,7 +154,7 @@
         <!-- Figuras Históricas -->
         <div class="canal">
           <button onclick="toggleSection('s-fh')" style="background:#cfe2ff;">
-            🔵 Figuras Históricas
+            🔴 Figuras Históricas
           </button>
           <div id="s-fh">
             <div class="video-group">
@@ -187,7 +187,7 @@
         <!-- Vidas Antigas -->
         <div class="canal">
           <button onclick="toggleSection('s-va')" style="background:#d6d1e7;">
-            🟢 Vidas Antigas
+            🔴 Vidas Antigas
           </button>
           <div id="s-va">
             <div class="video-group">
@@ -224,7 +224,7 @@
         <progress id="progress-t" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
 
         <div class="canal">
-          <button onclick="toggleSection('t-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
+          <button onclick="toggleSection('t-fb')" style="background:#d9cfc3;">🔴 Figuras Bíblicas</button>
           <div id="t-fb">
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v1')">Vídeo 01</button>
@@ -254,7 +254,7 @@
         </div>
 
         <div class="canal">
-          <button onclick="toggleSection('t-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
+          <button onclick="toggleSection('t-fh')" style="background:#cfe2ff;">🔴 Figuras Históricas</button>
           <div id="t-fh">
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v1')">Vídeo 01</button>
@@ -284,7 +284,7 @@
         </div>
 
         <div class="canal">
-          <button onclick="toggleSection('t-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
+          <button onclick="toggleSection('t-va')" style="background:#d6d1e7;">🔴 Vidas Antigas</button>
           <div id="t-va">
             <div class="video-group">
               <button onclick="toggleSection('t-va-v1')">Vídeo 01</button>
@@ -320,7 +320,7 @@
         <progress id="progress-q" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
 
         <div class="canal">
-          <button onclick="toggleSection('q-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
+          <button onclick="toggleSection('q-fb')" style="background:#d9cfc3;">🔴 Figuras Bíblicas</button>
           <div id="q-fb">
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v1')">Vídeo 01</button>
@@ -350,7 +350,7 @@
         </div>
 
         <div class="canal">
-          <button onclick="toggleSection('q-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
+          <button onclick="toggleSection('q-fh')" style="background:#cfe2ff;">🔴 Figuras Históricas</button>
           <div id="q-fh">
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v1')">Vídeo 01</button>
@@ -380,7 +380,7 @@
         </div>
 
         <div class="canal">
-          <button onclick="toggleSection('q-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
+          <button onclick="toggleSection('q-va')" style="background:#d6d1e7;">🔴 Vidas Antigas</button>
           <div id="q-va">
             <div class="video-group">
               <button onclick="toggleSection('q-va-v1')">Vídeo 01</button>
@@ -512,6 +512,52 @@
         });
       }
     }
-  </script>
-</body>
-</html>
+  
+// Atualiza bolinha para verde se todos os checkboxes de um vídeo forem marcados
+document.querySelectorAll('.video-group').forEach(group => {
+  const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+  const button = group.querySelector('button');
+  const updateEmoji = () => {
+    const canalButton = group.closest('.canal')?.querySelector('button');
+    if (checkboxes.length && Array.from(checkboxes).every(cb => cb.checked)) {
+      group.style.background = '#d4edda';
+      if (canalButton && canalButton.textContent.includes("🔴")) {
+        canalButton.textContent = canalButton.textContent.replace("🔴", "🔴");
+      }
+    } else {
+      group.style.background = '';
+      if (canalButton && canalButton.textContent.includes("🔴")) {
+        canalButton.textContent = canalButton.textContent.replace("🔴", "🔴");
+      }
+    }
+  };
+  checkboxes.forEach(cb => cb.addEventListener('change', updateEmoji));
+  updateEmoji();
+});
+
+
+// Atualiza bolinha para verde se todos os vídeos do canal forem completados
+document.querySelectorAll('.canal').forEach(canal => {
+  const canalButton = canal.querySelector('button');
+  const videoGroups = canal.querySelectorAll('.video-group');
+  const allCheckGroups = Array.from(videoGroups).map(group => group.querySelectorAll('input[type="checkbox"]'));
+  const updateCanalEmoji = () => {
+    const allGroupsChecked = allCheckGroups.every(checks => 
+      Array.from(checks).length > 0 && Array.from(checks).every(cb => cb.checked)
+    );
+    if (canalButton) {
+      if (allGroupsChecked) {
+        canalButton.textContent = canalButton.textContent.replace("🔴", "🟢");
+      } else {
+        canalButton.textContent = canalButton.textContent.replace("🟢", "🔴");
+      }
+    }
+  };
+  // Reage a mudanças em qualquer checkbox
+  allCheckGroups.forEach(checks => 
+    checks.forEach(cb => cb.addEventListener('change', updateCanalEmoji))
+  );
+  updateCanalEmoji(); // rodar ao carregar
+});
+
+</script>
