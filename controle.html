@@ -57,6 +57,10 @@
       border-radius: 6px;
       cursor: pointer;
     }
+    /* esconde o conteúdo de cada canal até o clique */
+    .canal > div {
+      display: none;
+    }
     .video-group {
       margin-top: 5px;
       padding: 5px;
@@ -73,9 +77,11 @@
       border-radius: 4px;
       margin-bottom: 4px;
     }
-    .video-group div {
+    /* esconde o checklist de cada vídeo até o clique */
+    .video-group > div {
       padding-left: 10px;
       margin-bottom: 6px;
+      display: none;
     }
     label {
       display: block;
@@ -114,11 +120,13 @@
 
         <!-- Figuras Bíblicas -->
         <div class="canal">
-          <button onclick="toggleSection('s-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
-          <div id="s-fb" style="display: block;">
+          <button onclick="toggleSection('s-fb')" style="background:#d9cfc3;">
+            🟤 Figuras Bíblicas
+          </button>
+          <div id="s-fb">
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v1')">Vídeo 01</button>
-              <div id="s-fb-v1" style="display: none;">
+              <div id="s-fb-v1">
                 <label><input type="checkbox" data-id="fb-s-video1-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fb-s-video1-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fb-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -126,7 +134,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v2')">Vídeo 02</button>
-              <div id="s-fb-v2" style="display: none;">
+              <div id="s-fb-v2">
                 <label><input type="checkbox" data-id="fb-s-video2-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fb-s-video2-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fb-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -134,7 +142,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-fb-v3')">Vídeo 03</button>
-              <div id="s-fb-v3" style="display: none;">
+              <div id="s-fb-v3">
                 <label><input type="checkbox" data-id="fb-s-video3-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fb-s-video3-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fb-s-video3-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -145,11 +153,13 @@
 
         <!-- Figuras Históricas -->
         <div class="canal">
-          <button onclick="toggleSection('s-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
-          <div id="s-fh" style="display: block;">
+          <button onclick="toggleSection('s-fh')" style="background:#cfe2ff;">
+            🔵 Figuras Históricas
+          </button>
+          <div id="s-fh">
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v1')">Vídeo 01</button>
-              <div id="s-fh-v1" style="display: none;">
+              <div id="s-fh-v1">
                 <label><input type="checkbox" data-id="fh-s-video1-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fh-s-video1-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fh-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -157,7 +167,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v2')">Vídeo 02</button>
-              <div id="s-fh-v2" style="display: none;">
+              <div id="s-fh-v2">
                 <label><input type="checkbox" data-id="fh-s-video2-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fh-s-video2-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fh-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -165,7 +175,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-fh-v3')">Vídeo 03</button>
-              <div id="s-fh-v3" style="display: none;">
+              <div id="s-fh-v3">
                 <label><input type="checkbox" data-id="fh-s-video3-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="fh-s-video3-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="fh-s-video3-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -176,11 +186,13 @@
 
         <!-- Vidas Antigas -->
         <div class="canal">
-          <button onclick="toggleSection('s-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
-          <div id="s-va" style="display: block;">
+          <button onclick="toggleSection('s-va')" style="background:#d6d1e7;">
+            🟢 Vidas Antigas
+          </button>
+          <div id="s-va">
             <div class="video-group">
               <button onclick="toggleSection('s-va-v1')">Vídeo 01</button>
-              <div id="s-va-v1" style="display: none;">
+              <div id="s-va-v1">
                 <label><input type="checkbox" data-id="va-s-video1-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="va-s-video1-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="va-s-video1-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -188,7 +200,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-va-v2')">Vídeo 02</button>
-              <div id="s-va-v2" style="display: none;">
+              <div id="s-va-v2">
                 <label><input type="checkbox" data-id="va-s-video2-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="va-s-video2-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="va-s-video2-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -196,7 +208,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('s-va-v3')">Vídeo 03</button>
-              <div id="s-va-v3" style="display: none;">
+              <div id="s-va-v3">
                 <label><input type="checkbox" data-id="va-s-video3-criar-roteiro" class="check-s" /> Criar roteiro</label>
                 <label><input type="checkbox" data-id="va-s-video3-criar-informacoes" class="check-s" /> Criar informações</label>
                 <label><input type="checkbox" data-id="va-s-video3-gerar-prompts" class="check-s" /> Gerar prompts</label>
@@ -213,10 +225,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('t-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
-          <div id="t-fb" style="display: block;">
+          <div id="t-fb">
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v1')">Vídeo 01</button>
-              <div id="t-fb-v1" style="display: none;">
+              <div id="t-fb-v1">
                 <label><input type="checkbox" data-id="fb-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fb-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -224,7 +236,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v2')">Vídeo 02</button>
-              <div id="t-fb-v2" style="display: none;">
+              <div id="t-fb-v2">
                 <label><input type="checkbox" data-id="fb-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fb-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -232,7 +244,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fb-v3')">Vídeo 03</button>
-              <div id="t-fb-v3" style="display: none;">
+              <div id="t-fb-v3">
                 <label><input type="checkbox" data-id="fb-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fb-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fb-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -243,10 +255,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('t-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
-          <div id="t-fh" style="display: block;">
+          <div id="t-fh">
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v1')">Vídeo 01</button>
-              <div id="t-fh-v1" style="display: none;">
+              <div id="t-fh-v1">
                 <label><input type="checkbox" data-id="fh-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fh-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -254,7 +266,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v2')">Vídeo 02</button>
-              <div id="t-fh-v2" style="display: none;">
+              <div id="t-fh-v2">
                 <label><input type="checkbox" data-id="fh-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fh-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -262,7 +274,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-fh-v3')">Vídeo 03</button>
-              <div id="t-fh-v3" style="display: none;">
+              <div id="t-fh-v3">
                 <label><input type="checkbox" data-id="fh-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="fh-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="fh-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -273,10 +285,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('t-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
-          <div id="t-va" style="display: block;">
+          <div id="t-va">
             <div class="video-group">
               <button onclick="toggleSection('t-va-v1')">Vídeo 01</button>
-              <div id="t-va-v1" style="display: none;">
+              <div id="t-va-v1">
                 <label><input type="checkbox" data-id="va-t-video1-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="va-t-video1-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video1-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -284,7 +296,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-va-v2')">Vídeo 02</button>
-              <div id="t-va-v2" style="display: none;">
+              <div id="t-va-v2">
                 <label><input type="checkbox" data-id="va-t-video2-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="va-t-video2-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video2-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -292,7 +304,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('t-va-v3')">Vídeo 03</button>
-              <div id="t-va-v3" style="display: none;">
+              <div id="t-va-v3">
                 <label><input type="checkbox" data-id="va-t-video3-gerar-imagens" class="check-t" /> Gerar imagens</label>
                 <label><input type="checkbox" data-id="va-t-video3-gerar-intro" class="check-t" /> Gerar intro</label>
                 <label><input type="checkbox" data-id="va-t-video3-recortar-imagens" class="check-t" /> Recortar imagens</label>
@@ -309,10 +321,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('q-fb')" style="background:#d9cfc3;">🟤 Figuras Bíblicas</button>
-          <div id="q-fb" style="display: block;">
+          <div id="q-fb">
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v1')">Vídeo 01</button>
-              <div id="q-fb-v1" style="display: none;">
+              <div id="q-fb-v1">
                 <label><input type="checkbox" data-id="fb-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fb-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
@@ -320,7 +332,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v2')">Vídeo 02</button>
-              <div id="q-fb-v2" style="display: none;">
+              <div id="q-fb-v2">
                 <label><input type="checkbox" data-id="fb-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fb-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
@@ -328,7 +340,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fb-v3')">Vídeo 03</button>
-              <div id="q-fb-v3" style="display: none;">
+              <div id="q-fb-v3">
                 <label><input type="checkbox" data-id="fb-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fb-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fb-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
@@ -339,10 +351,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('q-fh')" style="background:#cfe2ff;">🔵 Figuras Históricas</button>
-          <div id="q-fh" style="display: block;">
+          <div id="q-fh">
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v1')">Vídeo 01</button>
-              <div id="q-fh-v1" style="display: none;">
+              <div id="q-fh-v1">
                 <label><input type="checkbox" data-id="fh-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fh-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
@@ -350,7 +362,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v2')">Vídeo 02</button>
-              <div id="q-fh-v2" style="display: none;">
+              <div id="q-fh-v2">
                 <label><input type="checkbox" data-id="fh-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fh-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
@@ -358,7 +370,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-fh-v3')">Vídeo 03</button>
-              <div id="q-fh-v3" style="display: none;">
+              <div id="q-fh-v3">
                 <label><input type="checkbox" data-id="fh-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="fh-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="fh-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
@@ -369,10 +381,10 @@
 
         <div class="canal">
           <button onclick="toggleSection('q-va')" style="background:#d6d1e7;">🟢 Vidas Antigas</button>
-          <div id="q-va" style="display: block;">
+          <div id="q-va">
             <div class="video-group">
               <button onclick="toggleSection('q-va-v1')">Vídeo 01</button>
-              <div id="q-va-v1" style="display: none;">
+              <div id="q-va-v1">
                 <label><input type="checkbox" data-id="va-q-video1-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="va-q-video1-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video1-editar-video" class="check-q" /> Editar vídeo</label>
@@ -380,7 +392,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-va-v2')">Vídeo 02</button>
-              <div id="q-va-v2" style="display: none;">
+              <div id="q-va-v2">
                 <label><input type="checkbox" data-id="va-q-video2-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="va-q-video2-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video2-editar-video" class="check-q" /> Editar vídeo</label>
@@ -388,7 +400,7 @@
             </div>
             <div class="video-group">
               <button onclick="toggleSection('q-va-v3')">Vídeo 03</button>
-              <div id="q-va-v3" style="display: none;">
+              <div id="q-va-v3">
                 <label><input type="checkbox" data-id="va-q-video3-criar-narracao" class="check-q" /> Criar narração</label>
                 <label><input type="checkbox" data-id="va-q-video3-criar-thumb" class="check-q" /> Criar thumb</label>
                 <label><input type="checkbox" data-id="va-q-video3-editar-video" class="check-q" /> Editar vídeo</label>
@@ -414,7 +426,8 @@
     const formattedDate = todayDate.toLocaleDateString('pt-BR', options);
     dateElement.textContent = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
     const currentDay = todayDate.getDay();
-    document.querySelectorAll(`.day[data-day="${currentDay}"]`).forEach(day => day.classList.add("today"));
+    document.querySelectorAll(`.day[data-day="${currentDay}"]`)
+            .forEach(day => day.classList.add("today"));
 
     // restaura checkboxes
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
@@ -433,7 +446,8 @@
 
     // expande tudo
     function expandAll() {
-      document.querySelectorAll('.canal > div, .video-group > div').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('.canal > div, .video-group > div')
+              .forEach(el => el.style.display = 'block');
     }
 
     // progresso diário
@@ -450,6 +464,7 @@
         update();
       }
     });
+
     // marca vídeo completo
     document.querySelectorAll('.video-group').forEach(group => {
       const boxes = group.querySelectorAll('input[type="checkbox"]');
@@ -467,7 +482,8 @@
     // backup/import/limpar
     function exportBackup() {
       const data = {};
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => data[cb.dataset.id] = cb.checked);
+      document.querySelectorAll('input[type="checkbox"]')
+              .forEach(cb => data[cb.dataset.id] = cb.checked);
       const now = new Date();
       const fn = `backup_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}-${String(now.getMinutes()).padStart(2,'0')}.json`;
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
