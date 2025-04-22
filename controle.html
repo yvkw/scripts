@@ -1,224 +1,298 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Controle de Produção</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cronograma – Canais YouTube</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 30px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    #dataHora {
-      font-size: 14px;
-      color: #333;
-    }
-
-    .botoes, .seletor {
-      margin-bottom: 20px;
-    }
-
-    .botoes button {
-      margin-right: 10px;
-      padding: 8px 14px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .botoes input[type="file"] {
-      display: none;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      color: #003366;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 40px;
-    }
-
-    th, td {
-      border: 1px solid #003366;
+      background: #f9f9f9;
+      margin: 0;
       padding: 10px;
+    }
+    h1 {
       text-align: center;
+      margin: 0;
     }
+    #date {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+    .week {
+      margin-bottom: 20px;
+    }
+    .week h2 {
+      font-size: 18px;
+      margin: 5px 0;
+      text-align: left;
+    }
+    .calendar {
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      scroll-snap-type: x mandatory;
 
-    th {
-      background-color: #003366;
-      color: white;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+    .day {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 100px;
+      font-size: 13px;
+    }
+    .day.today {
+      background-color: #fff3cd;
+      border-color: #ffc107;
+    }
+    .day h3 {
       font-size: 14px;
+      margin-top: 0;
     }
-
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+    label {
+      display: block;
+      margin: 3px 0;
+    }
+    .buttons {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .buttons button {
+      margin: 0 10px;
+      padding: 6px 12px;
+      font-size: 13px;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
+  <h1>Cronograma – Canais YouTube</h1>
+  <div id="date"></div>
+<div class="week">
+<div class="calendar">
+<div class="day" data-day="1">
+<h3>Segunda-feira</h3>
+<progress id="progress-s" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
 
-  <header>
-    <h1>Controle de Produção</h1>
-    <div id="dataHora"></div>
-  </header>
+            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('s-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
+              <div id="s-fb" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fb-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<label><input type="checkbox" data-id="fb-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
+<label><input type="checkbox" data-id="fb-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
+<label><input type="checkbox" data-id="fb-s-criar-informações1" class="check-s" /> Criar informações 1</label>
+<label><input type="checkbox" data-id="fb-s-criar-informações2" class="check-s" /> Criar informações 2</label>
+<label><input type="checkbox" data-id="fb-s-criar-informações3" class="check-s" /> Criar informações 3</label>
+</div></div>
 
-  <div class="botoes">
-    <button onclick="limparTudo()">Limpar Tudo</button>
-    <button onclick="exportarBackup()">Exportar Backup</button>
-    <button onclick="document.getElementById('importBackup').click()">Importar Backup</button>
-    <input type="file" id="importBackup" accept=".json" onchange="importarBackup(event)">
+            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('s-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
+              <div id="s-fh" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fh-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<label><input type="checkbox" data-id="fh-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
+<label><input type="checkbox" data-id="fh-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
+<label><input type="checkbox" data-id="fh-s-criar-informações1" class="check-s" /> Criar informações 1</label>
+<label><input type="checkbox" data-id="fh-s-criar-informações2" class="check-s" /> Criar informações 2</label>
+<label><input type="checkbox" data-id="fh-s-criar-informações3" class="check-s" /> Criar informações 3</label>
+</div></div>
+
+            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('s-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
+              <div id="s-va" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="va-s-criar-roteiro1" class="check-s" /> Criar roteiro 1</label>
+<label><input type="checkbox" data-id="va-s-criar-roteiro2" class="check-s" /> Criar roteiro 2</label>
+<label><input type="checkbox" data-id="va-s-criar-roteiro3" class="check-s" /> Criar roteiro 3</label>
+<label><input type="checkbox" data-id="va-s-criar-informações1" class="check-s" /> Criar informações 1</label>
+<label><input type="checkbox" data-id="va-s-criar-informações2" class="check-s" /> Criar informações 2</label>
+<label><input type="checkbox" data-id="va-s-criar-informações3" class="check-s" /> Criar informações 3</label>
+</div></div>
+</div>
+<div class="day" data-day="2">
+<h3>Terça-feira</h3>
+<progress id="progress-t" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
+
+            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('t-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
+              <div id="t-fb" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fb-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="fb-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="fb-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<label><input type="checkbox" data-id="fb-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
+<label><input type="checkbox" data-id="fb-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
+<label><input type="checkbox" data-id="fb-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
+</div></div>
+
+            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('t-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
+              <div id="t-fh" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fh-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="fh-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="fh-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<label><input type="checkbox" data-id="fh-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
+<label><input type="checkbox" data-id="fh-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
+<label><input type="checkbox" data-id="fh-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
+</div></div>
+
+            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('t-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
+              <div id="t-va" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="va-t-gerar-prompts1" class="check-t" /> Gerar prompts 1</label>
+<label><input type="checkbox" data-id="va-t-gerar-prompts2" class="check-t" /> Gerar prompts 2</label>
+<label><input type="checkbox" data-id="va-t-gerar-prompts3" class="check-t" /> Gerar prompts 3</label>
+<label><input type="checkbox" data-id="va-t-gerar-imagens1" class="check-t" /> Gerar imagens 1</label>
+<label><input type="checkbox" data-id="va-t-gerar-imagens2" class="check-t" /> Gerar imagens 2</label>
+<label><input type="checkbox" data-id="va-t-gerar-imagens3" class="check-t" /> Gerar imagens 3</label>
+</div></div>
+</div>
+<div class="day" data-day="3">
+<h3>Quarta-feira</h3>
+<progress id="progress-q" max="1" value="0" style="width: 100%; height: 10px; margin-bottom: 10px;"></progress>
+
+            <div class="canal" style="background:#d9cfc3; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('q-fb')" style="width: 100%; text-align: left; font-weight: bold;">🟤 Figuras Bíblicas</button>
+              <div id="q-fb" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fb-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="fb-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="fb-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="fb-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
+<label><input type="checkbox" data-id="fb-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
+<label><input type="checkbox" data-id="fb-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
+</div></div>
+
+            <div class="canal" style="background:#cfe2ff; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('q-fh')" style="width: 100%; text-align: left; font-weight: bold;">🔵 Figuras Históricas</button>
+              <div id="q-fh" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="fh-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="fh-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="fh-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="fh-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
+<label><input type="checkbox" data-id="fh-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
+<label><input type="checkbox" data-id="fh-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
+</div></div>
+
+            <div class="canal" style="background:#d1e7dd; border-radius:6px; padding:5px; margin-bottom:5px;">
+              <button onclick="toggleSection('q-va')" style="width: 100%; text-align: left; font-weight: bold;">🟢 Vidas Antigas</button>
+              <div id="q-va" style="display: none; padding-left: 10px;">
+            <label><input type="checkbox" data-id="va-q-recortar-imagens1" class="check-q" /> Recortar imagens 1</label>
+<label><input type="checkbox" data-id="va-q-recortar-imagens2" class="check-q" /> Recortar imagens 2</label>
+<label><input type="checkbox" data-id="va-q-recortar-imagens3" class="check-q" /> Recortar imagens 3</label>
+<label><input type="checkbox" data-id="va-q-editar-vídeo1" class="check-q" /> Editar vídeo 1</label>
+<label><input type="checkbox" data-id="va-q-editar-vídeo2" class="check-q" /> Editar vídeo 2</label>
+<label><input type="checkbox" data-id="va-q-editar-vídeo3" class="check-q" /> Editar vídeo 3</label>
+</div></div>
+</div>
+<div class="day" data-day="4">
+<h3>Quinta-feira</h3>
+</div>
+<div class="day" data-day="5">
+<h3>Sexta-feira</h3>
+</div>
+<div class="day" data-day="6">
+<h3>Sábado</h3>
+</div>
+<div class="day" data-day="0">
+<h3>Domingo</h3>
+</div>
+</div>
+</div>
+
+  <div class="buttons">
+    <button onclick="exportBackup()">Exportar Backup</button>
+    <button onclick="importBackup()">Importar Backup</button>
+    <button onclick="clearAll()">Limpar Tudo</button>
+    <input type="file" id="fileInput" style="display:none"/>
   </div>
+<script>
+  const dateElement = document.getElementById('date');
+  const todayDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = todayDate.toLocaleDateString('pt-BR', options);
+  dateElement.textContent = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 
-  <div class="seletor">
-    <label for="selecionarProjeto"><strong>Selecionar Projeto:</strong></label>
-    <select id="selecionarProjeto" onchange="mostrarProjeto()">
-      <option value="biblicas">Figuras Bíblicas</option>
-      <option value="historicas">Figuras Históricas</option>
-      <option value="antigas">Vidas Antigas</option>
-    </select>
-  </div>
+  const currentDay = todayDate.getDay();
+  document.querySelectorAll(`.day[data-day="${currentDay}"]`).forEach(day => {
+    day.classList.add("today");
+  });
 
-  <div id="projeto-biblicas">
-    <h2>Figuras Bíblicas</h2>
-    <table>
-      <tr>
-        <th>VÍDEO</th>
-        <th>CRIAR ROTEIRO</th>
-        <th>INFORMAÇÕES</th>
-        <th>PROMPTS IMAGENS</th>
-        <th>GERAR IMAGENS</th>
-        <th>RECORTAR IMAGENS</th>
-        <th>EDITAR VÍDEO</th>
-      </tr>
-      <tr><td><strong>001</strong></td><td><input type="checkbox" id="bib001-roteiro"></td><td><input type="checkbox" id="bib001-infos"></td><td><input type="checkbox" id="bib001-prompts"></td><td><input type="checkbox" id="bib001-imgs"></td><td><input type="checkbox" id="bib001-recorte"></td><td><input type="checkbox" id="bib001-editar"></td></tr>
-      <tr><td><strong>002</strong></td><td><input type="checkbox" id="bib002-roteiro"></td><td><input type="checkbox" id="bib002-infos"></td><td><input type="checkbox" id="bib002-prompts"></td><td><input type="checkbox" id="bib002-imgs"></td><td><input type="checkbox" id="bib002-recorte"></td><td><input type="checkbox" id="bib002-editar"></td></tr>
-      <tr><td><strong>003</strong></td><td><input type="checkbox" id="bib003-roteiro"></td><td><input type="checkbox" id="bib003-infos"></td><td><input type="checkbox" id="bib003-prompts"></td><td><input type="checkbox" id="bib003-imgs"></td><td><input type="checkbox" id="bib003-recorte"></td><td><input type="checkbox" id="bib003-editar"></td></tr>
-    </table>
-  </div>
-
-  <div id="projeto-historicas" style="display:none;">
-    <h2>Figuras Históricas</h2>
-    <table>
-      <tr>
-        <th>VÍDEO</th>
-        <th>CRIAR ROTEIRO</th>
-        <th>INFORMAÇÕES</th>
-        <th>PROMPTS IMAGENS</th>
-        <th>GERAR IMAGENS</th>
-        <th>RECORTAR IMAGENS</th>
-        <th>EDITAR VÍDEO</th>
-      </tr>
-      <tr><td><strong>001</strong></td><td><input type="checkbox" id="hist001-roteiro"></td><td><input type="checkbox" id="hist001-infos"></td><td><input type="checkbox" id="hist001-prompts"></td><td><input type="checkbox" id="hist001-imgs"></td><td><input type="checkbox" id="hist001-recorte"></td><td><input type="checkbox" id="hist001-editar"></td></tr>
-      <tr><td><strong>002</strong></td><td><input type="checkbox" id="hist002-roteiro"></td><td><input type="checkbox" id="hist002-infos"></td><td><input type="checkbox" id="hist002-prompts"></td><td><input type="checkbox" id="hist002-imgs"></td><td><input type="checkbox" id="hist002-recorte"></td><td><input type="checkbox" id="hist002-editar"></td></tr>
-      <tr><td><strong>003</strong></td><td><input type="checkbox" id="hist003-roteiro"></td><td><input type="checkbox" id="hist003-infos"></td><td><input type="checkbox" id="hist003-prompts"></td><td><input type="checkbox" id="hist003-imgs"></td><td><input type="checkbox" id="hist003-recorte"></td><td><input type="checkbox" id="hist003-editar"></td></tr>
-    </table>
-  </div>
-
-  <div id="projeto-antigas" style="display:none;">
-    <h2>Vidas Antigas</h2>
-    <table>
-      <tr>
-        <th>VÍDEO</th>
-        <th>CRIAR ROTEIRO</th>
-        <th>INFORMAÇÕES</th>
-        <th>PROMPTS IMAGENS</th>
-        <th>GERAR IMAGENS</th>
-        <th>RECORTAR IMAGENS</th>
-        <th>EDITAR VÍDEO</th>
-      </tr>
-      <tr><td><strong>001</strong></td><td><input type="checkbox" id="vida001-roteiro"></td><td><input type="checkbox" id="vida001-infos"></td><td><input type="checkbox" id="vida001-prompts"></td><td><input type="checkbox" id="vida001-imgs"></td><td><input type="checkbox" id="vida001-recorte"></td><td><input type="checkbox" id="vida001-editar"></td></tr>
-      <tr><td><strong>002</strong></td><td><input type="checkbox" id="vida002-roteiro"></td><td><input type="checkbox" id="vida002-infos"></td><td><input type="checkbox" id="vida002-prompts"></td><td><input type="checkbox" id="vida002-imgs"></td><td><input type="checkbox" id="vida002-recorte"></td><td><input type="checkbox" id="vida002-editar"></td></tr>
-      <tr><td><strong>003</strong></td><td><input type="checkbox" id="vida003-roteiro"></td><td><input type="checkbox" id="vida003-infos"></td><td><input type="checkbox" id="vida003-prompts"></td><td><input type="checkbox" id="vida003-imgs"></td><td><input type="checkbox" id="vida003-recorte"></td><td><input type="checkbox" id="vida003-editar"></td></tr>
-    </table>
-  </div>
-
-  <script>
-    function formatarDataHora() {
-      const agora = new Date();
-      const opcoes = { day: 'numeric', month: 'long', year: 'numeric' };
-      const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-      const data = agora.toLocaleDateString('pt-BR', opcoes);
-      document.getElementById('dataHora').textContent = `${hora} - ${data}`;
-    }
-    formatarDataHora();
-    setInterval(formatarDataHora, 60000);
-
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-      const id = checkbox.id;
-      const saved = localStorage.getItem(id);
-      if (saved === 'true') checkbox.checked = true;
-      checkbox.addEventListener('change', () => {
-        localStorage.setItem(id, checkbox.checked);
-      });
+  document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    const id = checkbox.dataset.id;
+    checkbox.checked = localStorage.getItem(id) === 'true';
+    checkbox.addEventListener('change', () => {
+      localStorage.setItem(id, checkbox.checked);
     });
+  });
 
-    function limparTudo() {
-      if (confirm('Tem certeza que deseja limpar todas as marcações?')) {
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-          checkbox.checked = false;
-          localStorage.removeItem(checkbox.id);
-        });
-      }
-    }
+  function exportBackup() {
+    const data = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+      const id = checkbox.dataset.id;
+      data[id] = checkbox.checked;
+    });
+    const now = new Date();
+    const filename = `backup_cronograma_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}-${String(now.getMinutes()).padStart(2,'0')}.json`;
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
-    function exportarBackup() {
-      const dados = {};
+  function importBackup() {
+    document.getElementById('fileInput').click();
+  }
+
+  document.getElementById('fileInput').addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const data = JSON.parse(e.target.result);
+      Object.keys(data).forEach(key => {
+        localStorage.setItem(key, data[key]);
+      });
+      location.reload();
+    };
+    reader.readAsText(file);
+  });
+
+  function clearAll() {
+    if (confirm("Tem certeza que deseja limpar todas as marcações?")) {
       document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        dados[checkbox.id] = checkbox.checked;
+        localStorage.removeItem(checkbox.dataset.id);
+        checkbox.checked = false;
       });
-      const blob = new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `backup-cronograma-${new Date().toISOString().slice(0, 10)}.json`;
-      link.click();
-      URL.revokeObjectURL(url);
     }
+  }
 
-    function importarBackup(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const dados = JSON.parse(e.target.result);
-          for (let id in dados) {
-            const checkbox = document.getElementById(id);
-            if (checkbox) {
-              checkbox.checked = dados[id];
-              localStorage.setItem(id, dados[id]);
-            }
-          }
-          alert("Backup importado com sucesso!");
-        } catch {
-          alert("Erro ao importar o arquivo.");
-        }
+  function toggleSection(id) {
+    const section = document.getElementById(id);
+    section.style.display = section.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Progresso por dia
+  const dias = ['s','t','q','qi','sex','sab','dom'];
+  dias.forEach(dia => {
+    const checkboxes = document.querySelectorAll(`.check-${dia}`);
+    const progress = document.getElementById(`progress-${dia}`);
+    if (progress && checkboxes.length > 0) {
+      const updateProgress = () => {
+        const total = checkboxes.length;
+        const checked = Array.from(checkboxes).filter(c => c.checked).length;
+        progress.max = total;
+        progress.value = checked;
       };
-      reader.readAsText(file);
+      checkboxes.forEach(cb => cb.addEventListener('change', updateProgress));
+      updateProgress();
     }
-
-    function mostrarProjeto() {
-      const selecionado = document.getElementById("selecionarProjeto").value;
-      const projetos = ["biblicas", "historicas", "antigas"];
-      projetos.forEach(p => {
-        document.getElementById("projeto-" + p).style.display = (p === selecionado) ? "block" : "none";
-      });
-    }
-  </script>
-
+  });
+</script>
 </body>
 </html>
