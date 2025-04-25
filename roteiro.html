@@ -66,6 +66,13 @@
 
   <div id="partes"></div>
 
+  <h2>Gerar Introdução Impactante</h2>
+  <p>Cole o texto abaixo para gerar a introdução envolvente:</p>
+  <textarea id="textoIntroducao" placeholder="Cole seu texto aqui..."></textarea>
+  <button onclick="gerarIntroducaoImpactante()">Gerar Introdução</button>
+
+  <div id="introducaoGerada" class="bloco" style="display:none;"></div>
+
   <h2>Salvar Roteiro como .txt</h2>
   <p>Cole o roteiro completo abaixo e clique para salvar:</p>
   <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
@@ -109,15 +116,15 @@
       const instrucoes = [
         {
           titulo: 'Início',
-          texto: 'Desenvolva essa introdução de forma consistente utilizando (500 tokens), utilizando uma linguagem simples, clara e tecnicas de storytelling. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
+          texto: 'Desenvolva esse texto de forma consistente utilizando (500 tokens), utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
         },
         {
           titulo: 'Meio',
-          texto: 'Desenvolva esse texto com no mínimo de (2.000 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir a introdução da história e não mencione o final ou a conclusão.'
+          texto: 'Desenvolva esse texto com no mínimo de (2.000 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir a começo da história e não mencione o final ou a conclusão.'
         },
         {
           titulo: 'Fim',
-          texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara. Fique apenas com o fechamento do conteúdo, evitando incluir partes da introdução ou do meio da história.'
+          texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. Fique apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.'
         }
       ];
 
@@ -150,8 +157,38 @@
       });
     }
 
+    function gerarIntroducaoImpactante() {
+      const texto = document.getElementById('textoIntroducao').value.trim();
+      const container = document.getElementById('introducaoGerada');
+      container.innerHTML = '';
+
+      if (!texto) {
+        container.style.display = 'block';
+        container.textContent = 'Por favor, cole seu texto.';
+        return;
+      }
+
+      const instrucao = `Crie uma introdução de 30 segundos envolvente e impactante que cumpra as seguintes promessas:\n- Envolvimento imediato\n- Criação de conexão com o leitor\n- Geração de identificação com o público-alvo\n- Abordagem de uma dor ou problema relevante\n- Apresentação clara da solução\n\nInstruções: A introdução deve ser breve e baseada no roteiro abaixo, mas precisa conter todos os elementos acima mencionados, garantindo que o leitor se sinta tocado e motivado a continuar.\n\n${texto}`;
+
+      const botaoCopiar = document.createElement('button');
+      botaoCopiar.className = 'copiar-btn';
+      botaoCopiar.textContent = 'Copiar';
+      botaoCopiar.onclick = function () {
+        navigator.clipboard.writeText(instrucao).then(() => {
+          botaoCopiar.textContent = 'Copiado!';
+          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+        });
+      };
+
+      container.style.display = 'block';
+      container.appendChild(botaoCopiar);
+      container.appendChild(document.createTextNode(instrucao));
+    }
+
     async function salvarComoTxt() {
+      const tema = document.getElementById('tema').value.trim() || "roteiro";
       const texto = document.getElementById('roteiroParaSalvar').value.trim();
+
       if (!texto) {
         alert("Por favor, cole seu roteiro antes de salvar.");
         return;
@@ -159,7 +196,7 @@
 
       try {
         const handle = await window.showSaveFilePicker({
-          suggestedName: "roteiro.txt",
+          suggestedName: `${tema}.txt`,
           types: [{
             description: 'Arquivo de Texto',
             accept: { 'text/plain': ['.txt'] }
