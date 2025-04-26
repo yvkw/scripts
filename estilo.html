@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilo de Imagens - Bíblico, Histórico e Antigo</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      margin: 0;
+      min-height: 100vh;
+      padding-top: 70px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-x: auto;
+    }
+
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .parte {
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 30px;
+      position: relative;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .titulo-parte {
+      font-weight: bold;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    .copiar-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .copiar-btn:hover {
+      background-color: #218838;
+    }
+
+    .contador {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    #botoes-resultado {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="modelar.html">Modelar Roteiro</a>
+      <a href="roteiro.html">Criar Roteiro</a>
+      <a href="gerador.html">Gerador de Prompts</a>
+      <a href="estilo.html">Estilos de Imagens</a>
+      <a href="infos.html">Informações</a>
+      <a href="legendasrt.html">Legenda SRT</a>
+      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Estilo de Imagens</h1>
+    <p>Cole abaixo seu conteúdo e escolha o estilo:</p>
+
+    <textarea id="entrada" placeholder="Cole o conteúdo aqui..."></textarea>
+    <br>
+    <button onclick="formatarTexto('biblico')">Bíblico</button>
+    <button onclick="formatarTexto('historico')">Histórico</button>
+    <button onclick="formatarTexto('antigo')">Antigo</button>
+
+    <div id="resultado-container" style="display:none;">
+      <div id="resultado"></div>
+      <div id="botoes-resultado">
+        <button onclick="copiarResultado()">Copiar Tudo</button>
+        <button onclick="salvarComoTxt()">Salvar .txt</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let resultadoFinal = '';
+    const LIMITE_CARACTERES = 20000;
+
+    function formatarTexto(estilo) {
+      const entrada = document.getElementById('entrada').value;
+
+      const introBiblico = `Cinematic digital painting, highly detailed, epic historical illustration, appropriate mood for the scene. Ancient biblical setting with a sense of divine presence. The scene is rich in detail, evoking a mythical and sacred aura, with warm, golden tones, enhancing the sense of historical grandeur:`;
+
+      const introHistorico = `Cinematic digital painting, highly detailed, epic historical illustration, appropriate mood for the scene. Ancient world settings and a sense of legendary significance. The scene is rich in historical detail, evoking a mythical and timeless aura and intensifying the sense of cultural grandeur:`;
+
+      const introAntigo = `Cinematic digital painting, highly detailed, epic historical illustration. Everyday life in the ancient world, captured with authenticity and artistic grandeur. The mood is immersive and atmospheric, with a legendary yet grounded tone. The scene is rich in cultural and historical details, evoking a timeless and mythical aura while depicting ordinary people and their routines in ancient civilizations:`;
+
+      let introducao = '';
+      if (estilo === 'biblico') {
+        introducao = introBiblico;
+      } else if (estilo === 'historico') {
+        introducao = introHistorico;
+      } else if (estilo === 'antigo') {
+        introducao = introAntigo;
+      }
+
+      const blocos = entrada.split('\n')
+        .map(linha => linha.replace(/^\s*\d+(\.\d+)?\s*\|\s*/, '').trim())
+        .filter(l => l)
+        .map(linha => `${introducao} ${linha}`);
+
+      const partes = [];
+      let parteAtual = '';
+
+      for (const bloco of blocos) {
+        if ((parteAtual + '\n\n' + bloco).length > LIMITE_CARACTERES) {
+          partes.push(parteAtual.trim());
+          parteAtual = bloco;
+        } else {
+          parteAtual += (parteAtual ? '\n\n' : '') + bloco;
+        }
+      }
+
+      if (parteAtual) {
+        partes.push(parteAtual.trim());
+      }
+
+      resultadoFinal = partes.join('\n\n--- FIM DA PARTE ---\n\n');
+
+      const resultadoContainer = document.getElementById('resultado');
+      resultadoContainer.innerHTML = '';
+
+      partes.forEach((parte, index) => {
+        const div = document.createElement('div');
+        div.className = 'parte';
+
+        const titulo = document.createElement('div');
+        titulo.className = 'titulo-parte';
+        titulo.textContent = `Parte ${index + 1}`;
+
+        const contador = document.createElement('div');
+        contador.className = 'contador';
+        contador.textContent = `(${parte.length.toLocaleString()} caracteres)`;
+
+        const botaoCopiar = document.createElement('button');
+        botaoCopiar.className = 'copiar-btn';
+        botaoCopiar.textContent = 'Copiar';
+        botaoCopiar.onclick = function () {
+          navigator.clipboard.writeText(parte).then(() => {
+            botaoCopiar.textContent = 'Copiado!';
+            setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+          });
+        };
+
+        div.appendChild(titulo);
+        div.appendChild(contador);
+        div.appendChild(botaoCopiar);
+        div.appendChild(document.createTextNode(parte));
+
+        resultadoContainer.appendChild(div);
+      });
+
+      document.getElementById('resultado-container').style.display = 'block';
+    }
+
+    function copiarResultado() {
+      if (!resultadoFinal) return alert("Nada para copiar.");
+      navigator.clipboard.writeText(resultadoFinal)
+        .then(() => alert("Texto copiado!"))
+        .catch(() => alert("Erro ao copiar."));
+    }
+
+    async function salvarComoTxt() {
+      if (!resultadoFinal) return alert("Nada para salvar.");
+
+      try {
+        const options = {
+          suggestedName: "texto_formatado.txt",
+          types: [{
+            description: 'Arquivo de Texto',
+            accept: { 'text/plain': ['.txt'] },
+          }]
+        };
+
+        const handle = await window.showSaveFilePicker(options);
+        const writable = await handle.createWritable();
+        await writable.write(resultadoFinal);
+        await writable.close();
+        alert("Arquivo .txt salvo com sucesso!");
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          alert("Erro ao salvar.");
+          console.error(err);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

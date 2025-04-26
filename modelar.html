@@ -2,78 +2,171 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Organizar e Reescrever Texto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelar Roteiro</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 70px;
     }
-    textarea {
+
+    header {
+      position: fixed;
+      top: 0;
       width: 100%;
-      padding: 10px;
-      font-size: 1em;
-      margin-bottom: 10px;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-x: auto;
     }
-    button {
-      padding: 10px 20px;
+
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
       font-size: 1em;
-      cursor: pointer;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 900px;
+      margin: 40px auto;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2 {
+      color: #333;
       margin-bottom: 20px;
     }
-    .bloco {
-      background-color: #f4f4f4;
-      padding: 15px;
-      margin-top: 20px;
+
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
       border-radius: 8px;
+      font-size: 1em;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 30px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .bloco {
+      background-color: #f8f9fa;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
       white-space: pre-wrap;
       position: relative;
+      overflow-y: auto;
+      max-height: 300px;
     }
+
     .copiar-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       font-size: 0.9em;
-      cursor: pointer;
-      background-color: #007bff;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
-    #resultadoOrganizado {
-      max-height: 300px;
-      overflow-y: auto;
+
+    .copiar-btn:hover {
+      background-color: #218838;
     }
-    #partesReescritas .bloco, #resultadoStorytelling {
-      max-height: 300px;
-      overflow-y: auto;
-    }
+
     .titulo-parte {
       font-weight: bold;
       margin-bottom: 8px;
       display: block;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>Organizar e Reescrever Texto</h1>
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="modelar.html">Modelar Roteiro</a>
+      <a href="roteiro.html">Criar Roteiro</a>
+      <a href="gerador.html">Gerador de Prompts</a>
+      <a href="estilo.html">Estilos de Imagens</a>
+      <a href="infos.html">Informações</a>
+      <a href="legendasrt.html">Legenda SRT</a>
+      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+    </nav>
+  </header>
 
-  <h2>Organizar Texto com Correção Ortográfica</h2>
-  <textarea id="textoOrganizar" placeholder="Cole o texto aqui..."></textarea>
-  <button onclick="organizarTexto()">Organizar Texto</button>
-  <div id="resultadoOrganizado" class="bloco" style="display:none;"></div>
+  <div class="container">
+    <h1>Modelar Roteiro</h1>
 
-  <h2>Reescrever Texto em Partes</h2>
-  <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
-  <button onclick="reescreverTexto()">Reescrever Texto</button>
-  <div id="partesReescritas"></div>
+    <h2>Organizar Texto com Correção Ortográfica</h2>
+    <textarea id="textoOrganizar" placeholder="Cole o texto aqui..."></textarea>
+    <button onclick="organizarTexto()">Organizar Texto</button>
+    <div id="resultadoOrganizado" class="bloco" style="display:none;"></div>
 
-  <h2>Reescrever com Técnicas de Storytelling</h2>
-  <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
-  <button onclick="gerarStorytelling()">Reescrever com Storytelling</button>
-  <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
+    <h2>Reescrever Texto em Partes</h2>
+    <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
+    <button onclick="reescreverTexto()">Reescrever Texto</button>
+    <div id="partesReescritas"></div>
+
+    <h2>Reescrever com Técnicas de Storytelling</h2>
+    <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
+    <button onclick="gerarStorytelling()">Reescrever com Storytelling</button>
+    <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
+  </div>
 
   <script>
     function criarBotaoCopiar(texto) {
@@ -105,7 +198,7 @@
       const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
       const container = document.getElementById('partesReescritas');
       container.innerHTML = '';
-      const instrucao = "Reescreva esse texto da forma mais dinâmica possível para que até uma criança consiga entender, como se tivesse conversando com uma pessoa, e de uma forma que não pareça que foi plagiado:";
+      const instrucao = "Reescreva esse texto da forma mais dinâmica possível para que até uma criança consiga entender, como se estivesse conversando com uma pessoa, e de uma forma que não pareça que foi plagiado:";
 
       for (let i = 0; i < paragrafos.length; i += 5) {
         const grupo = paragrafos.slice(i, i + 5).join('\n\n');

@@ -2,81 +2,169 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gerador de Instrução com Tema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Roteiros</title>
   <style>
+    * { box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: auto;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding-top: 70px;
     }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-x: auto;
+    }
+
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 800px;
+      margin: 40px auto;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1, h2, p {
+      color: #333;
+    }
+
     input[type="text"], textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       font-size: 1em;
       margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
-    textarea {
-      resize: vertical;
-    }
+
+    textarea { resize: vertical; }
+
     button {
-      padding: 10px 15px;
+      padding: 12px 20px;
       font-size: 1em;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
-      margin-right: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-bottom: 20px;
     }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
     .bloco {
       background-color: #f5f5f5;
       padding: 20px;
       margin-top: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       white-space: pre-wrap;
       position: relative;
     }
+
     .copiar-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       font-size: 0.9em;
-      cursor: pointer;
-      background-color: #007bff;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    h2 {
-      margin-top: 40px;
+
+    .copiar-btn:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
-  <h1>Gerador de Instrução com Tema</h1>
-  <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="modelar.html">Modelar Roteiro</a>
+      <a href="roteiro.html">Criar Roteiro</a>
+      <a href="gerador.html">Gerador de Prompts</a>
+      <a href="estilo.html">Estilos de Imagens</a>
+      <a href="infos.html">Informações</a>
+      <a href="legendasrt.html">Legenda SRT</a>
+      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+    </nav>
+  </header>
 
-  <input type="text" id="tema" placeholder="Digite o tema aqui...">
-  <button onclick="gerarInstrucao()">Gerar Instrução</button>
+  <div class="container">
+    <h1>Gerador de Roteiros</h1>
+    <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
 
-  <div id="resultado" class="bloco" style="display:none;"></div>
+    <input type="text" id="tema" placeholder="Digite o tema aqui...">
+    <button onclick="gerarInstrucao()">Gerar Instrução</button>
 
-  <h2>Dividir Texto em Partes</h2>
-  <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
-  <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
-  <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
+    <div id="resultado" class="bloco" style="display:none;"></div>
 
-  <div id="partes"></div>
+    <h2>Dividir Texto em Partes</h2>
+    <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
+    <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
+    <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
 
-  <h2>Gerar Introdução Impactante</h2>
-  <p>Cole o texto abaixo para gerar a introdução envolvente:</p>
-  <textarea id="textoIntroducao" placeholder="Cole seu texto aqui..."></textarea>
-  <button onclick="gerarIntroducaoImpactante()">Gerar Introdução</button>
+    <div id="partes"></div>
 
-  <div id="introducaoGerada" class="bloco" style="display:none;"></div>
+    <h2>Gerar Introdução Impactante</h2>
+    <p>Cole o texto abaixo para gerar a introdução envolvente:</p>
+    <textarea id="textoIntroducao" placeholder="Cole seu texto aqui..."></textarea>
+    <button onclick="gerarIntroducaoImpactante()">Gerar Introdução</button>
 
-  <h2>Salvar Roteiro como .txt</h2>
-  <p>Cole o roteiro completo abaixo e clique para salvar:</p>
-  <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
-  <button onclick="salvarComoTxt()">Salvar como .txt</button>
+    <div id="introducaoGerada" class="bloco" style="display:none;"></div>
+
+    <h2>Salvar Roteiro</h2>
+    <p>Cole o roteiro completo abaixo e clique para salvar:</p>
+    <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
+    <button onclick="salvarComoTxt()">Salvar</button>
+  </div>
 
   <script>
     function gerarInstrucao() {

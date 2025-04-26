@@ -2,70 +2,158 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerador de Informações Para YouTube</title>
   <style>
+    * { box-sizing: border-box; }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: auto;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      margin: 0;
+      min-height: 100vh;
+      padding-top: 70px;
     }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+      overflow-x: auto;
+    }
+
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     input[type="text"], textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       font-size: 1em;
       margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
+
     button {
-      padding: 10px 15px;
+      padding: 12px 20px;
       font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+      margin-right: 10px;
       margin-bottom: 20px;
+      transition: background-color 0.3s, transform 0.2s;
     }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
     .bloco {
       background-color: #f5f5f5;
       padding: 20px;
       margin-top: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       white-space: pre-wrap;
       position: relative;
     }
+
     .copiar-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       font-size: 0.9em;
-      cursor: pointer;
-      background-color: #007bff;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .copiar-btn:hover {
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
-  <h1>Gerador de Informações Para YouTube</h1>
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="modelar.html">Modelar Roteiro</a>
+      <a href="roteiro.html">Criar Roteiro</a>
+      <a href="gerador.html">Gerador de Prompts</a>
+      <a href="estilo.html">Estilos de Imagens</a>
+      <a href="infos.html">Informações</a>
+      <a href="legendasrt.html">Legenda SRT</a>
+      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+    </nav>
+  </header>
 
-  <h2>Sugestões de Títulos</h2>
-  <input type="text" id="temaTitulo" placeholder="Digite o tema do vídeo...">
-  <button onclick="gerarSugestaoHistoriaBiblica()">História Histórica</button>
-  <button onclick="gerarSugestaoTitulo()">História Bíblica</button>
-  <button onclick="gerarSugestaoVidasAntigas()">Vidas Antigas</button>
-  <div id="saidaTitulo" class="bloco" style="display:none;"></div>
+  <div class="container">
+    <h1>Gerador de Informações Para YouTube</h1>
 
-  <h2>Descrição, Tags e Thumb</h2>
-  <input type="text" id="temaDescricao" placeholder="Digite o tema para descrição...">
-  <input type="text" id="personagemDescricao" placeholder="Digite o nome do personagem...">
-  <button onclick="gerarDescricaoETags()">Gerar Descrição, Tags e Thumbnail</button>
+    <h2>Sugestões de Títulos</h2>
+    <input type="text" id="temaTitulo" placeholder="Digite o tema do vídeo...">
+    <button onclick="gerarSugestaoHistoriaBiblica()">História Histórica</button>
+    <button onclick="gerarSugestaoTitulo()">História Bíblica</button>
+    <button onclick="gerarSugestaoVidasAntigas()">Vidas Antigas</button>
+    <div id="saidaTitulo" class="bloco" style="display:none;"></div>
 
-  <div id="saidaDescricao" class="bloco" style="display:none;"></div>
-  <div id="saidaTags" class="bloco" style="display:none;"></div>
-  <div id="saidaErros" class="bloco" style="display:none;"></div>
-  <div id="saidaPersonagem1" class="bloco" style="display:none;"></div>
-  <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
-  <div id="saidaPersonagem3" class="bloco" style="display:none;"></div>
-  <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
+    <h2>Descrição, Tags e Thumb</h2>
+    <input type="text" id="temaDescricao" placeholder="Digite o tema para descrição...">
+    <input type="text" id="personagemDescricao" placeholder="Digite o nome do personagem...">
+    <button onclick="gerarDescricaoETags()">Gerar Descrição, Tags e Thumbnail</button>
+
+    <div id="saidaDescricao" class="bloco" style="display:none;"></div>
+    <div id="saidaTags" class="bloco" style="display:none;"></div>
+    <div id="saidaErros" class="bloco" style="display:none;"></div>
+    <div id="saidaPersonagem1" class="bloco" style="display:none;"></div>
+    <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
+    <div id="saidaPersonagem3" class="bloco" style="display:none;"></div>
+    <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
+  </div>
 
   <script>
     function criarBotaoCopiar(texto) {
