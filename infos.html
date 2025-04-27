@@ -1,301 +1,237 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Informações Para YouTube</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
-      margin: 0;
-      min-height: 100vh;
-      padding-top: 70px;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #007bff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      z-index: 1000;
-      overflow-x: auto;
-    }
-
-    nav {
-      white-space: nowrap;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-      padding: 15px 20px;
-      min-width: max-content;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1em;
-      font-weight: 500;
-      transition: opacity 0.3s, transform 0.2s;
-    }
-
-    nav a:hover {
-      opacity: 0.85;
-      transform: translateY(-2px);
-    }
-
-    .container {
-      background-color: #fff;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 0.8s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    input[type="text"], textarea {
-      width: 100%;
-      padding: 12px;
-      font-size: 1em;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    button {
-      padding: 12px 20px;
-      font-size: 1em;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-right: 10px;
-      margin-bottom: 20px;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px);
-    }
-
-    .bloco {
-      background-color: #f5f5f5;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 10px;
-      white-space: pre-wrap;
-      position: relative;
-    }
-
-    .copiar-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 6px 12px;
-      font-size: 0.9em;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .copiar-btn:hover {
-      background-color: #218838;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Informações Para YouTube</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+    margin: 0;
+    min-height: 100vh;
+    padding-top: 70px;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #007bff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    overflow-x: auto;
+  }
+  nav {
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 15px 20px;
+    min-width: max-content;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    transition: opacity 0.3s, transform 0.2s;
+  }
+  nav a:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+  .container {
+    background-color: #fff;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  button {
+    padding: 12px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }
+  .bloco {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    position: relative;
+  }
+  .copiar-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .copiar-btn:hover {
+    background-color: #218838;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="modelar.html">Modelar Roteiro</a>
-      <a href="roteiro.html">Criar Roteiro</a>
-      <a href="gerador.html">Gerador de Prompts</a>
-      <a href="estilo.html">Estilos de Imagens</a>
-      <a href="infos.html">Informações</a>
-      <a href="legendasrt.html">Legenda SRT</a>
-      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="modelar.html">Modelar Roteiro</a>
+    <a href="roteiro.html">Criar Roteiro</a>
+    <a href="gerador.html">Gerador de Prompts</a>
+    <a href="estilo.html">Estilos de Imagens</a>
+    <a href="infos.html">Informações</a>
+    <a href="legendasrt.html">Legenda SRT</a>
+    <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+  </nav>
+</header>
 
-  <div class="container">
-    <h1>Gerador de Informações Para YouTube</h1>
+<div class="container">
+  <h1>Gerador de Informações Para YouTube</h1>
 
-    <h2>Sugestões de Títulos</h2>
-    <input type="text" id="temaTitulo" placeholder="Digite o tema do vídeo...">
-    <button onclick="gerarSugestaoHistoriaBiblica()">História Histórica</button>
-    <button onclick="gerarSugestaoTitulo()">História Bíblica</button>
-    <button onclick="gerarSugestaoVidasAntigas()">Vidas Antigas</button>
-    <div id="saidaTitulo" class="bloco" style="display:none;"></div>
+  <h2>Sugestões de Títulos</h2>
+  <input type="text" id="temaTitulo" placeholder="Digite o tema do vídeo...">
+  <button onclick="gerarSugestaoHistoriaBiblica()">Histórias</button>
+  <button onclick="marcarJornadaProfunda(); gerarSugestaoJornadaProfunda()">Jornada Profunda</button>
+  <div id="saidaTitulo" class="bloco" style="display:none;"></div>
 
-    <h2>Descrição, Tags e Thumb</h2>
-    <input type="text" id="temaDescricao" placeholder="Digite o tema para descrição...">
-    <input type="text" id="personagemDescricao" placeholder="Digite o nome do personagem...">
-    <button onclick="gerarDescricaoETags()">Gerar Descrição, Tags e Thumbnail</button>
+  <h2>Descrição, Tags e Thumb</h2>
+  <input type="text" id="temaDescricao" placeholder="Digite o tema para descrição...">
+  <button onclick="gerarDescricaoETags()">Gerar Descrição, Tags e Thumbnail</button>
 
-    <div id="saidaDescricao" class="bloco" style="display:none;"></div>
-    <div id="saidaTags" class="bloco" style="display:none;"></div>
-    <div id="saidaErros" class="bloco" style="display:none;"></div>
-    <div id="saidaPersonagem1" class="bloco" style="display:none;"></div>
-    <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
-    <div id="saidaPersonagem3" class="bloco" style="display:none;"></div>
-    <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
-  </div>
+  <div id="saidaDescricao" class="bloco" style="display:none;"></div>
+  <div id="saidaTags" class="bloco" style="display:none;"></div>
+  <div id="saidaErros" class="bloco" style="display:none;"></div>
+  <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
+  <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
+</div>
 
-  <script>
-    function criarBotaoCopiar(texto) {
-      const botao = document.createElement('button');
-      botao.className = 'copiar-btn';
-      botao.textContent = 'Copiar';
-      botao.onclick = function () {
-        navigator.clipboard.writeText(texto).then(() => {
-          botao.textContent = 'Copiado!';
-          setTimeout(() => botao.textContent = 'Copiar', 2000);
-        });
-      };
-      return botao;
-    }
+<script>
+let jornadaProfundaAtiva = false;
 
-    function gerarSugestaoTitulo() {
-      const tema = document.getElementById('temaTitulo').value.trim();
-      const saida = document.getElementById('saidaTitulo');
-      saida.innerHTML = '';
+function marcarJornadaProfunda() {
+  jornadaProfundaAtiva = true;
+}
+function criarBotaoCopiar(texto) {
+  const botao = document.createElement('button');
+  botao.className = 'copiar-btn';
+  botao.textContent = 'Copiar';
+  botao.onclick = function () {
+    navigator.clipboard.writeText(texto).then(() => {
+      botao.textContent = 'Copiado!';
+      setTimeout(() => botao.textContent = 'Copiar', 2000);
+    });
+  };
+  return botao;
+}
+function gerarSugestaoTitulo(textoPrompt) {
+  const tema = document.getElementById('temaTitulo').value.trim();
+  const saida = document.getElementById('saidaTitulo');
+  saida.innerHTML = '';
+  if (!tema) { 
+    saida.style.display = 'block'; 
+    saida.textContent = 'Por favor, digite um tema.'; 
+    return; 
+  }
+  const texto = textoPrompt.replace('{tema}', tema);
+  saida.style.display = 'block';
+  saida.appendChild(criarBotaoCopiar(texto));
+  saida.appendChild(document.createTextNode(texto));
+}
+function gerarSugestaoHistoriaBiblica() {
+  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para vídeo do YouTube com o tema: {tema}. Os títulos devem ser envolventes e diretos, podendo conter perguntas ou frases impactantes, utilizando "clickbait leve" e mistério para prometer revelações inéditas. O foco é despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`);
+}
+function gerarSugestaoJornadaProfunda() {
+  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para vídeo do YouTube com o tema: {tema}. Os títulos devem ser reflexivos, profundos e emocionantes, podendo conter perguntas ou frases impactantes, utilizando "clickbait leve". O foco é despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`);
+}
+function gerarDescricaoETags() {
+  const tema = document.getElementById('temaDescricao').value.trim();
+  const saidaDescricao = document.getElementById('saidaDescricao');
+  const saidaTags = document.getElementById('saidaTags');
+  const saidaErros = document.getElementById('saidaErros');
+  const saidaPersonagem2 = document.getElementById('saidaPersonagem2');
+  const saidaPersonagem4 = document.getElementById('saidaPersonagem4');
 
-      if (!tema) {
-        saida.style.display = 'block';
-        saida.textContent = 'Por favor, digite um tema.';
-        return;
-      }
+  saidaDescricao.innerHTML = '';
+  saidaTags.innerHTML = '';
+  saidaErros.innerHTML = '';
+  saidaPersonagem2.innerHTML = '';
+  saidaPersonagem4.innerHTML = '';
 
-      const texto = `Crie 5 sugestões de títulos chamativos para vídeo do YouTube com tema: ${tema}. Com o objetivo de revelar segredos e curiosidades surpreendentes e gerar cliques.\n\nRequisitos:\n1. Títulos envolventes e diretos, podendo conter perguntas ou frases impactantes.  \n2. Use “clickbait leve” e mistério, prometendo revelações inéditas.  \n3. Inclua ao menos uma das expressões/formatos:  \n   - “História Bíblica Esquecida”  \n   - “A História Que Poucos Conhecem”  \n   - “Segredo Oculto”  \n   - “Transformado Por Deus”  \n   - “O Erro Fatal”  \n   - Outros termos como “Inexplorado”, “Impactante” etc., sempre alinhados ao tema.  \n4. Foque em despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`;
+  if (!tema) { 
+    saidaDescricao.style.display = 'block'; 
+    saidaDescricao.textContent = 'Por favor, digite um tema.'; 
+    return; 
+  }
 
-      saida.style.display = 'block';
-      saida.appendChild(criarBotaoCopiar(texto));
-      saida.appendChild(document.createTextNode(texto));
-    }
+  const descricao = `Crie uma descrição para o vídeo do YouTube baseado no tema: “${tema}” com hashtags.`;
+  const tags = `Escreva quais são 15 as melhores “tags” para que as pessoas encontrem o vídeo do Youtube.`;
+  const erros = `Agora quero elas escritas com “erros ortográficos”. Me forneça o resultado com as palavras chaves todas em uma linha separadas por vírgula.`;
 
-    function gerarSugestaoHistoriaBiblica() {
-      const tema = document.getElementById('temaTitulo').value.trim();
-      const saida = document.getElementById('saidaTitulo');
-      saida.innerHTML = '';
+  saidaDescricao.style.display = 'block';
+  saidaDescricao.appendChild(criarBotaoCopiar(descricao));
+  saidaDescricao.appendChild(document.createTextNode(descricao));
 
-      if (!tema) {
-        saida.style.display = 'block';
-        saida.textContent = 'Por favor, digite um tema.';
-        return;
-      }
+  saidaTags.style.display = 'block';
+  saidaTags.appendChild(criarBotaoCopiar(tags));
+  saidaTags.appendChild(document.createTextNode(tags));
 
-      const texto = `Crie 5 sugestões de títulos chamativos para vídeo do YouTube com tema: ${tema}. Com o objetivo de revelar segredos e curiosidades surpreendentes e gerar cliques.\n\nRequisitos:\n1. Títulos envolventes e diretos, podendo conter perguntas ou frases impactantes.\n2. Use “clickbait leve” e mistério, prometendo revelações inéditas.\n3. Inclua ao menos uma das expressões/formatos:\n   - “História Esquecida”\n   - “Segredo Oculto”\n   - “Mistério Revelado”\n   - “O Erro Fatal”\n   - “Inexplorado”\n   - “Impactante”\n4. Foque em despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`;
+  saidaErros.style.display = 'block';
+  saidaErros.appendChild(criarBotaoCopiar(erros));
+  saidaErros.appendChild(document.createTextNode(erros));
 
-      saida.style.display = 'block';
-      saida.appendChild(criarBotaoCopiar(texto));
-      saida.appendChild(document.createTextNode(texto));
-    }
+  let thumb, headline;
+  if (jornadaProfundaAtiva) {
+    thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa, criativa e emocional que gere curiosidade profunda e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com foco em emoções como mistério, reflexão, transformação e busca interior. A imagem deve transmitir profundidade emocional, mostrando uma pessoa (ou silhueta) no lado direito da imagem, em pose introspectiva ou contemplativa, destacando uma expressão de descoberta, dúvida ou despertar. Use elementos simbólicos (como caminhos, espelhos, janelas, luzes e sombras) e cores contrastantes que criem atmosfera de mistério e profundidade, compatível com temas de autoconhecimento. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
+    headline = `Crie 5 headlines curtas e profundamente chamativas (com no máximo 5 palavras) para usar na thumbnail de um vídeo de autoconhecimento. As frases não podem repetir o título e devem conter gatilhos mentais de curiosidade, mistério, introspecção ou transformação. O objetivo é que cada frase provoque no espectador o desejo de refletir, sentir que há uma verdade oculta a ser descoberta e gere um impulso emocional para clicar e explorar seu interior. O tom deve ser reflexivo, emocional e instigante, alinhado a temas de jornada pessoal e busca interior.`;
+  } else {
+    thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
+    headline = `Crie 5 headlines curtas e extremamente chamativas (com no máximo 5 palavras) para usar na thumbnail. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é que cada frase provoque curiosidade imediata, faça o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gere um impulso quase automático de clicar para descobrir mais.`;
+  }
 
-    function gerarSugestaoVidasAntigas() {
-      const tema = document.getElementById('temaTitulo').value.trim();
-      const saida = document.getElementById('saidaTitulo');
-      saida.innerHTML = '';
+  saidaPersonagem2.style.display = 'block';
+  saidaPersonagem2.appendChild(criarBotaoCopiar(thumb));
+  saidaPersonagem2.appendChild(document.createTextNode(thumb));
 
-      if (!tema) {
-        saida.style.display = 'block';
-        saida.textContent = 'Por favor, digite um tema.';
-        return;
-      }
+  saidaPersonagem4.style.display = 'block';
+  saidaPersonagem4.appendChild(criarBotaoCopiar(headline));
+  saidaPersonagem4.appendChild(document.createTextNode(headline));
 
-      const texto = `Crie 5 sugestões de títulos chamativos para vídeo do YouTube com tema: ${tema}. Com o objetivo de revelar segredos e curiosidades surpreendentes e gerar cliques. \n\nRequisitos:\n1. Títulos envolventes e diretos, podendo conter perguntas ou frases impactantes.\n2. Use “clickbait leve” e mistério, prometendo revelações inéditas.\n3. Comece sempre "Como Era"\n4. Foque em despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`;
+  jornadaProfundaAtiva = false;
+}
+</script>
 
-      saida.style.display = 'block';
-      saida.appendChild(criarBotaoCopiar(texto));
-      saida.appendChild(document.createTextNode(texto));
-    }
-
-    function gerarDescricaoETags() {
-      const tema = document.getElementById('temaDescricao').value.trim();
-      const personagem = document.getElementById('personagemDescricao').value.trim();
-
-      const saidaDescricao = document.getElementById('saidaDescricao');
-      const saidaTags = document.getElementById('saidaTags');
-      const saidaErros = document.getElementById('saidaErros');
-
-      const saidaPersonagem1 = document.getElementById('saidaPersonagem1');
-      const saidaPersonagem2 = document.getElementById('saidaPersonagem2');
-      const saidaPersonagem3 = document.getElementById('saidaPersonagem3');
-      const saidaPersonagem4 = document.getElementById('saidaPersonagem4');
-
-      saidaDescricao.innerHTML = '';
-      saidaTags.innerHTML = '';
-      saidaErros.innerHTML = '';
-      saidaPersonagem1.innerHTML = '';
-      saidaPersonagem2.innerHTML = '';
-      saidaPersonagem3.innerHTML = '';
-      saidaPersonagem4.innerHTML = '';
-
-      if (!tema) {
-        saidaDescricao.style.display = 'block';
-        saidaDescricao.textContent = 'Por favor, digite um tema.';
-        return;
-      }
-
-      const descricao = `Crie uma descrição para o meu vídeo do Youtube baseado no tema: “${tema}” e inclua #hastags no final.`;
-      const tags = `Escreva quais são 15 as melhores “tags” para que as pessoas encontrem o vídeo do Youtube.`;
-      const erros = `Agora quero elas escritas com “erros ortográficos”. Me forneça o resultado com as palavras chaves todas em uma linha separadas por vírgula.`;
-
-      saidaDescricao.style.display = 'block';
-      saidaDescricao.appendChild(criarBotaoCopiar(descricao));
-      saidaDescricao.appendChild(document.createTextNode(descricao));
-
-      saidaTags.style.display = 'block';
-      saidaTags.appendChild(criarBotaoCopiar(tags));
-      saidaTags.appendChild(document.createTextNode(tags));
-
-      saidaErros.style.display = 'block';
-      saidaErros.appendChild(criarBotaoCopiar(erros));
-      saidaErros.appendChild(document.createTextNode(erros));
-
-      if (personagem) {
-        const rosto = `Descreva de como seria o rosto de “${personagem}”`;
-        const thumbnail = `Pensando em um vídeo do YouTube baseado no rosto de "${personagem}" com o seguinte tema: "${tema}", me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
-
-        saidaPersonagem1.style.display = 'block';
-        saidaPersonagem1.appendChild(criarBotaoCopiar(rosto));
-        saidaPersonagem1.appendChild(document.createTextNode(rosto));
-
-        saidaPersonagem2.style.display = 'block';
-        saidaPersonagem2.appendChild(criarBotaoCopiar(thumbnail));
-        saidaPersonagem2.appendChild(document.createTextNode(thumbnail));
-      } else {
-        const thumbnail = `Pensando em um vídeo do YouTube com o seguinte tema: "${tema}", me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
-
-        saidaPersonagem2.style.display = 'block';
-        saidaPersonagem2.appendChild(criarBotaoCopiar(thumbnail));
-        saidaPersonagem2.appendChild(document.createTextNode(thumbnail));
-      }
-
-      const prompt = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
-      const headlines = `Crie 5 headlines curtas e extremamente chamativas (com no máximo 5 palavras) para usar na thumbnail. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é que cada frase provoque curiosidade imediata, faça o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gere um impulso quase automático de clicar para descobrir mais.`;
-
-      saidaPersonagem3.style.display = 'block';
-      saidaPersonagem3.appendChild(criarBotaoCopiar(prompt));
-      saidaPersonagem3.appendChild(document.createTextNode(prompt));
-
-      saidaPersonagem4.style.display = 'block';
-      saidaPersonagem4.appendChild(criarBotaoCopiar(headlines));
-      saidaPersonagem4.appendChild(document.createTextNode(headlines));
-    }
-  </script>
 </body>
 </html>
