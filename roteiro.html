@@ -6,7 +6,6 @@
   <title>Gerador de Roteiros</title>
   <style>
     * { box-sizing: border-box; }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
@@ -14,17 +13,15 @@
       margin: 0;
       padding-top: 70px;
     }
-
     header {
       position: fixed;
       top: 0;
       width: 100%;
       background-color: #007bff;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 1000;
       overflow-x: auto;
     }
-
     nav {
       white-space: nowrap;
       display: flex;
@@ -34,7 +31,6 @@
       padding: 15px 20px;
       min-width: max-content;
     }
-
     nav a {
       color: white;
       text-decoration: none;
@@ -42,12 +38,10 @@
       font-weight: 500;
       transition: opacity 0.3s, transform 0.2s;
     }
-
     nav a:hover {
       opacity: 0.85;
       transform: translateY(-2px);
     }
-
     .container {
       background: #fff;
       padding: 30px;
@@ -58,16 +52,11 @@
       margin: 40px auto;
       animation: fadeIn 1s ease;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    h1, h2, p {
-      color: #333;
-    }
-
+    h1, h2, p { color: #333; }
     input[type="text"], textarea {
       width: 100%;
       padding: 12px;
@@ -76,9 +65,7 @@
       border: 1px solid #ccc;
       border-radius: 8px;
     }
-
     textarea { resize: vertical; }
-
     button {
       padding: 12px 20px;
       font-size: 1em;
@@ -89,13 +76,12 @@
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
       margin-bottom: 20px;
+      margin-right: 10px;
     }
-
     button:hover {
       background-color: #0056b3;
       transform: translateY(-2px);
     }
-
     .bloco {
       background-color: #f5f5f5;
       padding: 20px;
@@ -104,7 +90,6 @@
       white-space: pre-wrap;
       position: relative;
     }
-
     .copiar-btn {
       position: absolute;
       top: 10px;
@@ -117,188 +102,207 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     .copiar-btn:hover {
       background-color: #218838;
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Início</a>
-      <a href="modelar.html">Modelar Roteiro</a>
-      <a href="roteiro.html">Criar Roteiro</a>
-      <a href="gerador.html">Gerador de Prompts</a>
-      <a href="estilo.html">Estilos de Imagens</a>
-      <a href="infos.html">Informações</a>
-      <a href="legendasrt.html">Legenda SRT</a>
-      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="modelar.html">Modelar Roteiro</a>
+    <a href="roteiro.html">Criar Roteiro</a>
+    <a href="gerador.html">Gerador de Prompts</a>
+    <a href="estilo.html">Estilos de Imagens</a>
+    <a href="infos.html">Informações</a>
+    <a href="legendasrt.html">Legenda SRT</a>
+    <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+  </nav>
+</header>
 
-  <div class="container">
-    <h1>Gerador de Roteiros</h1>
-    <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
+<div class="container">
+  <h1>Gerador de Roteiros</h1>
+  <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
 
-    <input type="text" id="tema" placeholder="Digite o tema aqui...">
-    <button onclick="gerarInstrucao()">Gerar Instrução</button>
+  <input type="text" id="tema" placeholder="Digite o tema aqui...">
+  <button onclick="gerarInstrucao()">Gerar Instrução</button>
+  <button onclick="gerarInstrucao2()">Gerar Instrução 2</button>
 
-    <div id="resultado" class="bloco" style="display:none;"></div>
+  <div id="resultado" class="bloco" style="display:none;"></div>
 
-    <h2>Dividir Texto em Partes</h2>
-    <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
-    <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
-    <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
+  <h2>Dividir Texto em Partes</h2>
+  <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
+  <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
+  <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
 
-    <div id="partes"></div>
+  <div id="partes"></div>
 
-    <h2>Gerar Introdução Impactante</h2>
-    <p>Cole o texto abaixo para gerar a introdução envolvente:</p>
-    <textarea id="textoIntroducao" placeholder="Cole seu texto aqui..."></textarea>
-    <button onclick="gerarIntroducaoImpactante()">Gerar Introdução</button>
+  <h2>Gerar Introdução Impactante</h2>
+  <p>Cole o texto abaixo para gerar a introdução envolvente:</p>
+  <textarea id="textoIntroducao" placeholder="Cole seu texto aqui..."></textarea>
+  <button onclick="gerarIntroducaoImpactante()">Gerar Introdução</button>
 
-    <div id="introducaoGerada" class="bloco" style="display:none;"></div>
+  <div id="introducaoGerada" class="bloco" style="display:none;"></div>
 
-    <h2>Salvar Roteiro</h2>
-    <p>Cole o roteiro completo abaixo e clique para salvar:</p>
-    <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
-    <button onclick="salvarComoTxt()">Salvar</button>
-  </div>
+  <h2>Salvar Roteiro</h2>
+  <p>Cole o roteiro completo abaixo e clique para salvar:</p>
+  <textarea id="roteiroParaSalvar" placeholder="Cole seu roteiro aqui..." rows="10"></textarea>
+  <button onclick="salvarComoTxt()">Salvar</button>
+</div>
 
-  <script>
-    function gerarInstrucao() {
-      const tema = document.getElementById('tema').value.trim();
-      const resultado = document.getElementById('resultado');
-      resultado.innerHTML = '';
+<script>
+function gerarInstrucao() {
+  const tema = document.getElementById('tema').value.trim();
+  const resultado = document.getElementById('resultado');
+  resultado.innerHTML = '';
 
-      if (!tema) {
-        resultado.style.display = 'block';
-        resultado.textContent = 'Por favor, digite um tema.';
-        return;
-      }
+  if (!tema) {
+    resultado.style.display = 'block';
+    resultado.textContent = 'Por favor, digite um tema.';
+    return;
+  }
 
-      const instrucao = `Escreva (3 parágrafos sendo início, meio e fim) sobre o tema "${tema}" com aproximadamente (300 tokens) cada parágrafo, com uma expressão (narrativa).`;
+  const instrucao = `Escreva (3 parágrafos sendo início, meio e fim) sobre o tema "${tema}" com aproximadamente (300 tokens) cada parágrafo, com uma expressão (narrativa).`;
 
-      const botaoCopiar = document.createElement('button');
-      botaoCopiar.className = 'copiar-btn';
-      botaoCopiar.textContent = 'Copiar';
-      botaoCopiar.onclick = function () {
-        navigator.clipboard.writeText(instrucao).then(() => {
-          botaoCopiar.textContent = 'Copiado!';
-          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+  criarBlocoDeResultado(instrucao);
+}
+
+function gerarInstrucao2() {
+  const tema = document.getElementById('tema').value.trim();
+  const resultado = document.getElementById('resultado');
+  resultado.innerHTML = '';
+
+  if (!tema) {
+    resultado.style.display = 'block';
+    resultado.textContent = 'Por favor, digite um tema.';
+    return;
+  }
+
+  const instrucao2 = `Escreva um roteiro de 3 parágrafos (início, meio e fim) com cerca de 300 tokens cada, usando um tom narrativo reflexivo, profundo e emocional. O tema é: "${tema}". A narrativa deve provocar introspecção, conectar com a jornada pessoal do espectador e terminar com uma pergunta que estimule reflexão.`;
+
+  criarBlocoDeResultado(instrucao2);
+}
+
+function criarBlocoDeResultado(texto) {
+  const resultado = document.getElementById('resultado');
+  const botaoCopiar = document.createElement('button');
+  botaoCopiar.className = 'copiar-btn';
+  botaoCopiar.textContent = 'Copiar';
+  botaoCopiar.onclick = function () {
+    navigator.clipboard.writeText(texto).then(() => {
+      botaoCopiar.textContent = 'Copiado!';
+      setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+    });
+  };
+
+  resultado.style.display = 'block';
+  resultado.appendChild(botaoCopiar);
+  resultado.appendChild(document.createTextNode(texto));
+}
+
+function dividirTextoEmPartes() {
+  const texto = document.getElementById('textoCompleto').value.trim();
+  const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
+  const container = document.getElementById('partes');
+  container.innerHTML = '';
+
+  const instrucoes = [
+    {
+      titulo: 'Início',
+      texto: 'Desenvolva esse texto de forma consistente utilizando (500 tokens), utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
+    },
+    {
+      titulo: 'Meio',
+      texto: 'Desenvolva esse texto com no mínimo de (2.000 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir o começo da história e não mencione o final ou a conclusão.'
+    },
+    {
+      titulo: 'Fim',
+      texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. Fique apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.'
+    }
+  ];
+
+  partes.forEach((paragrafo, index) => {
+    if (instrucoes[index]) {
+      const bloco = document.createElement('div');
+      bloco.className = 'bloco';
+
+      const titulo = document.createElement('strong');
+      titulo.textContent = instrucoes[index].titulo;
+
+      const botao = document.createElement('button');
+      botao.className = 'copiar-btn';
+      botao.textContent = 'Copiar';
+
+      const conteudo = `${instrucoes[index].texto}\n\n${paragrafo}`;
+
+      botao.onclick = function () {
+        navigator.clipboard.writeText(conteudo).then(() => {
+          botao.textContent = 'Copiado!';
+          setTimeout(() => botao.textContent = 'Copiar', 2000);
         });
       };
 
-      resultado.style.display = 'block';
-      resultado.appendChild(botaoCopiar);
-      resultado.appendChild(document.createTextNode(instrucao));
+      bloco.appendChild(titulo);
+      bloco.appendChild(botao);
+      bloco.appendChild(document.createTextNode('\n' + conteudo));
+      container.appendChild(bloco);
     }
+  });
+}
 
-    function dividirTextoEmPartes() {
-      const texto = document.getElementById('textoCompleto').value.trim();
-      const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
-      const container = document.getElementById('partes');
-      container.innerHTML = '';
+function gerarIntroducaoImpactante() {
+  const texto = document.getElementById('textoIntroducao').value.trim();
+  const container = document.getElementById('introducaoGerada');
+  container.innerHTML = '';
 
-      const instrucoes = [
-        {
-          titulo: 'Início',
-          texto: 'Desenvolva esse texto de forma consistente utilizando (500 tokens), utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
-        },
-        {
-          titulo: 'Meio',
-          texto: 'Desenvolva esse texto com no mínimo de (2.000 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir a começo da história e não mencione o final ou a conclusão.'
-        },
-        {
-          titulo: 'Fim',
-          texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. Fique apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.'
-        }
-      ];
+  if (!texto) {
+    container.style.display = 'block';
+    container.textContent = 'Por favor, cole seu texto.';
+    return;
+  }
 
-      partes.forEach((paragrafo, index) => {
-        if (instrucoes[index]) {
-          const bloco = document.createElement('div');
-          bloco.className = 'bloco';
+  const instrucao = `Crie uma introdução de 30 segundos envolvente e impactante que cumpra as seguintes promessas:\n- Envolvimento imediato\n- Criação de conexão com o leitor\n- Geração de identificação com o público-alvo\n- Abordagem de uma dor ou problema relevante\n- Apresentação clara da solução\n\nBaseado no roteiro abaixo:\n\n${texto}`;
 
-          const titulo = document.createElement('strong');
-          titulo.textContent = instrucoes[index].titulo;
+  const botaoCopiar = document.createElement('button');
+  botaoCopiar.className = 'copiar-btn';
+  botaoCopiar.textContent = 'Copiar';
+  botaoCopiar.onclick = function () {
+    navigator.clipboard.writeText(instrucao).then(() => {
+      botaoCopiar.textContent = 'Copiado!';
+      setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+    });
+  };
 
-          const botao = document.createElement('button');
-          botao.className = 'copiar-btn';
-          botao.textContent = 'Copiar';
+  container.style.display = 'block';
+  container.appendChild(botaoCopiar);
+  container.appendChild(document.createTextNode(instrucao));
+}
 
-          const conteudo = `${instrucoes[index].texto}\n\n${paragrafo}`;
+async function salvarComoTxt() {
+  const tema = document.getElementById('tema').value.trim() || "roteiro";
+  const texto = document.getElementById('roteiroParaSalvar').value.trim();
 
-          botao.onclick = function () {
-            navigator.clipboard.writeText(conteudo).then(() => {
-              botao.textContent = 'Copiado!';
-              setTimeout(() => botao.textContent = 'Copiar', 2000);
-            });
-          };
+  if (!texto) {
+    alert("Por favor, cole seu roteiro antes de salvar.");
+    return;
+  }
 
-          bloco.appendChild(titulo);
-          bloco.appendChild(botao);
-          bloco.appendChild(document.createTextNode('\n' + conteudo));
-          container.appendChild(bloco);
-        }
-      });
-    }
+  try {
+    const handle = await window.showSaveFilePicker({
+      suggestedName: `${tema}.txt`,
+      types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
+    });
 
-    function gerarIntroducaoImpactante() {
-      const texto = document.getElementById('textoIntroducao').value.trim();
-      const container = document.getElementById('introducaoGerada');
-      container.innerHTML = '';
+    const writable = await handle.createWritable();
+    await writable.write(texto);
+    await writable.close();
+    alert("Arquivo salvo com sucesso!");
+  } catch (e) {
+    console.error("Erro ao salvar:", e);
+  }
+}
+</script>
 
-      if (!texto) {
-        container.style.display = 'block';
-        container.textContent = 'Por favor, cole seu texto.';
-        return;
-      }
-
-      const instrucao = `Crie uma introdução de 30 segundos envolvente e impactante que cumpra as seguintes promessas:\n- Envolvimento imediato\n- Criação de conexão com o leitor\n- Geração de identificação com o público-alvo\n- Abordagem de uma dor ou problema relevante\n- Apresentação clara da solução\n\nInstruções: A introdução deve ser breve e baseada no roteiro abaixo, mas precisa conter todos os elementos acima mencionados, garantindo que o leitor se sinta tocado e motivado a continuar.\n\n${texto}`;
-
-      const botaoCopiar = document.createElement('button');
-      botaoCopiar.className = 'copiar-btn';
-      botaoCopiar.textContent = 'Copiar';
-      botaoCopiar.onclick = function () {
-        navigator.clipboard.writeText(instrucao).then(() => {
-          botaoCopiar.textContent = 'Copiado!';
-          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
-        });
-      };
-
-      container.style.display = 'block';
-      container.appendChild(botaoCopiar);
-      container.appendChild(document.createTextNode(instrucao));
-    }
-
-    async function salvarComoTxt() {
-      const tema = document.getElementById('tema').value.trim() || "roteiro";
-      const texto = document.getElementById('roteiroParaSalvar').value.trim();
-
-      if (!texto) {
-        alert("Por favor, cole seu roteiro antes de salvar.");
-        return;
-      }
-
-      try {
-        const handle = await window.showSaveFilePicker({
-          suggestedName: `${tema}.txt`,
-          types: [{
-            description: 'Arquivo de Texto',
-            accept: { 'text/plain': ['.txt'] }
-          }]
-        });
-
-        const writable = await handle.createWritable();
-        await writable.write(texto);
-        await writable.close();
-        alert("Arquivo salvo com sucesso!");
-      } catch (e) {
-        console.error("Erro ao salvar:", e);
-      }
-    }
-  </script>
 </body>
 </html>
