@@ -135,6 +135,9 @@
   <div id="saidaTags" class="bloco" style="display:none;"></div>
   <div id="saidaErros" class="bloco" style="display:none;"></div>
   <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
+  
+  <div id="saidaPromptImagem" class="bloco" style="display:none;"></div>
+
   <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
 </div>
 
@@ -224,6 +227,13 @@ function gerarDescricaoETags() {
   saidaPersonagem2.style.display = 'block';
   saidaPersonagem2.appendChild(criarBotaoCopiar(thumb));
   saidaPersonagem2.appendChild(document.createTextNode(thumb));
+
+  
+  const promptImagem = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
+  saidaPromptImagem.style.display = 'block';
+  saidaPromptImagem.innerHTML = '';
+  saidaPromptImagem.appendChild(criarBotaoCopiar(promptImagem));
+  saidaPromptImagem.appendChild(document.createTextNode(promptImagem));
 
   saidaPersonagem4.style.display = 'block';
   saidaPersonagem4.appendChild(criarBotaoCopiar(headline));
