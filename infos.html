@@ -124,7 +124,6 @@
   <h2>Sugestões de Títulos</h2>
   <input type="text" id="temaTitulo" placeholder="Digite o tema do vídeo...">
   <button onclick="gerarSugestaoHistoriaBiblica()">Histórias</button>
-  <button onclick="marcarJornadaProfunda(); gerarSugestaoJornadaProfunda()">Jornada Profunda</button>
   <div id="saidaTitulo" class="bloco" style="display:none;"></div>
 
   <h2>Descrição, Tags e Thumb</h2>
@@ -142,11 +141,6 @@
 </div>
 
 <script>
-let jornadaProfundaAtiva = false;
-
-function marcarJornadaProfunda() {
-  jornadaProfundaAtiva = true;
-}
 function criarBotaoCopiar(texto) {
   const botao = document.createElement('button');
   botao.className = 'copiar-btn';
@@ -175,9 +169,6 @@ function gerarSugestaoTitulo(textoPrompt) {
 }
 function gerarSugestaoHistoriaBiblica() {
   gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com o tema: {tema}. Os títulos devem ser gerados em português, espanhol e francês, ser envolventes e diretos, podendo conter perguntas ou frases impactantes, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`);
-}
-function gerarSugestaoJornadaProfunda() {
-  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para vídeo do YouTube com o tema: {tema}. Os títulos devem ser reflexivos, profundos e emocionantes, podendo conter perguntas ou frases impactantes, utilizando "clickbait leve". O foco é despertar a curiosidade do espectador e favorecer a performance no algoritmo do YouTube.`);
 }
 function gerarDescricaoETags() {
   const tema = document.getElementById('temaDescricao').value.trim();
@@ -215,21 +206,15 @@ function gerarDescricaoETags() {
   saidaErros.appendChild(criarBotaoCopiar(erros));
   saidaErros.appendChild(document.createTextNode(erros));
 
-  let thumb, headline;
-  if (jornadaProfundaAtiva) {
-    thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa, criativa e emocional que gere curiosidade profunda e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com foco em emoções como mistério, reflexão, transformação e busca interior. A imagem deve transmitir profundidade emocional, mostrando uma pessoa (ou silhueta) no lado direito da imagem, em pose introspectiva ou contemplativa, destacando uma expressão de descoberta, dúvida ou despertar. Use elementos simbólicos (como caminhos, espelhos, janelas, luzes e sombras) e cores contrastantes que criem atmosfera de mistério e profundidade, compatível com temas de autoconhecimento. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
-    headline = `Crie 5 headlines curtas e profundamente chamativas (com no máximo 5 palavras) para usar na thumbnail de um vídeo de autoconhecimento. As frases não podem repetir o título e devem conter gatilhos mentais de curiosidade, mistério, introspecção ou transformação. O objetivo é que cada frase provoque no espectador o desejo de refletir, sentir que há uma verdade oculta a ser descoberta e gere um impulso emocional para clicar e explorar seu interior. O tom deve ser reflexivo, emocional e instigante, alinhado a temas de jornada pessoal e busca interior.`;
-  } else {
-    thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
-    headline = `Crie 5 headlines curtas e extremamente chamativas (com no máximo 5 palavras) para usar na thumbnail. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é que cada frase provoque curiosidade imediata, faça o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gere um impulso quase automático de clicar para descobrir mais.`;
-  }
+  const thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
+  const headline = `Crie 5 headlines curtas e extremamente chamativas (com no máximo 5 palavras) para usar na thumbnail. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é que cada frase provoque curiosidade imediata, faça o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gere um impulso quase automático de clicar para descobrir mais.`;
 
   saidaPersonagem2.style.display = 'block';
   saidaPersonagem2.appendChild(criarBotaoCopiar(thumb));
   saidaPersonagem2.appendChild(document.createTextNode(thumb));
 
-  
   const promptImagem = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
+  const saidaPromptImagem = document.getElementById('saidaPromptImagem');
   saidaPromptImagem.style.display = 'block';
   saidaPromptImagem.innerHTML = '';
   saidaPromptImagem.appendChild(criarBotaoCopiar(promptImagem));
@@ -238,8 +223,6 @@ function gerarDescricaoETags() {
   saidaPersonagem4.style.display = 'block';
   saidaPersonagem4.appendChild(criarBotaoCopiar(headline));
   saidaPersonagem4.appendChild(document.createTextNode(headline));
-
-  jornadaProfundaAtiva = false;
 }
 </script>
 
