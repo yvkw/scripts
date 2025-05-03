@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Modelar Roteiro</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelar Roteiro</title>
+  <style>
     * {
       box-sizing: border-box;
     }
@@ -137,38 +136,45 @@
   </style>
 </head>
 <body>
-<header>
-<nav>
-<a href="index.html">Início</a>
-<a href="modelar.html">Modelar Roteiro</a>
-<a href="roteiro.html">Criar Roteiro</a>
-<a href="gerador.html">Gerador de Prompts</a>
-<a href="estilo.html">Estilos de Imagens</a>
-<a href="infos.html">Informações</a>
-<a href="legendasrt.html">Legenda SRT</a>
-<a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
-</nav>
-</header>
-<div class="container">
-<h1>Modelar Roteiro</h1>
-<h2>Organizar Texto com Correção Ortográfica</h2>
-<textarea id="textoOrganizar" placeholder="Cole o texto aqui..."></textarea>
-<button onclick="organizarTexto()">Organizar Texto</button>
-<div class="bloco" id="resultadoOrganizado" style="display:none;"></div>
-<h2>Reescrever Texto em Partes</h2>
-<textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
-<button onclick="reescreverTexto()">Reescrever Texto</button>
-<div id="partesReescritas"></div>
+  <header>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="modelar.html">Modelar Roteiro</a>
+      <a href="roteiro.html">Criar Roteiro</a>
+      <a href="gerador.html">Gerador de Prompts</a>
+      <a href="estilo.html">Estilos de Imagens</a>
+      <a href="infos.html">Informações</a>
+      <a href="legendasrt.html">Legenda SRT</a>
+      <a href="https://remover-silencio.onrender.com/" target="_blank">Remover Silêncio</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Modelar Roteiro</h1>
+
+    <h2>Organizar Texto com Correção Ortográfica</h2>
+    <textarea id="textoOrganizar" placeholder="Cole o texto aqui..."></textarea>
+    <button onclick="organizarTexto()">Organizar Texto</button>
+    <div id="resultadoOrganizado" class="bloco" style="display:none;"></div>
+
+    <h2>Reescrever Texto em Partes</h2>
+    <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
+    <button onclick="reescreverTexto()">Reescrever Texto</button>
+    <div id="partesReescritas"></div>
+    <h2>Aumentar Texto em Partes</h2>
+    <textarea id="textoReescrever2" placeholder="Cole o texto para reescrever por partes..."></textarea>
+    <button onclick="reescreverTexto2()">Aumentar Texto</button>
+    <div id="partesReescritas2"></div>
 
 
+    <h2>Reescrever com Técnicas de Storytelling</h2>
+    <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
+    <button onclick="gerarStorytelling()">Reescrever com Storytelling</button>
+    <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
+  </div>
 
-
-<h2>Reescrever com Técnicas de Storytelling</h2>
-<textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
-<button onclick="gerarStorytelling()">Reescrever com Storytelling</button>
-<div class="bloco" id="resultadoStorytelling" style="display:none;"></div>
-</div>
-<script>
+  
+  <script>
     function criarBotaoCopiar(texto) {
       const botao = document.createElement('button');
       botao.className = 'copiar-btn';
@@ -224,7 +230,7 @@
       const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
       const container = document.getElementById('partesReescritas2');
       container.innerHTML = '';
-      const instrucao = "Reescreva o texto abaixo e acrescente algumas palavras e frases, torne o texto mais rico em informações:";
+      const instrucao = "Reescreva o texto abaixo, tornando-o mais rico em informações.";
 
       let parteIndex = 1;
       for (let i = 0; i < paragrafos.length; i += 3) {
@@ -256,5 +262,6 @@
       saida.style.display = 'block';
     }
   </script>
+
 </body>
 </html>
