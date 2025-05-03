@@ -161,6 +161,11 @@
     <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
     <button onclick="reescreverTexto()">Reescrever Texto</button>
     <div id="partesReescritas"></div>
+    <h2>Reescrever Texto em Partes 2</h2>
+    <textarea id="textoReescrever2" placeholder="Cole o texto para reescrever por partes..."></textarea>
+    <button onclick="reescreverTexto2()">Reescrever Texto 2</button>
+    <div id="partesReescritas2"></div>
+
 
     <h2>Reescrever com Técnicas de Storytelling</h2>
     <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
@@ -168,6 +173,7 @@
     <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
   </div>
 
+  
   <script>
     function criarBotaoCopiar(texto) {
       const botao = document.createElement('button');
@@ -198,10 +204,11 @@
       const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
       const container = document.getElementById('partesReescritas');
       container.innerHTML = '';
-      const instrucao = "Reescreva esse texto da forma mais dinâmica possível para que até uma criança consiga entender, como se estivesse conversando com uma pessoa, e de uma forma que não pareça que foi plagiado:";
+      const instrucao = "Reescreva todo o texto abaixo com palavras mais simples, tornando o entendimento mais claro e alterando algumas palavras por sinônimos: ";
 
-      for (let i = 0; i < paragrafos.length; i += 5) {
-        const grupo = paragrafos.slice(i, i + 5).join('\n\n');
+      let parteIndex = 1;
+      for (let i = 0; i < paragrafos.length; i += 3) {
+        const grupo = paragrafos.slice(i, i + 3).join('\n\n');
         const resultado = `${instrucao}\n\n${grupo}`;
 
         const bloco = document.createElement('div');
@@ -209,7 +216,33 @@
 
         const titulo = document.createElement('span');
         titulo.className = 'titulo-parte';
-        titulo.textContent = `PARTE ${Math.floor(i / 5) + 1}`;
+        titulo.textContent = `PARTE ${parteIndex++}`;
+        bloco.appendChild(titulo);
+
+        bloco.appendChild(criarBotaoCopiar(resultado));
+        bloco.appendChild(document.createTextNode(resultado));
+        container.appendChild(bloco);
+      }
+    }
+
+    function reescreverTexto2() {
+      const texto = document.getElementById('textoReescrever2').value.trim();
+      const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
+      const container = document.getElementById('partesReescritas2');
+      container.innerHTML = '';
+      const instrucao = "Reescreva o texto abaixo e acrescente algumas palavras e frases, torne o texto mais rico em informações:";
+
+      let parteIndex = 1;
+      for (let i = 0; i < paragrafos.length; i += 3) {
+        const grupo = paragrafos.slice(i, i + 3).join('\n\n');
+        const resultado = `${instrucao}\n\n${grupo}`;
+
+        const bloco = document.createElement('div');
+        bloco.className = 'bloco';
+
+        const titulo = document.createElement('span');
+        titulo.className = 'titulo-parte';
+        titulo.textContent = `PARTE ${parteIndex++}`;
         bloco.appendChild(titulo);
 
         bloco.appendChild(criarBotaoCopiar(resultado));
@@ -229,5 +262,6 @@
       saida.style.display = 'block';
     }
   </script>
+
 </body>
 </html>
