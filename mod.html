@@ -204,7 +204,7 @@
       const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
       const container = document.getElementById('partesReescritas');
       container.innerHTML = '';
-      const instrucao = "Reescreva o texto abaixo como se o personagem principal estivesse contando a própria história em primeira pessoa, com linguagem simples, acessível e original. diferentes, e mantendo o mesmo conteúdo, para que o texto seja único e sem risco de plágio. Evite repetir frases e ideias exatamente como no original com uma expressão narrativa.";
+      const instrucao = "Reescreva o texto abaixo como se o personagem principal estivesse contando a própria história em primeira pessoa, com linguagem simples, acessível e original. diferentes, e mantendo o mesmo conteúdo, para que o texto seja único e sem risco de plágio. Evite repetir frases e ideias exatamente como no original com uma expressão narrativa. Apresente o texto reescrito dividido em parágrafos.";
 
       let parteIndex = 1;
       for (let i = 0; i < paragrafos.length; i += 3) {
