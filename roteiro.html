@@ -134,7 +134,8 @@
   <h2>Dividir Texto em Partes</h2>
   <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
   <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
-  <button onclick="dividirTextoEmPartes()">Dividir em Início, Meio e Fim</button>
+  <button onclick="dividirTextoEmPartes()">Dividir 1</button>
+  <button onclick="dividirTextoEmPartes2()">Dividir 2</button>
 
   <div id="partes"></div>
 
@@ -222,6 +223,35 @@ function dividirTextoEmPartes() {
     }
   ];
 
+  gerarPartes(partes, instrucoes);
+}
+
+function dividirTextoEmPartes2() {
+  const texto = document.getElementById('textoCompleto').value.trim();
+  const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
+  const container = document.getElementById('partes');
+  container.innerHTML = '';
+
+  const instrucoes = [
+    {
+      titulo: 'Início',
+      texto: 'Desenvolva esse texto de forma consistente utilizando (200 tokens), utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
+    },
+    {
+      titulo: 'Meio',
+      texto: 'Desenvolva esse texto com no mínimo de (1.500 tokens) para desenvolver o argumento deste texto. Utilize uma linguagem simples e clara para tornar o entendimento mais acessível. Evite repetir o começo da história e não mencione o final ou a conclusão.'
+    },
+    {
+      titulo: 'Fim',
+      texto: 'Desenvolva uma conclusão detalhada com aproximadamente (300 tokens), para o roteiro, utilizando uma linguagem simples e clara para tornar o entendimento mais acessível. Fique apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.'
+    }
+  ];
+
+  gerarPartes(partes, instrucoes);
+}
+
+function gerarPartes(partes, instrucoes) {
+  const container = document.getElementById('partes');
   partes.forEach((paragrafo, index) => {
     if (instrucoes[index]) {
       const bloco = document.createElement('div');
