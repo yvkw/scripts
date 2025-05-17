@@ -233,8 +233,8 @@
       const instrucao = "Reescreva o texto abaixo de forma a deixá-lo mais simples e acessível, mas também com uma estrutura mais original, usando palavras diferentes, e mantendo o mesmo conteúdo, para que o texto seja único e sem risco de plágio. Evite repetir frases e ideias exatamente como no original com uma expressão narrativa. Organize o texto em parágrafos equilibrados, com cerca de 80 a 100 palavras cada, para manter um padrão de tamanho.";
 
       let parteIndex = 1;
-      for (let i = 0; i < paragrafos.length; i += 3) {
-        const grupo = paragrafos.slice(i, i + 3).join('\n\n');
+      for (let i = 0; i < paragrafos.length; i += 10) {
+        const grupo = paragrafos.slice(i, i + 10).join('\n\n');
         const resultado = `${instrucao}\n\n${grupo}`;
 
         const bloco = document.createElement('div');
@@ -259,8 +259,8 @@
       const instrucao = "Acrescente algumas palavras e frases ao texto abaixo, tornando-o mais rico em informações, mas mantendo a estrutura original e uma linguagem simples.";
 
       let parteIndex = 1;
-      for (let i = 0; i < paragrafos.length; i += 3) {
-        const grupo = paragrafos.slice(i, i + 3).join('\n\n');
+      for (let i = 0; i < paragrafos.length; i += 10) {
+        const grupo = paragrafos.slice(i, i + 10).join('\n\n');
         const resultado = `${instrucao}\n\n${grupo}`;
 
         const bloco = document.createElement('div');
