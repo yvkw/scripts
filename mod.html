@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Modelar Roteiro</title>
   <style>
     * {
@@ -79,6 +79,7 @@
       border-radius: 8px;
       font-size: 1em;
       resize: vertical;
+      min-height: 120px;
     }
 
     button {
@@ -105,8 +106,9 @@
       border-radius: 10px;
       white-space: pre-wrap;
       position: relative;
-      overflow-y: auto;
-      max-height: 300px;
+      /* Removida a limitação de altura e barra de rolagem */
+      max-height: none;
+      overflow-y: visible;
     }
 
     .copiar-btn {
@@ -161,11 +163,11 @@
     <textarea id="textoReescrever" placeholder="Cole o texto para reescrever por partes..."></textarea>
     <button onclick="reescreverTexto()">Reescrever Texto</button>
     <div id="partesReescritas"></div>
+
     <h2>Aumentar Texto em Partes</h2>
     <textarea id="textoReescrever2" placeholder="Cole o texto para reescrever por partes..."></textarea>
     <button onclick="reescreverTexto2()">Aumentar Texto</button>
     <div id="partesReescritas2"></div>
-
 
     <h2>Reescrever com Técnicas de Storytelling</h2>
     <textarea id="textoStorytelling" placeholder="Cole o texto para aplicar storytelling..."></textarea>
@@ -173,7 +175,6 @@
     <div id="resultadoStorytelling" class="bloco" style="display:none;"></div>
   </div>
 
-  
   <script>
     function criarBotaoCopiar(texto) {
       const botao = document.createElement('button');
@@ -188,15 +189,40 @@
       return botao;
     }
 
+    function removerMinutagem(paragrafo) {
+      return paragrafo.replace(/^\(\d{1,2}:\d{2}(?::\d{2})?\)\s*/, '');
+    }
+
     function organizarTexto() {
       const texto = document.getElementById('textoOrganizar').value.trim();
-      const mensagem = "Organize todo o texto abaixo em parágrafos com um limite padrão de caracteres para cada parágrafo e faça a correção ortográfica:";
-      const resultado = `${mensagem}\n\n${texto}`;
-      const saida = document.getElementById('resultadoOrganizado');
-      saida.innerHTML = '';
-      saida.appendChild(criarBotaoCopiar(resultado));
-      saida.appendChild(document.createTextNode(resultado));
-      saida.style.display = 'block';
+      const paragrafosPorParte = 20; // Fixo em 20
+      const paragrafos = texto.split(/\n+/)
+        .map(p => p.trim())
+        .filter(p => p !== '')
+        .map(removerMinutagem);
+
+      const container = document.getElementById('resultadoOrganizado');
+      container.innerHTML = '';
+
+      let parteIndex = 1;
+      for (let i = 0; i < paragrafos.length; i += paragrafosPorParte) {
+        const grupo = paragrafos.slice(i, i + paragrafosPorParte).join('\n\n');
+        const resultado = `Organize todo o texto abaixo em parágrafos com um limite padrão de caracteres para cada parágrafo e faça a correção ortográfica:\n\n${grupo}`;
+
+        const bloco = document.createElement('div');
+        bloco.className = 'bloco';
+
+        const titulo = document.createElement('span');
+        titulo.className = 'titulo-parte';
+        titulo.textContent = `PARTE ${parteIndex++} (20 parágrafos)`;
+        bloco.appendChild(titulo);
+
+        bloco.appendChild(criarBotaoCopiar(resultado));
+        bloco.appendChild(document.createTextNode(resultado));
+        container.appendChild(bloco);
+      }
+
+      container.style.display = 'block';
     }
 
     function reescreverTexto() {
@@ -262,6 +288,5 @@
       saida.style.display = 'block';
     }
   </script>
-
 </body>
 </html>
