@@ -281,7 +281,7 @@
         alert('Por favor, cole o texto para resumir e reestruturar.');
         return;
       }
-      const instrucao = "Reestruture e resuma o texto abaixo para que tenha cerca de 1400 palavras no total, mantendo uma narrativa contínua, envolvente e fluida, como um roteiro para narração em vídeo. Divida o texto em parágrafos, sendo que cada parágrafo deve conter entre 80 e 120 palavras, para facilitar a leitura em voz alta. Preserve as partes mais relevantes e interessantes, mantendo a coerência e a ordem lógica do conteúdo original. Use uma linguagem simples, clara e natural, evitando listas ou divisões abruptas — o texto deve fluir como uma história contada do início ao fim.";
+      const instrucao = "Reestruture e resuma o texto abaixo para cerca de 2.000 tokens, criando um texto fluido e contínuo, dividido em parágrafos de 80 a 120 palavras, para narração em vídeo. Por favor, gere a resposta completa em uma só mensagem, sem pedir para continuar.";
       const resultado = `${instrucao}\n\n${texto}`;
 
       const container = document.getElementById('resultadoResumo');
