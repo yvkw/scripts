@@ -205,7 +205,7 @@
       let parteIndex = 1;
       for (let i = 0; i < paragrafos.length; i += paragrafosPorParte) {
         const grupo = paragrafos.slice(i, i + paragrafosPorParte).join('\n\n');
-        const resultado = `Organize todo o texto abaixo em parágrafos com um limite padrão de caracteres para cada parágrafo e faça a correção ortográfica:\n\n${grupo}`;
+        const resultado = `Traduza e organize todo o texto abaixo em parágrafos com um limite padrão de caracteres para cada parágrafo e faça a correção ortográfica:\n\n${grupo}`;
 
         const bloco = document.createElement('div');
         bloco.className = 'bloco';
