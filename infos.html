@@ -168,7 +168,7 @@ function gerarSugestaoTitulo(textoPrompt) {
   saida.appendChild(document.createTextNode(texto));
 }
 function gerarSugestaoHistoriaBiblica() {
-  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com o tema: {tema}. Os títulos devem ser envolventes e diretos, podendo conter perguntas ou frases impactantes, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`);
+  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com o tema:{tema}. Os títulos devem ser gerados em português, espanhol e francês, ser envolventes e diretos, podendo conter perguntas ou frases impactantes, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`);
 }
 function gerarDescricaoETags() {
   const tema = document.getElementById('temaDescricao').value.trim();
@@ -190,9 +190,9 @@ function gerarDescricaoETags() {
     return; 
   }
 
-  const descricao = `Crie uma descrição para um vídeo do YouTube com base no tema: “${tema}”. Inclua hashtags relevantes ao final de cada versão.`;
-  const tags = `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube.`;
-  const erros = `Agora quero as tags escritas com erros ortográficos comuns. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
+  const descricao = `Crie uma descrição para um vídeo do YouTube com base no tema: “${tema}”, nos idiomas português, espanhol e francês. Inclua hashtags relevantes ao final de cada versão.`;
+  const tags = `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube, nos idiomas português, espanhol e francês.`;
+  const erros = `Agora quero as tags escritas com erros ortográficos comuns, nos idiomas português, espanhol e francês. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
 
   saidaDescricao.style.display = 'block';
   saidaDescricao.appendChild(criarBotaoCopiar(descricao));
