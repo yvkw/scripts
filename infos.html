@@ -128,15 +128,17 @@
 
   <h2>Descrição, Tags e Thumb</h2>
   <input type="text" id="temaDescricao" placeholder="Digite o tema para descrição...">
+  
+  <!-- Novo campo para Nome do Personagem -->
+  <input type="text" id="nomePersonagem" placeholder="Digite o nome do personagem...">
+
   <button onclick="gerarDescricaoETags()">Gerar Descrição, Tags e Thumbnail</button>
 
   <div id="saidaDescricao" class="bloco" style="display:none;"></div>
   <div id="saidaTags" class="bloco" style="display:none;"></div>
   <div id="saidaErros" class="bloco" style="display:none;"></div>
   <div id="saidaPersonagem2" class="bloco" style="display:none;"></div>
-  
   <div id="saidaPromptImagem" class="bloco" style="display:none;"></div>
-
   <div id="saidaPersonagem4" class="bloco" style="display:none;"></div>
 </div>
 
@@ -153,6 +155,7 @@ function criarBotaoCopiar(texto) {
   };
   return botao;
 }
+
 function gerarSugestaoTitulo(textoPrompt) {
   const tema = document.getElementById('temaTitulo').value.trim();
   const saida = document.getElementById('saidaTitulo');
@@ -167,22 +170,28 @@ function gerarSugestaoTitulo(textoPrompt) {
   saida.appendChild(criarBotaoCopiar(texto));
   saida.appendChild(document.createTextNode(texto));
 }
+
 function gerarSugestaoHistoriaBiblica() {
-  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com o tema:{tema}. Os títulos devem ser gerados em português, espanhol e francês, ser envolventes e diretos, podendo conter perguntas ou frases impactantes, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`);
+  gerarSugestaoTitulo(`Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com o tema: {tema}. Os títulos devem ser gerados em português, espanhol e francês, ser envolventes e diretos, podendo conter perguntas ou frases impactantes, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`);
 }
+
 function gerarDescricaoETags() {
   const tema = document.getElementById('temaDescricao').value.trim();
+  const personagem = document.getElementById('nomePersonagem').value.trim();
+  
   const saidaDescricao = document.getElementById('saidaDescricao');
   const saidaTags = document.getElementById('saidaTags');
   const saidaErros = document.getElementById('saidaErros');
   const saidaPersonagem2 = document.getElementById('saidaPersonagem2');
   const saidaPersonagem4 = document.getElementById('saidaPersonagem4');
+  const saidaPromptImagem = document.getElementById('saidaPromptImagem');
 
   saidaDescricao.innerHTML = '';
   saidaTags.innerHTML = '';
   saidaErros.innerHTML = '';
   saidaPersonagem2.innerHTML = '';
   saidaPersonagem4.innerHTML = '';
+  saidaPromptImagem.innerHTML = '';
 
   if (!tema) { 
     saidaDescricao.style.display = 'block'; 
@@ -191,8 +200,8 @@ function gerarDescricaoETags() {
   }
 
   const descricao = `Crie uma descrição para um vídeo do YouTube com base no tema: “${tema}”, nos idiomas português, espanhol e francês. Inclua hashtags relevantes ao final de cada versão.`;
-  const tags = `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube, nos idiomas português, espanhol e francês.`;
-  const erros = `Agora quero as tags escritas com erros ortográficos comuns, nos idiomas português, espanhol e francês. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
+  const tags = `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube, nos idiomas português, espanhol e francês. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
+  const erros = `Descreva como seria o Rosto de: ${personagem ? personagem : '[NOME DO PERSONAGEM]'}`;
 
   saidaDescricao.style.display = 'block';
   saidaDescricao.appendChild(criarBotaoCopiar(descricao));
@@ -206,17 +215,17 @@ function gerarDescricaoETags() {
   saidaErros.appendChild(criarBotaoCopiar(erros));
   saidaErros.appendChild(document.createTextNode(erros));
 
-  const thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}'', me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
+  const thumb = `Pensando em um vídeo do YouTube com o seguinte tema: '${tema}', me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções fortes como surpresa, medo, choque, mistério ou urgência. A imagem deve mostrar o personagem principal posicionado no lado direito da imagem, com o rosto de forma dramática para destacar a expressão. Use elementos simbólicos, cores contrastantes e ambientações que combinem com o tema do vídeo e criem forte impacto visual. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`;
+
   const headline = `Crie 5 headlines curtas e extremamente chamativas (com 2 palavras) para usar na thumbnail, nos idiomas português, espanhol e francês. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é provocar curiosidade imediata, fazer o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gerar um impulso quase automático de clicar para descobrir mais.`;
+
+  const promptImagem = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
 
   saidaPersonagem2.style.display = 'block';
   saidaPersonagem2.appendChild(criarBotaoCopiar(thumb));
   saidaPersonagem2.appendChild(document.createTextNode(thumb));
 
-  const promptImagem = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
-  const saidaPromptImagem = document.getElementById('saidaPromptImagem');
   saidaPromptImagem.style.display = 'block';
-  saidaPromptImagem.innerHTML = '';
   saidaPromptImagem.appendChild(criarBotaoCopiar(promptImagem));
   saidaPromptImagem.appendChild(document.createTextNode(promptImagem));
 
