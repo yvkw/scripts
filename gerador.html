@@ -206,22 +206,18 @@ Texto a ser ilustrado:`;
     function gerarPromptsIntroducao() {
       const texto = document.getElementById('roteiro').value.trim();
       const blocosContainer = document.getElementById('blocos');
-      blocosContainer.innerHTML = '';
+      blocosContainer.innerHTML = ''; // Limpa o conteúdo anterior
 
-      const instrucaoIntroducao = `Crie 5 prompts de imagem que ilustre o roteiro abaixo. Os prompts devem ser escritos em inglês e descrever cenas com estilo fotográfico realista. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+      // Substitui "TEMA AQUI" pelo conteúdo do texto inserido
+      const instrucaoIntroducao = `Crie 5 prompts de imagem que ilustre um vídeo com o tema: "${texto}". Os prompts devem ser escritos em inglês e descrever cenas com estilo fotográfico realista. Compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
 
 Seja altamente específico e detalhado ao descrever:
 – Ambiente e cenário (incluindo hora do dia, clima, localização)
-– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
 – Iluminação, emoções, clima/atmosfera geral da cena
 
 As imagens devem causar forte impacto visual e transmitir claramente a essência do roteiro. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
 
-Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
-
-Texto a ser ilustrado:`;
-
-      const conteudoFinal = `${instrucaoIntroducao}\n\n${texto}`;
+Importante: Importante: Não inclua personagens, pessoas, ou figuras humanas em qualquer uma das cenas. Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
 
       const div = document.createElement('div');
       div.className = 'bloco';
@@ -234,7 +230,7 @@ Texto a ser ilustrado:`;
       botaoCopiar.className = 'copiar-btn';
       botaoCopiar.textContent = 'Copiar';
       botaoCopiar.onclick = function () {
-        navigator.clipboard.writeText(conteudoFinal).then(() => {
+        navigator.clipboard.writeText(instrucaoIntroducao).then(() => {
           botaoCopiar.textContent = 'Copiado!';
           setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
         });
@@ -242,7 +238,7 @@ Texto a ser ilustrado:`;
 
       div.appendChild(titulo);
       div.appendChild(botaoCopiar);
-      div.appendChild(document.createTextNode(conteudoFinal));
+      div.appendChild(document.createTextNode(instrucaoIntroducao));
       blocosContainer.appendChild(div);
     }
   </script>
