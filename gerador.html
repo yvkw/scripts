@@ -173,7 +173,8 @@ Texto a ser ilustrado:`;
       let blocoIndex = 0;
 
       for (let i = 0; i < paragrafos.length; i += 10) {
-        const blocoParagrafos = paragrafos.slice(i, i + 10).map(p => p);
+        const blocoParagrafos = paragrafos.slice(i, i + 10);
+        const numeroPrompts = blocoParagrafos.length === 10 ? 20 : blocoParagrafos.length * 2; // Ajusta a quantidade de prompts
         const blocoTexto = blocoParagrafos.join('\n\n');
         const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
 
@@ -182,7 +183,7 @@ Texto a ser ilustrado:`;
 
         const titulo = document.createElement('div');
         titulo.className = 'titulo-bloco';
-        titulo.textContent = `PARTE ${blocoIndex + 1}`;
+        titulo.textContent = `PARTE ${blocoIndex + 1} - Total de Prompts: ${numeroPrompts}`;
 
         const botaoCopiar = document.createElement('button');
         botaoCopiar.className = 'copiar-btn';
