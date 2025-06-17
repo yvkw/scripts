@@ -172,7 +172,7 @@ function gerarSugestaoTitulo(textoPrompt) {
 }
 
 function gerarSugestaoHistoriaBiblica() {
-  gerarSugestaoTitulo(`Gere 5 sugestões de títulos para um vídeo do YouTube sobre: {tema}. Os títulos devem ser curtos e claros com até 65 caracteres se possível, utilizando gramática correta e capitalização adequada. Cada título precisa conter um gancho emocional ou elemento de curiosidade que desperte interesse imediato, além de apresentar valor claro para o espectador, como aprendizado, revelação ou entretenimento. Evite ser vago — seja direto e específico — mas sempre adicione um toque de intriga que provoque a curiosidade. Utilize formatos comuns e eficazes no YouTube, como perguntas instigantes, conflitos, segredos revelados ou frases impactantes. Os títulos devem soar profissionais, envolventes e capazes de se destacar em meio a outras opções.`);
+  gerarSugestaoTitulo(`Gere 5 sugestões de títulos em português, espanhol e francês para um vídeo do YouTube sobre: {tema}. Os títulos devem ser curtos e claros com até 65 caracteres se possível, utilizando gramática correta e capitalização adequada. Cada título precisa conter um gancho emocional ou elemento de curiosidade que desperte interesse imediato, além de apresentar valor claro para o espectador, como aprendizado, revelação ou entretenimento. Evite ser vago — seja direto e específico — mas sempre adicione um toque de intriga que provoque a curiosidade. Utilize formatos comuns e eficazes no YouTube, como perguntas instigantes, conflitos, segredos revelados ou frases impactantes. Os títulos devem soar profissionais, envolventes e capazes de se destacar em meio a outras opções.`);
 }
 
 function gerarDescricaoETags() {
@@ -199,8 +199,8 @@ function gerarDescricaoETags() {
     return;
   }
 
-  const descricao = `Crie uma descrição para um vídeo do YouTube com base no tema: “${tema}”. Inclua hashtags relevantes no final.`;
-  const tags = `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
+  const descricao = `Crie uma descrição em português, espanhol e francês para um vídeo do YouTube com base no tema: “${tema}”. Inclua hashtags relevantes no final.`;
+  const tags = `Escreva quais são as 15 melhores tags em português, espanhol e francês para que as pessoas encontrem o vídeo no YouTube. Me forneça o resultado com todas as palavras-chave em uma única linha do seu idioma, separadas por vírgulas.`;
   const rosto = `Descreva como seria o Rosto de: ${personagem ? personagem : '[NOME DO PERSONAGEM]'}`;
 const thumb = `Me ajude a criar uma ideia de thumbnail para um vídeo do YouTube sobre ${tema}.
 
@@ -218,7 +218,7 @@ Quero uma descrição clara da ideia visual, incluindo sugestões de:
 	•	Expressão facial ou emoção, se houver pessoas
 	•	Não inclua textos na imagem
 `;
-  const headline = `Crie 5 headlines curtas e extremamente chamativas (com 2 palavras) para usar na thumbnail. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é provocar curiosidade imediata, fazer o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gerar um impulso quase automático de clicar para descobrir mais.`;
+  const headline = `Crie 5 headlines curtas e extremamente chamativas (com 2 palavras) para usar na thumbnail em português, espanhol e francês. As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é provocar curiosidade imediata, fazer o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gerar um impulso quase automático de clicar para descobrir mais.`;
   const promptImagem = `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`;
 
   saidaDescricao.style.display = 'block';
