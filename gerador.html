@@ -172,7 +172,7 @@ Texto a ser ilustrado:`;
 
       let blocoIndex = 0;
 
-      for (let i = 0; i < paragrafos.length; i += 3) {
+      for (let i = 0; i < paragrafos.length; i += 10) {
         const blocoParagrafos = paragrafos.slice(i, i + 10).map(p => p);
         const blocoTexto = blocoParagrafos.join('\n\n');
         const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
