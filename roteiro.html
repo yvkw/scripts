@@ -133,7 +133,8 @@
   <p>Digite um tema abaixo para gerar a instrução personalizada:</p>
 
   <input type="text" id="tema" placeholder="Digite o tema aqui...">
-  <button onclick="gerarInstrucao()">Gerar Instrução</button>
+  <button onclick="gerarInstrucao()">Gerar Instrução 1</button>
+  <button onclick="gerarInstrucao2()">Gerar Instrução 2</button>
 
   <div id="resultado" class="bloco" style="display:none;"></div>
 
@@ -141,6 +142,7 @@
   <p>Cole abaixo um texto com três parágrafos (Início, Meio e Fim):</p>
   <textarea id="textoCompleto" placeholder="Cole seu texto aqui com 3 parágrafos..."></textarea>
   <button onclick="dividirTextoEmPartes()">Dividir 1</button>
+  <button onclick="dividirTextoEmPartes2()">Dividir 2</button>
 
   <div id="partes"></div>
 
@@ -184,7 +186,7 @@ function atualizarContadorStorytelling() {
 document.getElementById('roteiroParaSalvar').addEventListener('input', atualizarContadorStorytelling);
 atualizarContadorStorytelling(); // Chama imediatamente para inicializar o contador
 
-// Função para gerar a instrução
+// Função para gerar a instrução 1
 function gerarInstrucao() {
   const tema = document.getElementById('tema').value.trim();
   const resultado = document.getElementById('resultado');
@@ -197,6 +199,23 @@ function gerarInstrucao() {
   }
 
   const instrucao = `Escreva 4 parágrafos sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${tema}", com aproximadamente 600 tokens por parágrafo. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo, descrevendo o ambiente de forma serena e pacífica, sem criar tensão. O objetivo é promover uma sensação de conforto e relaxamento, ideal para induzir ao sono.`;
+
+  criarBlocoDeResultado(instrucao);
+}
+
+// Função para gerar a instrução 2 (conteúdo diferente)
+function gerarInstrucao2() {
+  const tema = document.getElementById('tema').value.trim();
+  const resultado = document.getElementById('resultado');
+  resultado.innerHTML = '';
+
+  if (!tema) {
+    resultado.style.display = 'block';
+    resultado.textContent = 'Por favor, digite um tema.';
+    return;
+  }
+
+  const instrucao = `Escreva um roteiro criativo com base no tema: "${tema}". Desenvolva um texto de 5 parágrafos, sendo o primeiro sobre a introdução, dois parágrafos de desenvolvimento e um de conclusão. Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante.`;
 
   criarBlocoDeResultado(instrucao);
 }
@@ -219,37 +238,17 @@ function criarBlocoDeResultado(texto) {
   resultado.appendChild(document.createTextNode(texto));
 }
 
-// Função para salvar como arquivo de texto
-async function salvarComoTxt() {
-  const tema = document.getElementById('tema').value.trim() || "roteiro";
-  const texto = document.getElementById('roteiroParaSalvar').value.trim();
-
-  if (!texto) {
-    alert("Por favor, cole seu roteiro antes de salvar.");
-    return;
-  }
-
-  try {
-    const handle = await window.showSaveFilePicker({
-      suggestedName: `${tema}.txt`,
-      types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
-    });
-
-    const writable = await handle.createWritable();
-    await writable.write(texto);
-    await writable.close();
-    alert("Arquivo salvo com sucesso!");
-  } catch (e) {
-    console.error("Erro ao salvar:", e);
-  }
-}
-
-// Função para dividir o texto em partes
+// Função para dividir o texto em partes (Dividir 1)
 function dividirTextoEmPartes() {
   const texto = document.getElementById('textoCompleto').value.trim();
   const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
   const container = document.getElementById('partes');
   container.innerHTML = '';
+
+  if (partes.length < 3) {
+    container.innerHTML = 'Por favor, insira um texto com pelo menos 3 parágrafos.';
+    return;
+  }
 
   const instrucoes = [
     {
@@ -258,11 +257,11 @@ function dividirTextoEmPartes() {
     },
     {
       titulo: 'Meio (parte 1)',
-      texto: 'Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo, descrevendo o ambiente de forma serena e pacífica, sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão. Durante o texto, insira naturalmente palavras-chave relacionadas ao tema para otimizar o SEO no YouTube.'
+      texto: 'Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo, descrevendo o ambiente de forma serena e pacífica, sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.'
     },
     {
       titulo: 'Meio (parte 2)',
-      texto: 'Desenvolva esse texto com no mínimo de (2000 tokens) para dar continuidade ao crescimento da história. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo, descrevendo o ambiente de forma serena e pacífica, sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão. Evite repetir o começo da história e não mencione o final ou a conclusão.'
+      texto: 'Continue com mais 1500 tokens, adicione mais detalhes sobre o tema de forma envolvente.'
     },
     {
       titulo: 'Fim',
@@ -270,11 +269,6 @@ function dividirTextoEmPartes() {
     }
   ];
 
-  gerarPartes(partes, instrucoes);
-}
-
-function gerarPartes(partes, instrucoes) {
-  const container = document.getElementById('partes');
   partes.forEach((paragrafo, index) => {
     if (instrucoes[index]) {
       const bloco = document.createElement('div');
@@ -304,7 +298,66 @@ function gerarPartes(partes, instrucoes) {
   });
 }
 
-// Função para gerar introdução impactante
+// Função para dividir o texto em partes (Dividir 2) com conteúdo diferente
+function dividirTextoEmPartes2() {
+  const texto = document.getElementById('textoCompleto').value.trim();
+  const partes = texto.split(/\n+/).filter(p => p.trim() !== '');
+  const container = document.getElementById('partes');
+  container.innerHTML = '';
+
+  if (partes.length < 3) {
+    container.innerHTML = 'Por favor, insira um texto com pelo menos 3 parágrafos.';
+    return;
+  }
+
+  const instrucoes = [
+    {
+      titulo: 'Introdução',
+      texto: 'Desenvolva esse texto de forma consistente utilizando (1500 tokens). Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo, descrevendo o ambiente de forma serena e pacífica, sem criar tensão. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.'
+    },
+    {
+      titulo: 'Desenvolvimento',
+      texto: 'Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.'
+    },
+    {
+      titulo: 'Desenvolvimento 2 (Parágrafo)',
+      texto: 'Continue com mais 1500 tokens, adicione mais detalhes sobre o tema de forma envolvente.'
+    },
+    {
+      titulo: 'Conclusão',
+      texto: 'Desenvolva uma conclusão detalhada com aproximadamente (2000 tokens) para o roteiro. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.'
+    }
+  ];
+
+  partes.forEach((paragrafo, index) => {
+    if (instrucoes[index]) {
+      const bloco = document.createElement('div');
+      bloco.className = 'bloco';
+
+      const titulo = document.createElement('strong');
+      titulo.textContent = instrucoes[index].titulo;
+
+      const botao = document.createElement('button');
+      botao.className = 'copiar-btn';
+      botao.textContent = 'Copiar';
+
+      const conteudo = `${instrucoes[index].texto}\n\n${paragrafo}`;
+
+      botao.onclick = function () {
+        navigator.clipboard.writeText(conteudo).then(() => {
+          botao.textContent = 'Copiado!';
+          setTimeout(() => botao.textContent = 'Copiar', 2000);
+        });
+      };
+
+      bloco.appendChild(titulo);
+      bloco.appendChild(botao);
+      bloco.appendChild(document.createTextNode('\n' + conteudo));
+      container.appendChild(bloco);
+    }
+  });
+}
+
 function gerarIntroducaoImpactante() {
   const texto = document.getElementById('textoIntroducao').value.trim();
   const container = document.getElementById('introducaoGerada');
@@ -316,7 +369,7 @@ function gerarIntroducaoImpactante() {
     return;
   }
 
-  const instrucao = `Crie uma introdução envolvente para um vídeo, com duração de 15 segundos, que desperte curiosidade sobre o tema e incentive o público a assistir até o final. Comece com uma frase que desperte curiosidade sobre o tema e faça uma breve explicação do que será abordado, sem revelar todos os detalhes e no final use frase: "Agora feche os olhos, respire fundo e imagine que..." e continue a frase com algum conteúdo relacionado ao roteiro.`;
+  const instrucao = `Crie uma introdução envolvente para um vídeo, com duração de 15 segundos, que desperte curiosidade sobre o tema e incentive o público a assistir até o final. Comece com uma frase que desperte curiosidade sobre o tema e faça uma breve explicação do que será abordado, sem revelar todos os detalhes e no final use frase: "Agora feche os olhos, respire fundo e imagine que..." e continue a frase com algum conteúdo relacionado ao roteiro.\n\n${texto}`;
 
   const botaoCopiar = document.createElement('button');
   botaoCopiar.className = 'copiar-btn';
@@ -331,6 +384,31 @@ function gerarIntroducaoImpactante() {
   container.style.display = 'block';
   container.appendChild(botaoCopiar);
   container.appendChild(document.createTextNode(instrucao));
+}
+
+// Função para salvar como arquivo de texto
+async function salvarComoTxt() {
+  const tema = document.getElementById('tema').value.trim() || "roteiro";
+  const texto = document.getElementById('roteiroParaSalvar').value.trim();
+
+  if (!texto) {
+    alert("Por favor, cole seu roteiro antes de salvar.");
+    return;
+  }
+
+  try {
+    const handle = await window.showSaveFilePicker({
+      suggestedName: `${tema}.txt`,
+      types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
+    });
+
+    const writable = await handle.createWritable();
+    await writable.write(texto);
+    await writable.close();
+    alert("Arquivo salvo com sucesso!");
+  } catch (e) {
+    console.error("Erro ao salvar:", e);
+  }
 }
 </script>
 
