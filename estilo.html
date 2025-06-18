@@ -155,8 +155,8 @@
 
     <textarea id="entrada" placeholder="Cole o conteúdo aqui..."></textarea>
     <br>
-    <button onclick="formatarTexto('biblico')">Bíblico</button>
-    <button onclick="formatarTexto('historico')">Histórico</button>
+    <button onclick="formatarTexto('biblico')">Flat Design</button>
+    <button onclick="formatarTexto('historico')">Pintura Realista</button>
     <button onclick="formatarTexto('antigo')">Normal</button>
 
     <div id="resultado-container" style="display:none;">
@@ -175,9 +175,9 @@
     function formatarTexto(estilo) {
       const entrada = document.getElementById('entrada').value;
 
-      const introBiblico = `masterpiece, ultra quality, 8k UHD, best quality, highly detailed, cinematic lighting, hyper-realistic, ancient biblical setting with a sense of divine presence. The scene is rich in detail, evoking a mythical and sacred aura, with warm, golden tones, enhancing the sense of historical grandeur:`;
+      const introBiblico = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: `;
 
-      const introHistorico = `Cinematic digital painting, highly detailed, epic historical illustration, appropriate mood for the scene:`;
+      const introHistorico = `Create an illustration in the realistic painting style, resembling Renaissance art or classical painting, ultra quality, 8k UHD, best quality, highly detailed. Focus on detailed human figures with soft yet defined features, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and environment. The background should include architectural elements or natural settings, rendered in soft hues with a focus on realism: `;
 
       const introAntigo = `Cinematic digital painting, highly detailed, scene-appropriate mood:`;
 
