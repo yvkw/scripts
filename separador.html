@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Separador de Parágrafos</title>
+    <style>
+        /* Resetando o estilo padrão e adicionando fontes e cores */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #0062ff;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: #0062ff;
+            outline: none;
+        }
+
+        button {
+            background-color: #0062ff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0052cc;
+        }
+
+        /* Estilo do botão fixo no topo */
+        .fixed-button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50%;
+            font-size: 18px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .fixed-button-container:hover {
+            transform: scale(1.1);
+        }
+
+        .output {
+            margin-top: 30px;
+        }
+
+        .paragraph-container {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .paragraph-container h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #0062ff;
+        }
+
+        .paragraph-container p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            textarea {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .fixed-button-container {
+                right: 15px;
+                top: 15px;
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Separador de Parágrafos</h1>
+
+    <textarea id="inputText" placeholder="Cole seu texto aqui..."></textarea><br>
+    <button onclick="processText()">Processar Texto</button>
+
+    <div id="output" class="output"></div>
+
+    <!-- Botão Fixo no Topo -->
+    <button id="copyButton" class="fixed-button-container" style="display:none;" onclick="copyCurrentParagraph()">✂️</button>
+</div>
+
+<script>
+    let currentParagraphIndex = 0;
+    let paragraphs = [];
+
+    function processText() {
+        const text = document.getElementById("inputText").value;
+        paragraphs = text.split('\n').map(para => para.trim()).filter(para => para.length > 0);
+        currentParagraphIndex = 0;
+
+        showNextParagraph();
+    }
+
+    function showNextParagraph() {
+        const outputContainer = document.getElementById("output");
+        outputContainer.innerHTML = '';
+
+        if (currentParagraphIndex < paragraphs.length) {
+            const paragraphContainer = document.createElement('div');
+            paragraphContainer.classList.add('paragraph-container');
+
+            const paragraphNumber = document.createElement('h3');
+            paragraphNumber.textContent = `Parágrafo ${currentParagraphIndex + 1}:`;
+            paragraphContainer.appendChild(paragraphNumber);
+
+            const paragraphText = document.createElement('p');
+            paragraphText.textContent = paragraphs[currentParagraphIndex];
+            paragraphContainer.appendChild(paragraphText);
+
+            document.getElementById("copyButton").style.display = 'block';
+            window.currentParaToCopy = paragraphs[currentParagraphIndex];
+
+            outputContainer.appendChild(paragraphContainer);
+        } else {
+            const finishedMessage = document.createElement('p');
+            finishedMessage.textContent = 'Todos os parágrafos foram copiados!';
+            outputContainer.appendChild(finishedMessage);
+
+            document.getElementById("copyButton").style.display = 'none';
+        }
+    }
+
+    function copyCurrentParagraph() {
+        const textarea = document.createElement('textarea');
+        textarea.value = window.currentParaToCopy;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        currentParagraphIndex++;
+        showNextParagraph();
+    }
+</script>
+
+</body>
+</html>
