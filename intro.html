@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRIAR INTRODUÇÃO</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-x: auto;
+    }
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+    .container {
+      max-width: 800px;
+      margin: 100px auto 0;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0062ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056cc;
+    }
+    #resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    pre {
+      white-space: pre-wrap; /* Permite a quebra automática de linhas */
+      word-wrap: break-word; /* Quebra as palavras longas automaticamente */
+      overflow-wrap: break-word; /* Quebra as palavras longas automaticamente em navegadores mais antigos */
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html"><strong>PÁGINA INICIAL</strong></a>
+    <a href="roteiro.html"><strong>CRIAR ROTEIRO</strong></a>
+    <a href="intro.html"><strong>GERAR INTRODUÇÃO</strong></a>	
+    <a href="imgs.html"><strong>PROMPTS DE IMAGENS</strong></a>
+    <a href="estilos.html"><strong>ESTILOS DE IMAGENS</strong></a>
+    <a href="seo.html"><strong>SEO YOUTUBE</strong></a>	
+    <a href="legenda.html"><strong>LEGENDA SRT</strong></a>	
+    <a href="https://remover-silencio.onrender.com/"><strong>REMOVER SILÊNCIO</strong></a>	
+  </nav>
+</header>
+
+<div class="container">
+  <h1>CRIAR INTRODUÇÃO</h1>
+
+  <!-- Campo para preencher o texto -->
+  <textarea id="textoInput" placeholder="Digite o texto que você deseja gerar uma introdução..." rows="6"></textarea>
+
+  <!-- Botão para gerar a introdução -->
+  <div class="button-container">
+    <button onclick="gerarIntroducao()">Gerar Introdução</button>
+  </div>
+
+  <!-- Exibir o resultado -->
+  <div id="resultado"></div>
+</div>
+
+<script>
+  // Função para gerar a introdução com base no texto preenchido
+  function gerarIntroducao() {
+    const texto = document.getElementById('textoInput').value.trim();
+
+    if (texto === '') {
+      alert('Por favor, insira um texto para gerar a introdução.');
+      return;
+    }
+
+    // Gerar o conteúdo com a introdução
+    const introducao = `Crie uma introdução envolvente para um vídeo, com duração de 15 segundos, que desperte curiosidade sobre o tema e incentive o público a assistir até o final. Comece com uma frase que desperte curiosidade sobre o tema e faça uma breve explicação do que será abordado, sem revelar todos os detalhes e no final use frase: "Agora feche os olhos, respire fundo e imagine que..." e continue a frase com algum conteúdo relacionado ao roteiro.
+\n\n${texto}`;
+
+    // Exibir o resultado na página
+    const resultadoElement = document.getElementById('resultado');
+    resultadoElement.innerHTML = `
+      <h3>INTRODUÇÃO:</h3>
+      <pre>${introducao}</pre>
+      <button onclick="copiarTexto()">Copiar</button>
+    `;
+  }
+
+  // Função para copiar o conteúdo gerado
+  function copiarTexto() {
+    const textoGerado = document.querySelector('#resultado pre').innerText;
+    navigator.clipboard.writeText(textoGerado);
+  }
+</script>
+
+</body>
+</html>

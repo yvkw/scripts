@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador Prompts de Imagens</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #007bff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      overflow-x: auto;
+    }
+    nav {
+      white-space: nowrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 15px 20px;
+      min-width: max-content;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      font-weight: 500;
+      transition: opacity 0.3s, transform 0.2s;
+    }
+    nav a:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+    .container {
+      background-color: #fff;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      resize: vertical;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 1em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    .bloco {
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      position: relative;
+    }
+    .copiar-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .copiar-btn:hover {
+      background-color: #218838;
+    }
+    .titulo-bloco {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html"><strong>PÁGINA INICIAL</strong></a>
+    <a href="roteiro.html"><strong>CRIAR ROTEIRO</strong></a>
+    <a href="intro.html"><strong>GERAR INTRODUÇÃO</strong></a>	
+    <a href="imgs.html"><strong>PROMPTS DE IMAGENS</strong></a>
+    <a href="estilos.html"><strong>ESTILOS DE IMAGENS</strong></a>
+    <a href="seo.html"><strong>SEO YOUTUBE</strong></a>	
+    <a href="legenda.html"><strong>LEGENDA SRT</strong></a>	
+    <a href="https://remover-silencio.onrender.com/"><strong>REMOVER SILÊNCIO</strong></a>	
+  </nav>
+</header>
+
+<div class="container">
+  <h1>Gerador de Prompts de Imagens</h1>
+  <p>Cole seu roteiro abaixo e clique no botão para gerar os prompts de imagem:</p>
+
+  <textarea id="roteiro" placeholder="Cole seu roteiro aqui..."></textarea>
+  <button onclick="gerarPromptsRoteiro()">Prompts Roteiro</button>
+
+  <div id="blocos" style="margin-top: 30px;"></div>
+</div>
+
+<script>
+  function gerarPromptsRoteiro() {
+    const texto = document.getElementById('roteiro').value.trim();
+    const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
+    const blocosContainer = document.getElementById('blocos');
+    blocosContainer.innerHTML = '';
+
+    const instrucaoPadrao = `Crie 2 prompts de imagem para cada parágrafo do texto abaixo, totalizando 30 prompts. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
+
+Texto a ser ilustrado:`;
+
+    let blocoIndex = 0;
+
+    for (let i = 0; i < paragrafos.length; i += 15) {
+      const blocoParagrafos = paragrafos.slice(i, i + 15);
+      const numeroPrompts = blocoParagrafos.length === 15 ? 30 : blocoParagrafos.length * 2; // Ajusta a quantidade de prompts
+      const blocoTexto = blocoParagrafos.join('\n\n');
+      const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
+
+      const div = document.createElement('div');
+      div.className = 'bloco';
+
+      const titulo = document.createElement('div');
+      titulo.className = 'titulo-bloco';
+      titulo.textContent = `PARTE ${blocoIndex + 1} - Total de Prompts: ${numeroPrompts}`;
+
+      const botaoCopiar = document.createElement('button');
+      botaoCopiar.className = 'copiar-btn';
+      botaoCopiar.textContent = 'Copiar';
+      botaoCopiar.onclick = function () {
+        navigator.clipboard.writeText(conteudoFinal).then(() => {
+          botaoCopiar.textContent = 'Copiado!';
+          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+        });
+      };
+
+      div.appendChild(titulo);
+      div.appendChild(botaoCopiar);
+      div.appendChild(document.createTextNode(conteudoFinal));
+      blocosContainer.appendChild(div);
+
+      blocoIndex++;
+    }
+  }
+</script>
+
+</body>
+</html>
