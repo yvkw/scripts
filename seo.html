@@ -59,7 +59,8 @@
     }
     .button-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start; /* Garante que os botões fiquem alinhados à esquerda */
+      gap: 10px; /* Espaçamento entre os botões */
     }
     button {
       padding: 10px 20px;
@@ -69,6 +70,7 @@
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
+      width: 200px; /* Garantir que os botões tenham o mesmo tamanho */
     }
     button:hover {
       background-color: #0056cc;
@@ -120,7 +122,7 @@
   <!-- Campo para o primeiro tema -->
   <input type="text" id="temaInput1" placeholder="Digite o tema do vídeo...">
   <div class="button-container">
-    <button onclick="gerarConteudo()">Gerar Conteúdo</button>
+    <button onclick="gerarConteudo()">Gerar</button>
   </div>
 
   <br>
@@ -128,7 +130,8 @@
   <!-- Campo para o segundo tema -->
   <input type="text" id="temaInput2" placeholder="Digite o tema escolhido para gerar as informações...">
   <div class="button-container">
-    <button onclick="gerarBlocos()">Gerar Blocos</button>
+    <button onclick="gerarBlocos()">Histórico</button>
+    <button onclick="gerarBlocos2()">Bíblico</button>
   </div>
 
   <div id="resultado"></div>
@@ -147,13 +150,13 @@
     }
 
     // Gerar o bloco com o texto desejado para o campo 1
-    const resultado = `Gere um vídeo baseado nesse tema: "${tema1}", para o YouTube.`;
+    const resultado = `Gere 5 sugestões de títulos para um vídeo do YouTube sobre: "${tema1}". Os títulos devem ser curtos e claros com até 65 caracteres se possível, utilizando gramática correta e capitalização adequada. Cada título precisa conter um gancho emocional ou elemento de curiosidade que desperte interesse imediato, além de apresentar valor claro para o espectador, como aprendizado, revelação ou entretenimento. Evite ser vago — seja direto e específico — mas sempre adicione um toque de intriga que provoque a curiosidade. Utilize formatos comuns e eficazes no YouTube, como perguntas ou frases impactantes. Os títulos devem soar profissionais, envolventes e capazes de se destacar em meio a outras opções.`;
 
     // Exibir o conteúdo no estilo de um bloco
     const blocoElement = document.createElement('div');
     blocoElement.classList.add('bloco');
     blocoElement.innerHTML = `
-      <h3>Bloco 1</h3>
+      <h3>Gerar Títulos</h3>
       <p>${resultado}</p>
       <button onclick="copiarBloco(0)">Copiar</button>
     `;
@@ -176,11 +179,11 @@
     blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
 
     const blocosConteudo = [
-      `Escreva uma descrição baseada no tema: "${tema2}", para o YouTube.`,
-      `Escreva tags baseadas no tema: "${tema2}", para o YouTube.`,
-      `Crie uma thumbnail com tema: "${tema2}" para o YouTube.`,
-      `Transforme em inglês essa ideia: "${tema2}"`,
-      `Crie 5 heads baseados no tema: "${tema2}", para o YouTube.`
+      `Escreva uma descrição envolvente e criativa para um vídeo com o tema: "${tema2}". A descrição deve conter curiosidades, chamar o espectador para a ação, e conter hashtags no final.`,
+      `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube. Me forneça o resultado com todas as palavras-chave em uma única linha, separadas por vírgulas.`,
+      `Pensando em um vídeo do YouTube com o seguinte tema: "${tema2}", me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções de mistério, respeito, reflexão e imersão histórica. A imagem deve mostrar o rosto de um personagem posicionado no lado direito da imagem olhando diretamente para a câmera., com uma expressão que combine com o contexto histórico da história — seja de determinação, sabedoria, coragem ou contemplação. Use elementos simbólicos como luz suave ou dramática, destacando as características mais marcantes da época ou do evento histórico, e cores que evoquem a era retratada, como tons terrosos, dourados ou esbranquiçados, criando uma atmosfera que remeta à riqueza do passado. A ambientação pode incluir cenários históricos, como ruínas, castelos, campos de batalha, ou monumentos antigos, de forma a conectar o espectador diretamente com o contexto da narrativa histórica. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`,
+      `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`,
+      `Crie 5 headlines curtas e extremamente chamativas (com 2 palavras) para usar na thumbnail baseado no tema: "${tema2}". As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é provocar curiosidade imediata, fazer o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gerar um impulso quase automático de clicar para descobrir mais.`
     ];
 
     // Criar os blocos
@@ -189,7 +192,42 @@
       blocoElement.classList.add('bloco');
       
       blocoElement.innerHTML = `
-        <h3>Bloco ${index + 1}</h3>
+        <h3>Prompt ${index + 1} - Histórico</h3>
+        <p>${conteudo}</p>
+        <button onclick="copiarBloco(${index})">Copiar</button>
+      `;
+      
+      blocosContainer.appendChild(blocoElement);
+    });
+  }
+
+  // Função para gerar os 5 blocos diferentes com base no tema do campo 2 (Blocos 2)
+  function gerarBlocos2() {
+    const tema2 = document.getElementById('temaInput2').value.trim();
+
+    if (tema2 === '') {
+      alert('Por favor, insira um tema para gerar os blocos.');
+      return;
+    }
+
+    const blocosContainer = document.getElementById('blocos');
+    blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
+
+    const blocosConteudo2 = [
+      `Escreva uma descrição envolvente e criativa para um vídeo com o tema: "${tema2}". A descrição deve conter curiosidades, chamar o espectador para a ação, e conter hashtags no final.`,
+      `Escreva quais são as 15 melhores tags para que as pessoas encontrem o vídeo no YouTube. Me forneça o resultado com todas as palavras-chave em uma única linha, separadas por vírgulas.`,
+      `Pensando em um vídeo do YouTube com o seguinte tema: "${tema2}", me dê uma sugestão de thumbnail altamente chamativa e criativa que gere curiosidade extrema e incentive o clique. Descreva a thumbnail de forma visual e cinematográfica, com elementos que transmitam emoções de calma, serenidade e reflexão. A imagem deve mostrar o rosto de um personagem posicionado no lado direito da imagem, olhando diretamente para a câmera, com uma expressão serena ou contemplativa, destacando a paz interior. Use elementos simbólicos como luz suave e um ambiente sereno, e cores suaves ou douradas que remetam à espiritualidade e calma. A ambientação pode incluir paisagens tranquilas, como céus estrelados ou campos tranquilos, criando uma atmosfera acolhedora para o espectador. Não incluir nenhum tipo de texto na imagem — o texto será adicionado posteriormente.`,
+      `Transforme essa ideia em um prompt para geração de imagem já traduzindo para o inglês e lembre-se de não incluir texto na imagem.`,
+      `Crie 5 headlines curtas e extremamente chamativas (com 2 palavras) para usar na thumbnail baseado no tema: "${tema2}". As frases não podem repetir o título e devem conter gatilhos mentais. O objetivo é provocar curiosidade imediata, fazer o espectador sentir que há algo oculto ou surpreendente por trás do vídeo e gerar um impulso quase automático de clicar para descobrir mais.`
+    ];
+
+    // Criar os blocos
+    blocosConteudo2.forEach((conteudo, index) => {
+      const blocoElement = document.createElement('div');
+      blocoElement.classList.add('bloco');
+      
+      blocoElement.innerHTML = `
+        <h3>Prompt ${index + 1} - Bíblico</h3>
         <p>${conteudo}</p>
         <button onclick="copiarBloco(${index})">Copiar</button>
       `;
