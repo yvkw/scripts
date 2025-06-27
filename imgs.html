@@ -142,7 +142,7 @@
     const blocosContainer = document.getElementById('blocos');
     blocosContainer.innerHTML = '';
 
-    const instrucaoPadrao = `Crie 2 prompts de imagem para cada parágrafo do texto abaixo, totalizando 30 prompts. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+    const instrucaoPadrao = `Crie 25 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
 
 Seja altamente específico e detalhado ao descrever:
 – Ambiente e cenário (incluindo hora do dia, clima, localização)
@@ -157,9 +157,9 @@ Texto a ser ilustrado:`;
 
     let blocoIndex = 0;
 
-    for (let i = 0; i < paragrafos.length; i += 15) {
-      const blocoParagrafos = paragrafos.slice(i, i + 15);
-      const numeroPrompts = blocoParagrafos.length === 15 ? 30 : blocoParagrafos.length * 2; // Ajusta a quantidade de prompts
+    for (let i = 0; i < paragrafos.length; i += 101) {
+      const blocoParagrafos = paragrafos.slice(i, i + 101);
+      const numeroPrompts = blocoParagrafos.length === 101 ? 20 : blocoParagrafos.length * 1; // Ajusta a quantidade de prompts
       const blocoTexto = blocoParagrafos.join('\n\n');
       const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
 
