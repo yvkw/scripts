@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CRIAR ROTEIRO</title>
+  <title>Gerador Prompts de Imagens</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -42,89 +42,71 @@
       transform: translateY(-2px);
     }
     .container {
-      max-width: 800px;
-      margin: 120px auto 0; /* Ajusta o espaço para evitar que o conteúdo fique oculto atrás da navbar fixa */
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      background-color: #fff;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.8s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     textarea {
       width: 100%;
-      height: 120px;
-      margin-bottom: 10px;
-      padding: 10px;
-      font-size: 16px;
+      height: 200px;
+      margin-bottom: 20px;
+      padding: 12px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .button-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: flex-start;  /* Alinha os botões à esquerda */
-      gap: 15px;  /* Aumenta um pouco a distância entre os botões */
+      font-size: 1em;
+      resize: vertical;
     }
     button {
-      padding: 10px 20px;
-      background-color: #0062ff;
+      padding: 12px 20px;
+      font-size: 1em;
+      background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
-      width: auto; /* Ajusta automaticamente o tamanho dos botões */
+      margin-right: 10px;
+      transition: background-color 0.3s, transform 0.2s;
     }
-    .button-container button:hover {
-      background-color: #0056cc;
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
     }
     .bloco {
-      margin-bottom: 15px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
       padding: 15px;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      position: relative;
     }
-    .bloco h3 {
-      margin-bottom: 10px;
-      color: #007bff;
-      display: none; /* Esconde o título do bloco */
-    }
-    .bloco button {
-      margin-top: 10px;
-      padding: 5px 10px;
+    .copiar-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.9em;
       background-color: #28a745;
-      border-radius: 5px;
+      color: white;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
     }
-    .bloco button:hover {
+    .copiar-btn:hover {
       background-color: #218838;
     }
-    #mensagem {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-      border-radius: 5px;
-      display: none;
-    }
-    #juntarContainer {
-      display: none;
-      margin-top: 20px;
-    }
-    #textoFinal {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #f0f8ff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      white-space: pre-wrap;
-    }
-    /* Adicionando a modificação para garantir que o conteúdo não saia do box */
-    .bloco pre {
-      white-space: normal;
-      word-wrap: break-word;
-      overflow-wrap: break-word; /* Isso garante que a quebra de linha ocorra corretamente */
+    .titulo-bloco {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1em;
     }
   </style>
 </head>
@@ -134,247 +116,76 @@
   <nav>
     <a href="index.html"><strong>PÁGINA INICIAL</strong></a>
     <a href="roteiro.html"><strong>CRIAR ROTEIRO</strong></a>
-    <a href="intro.html"><strong>GERAR INTRODUÇÃO</strong></a>  
+    <a href="intro.html"><strong>GERAR INTRODUÇÃO</strong></a>	
     <a href="imgs.html"><strong>PROMPTS DE IMAGENS</strong></a>
     <a href="estilos.html"><strong>ESTILOS DE IMAGENS</strong></a>
-    <a href="seo.html"><strong>SEO YOUTUBE</strong></a>  
-    <a href="legenda.html"><strong>LEGENDA SRT</strong></a>  
-    <a href="https://remover-silencio.onrender.com/"><strong>REMOVER SILÊNCIO</strong></a>  
+    <a href="seo.html"><strong>SEO YOUTUBE</strong></a>	
+    <a href="legenda.html"><strong>LEGENDA SRT</strong></a>	
+    <a href="https://remover-silencio.onrender.com/"><strong>REMOVER SILÊNCIO</strong></a>	
   </nav>
 </header>
 
 <div class="container">
-  <h1>CRIAR ROTEIRO</h1>
+  <h1>Gerador de Prompts de Imagens</h1>
+  <p>Cole seu roteiro abaixo e clique no botão para gerar os prompts de imagem:</p>
 
-  <!-- Novo campo de tema -->
-  <div class="bloco">
-    <h3>Adicionar Tema</h3>
-    <textarea id="temaInput" placeholder="Digite o tema aqui..."></textarea>
-    <button onclick="gerarTema()">...</button>
-    <button onclick="gerarTema2()">Acolhedor</button>
-  </div>
+  <textarea id="roteiro" placeholder="Cole seu roteiro aqui..."></textarea>
+  <button onclick="gerarPromptsRoteiro()">Prompts Roteiro</button>
 
-  <!-- Exibição do conteúdo gerado -->
-  <div id="conteudoGerado" class="bloco" style="display:none;">
-    <h3>MONTAR ROTEIRO</h3>
-    <p id="roteiroGerado"></p>
-    <button onclick="copiarConteudo()">Copiar Conteúdo</button>
-  </div>
-
-  <!-- Novo botão para gerar partes 2 -->
-  <div class="button-container">
-    <button onclick="gerarPartes()">...</button>
-    <button onclick="gerarPartes2()">Acolhedor</button>
-  </div>
-
-  <textarea id="paragrafosInput" placeholder="Cole seus 4 parágrafos aqui..."></textarea>
-
-  <div id="blocos"></div>
-
-  <div id="mensagem">Todos as partes foram copiados com sucesso!</div>
-
-  <div id="juntarContainer">
-    <h2>Juntar as Partes</h2>
-    <textarea id="inicio" placeholder="Cole a parte de Início aqui..."></textarea>
-    <textarea id="meio1" placeholder="Cole a parte de Meio (Parte 1) aqui..."></textarea>
-    <textarea id="meio2" placeholder="Cole a parte de Meio (Parte 2) aqui..."></textarea>
-    <textarea id="fim" placeholder="Cole a parte de Fim aqui..."></textarea>
-
-    <div class="button-container">
-      <button onclick="juntarPartes()">Juntar Partes</button>
-      <button onclick="salvarTexto()">Salvar</button>
-    </div>
-  </div>
-
-  <div id="textoFinal"></div>
+  <div id="blocos" style="margin-top: 30px;"></div>
 </div>
 
 <script>
-  let totalBlocos = 0;
-  let blocosCopiados = 0;
-
-  // Função para gerar conteúdo baseado no tema para YouTube
-  function gerarTema() {
-    const temaInput = document.getElementById('temaInput').value.trim();
-    if (!temaInput) {
-      alert('Por favor, insira um tema.');
-      return;
-    }
-
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante.`;
-    
-    document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
-    document.getElementById('conteudoGerado').style.display = 'block';
-  }
-
-  // Função para gerar conteúdo baseado no tema para TikTok
-  function gerarTema2() {
-    const temaInput = document.getElementById('temaInput').value.trim();
-    if (!temaInput) {
-      alert('Por favor, insira um tema.');
-      return;
-    }
-
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão.`;
-    
-    document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
-    document.getElementById('conteudoGerado').style.display = 'block';
-  }
-
-  // Função para copiar o conteúdo gerado
-  function copiarConteudo() {
-    const texto = document.getElementById('roteiroGerado').innerText;
-    navigator.clipboard.writeText(texto);
-  }
-
-  // Função para gerar as partes do conteúdo (geral)
-  function gerarPartes() {
-    const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
-    const paragrafos = paragrafosInput.split('\n').filter(par => par !== '');
-
-    if (paragrafos.length !== 4) {
-      alert('Por favor, cole exatamente 4 parágrafos.');
-      return;
-    }
-
+  function gerarPromptsRoteiro() {
+    const texto = document.getElementById('roteiro').value.trim();
+    const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
     const blocosContainer = document.getElementById('blocos');
-    blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
+    blocosContainer.innerHTML = '';
 
-    const blocosNomes = ['INICIO', 'MEIO PARTE 1', 'MEIO PARTE 2', 'FIM'];
-    totalBlocos = blocosNomes.length;
-    blocosCopiados = 0;
+    const instrucaoPadrao = `Crie 25 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
 
-    paragrafos.forEach((paragrafo, index) => {
-      const blocoElement = document.createElement('div');
-      blocoElement.classList.add('bloco');
-      
-      const blocoNome = blocosNomes[index];
-      let blocoConteudo = '';
+Seja altamente específico e detalhado ao descrever:
+– Ambiente e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
 
-      // Gerar conteúdo de partes para YouTube (ou outro uso geral)
-      if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva esse texto de forma consistente utilizando (1500 tokens). Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue com mais 1500 tokens, adicione mais detalhes sobre o tema de forma envolvente. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada com aproximadamente (2000 tokens) para o roteiro. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
-      }
+As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
 
-      blocoElement.innerHTML = `
-        <h3 style="display:none;">${blocoNome}</h3> <!-- Escondido -->
-        <pre>${blocoConteudo.replace(/\n/g, '<br>')}</pre>
-        <button onclick="copiarBloco(this)">Copiar</button>
-      `;
-      
-      blocosContainer.appendChild(blocoElement);
-    });
-  }
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
 
-  // Função para gerar as partes do conteúdo para outro uso (Gerar Partes 2)
-  function gerarPartes2() {
-    const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
-    const paragrafos = paragrafosInput.split('\n').filter(par => par !== '');
+Texto a ser ilustrado:`;
 
-    if (paragrafos.length !== 4) {
-      alert('Por favor, cole exatamente 4 parágrafos.');
-      return;
-    }
+    let blocoIndex = 0;
 
-    const blocosContainer = document.getElementById('blocos');
-    blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
+    for (let i = 0; i < paragrafos.length; i += 101) {
+      const blocoParagrafos = paragrafos.slice(i, i + 101);
+      const numeroPrompts = blocoParagrafos.length === 101 ? 20 : blocoParagrafos.length * 1; // Ajusta a quantidade de prompts
+      const blocoTexto = blocoParagrafos.join('\n\n');
+      const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
 
-    const blocosNomes = ['INICIO', 'MEIO PARTE 1', 'MEIO PARTE 2', 'FIM'];
-    totalBlocos = blocosNomes.length;
-    blocosCopiados = 0;
+      const div = document.createElement('div');
+      div.className = 'bloco';
 
-    paragrafos.forEach((paragrafo, index) => {
-      const blocoElement = document.createElement('div');
-      blocoElement.classList.add('bloco');
-      
-      const blocoNome = blocosNomes[index];
-      let blocoConteudo = '';
+      const titulo = document.createElement('div');
+      titulo.className = 'titulo-bloco';
+      titulo.textContent = `PARTE ${blocoIndex + 1} - Total de Prompts: ${numeroPrompts}`;
 
-      // Gerar conteúdo de partes para TikTok
-      if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva esse texto de forma consistente utilizando (1500 tokens). Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue com mais 1500 tokens, adicione mais detalhes sobre o tema. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada com aproximadamente (2000 tokens) para o roteiro. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
-      }
+      const botaoCopiar = document.createElement('button');
+      botaoCopiar.className = 'copiar-btn';
+      botaoCopiar.textContent = 'Copiar';
+      botaoCopiar.onclick = function () {
+        navigator.clipboard.writeText(conteudoFinal).then(() => {
+          botaoCopiar.textContent = 'Copiado!';
+          setTimeout(() => botaoCopiar.textContent = 'Copiar', 2000);
+        });
+      };
 
-      blocoElement.innerHTML = `
-        <h3 style="display:none;">${blocoNome}</h3> <!-- Escondido -->
-        <pre>${blocoConteudo.replace(/\n/g, '<br>')}</pre>
-        <button onclick="copiarBloco(this)">Copiar</button>
-      `;
-      
-      blocosContainer.appendChild(blocoElement);
-    });
-  }
+      div.appendChild(titulo);
+      div.appendChild(botaoCopiar);
+      div.appendChild(document.createTextNode(conteudoFinal));
+      blocosContainer.appendChild(div);
 
-  // Função para copiar um bloco
-  function copiarBloco(button) {
-    const blocoElement = button.parentElement;
-    const paragrafoTexto = blocoElement.querySelector('pre').innerText;
-
-    // Copiar o conteúdo do parágrafo
-    navigator.clipboard.writeText(paragrafoTexto).then(() => {
-      blocoElement.style.display = 'none'; // Torna o bloco invisível
-
-      blocosCopiados++;
-
-      if (blocosCopiados === totalBlocos) {
-        const mensagem = document.getElementById('mensagem');
-        mensagem.style.display = 'block';
-
-        const juntarContainer = document.getElementById('juntarContainer');
-        juntarContainer.style.display = 'block';
-      }
-    });
-  }
-
-  // Função para juntar as partes
-  function juntarPartes() {
-    const inicio = document.getElementById('inicio').value.trim();
-    const meio1 = document.getElementById('meio1').value.trim();
-    const meio2 = document.getElementById('meio2').value.trim();
-    const fim = document.getElementById('fim').value.trim();
-
-    if (!inicio || !meio1 || !meio2 || !fim) {
-      alert('Por favor, cole todas as partes antes de juntar.');
-      return;
-    }
-
-    const textoFinal = `${inicio}\n\n${meio1}\n\n${meio2}\n\n${fim}`;
-    const textoFinalContainer = document.getElementById('textoFinal');
-    textoFinalContainer.textContent = textoFinal;
-  }
-
-  // Função para salvar o texto final como arquivo de texto
-  async function salvarTexto() {
-    const texto = document.getElementById('textoFinal').textContent.trim();
-    if (!texto) {
-      alert('Por favor, junte as partes antes de salvar.');
-      return;
-    }
-
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: 'roteiro_completo.txt',
-        types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
-      });
-
-      const writable = await handle.createWritable();
-      await writable.write(texto);
-      await writable.close();
-      alert('Arquivo salvo com sucesso!');
-    } catch (e) {
-      console.error('Erro ao salvar:', e);
+      blocoIndex++;
     }
   }
 </script>
