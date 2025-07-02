@@ -128,7 +128,7 @@
     }
 
     // Gerar o conteúdo com a introdução
-    const introducao = `Crie uma introdução de 30 segundos baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir, como diminuir as luzes ou ligar um ventilador. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
+    const introducao = `Crie uma introdução de 15 segundos de forma continua baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 \n\n${texto}`;
 
     // Exibir o resultado na página
@@ -137,13 +137,24 @@
       <h3>INTRODUÇÃO:</h3>
       <pre>${introducao}</pre>
       <button onclick="copiarTexto()">Copiar</button>
+      <button onclick="salvarTexto()">Salvar</button>
     `;
   }
 
-  // Função para copiar o conteúdo gerado
+  // Função para copiar o conteúdo gerado (texto fixo + texto do usuário)
   function copiarTexto() {
     const textoGerado = document.querySelector('#resultado pre').innerText;
     navigator.clipboard.writeText(textoGerado);
+  }
+
+  // Função para salvar o conteúdo gerado como um arquivo de texto
+  function salvarTexto() {
+    const textoGerado = document.querySelector('#resultado pre').innerText;
+    const blob = new Blob([textoGerado], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'roteiro.txt';
+    link.click();
   }
 </script>
 
