@@ -137,7 +137,6 @@
       <h3>INTRODUÇÃO:</h3>
       <pre>${introducao}</pre>
       <button onclick="copiarTexto()">Copiar</button>
-      <button onclick="salvarTexto()">Salvar</button>
     `;
   }
 
@@ -145,16 +144,6 @@
   function copiarTexto() {
     const textoGerado = document.querySelector('#resultado pre').innerText;
     navigator.clipboard.writeText(textoGerado);
-  }
-
-  // Função para salvar o conteúdo gerado como um arquivo de texto
-  function salvarTexto() {
-    const textoGerado = document.querySelector('#resultado pre').innerText;
-    const blob = new Blob([textoGerado], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'roteiro.txt';
-    link.click();
   }
 </script>
 
