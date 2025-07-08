@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -150,8 +151,8 @@
   <div class="bloco">
     <h3>Adicionar Tema</h3>
     <textarea id="temaInput" placeholder="Digite o tema aqui..."></textarea>
-    <button onclick="gerarTema()">...</button>
-    <button onclick="gerarTema2()">Acolhedor</button>
+    <button onclick="gerarTema()">Gerar</button>
+    <button onclick="gerarTema2()">...</button>
   </div>
 
   <!-- Exibição do conteúdo gerado -->
@@ -163,8 +164,8 @@
 
   <!-- Novo botão para gerar partes 2 -->
   <div class="button-container">
-    <button onclick="gerarPartes()">...</button>
-    <button onclick="gerarPartes2()">Acolhedor</button>
+    <button onclick="gerarPartes()">Gerar</button>
+    <button onclick="gerarPartes2()">...</button>
   </div>
 
   <textarea id="paragrafosInput" placeholder="Cole seus 4 parágrafos aqui..."></textarea>
@@ -201,7 +202,7 @@
       return;
     }
 
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante. Me dê os parágrafos limpos, sem títulos.`;
+    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Me dê os parágrafos limpos, sem títulos.`;
     
     document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
     document.getElementById('conteudoGerado').style.display = 'block';
@@ -215,7 +216,7 @@
       return;
     }
 
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Me dê os parágrafos limpos, sem títulos.`;
+    const roteiroGerado = `.........`;
     
     document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
     document.getElementById('conteudoGerado').style.display = 'block';
@@ -253,13 +254,13 @@
 
       // Gerar conteúdo de partes para YouTube (ou outro uso geral)
       if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva esse texto de forma consistente utilizando (1500 tokens). Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o início desse texto de forma consistente com no mínimo (1000 palavras). O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O roteiro inicia com uma introdução impactante e criativa, focando nos primeiros 10 segundos para manter o espectador interessado, com uma abordagem personalizada como se fosse uma conversa individual. O foco deve ser no começo da história, sem entrar no meio ou na conclusão. \n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva esse texto com no mínimo de (2000 palavras) para desenvolver o argumento da história. O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão.  Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue com mais 1500 tokens, adicione mais detalhes sobre o tema de forma envolvente. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Continue o texto abaixo com mais (1500 palavras), adicione mais detalhes sobre o tema. O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada com aproximadamente (2000 tokens) para o roteiro. Use uma linguagem simples e clara, usando frases curtas e suaves e com uma expressão (narrativa). Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva uma conclusão detalhada com aproximadamente (2000 palavras) para o roteiro. O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história. \n\n${paragrafo}`;
       }
 
       blocoElement.innerHTML = `
@@ -298,13 +299,13 @@
 
       // Gerar conteúdo de partes para TikTok
       if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva esse texto de forma consistente utilizando (1500 tokens). Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `......\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva esse texto com no mínimo de (2000 tokens) para desenvolver o argumento da história. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `.......\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue com mais 1500 tokens, adicione mais detalhes sobre o tema. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `.......\n\n${paragrafo}`;
       } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada com aproximadamente (2000 tokens) para o roteiro. Use uma linguagem simples e clara, com frases curtas e suaves. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
+        blocoConteudo = `.......\n\n${paragrafo}`;
       }
 
       blocoElement.innerHTML = `
