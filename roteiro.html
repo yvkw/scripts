@@ -216,7 +216,7 @@
       return;
     }
 
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
     
     document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
     document.getElementById('conteudoGerado').style.display = 'block';
@@ -254,7 +254,7 @@
 
       // Gerar conteúdo de partes para YouTube (ou outro uso geral)
       if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva o início do texto abaixo de forma consistente com com (1350 a 1500 palavras). O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O foco deve ser no começo da história, sem entrar no meio ou na conclusão. \n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o início do texto abaixo com (1350 a 1500 palavras). O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 1') {
         blocoConteudo = `Desenvolva o texto abaixo com (1350 a 1500 palavras), para desenvolver o argumento da história. O conteúdo é criado para manter o espectador engajado até o final, usando uma linguagem cativante e humanizada. Mantenha um tom acolhedor, relaxante e tranquilo sem criar tensão.  Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
@@ -299,13 +299,13 @@
 
       // Gerar conteúdo de partes para TikTok
       if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva o início do texto abaixo de forma consistente com com (1350 a 1500 palavras). Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o início do texto abaixo com (1350 a 1500 palavras). Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa). O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva o texto abaixo com (1350 a 1500 palavras), para desenvolver o argumento da história. Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o texto abaixo com (1350 a 1500 palavras), para desenvolver o argumento da história. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa).  Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue o texto abaixo com (1350 a 1500 palavras), adicione mais detalhes sobre o tema. Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+        blocoConteudo = `Continue o texto abaixo com (1350 a 1500 palavras), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa).  Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada para o texto abaixo com (1350 a 1500 palavras). Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva uma conclusão detalhada para o texto abaixo com (1350 a 1500 palavras). Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa).  O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
       }
 
       blocoElement.innerHTML = `
