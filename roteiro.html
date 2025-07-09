@@ -151,8 +151,8 @@
   <div class="bloco">
     <h3>Adicionar Tema</h3>
     <textarea id="temaInput" placeholder="Digite o tema aqui..."></textarea>
-    <button onclick="gerarTema()">Gerar</button>
-    <button onclick="gerarTema2()">...</button>
+    <button onclick="gerarTema()">Acolhedor</button>
+    <button onclick="gerarTema2()">Histórico</button>
   </div>
 
   <!-- Exibição do conteúdo gerado -->
@@ -164,8 +164,8 @@
 
   <!-- Novo botão para gerar partes 2 -->
   <div class="button-container">
-    <button onclick="gerarPartes()">Gerar</button>
-    <button onclick="gerarPartes2()">...</button>
+    <button onclick="gerarPartes()">Acolhedor</button>
+    <button onclick="gerarPartes2()">Histórico</button>
   </div>
 
   <textarea id="paragrafosInput" placeholder="Cole seus 4 parágrafos aqui..."></textarea>
@@ -216,7 +216,7 @@
       return;
     }
 
-    const roteiroGerado = `.........`;
+    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa).`;
     
     document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
     document.getElementById('conteudoGerado').style.display = 'block';
@@ -299,13 +299,13 @@
 
       // Gerar conteúdo de partes para TikTok
       if (blocoNome === 'INICIO') {
-        blocoConteudo = `......\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o início do texto abaixo de forma consistente com com (1350 a 1500 palavras). Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `.......\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva o texto abaixo com (1350 a 1500 palavras), para desenvolver o argumento da história. Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `.......\n\n${paragrafo}`;
+        blocoConteudo = `Continue o texto abaixo com (1350 a 1500 palavras), adicione mais detalhes sobre o tema. Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'FIM') {
-        blocoConteudo = `.......\n\n${paragrafo}`;
+        blocoConteudo = `Desenvolva uma conclusão detalhada para o texto abaixo com (1350 a 1500 palavras). Utilize uma linguagem mais envolvente, com foco em atrair a atenção do público e estimular a curiosidade. O estilo deve ser intrigante e cativante com uma expressão (narrativa). O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
       }
 
       blocoElement.innerHTML = `
