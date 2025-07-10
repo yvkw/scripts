@@ -193,6 +193,7 @@
     <div class="button-container">
       <button onclick="juntarPartes()">Juntar Partes</button>
       <button onclick="salvarTexto()">Salvar</button>
+	  <button onclick="copiarCorrecao()">Correção</button>
     </div>
   </div>
 
@@ -405,6 +406,15 @@
     // Atualizamos o contador com a quantidade de palavras
     contador.textContent = `Palavras: ${numPalavras}`;
 }
+
+function copiarCorrecao() {
+    const textoCorrecao = "O texto não tem a quantidade de palavras desejada, por favor, ajuste para atingir o número necessário.";
+    
+    // Copiar o texto para a área de transferência
+    navigator.clipboard.writeText(textoCorrecao);
+}
+
+
 
 </script>
 
