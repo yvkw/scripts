@@ -195,7 +195,7 @@
 
 
     <div>Clique no botão abaixo para fazer a correção de tokens...</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão e nem o que você já gerou.')">✔</button> <!-- Botão para copiar -->
+    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão.')">✔</button> <!-- Botão para copiar -->
     
 	<textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarTokens('fim')"></textarea>
 	<span id="contadorFim">Tokens: 0</span>
@@ -315,7 +315,7 @@ function criarIntroducao() {
       } else if (blocoNome === 'MEIO PARTE 1') {
         blocoConteudo = `Desenvolva a história abaixo com aproximadamente (2000 tokens), para desenvolver o argumento da história. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue a história abaixo com aproximadamente (2000 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão e nem o que você já gerou.\n\n${paragrafo}`;
+        blocoConteudo = `Continue a história abaixo com aproximadamente (2000 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
       } else if (blocoNome === 'FIM') {
         blocoConteudo = `Desenvolva uma conclusão detalhada para a história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com tom suave e relaxante. O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
       }
