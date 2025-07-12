@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -153,8 +154,7 @@
   <div class="bloco">
     <h3>Adicionar Tema</h3>
     <textarea id="temaInput" placeholder="Digite o tema aqui..."></textarea>
-    <button onclick="gerarTema()">Acolhedor</button>
-    <button onclick="gerarTema2()">Histórico</button>
+    <button onclick="gerarTema()">GERAR</button>
   </div>
 
   <!-- Exibição do conteúdo gerado -->
@@ -166,8 +166,7 @@
 
   <!-- Novo botão para gerar partes 2 -->
   <div class="button-container">
-    <button onclick="gerarPartes()">Acolhedor</button>
-    <button onclick="gerarPartes2()">Histórico</button>
+    <button onclick="gerarPartes()">GERAR PARTES</button>
   </div>
 
   <textarea id="paragrafosInput" placeholder="Cole seus 4 parágrafos aqui..."></textarea>
@@ -179,30 +178,41 @@
   <div id="juntarContainer">
     <h2>Juntar as Partes</h2>
     
-    <textarea id="inicio" placeholder="Cole a parte de Início aqui..." oninput="contarPalavras('inicio')"></textarea>
-    <span id="contadorInicio">Palavras: 0</span>
-    <div>--</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para 1350 a 1500 palavras para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">CORREÇÃO</button> <!-- Botão para copiar -->
+    <textarea id="inicio" placeholder="Cole a parte de Início aqui..." oninput="contarTokens('inicio')"></textarea>
+	<span id="contadorInicio">Tokens: 0</span>
+
+    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
+    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">✔</button> <!-- Botão para copiar -->
     
-    <textarea id="meio1" placeholder="Cole a parte de Meio (Parte 1) aqui..." oninput="contarPalavras('meio1')"></textarea>
-    <span id="contadorMeio1">Palavras: 0</span>
-    <div>--</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para 1350 a 1500 palavras para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão.')">CORREÇÃO</button> <!-- Botão para copiar -->
+    <textarea id="meio1" placeholder="Cole a parte de Meio (Parte 1) aqui..." oninput="contarTokens('meio1')"></textarea>
+	<span id="contadorMeio1">Tokens: 0</span>
+
+    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
+    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão.')">✔</button> <!-- Botão para copiar -->
     
-    <textarea id="meio2" placeholder="Cole a parte de Meio (Parte 2) aqui..." oninput="contarPalavras('meio2')"></textarea>
-    <span id="contadorMeio2">Palavras: 0</span>
-    <div>--</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para 1350 a 1500 palavras para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão e nem o que você já gerou.')">CORREÇÃO</button> <!-- Botão para copiar -->
+    <textarea id="meio2" placeholder="Cole a parte de Meio (Parte 2) aqui..." oninput="contarTokens('meio2')"></textarea>
+	<span id="contadorMeio2">Tokens: 0</span>
+
+
+    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
+    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão e nem o que você já gerou.')">✔</button> <!-- Botão para copiar -->
     
-    <textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarPalavras('fim')"></textarea>
-    <span id="contadorFim">Palavras: 0</span>
-    <div>--</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para 1350 a 1500 palavras para atingir o número necessário. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.')">CORREÇÃO</button> <!-- Botão para copiar -->
+	<textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarTokens('fim')"></textarea>
+	<span id="contadorFim">Tokens: 0</span>
+
+    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
+    <button onclick="copiarTexto('O texto não tem a quantidade de palavras desejada, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.')">✔</button> <!-- Botão para copiar -->
+	
+	  <div class="bloco">
+    <h3>Colar Introdução Gerada</h3>
+    <textarea id="introducaoInput" placeholder="Cole a introdução gerada aqui..."></textarea>
+  </div>
   
     <div class="button-container">
-        <button onclick="juntarPartes()">Juntar Partes</button>
-        <button onclick="salvarTexto()">Salvar</button>
-        <button onclick="copiarCorrecao()">Correção</button>
+	    <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
+        <button onclick="juntarPartes()">JUNTAR PARTES</button>
+        <button onclick="salvarTexto()">SALVAR</button>
+
     </div>
   </div>
 
@@ -210,6 +220,26 @@
 </div>
 
 <script>
+
+function criarIntroducao() {
+  // Obtemos as partes do texto diretamente dos campos de texto
+  const inicio = document.getElementById('inicio').value.trim();
+  const meio1 = document.getElementById('meio1').value.trim();
+  const meio2 = document.getElementById('meio2').value.trim();
+  const fim = document.getElementById('fim').value.trim();
+
+  // Texto fixo que será adicionado no início
+  const textoFixo = `Crie uma introdução de 15 segundos de forma continua baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.\n\n`;
+
+  // Juntamos o texto fixo com as partes do conteúdo
+  const textoParaCopiar = textoFixo + '\n' + inicio + '\n\n' + meio1 + '\n\n' + meio2 + '\n\n' + fim;
+  
+  // Copiamos o texto para a área de transferência
+  navigator.clipboard.writeText(textoParaCopiar).catch(err => {
+      console.error('Erro ao copiar o texto: ', err);
+  });
+}
+
 
   function copiarTexto(texto) {
     navigator.clipboard.writeText(texto).catch(err => {
@@ -303,54 +333,6 @@
     juntarContainer.style.display = 'block';  // Aqui mostramos o container de juntar as partes
   }
 
-  // Função para gerar as partes do conteúdo para outro uso (Gerar Partes 2)
-  function gerarPartes2() {
-    const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
-    const paragrafos = paragrafosInput.split('\n').filter(par => par !== '');
-
-    if (paragrafos.length !== 4) {
-      alert('Por favor, cole exatamente 4 parágrafos.');
-      return;
-    }
-
-    const blocosContainer = document.getElementById('blocos');
-    blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
-
-    const blocosNomes = ['INICIO', 'MEIO PARTE 1', 'MEIO PARTE 2', 'FIM'];
-    totalBlocos = blocosNomes.length;
-    blocosCopiados = 0;
-
-    paragrafos.forEach((paragrafo, index) => {
-      const blocoElement = document.createElement('div');
-      blocoElement.classList.add('bloco');
-      
-      const blocoNome = blocosNomes[index];
-      let blocoConteudo = '';
-
-      // Gerar conteúdo de partes para TikTok
-      if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva o início da história abaixo com (1350 a 1500 palavras). Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva a história abaixo com (1350 a 1500 palavras), para desenvolver o argumento da história. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue a história abaixo com (1350 a 1500 palavras). Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade. Evite repetir o começo da história e não mencione o final ou a conclusão e nem o que você já gerou\n\n${paragrafo}`;
-      } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada para a história abaixo com (1350 a 1500 palavras). Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade. O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
-      }
-
-      blocoElement.innerHTML = `
-        <h3 style="display:none;">${blocoNome}</h3> <!-- Escondido -->
-        <pre>${blocoConteudo.replace(/\n/g, '<br>')}</pre>
-        <button onclick="copiarBloco(this)">Copiar</button>
-      `;
-      
-      blocosContainer.appendChild(blocoElement);
-    });
-	    // Torne o container para juntar as partes visível
-    const juntarContainer = document.getElementById('juntarContainer');
-    juntarContainer.style.display = 'block';  // Aqui mostramos o container de juntar as partes
-  }
-
   // Função para copiar um bloco
   function copiarBloco(button) {
     const blocoElement = button.parentElement;
@@ -373,62 +355,77 @@
   }
 
   // Função para juntar as partes
-  function juntarPartes() {
-    const inicio = document.getElementById('inicio').value.trim();
-    const meio1 = document.getElementById('meio1').value.trim();
-    const meio2 = document.getElementById('meio2').value.trim();
-    const fim = document.getElementById('fim').value.trim();
+	function juntarPartes() {
+  // Obtemos o texto da introdução e das partes
+  const introducao = document.getElementById('introducaoInput').value.trim();
+  const inicio = document.getElementById('inicio').value.trim();
+  const meio1 = document.getElementById('meio1').value.trim();
+  const meio2 = document.getElementById('meio2').value.trim();
+  const fim = document.getElementById('fim').value.trim();
 
-    if (!inicio || !meio1 || !meio2 || !fim) {
-      alert('Por favor, cole todas as partes antes de juntar.');
-      return;
-    }
-
-    const textoFinal = `${inicio}\n\n${meio1}\n\n${meio2}\n\n${fim}`;
-    const textoFinalContainer = document.getElementById('textoFinal');
-    textoFinalContainer.textContent = textoFinal;
+  // Verificamos se todas as partes têm conteúdo
+  if (!introducao || !inicio || !meio1 || !meio2 || !fim) {
+    alert('Por favor, cole todos os textos nas partes de introdução e conteúdo antes de juntar.');
+    return;
   }
+  
+
+  // Juntamos o conteúdo da introdução com as outras partes
+  const textoFinal = introducao + '\n\n' + inicio + '\n\n' + meio1 + '\n\n' + meio2 + '\n\n' + fim;
+
+  // Mostramos o conteúdo final no campo de texto final
+  const textoFinalContainer = document.getElementById('textoFinal');
+  textoFinalContainer.textContent = textoFinal;
+}
 
   // Função para salvar o texto final como arquivo de texto
-  async function salvarTexto() {
-    const texto = document.getElementById('textoFinal').textContent.trim();
-    if (!texto) {
-      alert('Por favor, junte as partes antes de salvar.');
-      return;
-    }
-
-    try {
-      const handle = await window.showSaveFilePicker({
-        suggestedName: 'roteiro_completo.txt',
-        types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
-      });
-
-      const writable = await handle.createWritable();
-      await writable.write(texto);
-      await writable.close();
-      alert('Arquivo salvo com sucesso!');
-    } catch (e) {
-      console.error('Erro ao salvar:', e);
-    }
+async function salvarTexto() {
+  const texto = document.getElementById('textoFinal').textContent.trim();
+  if (!texto) {
+    alert('Por favor, junte as partes antes de salvar.');
+    return;
   }
-  
-  
-  function contarPalavras(id) {
-    // Pegamos o elemento textarea
-    const textarea = document.getElementById(id);
-    
-    // Pegamos o contador de palavras que corresponde ao id do textarea
-    const contador = document.getElementById(`contador${id.charAt(0).toUpperCase() + id.slice(1)}`);
-    
-    // Pegamos o conteúdo do textarea e dividimos pelas palavras
-    const palavras = textarea.value.trim().split(/\s+/).filter(Boolean);
-    
-    // Contamos o número de palavras
-    const numPalavras = palavras.length;
-    
-    // Atualizamos o contador com a quantidade de palavras
-    contador.textContent = `Palavras: ${numPalavras}`;
+
+  // Pegamos o tema digitado no campo "Digite o tema aqui..."
+  const temaInput = document.getElementById('temaInput').value.trim();
+  if (!temaInput) {
+    alert('Por favor, insira um tema.');
+    return;
+  }
+
+  try {
+    const handle = await window.showSaveFilePicker({
+      suggestedName: `${temaInput}.txt`,  // Usamos o nome do tema para o arquivo
+      types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
+    });
+
+    const writable = await handle.createWritable();
+    await writable.write(texto);  // Salvamos o conteúdo gerado
+    await writable.close();
+    alert('Arquivo salvo com sucesso!');
+  } catch (e) {
+    console.error('Erro ao salvar:', e);
+  }
 }
+  
+  
+function contarTokens(id) {
+  // Pegamos o elemento textarea
+  const textarea = document.getElementById(id);
+  
+  // Pegamos o contador de tokens que corresponde ao id do textarea
+  const contador = document.getElementById(`contador${id.charAt(0).toUpperCase() + id.slice(1)}`);
+  
+  // Pegamos o conteúdo do textarea e dividimos pelas palavras
+  const palavras = textarea.value.trim().split(/\s+/).filter(Boolean);
+  
+  // Contamos o número de tokens (aproximadamente 1 token = 3/4 de uma palavra)
+  const numTokens = Math.ceil(palavras.length * 1.33); // Aproximação para tokens
+  
+  // Atualizamos o contador com a quantidade de tokens
+  contador.textContent = `Tokens: ${numTokens}`;
+}
+
 
 function copiarCorrecao() {
     const textoCorrecao = "O texto não tem a quantidade de palavras desejada, por favor, ajuste para atingir o número necessário.";
