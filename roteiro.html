@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -164,12 +160,12 @@
     <button onclick="copiarConteudo()">Copiar Conteúdo</button>
   </div>
 
-  <!-- Novo botão para gerar partes 2 -->
+  <!-- Novo botão para gerar partes -->
   <div class="button-container">
     <button onclick="gerarPartes()">GERAR PARTES</button>
   </div>
 
-  <textarea id="paragrafosInput" placeholder="Cole seus 4 parágrafos aqui..."></textarea>
+  <textarea id="paragrafosInput" placeholder="Cole seus 3 parágrafos aqui..."></textarea>
 
   <div id="blocos"></div>
 
@@ -179,206 +175,217 @@
     <h2>Juntar as Partes</h2>
     
     <textarea id="inicio" placeholder="Cole a parte de Início aqui..." oninput="contarTokens('inicio')"></textarea>
-	<span id="contadorInicio">Tokens: 0</span>
+<span id="contadorInicio">Tokens: 0</span>
 
-    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">✔</button> <!-- Botão para copiar -->
-    
-    <textarea id="meio1" placeholder="Cole a parte de Meio (Parte 1) aqui..." oninput="contarTokens('meio1')"></textarea>
-	<span id="contadorMeio1">Tokens: 0</span>
+<div style="display: flex; align-items: center;">
+  <!-- Botão e texto na mesma linha -->
+  <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">
+    ✔
+  </button>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+</div>
 
-    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão.')">✔</button> <!-- Botão para copiar -->
-    
-    <textarea id="meio2" placeholder="Cole a parte de Meio (Parte 2) aqui..." oninput="contarTokens('meio2')"></textarea>
-	<span id="contadorMeio2">Tokens: 0</span>
+<hr>
 
+<textarea id="meio" placeholder="Cole a parte de Meio aqui..." oninput="contarTokens('meio')"></textarea>
+<span id="contadorMeio">Tokens: 0</span>
 
-    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (2000 tokens) para atingir o número necessário. Evite repetir o começo da história e não mencione o final ou a conclusão.')">✔</button> <!-- Botão para copiar -->
-    
-	<textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarTokens('fim')"></textarea>
-	<span id="contadorFim">Tokens: 0</span>
+<div style="display: flex; align-items: center;">
+  <!-- Botão e texto na mesma linha -->
+  <button onclick="copiarTexto('Continue a história com mais (1500 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e o que você já gerou e também não mencione o final ou a conclusão.')">
+    ✔
+  </button>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+</div>
 
-    <div>Clique no botão abaixo para fazer a correção de tokens...</div>
-    <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.')">✔</button> <!-- Botão para copiar -->
+<hr>
+
+<textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarTokens('fim')"></textarea>
+<span id="contadorFim">Tokens: 0</span>
+
+<div style="display: flex; align-items: center;">
+  <!-- Botão e texto na mesma linha -->
+  <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1500 tokens) para atingir o número necessário. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.')">
+    ✔
+  </button>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+</div>
+<hr>
 	
-	  <div class="bloco">
-    <h3>Colar Introdução Gerada</h3>
-    <textarea id="introducaoInput" placeholder="Cole a introdução gerada aqui..."></textarea>
-  </div>
+    <div class="bloco">
+      <h3>Colar Introdução Gerada</h3>
+      <textarea id="introducaoInput" placeholder="Cole a introdução gerada aqui..."></textarea>
+    </div>
   
     <div class="button-container">
-	    <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
-        <button onclick="juntarPartes()">JUNTAR PARTES</button>
-        <button onclick="salvarTexto()">SALVAR</button>
-
+      <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
+      <button onclick="juntarPartes()">JUNTAR PARTES</button>
+      <button onclick="salvarTexto()">SALVAR</button>
     </div>
   </div>
 
   <div id="textoFinal"></div>
 </div>
 
+</body>
+</html>
+
+
 <script>
 
 function criarIntroducao() {
   // Obtemos as partes do texto diretamente dos campos de texto
   const inicio = document.getElementById('inicio').value.trim();
-  const meio1 = document.getElementById('meio1').value.trim();
-  const meio2 = document.getElementById('meio2').value.trim();
+  const meio = document.getElementById('meio').value.trim();  
   const fim = document.getElementById('fim').value.trim();
-
-  // Texto fixo que será adicionado no início
+  
+  // Texto fixo
   const textoFixo = `Crie uma introdução de 15 segundos de forma continua baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.\n\n`;
 
   // Juntamos o texto fixo com as partes do conteúdo
-  const textoParaCopiar = textoFixo + '\n' + inicio + '\n\n' + meio1 + '\n\n' + meio2 + '\n\n' + fim;
+  const textoParaCopiar = textoFixo + '\n' + inicio + '\n\n' + meio + '\n\n' + fim;  // Usando apenas 'meio'
   
-  // Copiamos o texto para a área de transferência
+  // Copiar para a área de transferência
   navigator.clipboard.writeText(textoParaCopiar).catch(err => {
-      console.error('Erro ao copiar o texto: ', err);
+    console.error('Erro ao copiar o texto: ', err);
   });
 }
 
 
-  function copiarTexto(texto) {
-    navigator.clipboard.writeText(texto).catch(err => {
-        console.error('Erro ao copiar o texto: ', err);
-    });
+function copiarTexto(texto) {
+  navigator.clipboard.writeText(texto).catch(err => {
+    console.error('Erro ao copiar o texto: ', err);
+  });
+}
+
+let totalBlocos = 0;
+let blocosCopiados = 0;
+
+// Função para gerar conteúdo baseado no tema para YouTube
+function gerarTema() {
+  const temaInput = document.getElementById('temaInput').value.trim();
+  if (!temaInput) {
+    alert('Por favor, insira um tema.');
+    return;
   }
+
+  const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com tom suave e relaxante com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
   
- 
-  let totalBlocos = 0;
-  let blocosCopiados = 0;
+  document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
+  document.getElementById('conteudoGerado').style.display = 'block';
+}
 
-  // Função para gerar conteúdo baseado no tema para YouTube
-  function gerarTema() {
-    const temaInput = document.getElementById('temaInput').value.trim();
-    if (!temaInput) {
-      alert('Por favor, insira um tema.');
-      return;
-    }
+// Função para gerar conteúdo baseado no tema para TikTok
+function gerarTema2() {
+  const temaInput = document.getElementById('temaInput').value.trim();
+  if (!temaInput) {
+    alert('Por favor, insira um tema.');
+    return;
+  }
 
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com tom suave e relaxante com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+  const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+  
+  document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
+  document.getElementById('conteudoGerado').style.display = 'block';
+}
+
+// Função para copiar o conteúdo gerado
+function copiarConteudo() {
+  const texto = document.getElementById('roteiroGerado').innerText;
+  navigator.clipboard.writeText(texto);
+}
+
+// Função para gerar as partes do conteúdo (geral)
+function gerarPartes() {
+  const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
+  const paragrafos = paragrafosInput.split('\n').filter(par => par !== '');
+
+  if (paragrafos.length !== 3) {
+    alert('Por favor, cole exatamente 3 parágrafos.');
+    return;
+  }
+
+  const blocosContainer = document.getElementById('blocos');
+  blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
+
+  const blocosNomes = ['INICIO', 'MEIO', 'FIM'];
+  totalBlocos = blocosNomes.length;
+  blocosCopiados = 0;
+
+  paragrafos.forEach((paragrafo, index) => {
+    const blocoElement = document.createElement('div');
+    blocoElement.classList.add('bloco');
     
-    document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
-    document.getElementById('conteudoGerado').style.display = 'block';
-  }
+    const blocoNome = blocosNomes[index];
+    let blocoConteudo = '';
 
-  // Função para gerar conteúdo baseado no tema para TikTok
-  function gerarTema2() {
-    const temaInput = document.getElementById('temaInput').value.trim();
-    if (!temaInput) {
-      alert('Por favor, insira um tema.');
-      return;
+    // Gerar conteúdo de partes para YouTube (ou outro uso geral)
+    if (blocoNome === 'INICIO') {
+      blocoConteudo = `Desenvolva o início da história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com tom suave e relaxante. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
+    } else if (blocoNome === 'MEIO') {
+      blocoConteudo = `Desenvolva a história abaixo com aproximadamente (2000 tokens), para desenvolver o argumento da história. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
+    } else if (blocoNome === 'FIM') {
+      blocoConteudo = `Desenvolva uma conclusão detalhada para a história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com tom suave e relaxante. O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
     }
 
-    const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+    blocoElement.innerHTML = `
+      <h3 style="display:none;">${blocoNome}</h3> <!-- Escondido -->
+      <pre>${blocoConteudo.replace(/\n/g, '<br>')}</pre>
+      <button onclick="copiarBloco(this)">Copiar</button>
+    `;
     
-    document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
-    document.getElementById('conteudoGerado').style.display = 'block';
-  }
+    blocosContainer.appendChild(blocoElement);
+  });
+  
+  // Torne o container para juntar as partes visível
+  const juntarContainer = document.getElementById('juntarContainer');
+  juntarContainer.style.display = 'block';  // Aqui mostramos o container de juntar as partes
+}
 
-  // Função para copiar o conteúdo gerado
-  function copiarConteudo() {
-    const texto = document.getElementById('roteiroGerado').innerText;
-    navigator.clipboard.writeText(texto);
-  }
+// Função para copiar um bloco
+function copiarBloco(button) {
+  const blocoElement = button.parentElement;
+  const paragrafoTexto = blocoElement.querySelector('pre').innerText;
 
-  // Função para gerar as partes do conteúdo (geral)
-  function gerarPartes() {
-    const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
-    const paragrafos = paragrafosInput.split('\n').filter(par => par !== '');
+  // Copiar o conteúdo do parágrafo
+  navigator.clipboard.writeText(paragrafoTexto).then(() => {
+    blocoElement.style.display = 'none'; // Torna o bloco invisível
 
-    if (paragrafos.length !== 4) {
-      alert('Por favor, cole exatamente 4 parágrafos.');
-      return;
+    blocosCopiados++;
+
+    if (blocosCopiados === totalBlocos) {
+      const mensagem = document.getElementById('mensagem');
+      mensagem.style.display = 'block';
+
+      const juntarContainer = document.getElementById('juntarContainer');
+      juntarContainer.style.display = 'block';
     }
+  });
+}
 
-    const blocosContainer = document.getElementById('blocos');
-    blocosContainer.innerHTML = ''; // Limpa os blocos anteriores
-
-    const blocosNomes = ['INICIO', 'MEIO PARTE 1', 'MEIO PARTE 2', 'FIM'];
-    totalBlocos = blocosNomes.length;
-    blocosCopiados = 0;
-
-    paragrafos.forEach((paragrafo, index) => {
-      const blocoElement = document.createElement('div');
-      blocoElement.classList.add('bloco');
-      
-      const blocoNome = blocosNomes[index];
-      let blocoConteudo = '';
-
-      // Gerar conteúdo de partes para YouTube (ou outro uso geral)
-      if (blocoNome === 'INICIO') {
-        blocoConteudo = `Desenvolva o início da história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com tom suave e relaxante. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 1') {
-        blocoConteudo = `Desenvolva a história abaixo com aproximadamente (2000 tokens), para desenvolver o argumento da história. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'MEIO PARTE 2') {
-        blocoConteudo = `Continue a história abaixo com aproximadamente (2000 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
-      } else if (blocoNome === 'FIM') {
-        blocoConteudo = `Desenvolva uma conclusão detalhada para a história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com tom suave e relaxante. O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
-      }
-
-      blocoElement.innerHTML = `
-        <h3 style="display:none;">${blocoNome}</h3> <!-- Escondido -->
-        <pre>${blocoConteudo.replace(/\n/g, '<br>')}</pre>
-        <button onclick="copiarBloco(this)">Copiar</button>
-      `;
-      
-      blocosContainer.appendChild(blocoElement);
-    });
-	    // Torne o container para juntar as partes visível
-    const juntarContainer = document.getElementById('juntarContainer');
-    juntarContainer.style.display = 'block';  // Aqui mostramos o container de juntar as partes
-  }
-
-  // Função para copiar um bloco
-  function copiarBloco(button) {
-    const blocoElement = button.parentElement;
-    const paragrafoTexto = blocoElement.querySelector('pre').innerText;
-
-    // Copiar o conteúdo do parágrafo
-    navigator.clipboard.writeText(paragrafoTexto).then(() => {
-      blocoElement.style.display = 'none'; // Torna o bloco invisível
-
-      blocosCopiados++;
-
-      if (blocosCopiados === totalBlocos) {
-        const mensagem = document.getElementById('mensagem');
-        mensagem.style.display = 'block';
-
-        const juntarContainer = document.getElementById('juntarContainer');
-        juntarContainer.style.display = 'block';
-      }
-    });
-  }
-
-  // Função para juntar as partes
-	function juntarPartes() {
-  // Obtemos o texto da introdução e das partes
+// Função para juntar as partes
+function juntarPartes() {
+  // Obtemos o texto das partes
   const introducao = document.getElementById('introducaoInput').value.trim();
   const inicio = document.getElementById('inicio').value.trim();
-  const meio1 = document.getElementById('meio1').value.trim();
-  const meio2 = document.getElementById('meio2').value.trim();
+  const meio = document.getElementById('meio').value.trim();  // Corrigido para 'meio'
   const fim = document.getElementById('fim').value.trim();
 
-  // Verificamos se todas as partes têm conteúdo
-  if (!introducao || !inicio || !meio1 || !meio2 || !fim) {
+  // Verificação para garantir que todas as partes foram preenchidas
+  if (!introducao || !inicio || !meio || !fim) {  // Corrigido para usar 'meio' apenas
     alert('Por favor, cole todos os textos nas partes de introdução e conteúdo antes de juntar.');
     return;
   }
-  
 
-  // Juntamos o conteúdo da introdução com as outras partes
-  const textoFinal = introducao + '\n\n' + inicio + '\n\n' + meio1 + '\n\n' + meio2 + '\n\n' + fim;
+  // Juntamos o conteúdo das partes
+  const textoFinal = introducao + '\n\n' + inicio + '\n\n' + meio + '\n\n' + fim;  // Corrigido para 'meio'
 
   // Mostramos o conteúdo final no campo de texto final
   const textoFinalContainer = document.getElementById('textoFinal');
   textoFinalContainer.textContent = textoFinal;
 }
 
-  // Função para salvar o texto final como arquivo de texto
+// Função para salvar o texto final como arquivo de texto
 async function salvarTexto() {
   const texto = document.getElementById('textoFinal').textContent.trim();
   if (!texto) {
@@ -407,8 +414,7 @@ async function salvarTexto() {
     console.error('Erro ao salvar:', e);
   }
 }
-  
-  
+
 function contarTokens(id) {
   // Pegamos o elemento textarea
   const textarea = document.getElementById(id);
@@ -434,9 +440,8 @@ function copiarCorrecao() {
     navigator.clipboard.writeText(textoCorrecao);
 }
 
-
-
 </script>
+
 
 </body>
 </html>
