@@ -325,7 +325,7 @@ function gerarPartes() {
     } else if (blocoNome === 'MEIO') {
       blocoConteudo = `Desenvolva a história abaixo com aproximadamente (2000 tokens), para desenvolver o argumento da história. Utilize uma linguagem simples com uma expressão (narrativa). Evite repetir o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
     } else if (blocoNome === 'FIM') {
-      blocoConteudo = `Desenvolva uma conclusão detalhada para a história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com uma expressão (narrativa). O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
+      blocoConteudo = `Desenvolva o fim da história com conclusão detalhada para a história abaixo com aproximadamente (1500 tokens). Utilize uma linguagem simples com uma expressão (narrativa). O roteiro encerra com um pedido para curtir, se inscrever e assistir a outro vídeo sugerido, seguido de uma despedida amigável que cria uma conexão com o público. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.\n\n${paragrafo}`;
     }
 
     blocoElement.innerHTML = `
