@@ -269,7 +269,7 @@ function gerarTema() {
     return;
   }
 
-  const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com tom suave e relaxante com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+  const roteiroGerado = `Escreva 3 parágrafos para um roteiro sendo início, meio e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com tom suave e relaxante com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
   
   document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
   document.getElementById('conteudoGerado').style.display = 'block';
