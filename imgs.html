@@ -28,7 +28,6 @@
       align-items: center;
       gap: 25px;
       padding: 15px 20px;
-      min-width: max-content;
     }
     nav a {
       color: white;
@@ -44,7 +43,7 @@
     .container {
       background-color: #fff;
       max-width: 900px;
-      margin: 40px auto;
+      margin: 100px auto 40px auto;
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -54,14 +53,16 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    textarea {
+    input, textarea {
       width: 100%;
-      height: 200px;
-      margin-bottom: 20px;
       padding: 12px;
+      margin-bottom: 20px;
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1em;
+    }
+    textarea {
+      height: 200px;
       resize: vertical;
     }
     button {
@@ -127,22 +128,46 @@
 
 <div class="container">
   <h1>Gerador de Prompts de Imagens</h1>
-  <p>Cole seu roteiro abaixo e clique no botão para gerar os prompts de imagem:</p>
+  <p>Preencha o tema ou o roteiro (ou ambos) para gerar os prompts:</p>
 
-  <textarea id="roteiro" placeholder="Cole seu roteiro aqui..."></textarea>
-  <button onclick="gerarPromptsRoteiro()">Prompts Roteiro</button>
+  <input type="text" id="tema" placeholder="Digite o tema aqui (opcional)...">
+  <textarea id="roteiro" placeholder="Cole seu roteiro aqui (opcional)..."></textarea>
+  <button onclick="gerarPromptsRoteiro()">Gerar Prompts</button>
 
   <div id="blocos" style="margin-top: 30px;"></div>
 </div>
 
 <script>
   function gerarPromptsRoteiro() {
-    const texto = document.getElementById('roteiro').value.trim();
-    const paragrafos = texto.split(/\n+/).filter(p => p.trim() !== '');
+    const tema = document.getElementById('tema').value.trim();
+    const roteiro = document.getElementById('roteiro').value.trim();
     const blocosContainer = document.getElementById('blocos');
     blocosContainer.innerHTML = '';
+    let blocoIndex = 0;
 
-    const instrucaoPadrao = `Crie 25 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+    if (!tema && !roteiro) {
+      alert("Preencha o campo de tema, o campo de roteiro ou ambos.");
+      return;
+    }
+
+    if (tema) {
+      const instrucaoComTema = `Crie 25 prompts de imagem para o ${tema}. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
+
+      adicionarBloco(`PARTE ${++blocoIndex} - Tema`, instrucaoComTema);
+    }
+
+    if (roteiro) {
+      const paragrafos = roteiro.split(/\n+/).filter(p => p.trim() !== '');
+      const instrucaoSemTema = `Crie 25 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
 
 Seja altamente específico e detalhado ao descrever:
 – Ambiente e cenário (incluindo hora do dia, clima, localização)
@@ -155,20 +180,17 @@ Importante: Não inclua títulos, divisões por parágrafos, resumos ou explica�
 
 Texto a ser ilustrado:`;
 
-    let blocoIndex = 0;
+      const blocoTexto = paragrafos.join('\n\n');
+      adicionarBloco(`PARTE ${++blocoIndex} - Roteiro`, `${instrucaoSemTema}\n\n${blocoTexto}`);
+    }
 
-    for (let i = 0; i < paragrafos.length; i += 101) {
-      const blocoParagrafos = paragrafos.slice(i, i + 101);
-      const numeroPrompts = blocoParagrafos.length === 101 ? 20 : blocoParagrafos.length * 1; // Ajusta a quantidade de prompts
-      const blocoTexto = blocoParagrafos.join('\n\n');
-      const conteudoFinal = `${instrucaoPadrao}\n\n${blocoTexto}`;
-
+    function adicionarBloco(tituloTexto, conteudoFinal) {
       const div = document.createElement('div');
       div.className = 'bloco';
 
       const titulo = document.createElement('div');
       titulo.className = 'titulo-bloco';
-      titulo.textContent = `PARTE ${blocoIndex + 1} - Total de Prompts: ${numeroPrompts}`;
+      titulo.textContent = tituloTexto;
 
       const botaoCopiar = document.createElement('button');
       botaoCopiar.className = 'copiar-btn';
@@ -184,8 +206,6 @@ Texto a ser ilustrado:`;
       div.appendChild(botaoCopiar);
       div.appendChild(document.createTextNode(conteudoFinal));
       blocosContainer.appendChild(div);
-
-      blocoIndex++;
     }
   }
 </script>
