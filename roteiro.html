@@ -240,7 +240,19 @@ function criarIntroducao() {
   const fim = document.getElementById('fim').value.trim();
   
   // Texto fixo
-  const textoFixo = `Crie uma introdução de 10 segundos de forma continua baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.\n\n`;
+  const textoFixo = `Crie uma introdução contínua de até 10 segundos baseada no roteiro abaixo, voltada para um canal de histórias para dormir e relaxamento noturno.
+
+Comece apresentando brevemente o tema da história de maneira calma, intrigante e acolhedora, com um tom suave e reconfortante, ideal para ajudar o público a relaxar antes de dormir.
+
+Incentive os espectadores a curtir o vídeo e se inscrever no canal com delicadeza, reforçando que isso ajuda a trazer mais histórias tranquilas para suas noites.
+
+Convide os espectadores a comentar de onde estão assistindo e que horas são, para promover engajamento e criar um senso de comunidade acolhedora.
+
+Sugira que criem um ambiente confortável: luzes baixas, fones de ouvido e uma respiração tranquila.
+
+Finalize iniciando a narrativa com uma frase envolvente e misteriosa, como o início de um conto, que desperte a curiosidade, sem revelar demais – algo que prenda suavemente a atenção e leve o ouvinte a se desconectar do dia.
+
+Utilize palavras-chave que as pessoas digitariam no YouTube para buscar esse conteúdo.\n\n`;
 
   // Juntamos o texto fixo com as partes do conteúdo
   const textoParaCopiar = textoFixo + '\n' + inicio + '\n\n' + meio + '\n\n' + fim;  // Usando apenas 'meio'
