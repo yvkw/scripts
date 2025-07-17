@@ -179,10 +179,10 @@
 
 <div style="display: flex; align-items: center;">
   <!-- Botão e texto na mesma linha -->
-  <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1200 tokens) para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">
+  <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1300 tokens) para atingir o número necessário. O foco deve ser no começo da história, sem entrar no meio ou na conclusão.')">
     ✔
   </button>
-  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1300 tokens...</span>
 </div>
 
 <hr>
@@ -192,10 +192,10 @@
 
 <div style="display: flex; align-items: center;">
   <!-- Botão e texto na mesma linha -->
-  <button onclick="copiarTexto('Continue a história com mais (1500 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e o que você já gerou e também não mencione o final ou a conclusão.')">
+  <button onclick="copiarTexto('Continue a história com mais (1700 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e o que você já gerou e também não mencione o final ou a conclusão.')">
     ✔
   </button>
-  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1700 tokens...</span>
 </div>
 
 <hr>
@@ -208,7 +208,7 @@
   <button onclick="copiarTexto('O texto não tem a quantidade de tokens desejado, por favor, ajuste para aproximadamente (1000 tokens) para atingir o número necessário. Foque apenas com o fechamento do conteúdo, evitando incluir partes do início ou do meio da história.')">
     ✔
   </button>
-  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1500 tokens...</span>
+  <span style="margin-left: 10px;">Clique no botão para fazer a correção de 1000 tokens...</span>
 </div>
 <hr>
 	
@@ -281,7 +281,7 @@ function gerarTema() {
     return;
   }
 
-  const roteiroGerado = `Escreva 3 parágrafos para um roteiro sendo início, meio e fim sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. Use uma linguagem simples, acolhedora e tranquila, como se estivesse contando uma história para alguém dormir. A narrativa deve ser fluida, com ritmo calmo e envolvente, evitando termos muito técnicos ou complicados.  Evite tensão excessiva; o foco deve ser conforto, imaginação e leveza. Utilize palavras-chave que as pessoas digitariam no YouTube para buscar esse conteúdo. Me dê os parágrafos limpos, sem títulos.`;
+  const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
   
   document.getElementById('roteiroGerado').textContent = roteiroGerado;
   document.getElementById('conteudoGerado').style.display = 'block';
@@ -333,33 +333,11 @@ function gerarPartes() {
 
     // Gerar conteúdo de partes para YouTube (ou outro uso geral)
     if (blocoNome === 'INICIO') {
-      blocoConteudo = `Desenvolva o início da história abaixo com aproximadamente 1200 tokens.
-
-Comece com uma introdução suave, apresentando personagens e cenário de forma calma e descritiva. Use uma linguagem que acalme e desperte a imaginação de forma positiva.
-
-Evite tensões ou acontecimentos abruptos no começo. O foco é criar um ambiente tranquilo e relaxante.
-
-Utilize palavras-chave que as pessoas digitariam no YouTube para buscar esse conteúdo no início e no meio do texto. Não entre no desenvolvimento ou na conclusão da história.
-
-- início:\n\n${paragrafo}`;
+      blocoConteudo = `Desenvolva o início da história abaixo de forma concistente utlizando aproximadamente (1300 tokens) para o meu roteiro utilizando uma linguagem simples e suave. Não entre no desenvolvimento ou na conclusão da história.\n\n${paragrafo}`;
     } else if (blocoNome === 'MEIO') {
-      blocoConteudo = `Desenvolva a continuação da história abaixo com aproximadamente 2000 tokens.
-
-Mantenha o ritmo lento e sereno, aprofundando a narrativa com detalhes suaves e momentos de conexão emocional tranquila.
-
-Evite suspense intenso ou conflitos fortes, preferindo uma narrativa que mantenha a calma e promova o relaxamento. Não repita o começo da história e não mencione o final ou a conclusão.
-
-- meio:\n\n${paragrafo}`;
+      blocoConteudo = `Desenvolva o meio da história abaixo com no mínimo de (1700 tokens) para desenvolver o argumento deste texto. Use linguagem simples e suave com tom calmo. Não repita o começo da história e não mencione o final ou a conclusão.\n\n${paragrafo}`;
     } else if (blocoNome === 'FIM') {
-      blocoConteudo = `Desenvolva o final da história abaixo com aproximadamente 1000 tokens.
-
-Encerre a história com uma conclusão pacífica e reconfortante, transmitindo uma mensagem positiva ou reflexiva.
-
-Termine convidando o público a curtir, se inscrever no canal e ouvir outra história relaxante.
-
-Use uma despedida calorosa e calma, que ajude o espectador a se sentir acolhido e pronto para descansar.
-
-- fim:\n\n${paragrafo}`;
+      blocoConteudo = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens). Termine convidando o público a curtir, se inscrever no canal e ouvir outra história relaxante. Use uma despedida calorosa e calma, que ajude o espectador a se sentir acolhido e pronto para descansar.\n\n${paragrafo}`;
     }
 
     blocoElement.innerHTML = `
