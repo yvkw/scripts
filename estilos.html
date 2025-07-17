@@ -139,6 +139,7 @@
   <div class="button-container">
     <button onclick="gerarIlustracoes('realista')">Pintura Realista</button>
     <button onclick="gerarIlustracoes('flat')">Flat Design</button>
+    <button onclick="gerarIlustracoes('grotesque')">Grotesque</button>
     <button class="salvar" onclick="salvarTudo()">Salvar Tudo</button>
   </div>
 
@@ -180,6 +181,10 @@
       } else if (tipo === 'flat') {
         textoBloco = `
           <p>Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafo}</p>
+        `;
+      } else if (tipo === 'grotesque') {
+        textoBloco = `
+          <p>Grotesque cartoon illustration, earthy tones, flat lighting, hand-drawn texture: ${paragrafo}</p>
         `;
       }
 
