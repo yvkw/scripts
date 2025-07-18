@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Especialista SEO Universal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111827;
+      color: #F9FAFB;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #1F2937;
+      padding: 2rem;
+      border-radius: 12px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #9CA3AF;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: white;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: #6366F1;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4F46E5;
+    }
+    #output, .response-block {
+      margin-top: 1.5rem;
+      background: #1F2937;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      border: 1px solid #374151;
+    }
+    #notification {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #6B7280;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Especialista SEO Universal</h1>
+
+    <label for="apiKey">Chave da API Gemini</label>
+    <input type="password" id="apiKey" placeholder="Cole sua chave da API aqui">
+
+    <label for="model">Modelo Gemini</label>
+    <select id="model">
+	  <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro</option>
+      <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash</option>
+    </select>
+
+    <button id="generateBtn"><i class="fa-solid fa-wand-magic-sparkles"></i> Consultar SEO Expert</button>
+
+    <div id="notification"></div>
+
+    <div id="chat">
+      <div id="output"></div>
+    </div>
+
+    <div id="followup-section" style="display:none;">
+      <label for="followup">Responder à IA</label>
+      <textarea id="followup" rows="4" placeholder="Digite sua continuação ou dúvida..."></textarea>
+      <button id="followupBtn"><i class="fa-solid fa-reply"></i> Enviar Resposta</button>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 - SEO Universal com IA</p>
+    </footer>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const followupBtn = document.getElementById('followupBtn');
+    const output = document.getElementById('output');
+    const chat = document.getElementById('chat');
+    const followupSection = document.getElementById('followup-section');
+    const notification = document.getElementById('notification');
+    const apiKeyInput = document.getElementById('apiKey');
+
+    let conversationHistory = [];
+
+    // Carrega chave salva
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedKey = localStorage.getItem('geminiApiKey');
+      if (savedKey) {
+        apiKeyInput.value = savedKey;
+        showMessage('Chave API carregada automaticamente.', 'green');
+      }
+    });
+
+    // Salva ao alterar
+    apiKeyInput.addEventListener('input', () => {
+      const key = apiKeyInput.value.trim();
+      if (key) {
+        localStorage.setItem('geminiApiKey', key);
+        showMessage('Chave API salva localmente.', 'white');
+      }
+    });
+
+    generateBtn.addEventListener('click', async () => {
+      const apiKey = apiKeyInput.value.trim();
+      const model = document.getElementById('model').value;
+
+      if (!apiKey) return showMessage('Insira sua chave API', 'red');
+
+      const prompt = `# ESPECIALISTA EM SEO UNIVERSAL
+Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para TODOS OS NICHOS E CATEGORIAS. Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
+
+# SISTEMA DE DETECÇÃO AUTOMÁTICA DE NICHO
+Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para:
+
+- Notícias & Jornalismo
+- Saúde & Medicina 
+- Fitness & Musculação
+- Emagrecimento & Nutrição
+- Games & eSports
+- Anime & Cultura Pop
+- Romance & Relacionamentos
+- Culinária & Gastronomia
+- Beleza & Maquiagem
+- Moda & Estilo
+- Casa & Decoração
+- Automobilismo & Veículos
+- Pets & Animais
+- Tecnologia & Reviews
+- Música & Entretenimento
+- Comédia & Humor
+- Viagem & Turismo
+- Esportes & Competições
+- Negócios & Finanças
+- Arte & Criatividade
+- Espiritualidade & Religião
+- Educação & Tutoriais
+- Psicologia & Autoajuda
+- Terror & Mistério
+- True Crime & Investigação
+- História & Documentários
+- História Antiga para Dormir
+- Cinema & Séries
+- Família & Maternidade
+- Meio Ambiente & Sustentabilidade
+- E qualquer outro nicho existente
+
+# PROCESSO DE TRABALHO
+
+ETAPA 1: AGUARDANDO INPUT
+Quando este prompt for ativado, você deve PRIMEIRO solicitar as informações necessárias:
+
+SEO YouTube Universal Ativado! Por favor, forneça:
+
+[PAÍS]: 
+[IDIOMA]: 
+[TÍTULO]: 
+[NARRAÇÃO]: 
+
+ETAPA 2: PROCESSAMENTO E ENTREGA
+Após receber o input, você criará e entregará 2 BLOCOS DE CÓDIGO PLAINTEXT SEPARADOS.
+
+---
+
+PARTE 1: DESCRIÇÃO DO VÍDEO
+
+1. HOOK INICIAL ADAPTATIVO (Primeiras 125 caracteres)
+- Pergunta ou afirmação provocativa específica do nicho identificado
+- Deve aparecer no preview
+- Gerar curiosidade imediata usando gatilhos do nicho
+- Incluir palavras-chave principais do tema
+
+ 2. PARÁGRAFO DE AUTORIDADE CONTEXTUALIZADO
+- Mencionar especialistas/conceitos relevantes ao nicho
+- Estabelecer credibilidade usando referências da área
+- Usar linguagem e jargões específicos do público-alvo
+- Incluir números, dados ou estatísticas pertinentes ao tema
+
+3. CORPO PRINCIPAL OTIMIZADO
+- Listar benefícios/promessas adequados ao tipo de conteúdo
+- Repetir palavras-chave naturalmente no contexto
+- Incluir variações de termos de busca populares no nicho
+- Criar conexão emocional apropriada ao público
+- Usar power words específicas da categoria
+
+4. PARÁGRAFO DE ENGAJAMENTO PERSONALIZADO
+- Call-to-action adaptado ao nicho
+- Criar senso de comunidade usando linguagem do grupo
+- Agradecer de forma contextualizada
+- Incentivar interação relevante ao tipo de conteúdo
+
+REQUISITO RÍGIDO: A soma dos 4 elementos acima = ~1500 caracteres
+
+5. SEÇÃO DE HASHTAGS (45-50 hashtags)
+Formato: 
+Hashtags:
+#Hashtag1 #Hashtag2 #Hashtag3
+
+Distribuição adaptada ao nicho:
+- 10 hashtags ultra-populares da categoria
+- 15 hashtags de nicho específico do tema
+- 15 hashtags long-tail relacionadas
+- 10 hashtags emergentes/trending do setor
+
+6. SEÇÃO "SEARCH TERMS" (1000-1200 caracteres)
+Formato: 
+
+Search Terms:
+termo1, termo2, termo3, termo4
+
+Termos específicos do nicho:
+- 40-50 termos de busca relevantes ao tema
+- Frases que o público-alvo realmente busca
+- Variações e sinônimos do nicho
+- Perguntas comuns da área (sem interrogação)
+- Combos de palavras-chave high-value do setor
+- LIMITE RÍGIDO: 1200 caracteres
+
+PARTE 2: TAGS PARA O YOUTUBE
+
+Formato: tag1, tag2, tag3, tag longa quatro
+- 20-30 tags estratégicas do nicho identificado
+- Mix de cauda curta e longa relevantes ao tema
+- Baseadas no comportamento de busca do público-alvo
+- LIMITE: 500 caracteres do campo de tags do YouTube
+
+----
+
+# REGRAS DE OTIMIZAÇÃO ADAPTATIVAS
+
+Repetição Estratégica:
+- Palavra-chave principal: 15-20x (contextualizada ao nicho)
+- Palavras-chave secundárias: 8-12x cada (naturais ao tema)
+
+Localização Cultural:
+- Usar expressões e gírias do país-alvo + nicho
+- Adaptar completamente ao SEO local e cultural
+- Incluir trending topics da categoria no país
+
+Limites Totais:
+- Total geral da descrição: até 5000 caracteres permitidos
+
+----
+
+# PESQUISA SIMULADA ADAPTATIVA
+
+Antes de criar, você deve simular uma pesquisa específica do nicho identificado:
+- Top 10 vídeos similares da categoria no idioma/país
+- Trending hashtags e tags do nicho específico
+- Perguntas mais buscadas sobre o tema
+- Competidores diretos da área e suas estratégias
+- Gaps de palavras-chave não exploradas no setor
+
+---
+
+# FORMATO DE ENTREGA OBRIGATÓRIO
+
+BLOCO 1: DESCRIÇÃO COMPLETA
+plaintext
+[Aqui vai TODO o texto da descrição, desde o Hook até a seção Search Terms, 
+otimizado especificamente para o nicho identificado,
+pronto para copiar e colar no campo de descrição do YouTube]
+
+
+BLOCO 2: TAGS DO YOUTUBE
+plaintext
+[Aqui vai a lista de tags separadas por vírgulas,
+específicas do nicho identificado,
+pronta para copiar e colar no campo de tags do YouTube]
+
+
+ESTATÍSTICAS DE OTIMIZAÇÃO
+Apresentar FORA dos blocos de código:
+- Caracteres da Descrição (texto): [X/1500]
+- Caracteres Search Terms: [X/1200]
+- Caracteres das Tags: [X/500]
+- Densidade de keywords (descrição): [X%]
+- Hashtags totais: [X]
+- Score de otimização: [X/100]
+- Nicho Identificado: [CATEGORIA DETECTADA]
+- Público-alvo: [PERFIL DO PÚBLICO]
+
+---
+
+# INSTRUÇÕES ESPECIAIS
+
+- Se o título mencionar números, SEMPRE incluir variações escritas
+- Incluir termos de voice search apropriados ao nicho
+- Adaptar completamente ao SEO local e do setor
+- Manter estrutura e tamanhos EXATAMENTE como especificado
+- IMPORTANTE: Os títulos "Hashtags:" e "Search Terms:" devem ser traduzidos:
+  - Português: "Hashtags:" e "Termos de Busca:"
+  - Espanhol: "Hashtags:" e "Términos de Búsqueda:"
+  - Inglês: "Hashtags:" e "Search Terms:"
+  - Francês: "Hashtags:" e "Termes de Recherche:"
+  - Etc.
+
+# ADAPTAÇÃO INTELIGENTE POR NICHO
+- Notícias: Foco em urgência, exclusividade, timing
+- Saúde: Problema-solução, credibilidade médica
+- Fitness: Resultados, transformação, motivação
+- Games: Gameplay, dicas, conquistas
+- Educação: Aprendizado claro, passo a passo
+- Entretenimento: Diversão, emoção, viral
+- Negócios: ROI, estratégias, resultados
+- Espiritualidade: Fé, esperança, conexão
+- E assim por diante para cada nicho...
+
+---
+
+# INÍCIO DO PROCESSO
+
+MODO ATIVADO: SEO Universal Adaptativo v1.0 🚀
+
+Este sistema detecta automaticamente o nicho do seu conteúdo e aplica as melhores estratégias de SEO específicas para sua categoria, garantindo máxima visibilidade e engajamento.
+
+Aguarde... Sistema iniciando...`;
+
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Consultando...';
+      showMessage('Consultando a IA...', 'white');
+      chat.innerHTML = '';
+      conversationHistory = [];
+
+      try {
+        const response = await askGemini([{ role: "user", parts: [{ text: prompt }] }], model, apiKey);
+        appendMessage("user", prompt);
+        appendMessage("model", response);
+        conversationHistory.push(
+          { role: "user", parts: [{ text: prompt }] },
+          { role: "model", parts: [{ text: response }] }
+        );
+        followupSection.style.display = 'block';
+        showMessage('Pronto! Você pode continuar a conversa.', 'green');
+      } catch (err) {
+        showMessage('Erro: ' + err.message, 'red');
+      } finally {
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Consultar SEO Expert';
+      }
+    });
+
+    followupBtn.addEventListener('click', async () => {
+      const followup = document.getElementById('followup').value.trim();
+      const apiKey = apiKeyInput.value.trim();
+      const model = document.getElementById('model').value;
+
+      if (!followup) return showMessage('Digite sua resposta antes de enviar.', 'red');
+
+      followupBtn.disabled = true;
+      followupBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Respondendo...';
+      showMessage('Enviando pergunta...', 'white');
+
+      try {
+        appendMessage("user", followup);
+        conversationHistory.push({ role: "user", parts: [{ text: followup }] });
+
+        const reply = await askGemini(conversationHistory, model, apiKey);
+        appendMessage("model", reply);
+        conversationHistory.push({ role: "model", parts: [{ text: reply }] });
+
+        document.getElementById('followup').value = "";
+        showMessage('Resposta recebida!', 'green');
+      } catch (err) {
+        showMessage('Erro: ' + err.message, 'red');
+      } finally {
+        followupBtn.disabled = false;
+        followupBtn.innerHTML = '<i class="fa-solid fa-reply"></i> Enviar Resposta';
+      }
+    });
+
+    async function askGemini(messages, model, apiKey) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: messages })
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error?.message || 'Erro desconhecido');
+      }
+
+      const data = await res.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sem resposta.';
+    }
+
+    function appendMessage(role, text) {
+      const div = document.createElement('div');
+      div.className = 'response-block';
+      div.style.borderLeft = role === 'user' ? '4px solid #6366F1' : '4px solid #22C55E';
+      div.innerHTML = `<strong>${role === 'user' ? 'Você' : 'IA'}:</strong><br>${text}`;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function showMessage(msg, color = 'white') {
+      notification.textContent = msg;
+      notification.style.color = color;
+    }
+  </script>
+</body>
+</html>
