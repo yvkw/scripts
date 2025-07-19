@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -151,6 +152,7 @@
     <h3>Adicionar Tema</h3>
     <textarea id="temaInput" placeholder="Digite o tema aqui..."></textarea>
     <button onclick="gerarTema()">GERAR</button>
+    <button onclick="gerarTema2()">GERAR 2</button> <!-- Novo botão "GERAR 2" -->
   </div>
 
   <!-- Exibição do conteúdo gerado -->
@@ -233,6 +235,31 @@
 
 <script>
 
+// Função para gerar conteúdo com o tema e descrição do vídeo
+function gerarTema2() {
+  const temaInput = document.getElementById('temaInput').value.trim();
+  
+  if (!temaInput) {
+    alert('Por favor, insira o tema e a descrição.');
+    return;
+  }
+
+  // Separa o tema e a descrição pelo primeiro "\n" (quebra de linha)
+  const partes = temaInput.split('\n');
+  
+  // O primeiro item será o tema e o restante será a descrição
+  const tema = partes[0].trim();  // Tema é a primeira linha
+  const descricao = partes.slice(1).join(' ').trim();  // O restante é a descrição, caso haja mais de uma linha
+  
+  // Cria o roteiro com tema e descrição com a quebra de linha após o "Baseado na descrição abaixo."
+  const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) com o tema: "${tema}", baseado no roteiro abaixo, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.<br><br>${descricao}`;
+
+  // Exibe o conteúdo gerado, usando innerHTML para respeitar as quebras de linha
+  document.getElementById('roteiroGerado').innerHTML = roteiroGerado;
+  document.getElementById('conteudoGerado').style.display = 'block';
+}
+
+
 function criarIntroducao() {
   // Obtemos as partes do texto diretamente dos campos de texto
   const inicio = document.getElementById('inicio').value.trim();
@@ -272,20 +299,6 @@ function gerarTema() {
   const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) sobre o tema: "${temaInput}", com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
   
   document.getElementById('roteiroGerado').textContent = roteiroGerado;
-  document.getElementById('conteudoGerado').style.display = 'block';
-}
-
-// Função para gerar conteúdo baseado no tema para TikTok
-function gerarTema2() {
-  const temaInput = document.getElementById('temaInput').value.trim();
-  if (!temaInput) {
-    alert('Por favor, insira um tema.');
-    return;
-  }
-
-  const roteiroGerado = `Escreva 4 parágrafos para um roteiro sendo início, meio(parte1), meio(parte2) e fim sobre o tema: "${temaInput}". com aproximadamente 600 tokens por parágrafo. Utilize uma linguagem simples com foco em atrair a atenção do público e estimular a curiosidade com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
-  
-  document.getElementById('roteiroGerado').innerHTML = roteiroGerado.replace(/\n/g, '<br>');
   document.getElementById('conteudoGerado').style.display = 'block';
 }
 
