@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerador de Prompts Personalizados</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111827;
+      color: #F9FAFB;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    /* Navbar fixa no topo */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1F2937;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .navbar ul li {
+      display: inline;
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      color: #F9FAFB;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .navbar ul li a:hover {
+      color: #6366F1;
+    }
+
+    /* Espaçamento para o conteúdo abaixo da navbar */
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #1F2937;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 60px; /* Deixa espaço para a navbar fixa */
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #9CA3AF;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: white;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: #6366F1;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4F46E5;
+    }
+
+    .response-block {
+      background: #1F2937;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      border: 1px solid #374151;
+      margin-top: 1rem;
+    }
+
+    #notification {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      color: #6B7280;
+      font-size: 0.875rem;
+    }
+
+    /* Estilo para os botões de copiar dentro de cada caixa */
+    .prompt-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      background: #1F2937;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+    }
+
+    /* Estilo do botão de copiar */
+    .copiar-button-prompt2 {
+      padding: 0.4rem 0.6rem; /* Diminuindo o padding */
+      font-size: 0.8rem; /* Ajustando o tamanho da fonte */
+      background-color: #6366F1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: auto; /* Ajusta a largura do botão ao texto */
+      margin-left: 1rem; /* Espaço entre o texto e o botão */
+    }
+
+    .copiar-button-prompt2:hover {
+      background-color: #4F46E5;
+    }
+
+    /* Ajuste para os boxes de texto no Prompt 2 */
+    #prompt2Line1,
+    #prompt2Line2,
+    #prompt2Line3 {
+      flex-grow: 1;
+      margin: 0;
+      padding-right: 1rem; /* Para dar espaço para o botão */
+      overflow-x: hidden; /* Impede o texto de transbordar horizontalmente */
+      white-space: nowrap; /* Impede quebra de linha */
+      text-overflow: ellipsis; /* Adiciona '...' ao final do texto */
+      display: block;
+      max-width: 100%; /* Garante que o texto ocupe toda a largura do box */
+      overflow: hidden; /* Esconde qualquer texto que ultrapasse o box */
+      max-height: 50px; /* Limita a altura do box */
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar fixa no topo -->
+<div class="navbar">
+  <ul>
+    <li><a href="index.html">Página Inicial</a></li>
+    <li><a href="roteiro.html">ROTEIRO</a></li>
+    <li><a href="prompts.html">PROMPTS</a></li>
+    <li><a href="estilos.html">ESTILOS</a></li>
+    <li><a href="legendas.html">LEGENDAS</a></li>
+	<li><a href="reescritor.html">REESCRITOR</a></li>
+  </ul>
+</div>
+
+  <div class="container">
+    <h1>Gerador de Prompts Personalizados</h1>
+
+    <label for="tema">Tema para os Prompts</label>
+    <input type="text" id="tema" placeholder="Digite o tema aqui...">
+    <label for="roteiro">Roteiro para os Prompts (opcional)</label>
+    <textarea id="roteiro" placeholder="Digite o roteiro aqui..."></textarea>
+    <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
+
+    <div id="notification"></div>
+
+    <div id="promptsGerados" style="display:none;">
+      <h2>CRIAR TÍTULOS</h2>
+      <pre id="prompt1" class="response-block"></pre>
+      <button onclick="copiarPrompt('prompt1')"><i class="fa-solid fa-copy"></i> Copiar Prompt 1</button>
+
+      <h2 style="margin-top:2rem;">SEO DO YOUTUBE</h2>
+
+      <!-- Prompt 2 Line 1 -->
+      <div class="prompt-box">
+        <pre id="prompt2Line1" class="response-block"></pre>
+        <button onclick="copiarPrompt('prompt2Line1')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      </div>
+
+      <!-- Prompt 2 Line 2 -->
+      <div class="prompt-box">
+        <pre id="prompt2Line2" class="response-block"></pre>
+        <button onclick="copiarPrompt('prompt2Line2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      </div>
+
+      <!-- Prompt 2 Line 3 -->
+      <div class="prompt-box">
+        <pre id="prompt2Line3" class="response-block"></pre>
+        <button onclick="copiarPrompt('prompt2Line3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      </div>
+
+      <h2 style="margin-top:2rem;">THUMBNAIL</h2>
+      <pre id="prompt3" class="response-block"></pre>
+      <button onclick="copiarPrompt('prompt3')"><i class="fa-solid fa-copy"></i> Copiar Prompt 3</button>
+
+      <h2 style="margin-top:2rem;">PROMPTS DE IMAGENS</h2>
+      <pre id="prompt4" class="response-block"></pre>
+      <button onclick="copiarPrompt('prompt4')"><i class="fa-solid fa-copy"></i> Copiar Prompt 4</button>
+
+      <h2 style="margin-top:2rem;">GERAR TEMAS</h2>
+      <pre id="prompt5" class="response-block"></pre>
+      <button onclick="copiarPrompt('prompt5')"><i class="fa-solid fa-copy"></i> Copiar Prompt 5</button>
+
+    </div>
+
+    <footer>
+      <p>&copy; 2025 - Prompt Generator</p>
+    </footer>
+  </div>
+
+  <script>
+    function gerarPrompts() {
+      const tema = document.getElementById("tema").value.trim();
+      if (!tema) {
+        showMessage("Digite um tema para gerar os prompts.", "red");
+        return;
+      }
+
+      const prompt1 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube nos idiomas português espanhol e francês com o tema: "[${tema}]". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube.`;
+
+      const prompt2Line1 = `
+# ESPECIALISTA EM SEO UNIVERSAL
+Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
+
+# SISTEMA DE DETECÇÃO AUTOMÁTICA DE NICHO
+Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR".
+
+
+# PROCESSO DE TRABALHO
+
+ETAPA 1: AGUARDANDO INPUT
+Quando este prompt for ativado, você deve PRIMEIRO solicitar as informações necessárias:
+
+SEO YouTube Universal Ativado! Por favor, forneça:
+
+[PAÍS]: 
+[IDIOMA]: 
+[TÍTULO]: 
+[NARRAÇÃO]: 
+
+ETAPA 2: PROCESSAMENTO E ENTREGA
+Após receber o input, você criará e entregará 2 BLOCOS DE CÓDIGO PLAINTEXT SEPARADOS.
+
+---
+
+PARTE 1: DESCRIÇÃO DO VÍDEO
+
+1. HOOK INICIAL ADAPTATIVO (Primeiras 125 caracteres)
+- Pergunta ou afirmação provocativa específica do nicho identificado
+- Deve aparecer no preview
+- Gerar curiosidade imediata usando gatilhos do nicho
+- Incluir palavras-chave principais do tema
+
+ 2. PARÁGRAFO DE AUTORIDADE CONTEXTUALIZADO
+- Mencionar especialistas/conceitos relevantes ao nicho
+- Estabelecer credibilidade usando referências da área
+- Usar linguagem e jargões específicos do público-alvo
+- Incluir números, dados ou estatísticas pertinentes ao tema
+
+3. CORPO PRINCIPAL OTIMIZADO
+- Listar benefícios/promessas adequados ao tipo de conteúdo
+- Repetir palavras-chave naturalmente no contexto
+- Incluir variações de termos de busca populares no nicho
+- Criar conexão emocional apropriada ao público
+- Usar power words específicas da categoria
+
+4. PARÁGRAFO DE ENGAJAMENTO PERSONALIZADO
+- Call-to-action adaptado ao nicho
+- Criar senso de comunidade usando linguagem do grupo
+- Agradecer de forma contextualizada
+- Incentivar interação relevante ao tipo de conteúdo
+
+REQUISITO RÍGIDO: A soma dos 4 elementos acima = ~1500 caracteres
+
+5. SEÇÃO DE HASHTAGS (45-50 hashtags)
+Formato: 
+Hashtags:
+#Hashtag1 #Hashtag2 #Hashtag3
+
+Distribuição adaptada ao nicho:
+- 10 hashtags ultra-populares da categoria
+- 15 hashtags de nicho específico do tema
+- 15 hashtags long-tail relacionadas
+- 10 hashtags emergentes/trending do setor
+
+6. SEÇÃO "SEARCH TERMS" (1000-1200 caracteres)
+Formato: 
+
+Search Terms:
+termo1, termo2, termo3, termo4
+
+Termos específicos do nicho:
+- 40-50 termos de busca relevantes ao tema
+- Frases que o público-alvo realmente busca
+- Variações e sinônimos do nicho
+- Perguntas comuns da área (sem interrogação)
+- Combos de palavras-chave high-value do setor
+- LIMITE RÍGIDO: 1200 caracteres
+
+PARTE 2: TAGS PARA O YOUTUBE
+
+Formato: tag1, tag2, tag3, tag longa quatro
+- 10-20 tags estratégicas do nicho identificado
+- Mix de cauda curta e longa relevantes ao tema
+- Baseadas no comportamento de busca do público-alvo
+- LIMITE: 500 caracteres do campo de tags do YouTube
+
+----
+
+# REGRAS DE OTIMIZAÇÃO ADAPTATIVAS
+
+Repetição Estratégica:
+- Palavra-chave principal: 15-20x (contextualizada ao nicho)
+- Palavras-chave secundárias: 8-12x cada (naturais ao tema)
+
+Localização Cultural:
+- Usar expressões e gírias do país-alvo + nicho
+- Adaptar completamente ao SEO local e cultural
+- Incluir trending topics da categoria no país
+
+Limites Totais:
+- Total geral da descrição: até 5000 caracteres permitidos
+
+----
+
+# PESQUISA SIMULADA ADAPTATIVA
+
+Antes de criar, você deve simular uma pesquisa específica do nicho identificado:
+- Top 10 vídeos similares da categoria no idioma/país
+- Trending hashtags e tags do nicho específico
+- Perguntas mais buscadas sobre o tema
+- Competidores diretos da área e suas estratégias
+- Gaps de palavras-chave não exploradas no setor
+
+---
+
+# FORMATO DE ENTREGA OBRIGATÓRIO
+
+BLOCO 1: DESCRIÇÃO COMPLETA - [NÃO ME FORNEÇA ESSE TITULO]
+plaintext
+[Aqui vai TODO o texto da descrição, desde o Hook até a seção Search Terms, 
+otimizado especificamente para o nicho identificado,
+pronto para copiar e colar no campo de descrição do YouTube]
+
+
+BLOCO 2: TAGS DO YOUTUBE [NÃO ME FORNEÇA ESSE TITULO]
+plaintext
+[Aqui vai a lista de tags separadas por vírgulas,
+específicas do nicho identificado,
+pronta para copiar e colar no campo de tags do YouTube]
+
+
+ESTATÍSTICAS DE OTIMIZAÇÃO
+Apresentar FORA dos blocos de código:
+- Caracteres da Descrição (texto): [X/1500]
+- Caracteres Search Terms: [X/1200]
+- Caracteres das Tags: [X/500]
+- Densidade de keywords (descrição): [X%]
+- Hashtags totais: [X]
+- Score de otimização: [X/100]
+- Nicho Identificado: [CATEGORIA DETECTADA]
+- Público-alvo: [PERFIL DO PÚBLICO]
+
+---
+
+# INSTRUÇÕES ESPECIAIS
+
+- Se o título mencionar números, SEMPRE incluir variações escritas
+- Incluir termos de voice search apropriados ao nicho
+- Adaptar completamente ao SEO local e do setor
+- Manter estrutura e tamanhos EXATAMENTE como especificado
+- IMPORTANTE: Os títulos "Hashtags:" e "Search Terms:" devem ser traduzidos:
+  - Português: "Hashtags:" e "Termos de Busca:"
+  - Espanhol: "Hashtags:" e "Términos de Búsqueda:"
+  - Inglês: "Hashtags:" e "Search Terms:"
+  - Francês: "Hashtags:" e "Termes de Recherche:"
+  - Etc.
+
+# ADAPTAÇÃO INTELIGENTE POR NICHO
+- Notícias: Foco em urgência, exclusividade, timing
+- Saúde: Problema-solução, credibilidade médica
+- Fitness: Resultados, transformação, motivação
+- Games: Gameplay, dicas, conquistas
+- Educação: Aprendizado claro, passo a passo
+- Entretenimento: Diversão, emoção, viral
+- Negócios: ROI, estratégias, resultados
+- Espiritualidade: Fé, esperança, conexão
+- E assim por diante para cada nicho...
+
+---
+
+# INÍCIO DO PROCESSO
+
+MODO ATIVADO: SEO Universal Adaptativo v1.0 🚀
+`;
+      const prompt2Line2 = `Me entregue o contéudo em um idioma e pais por vez, sempre perguntando se pode seguir para o proximo idioma.\nPAIS: Alemanha, Espanha, França e Noruega\nIDIOMA: Alemão, Espanhol, Frances e Norueguês\nTEMA: [${tema}]\nROTEIRO: [${document.getElementById("roteiro").value.trim()}]`;
+      const prompt2Line3 = "Siga com o próximo pais e idioma";
+
+      const prompt3 = `Grotesque cartoon illustration, earthy tones, flat lighting, yellowish beige background, reminiscent of aged paper, hand-drawn texture, storybook style about: "${tema}". Include Text at the top.`;
+      const prompt4 = `Crie 25 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
+      const prompt5 = `Me dê 10 temas para vídeos do YouTube com alto potencial de viralização. O tema deve ser baseados no tema [histórias antigas de como era a vida cotidiana em tempos distantes]. Quero temas curiosos que chamem muito a atenção. Quero no seguite formato:
+
+História Antiga sobre: [Tema] - [Explicação]`;
+
+      document.getElementById("prompt1").textContent = prompt1;
+      document.getElementById("prompt2Line1").textContent = prompt2Line1;
+      document.getElementById("prompt2Line2").textContent = prompt2Line2;
+      document.getElementById("prompt2Line3").textContent = prompt2Line3;
+      document.getElementById("prompt3").textContent = prompt3;
+      document.getElementById("prompt4").textContent = prompt4;
+      document.getElementById("prompt5").textContent = prompt5;
+
+      document.getElementById("promptsGerados").style.display = "block";
+      showMessage("Prompts gerados com sucesso!", "green");
+    }
+
+    function copiarPrompt(id) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showMessage(`Prompt copiado com sucesso!`, "green");
+      }).catch(() => {
+        showMessage("Erro ao copiar. Tente novamente.", "red");
+      });
+    }
+
+    function showMessage(msg, color = 'white') {
+      const notification = document.getElementById("notification");
+      notification.textContent = msg;
+      notification.style.color = color;
+    }
+  </script>
+</body>
+</html>

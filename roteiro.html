@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Roteiro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111827;
+      color: #F9FAFB;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1F2937;
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .navbar ul li {
+      display: inline;
+      margin: 0 20px;
+    }
+
+    .navbar ul li a {
+      color: #F9FAFB;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .navbar ul li a:hover {
+      color: #6366F1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #1F2937;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-top: 60px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 10px;
+      background-color: #111827;
+      color: #F9FAFB;
+      font-size: 0.9em;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: white;
+      resize: vertical;
+      height: 100px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-y: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: white;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.4rem 0.6rem;
+      background: #6366F1;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4F46E5;
+    }
+
+    #resultado {
+      white-space: pre-wrap;
+      background-color: #111827;
+      color: #F9FAFB;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+      position: relative;
+      border: 1px solid #374151;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 15px;
+    }
+
+    #mensagem {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #6366F1;
+      padding: 0.3rem 0.6rem;
+      color: white;
+      font-weight: bold;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .copy-button:hover {
+      background-color: #4F46E5;
+    }
+
+    .copy-button.copied {
+      background-color: #28a745;
+    }
+
+    .copy-button.copied:hover {
+      background-color: #218838;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .bloco {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #2D3748;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      position: relative;
+    }
+
+    #textoFinal {
+      max-height: 300px; /* Tamanho fixo */
+      overflow: hidden; /* Impede o texto de ultrapassar o limite do box */
+      text-overflow: ellipsis; /* Adiciona os "..." ao final do texto */
+      white-space: nowrap; /* Impede que o texto quebre linha */
+      position: relative;
+    }
+
+    #juntarContainer {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <ul>
+    <li><a href="index.html">Página Inicial</a></li>
+    <li><a href="roteiro.html">ROTEIRO</a></li>
+    <li><a href="prompts.html">PROMPTS</a></li>
+    <li><a href="estilos.html">ESTILOS</a></li>
+    <li><a href="legendas.html">LEGENDAS</a></li>
+	<li><a href="reescritor.html">REESCRITOR</a></li>
+  </ul>
+</div>
+
+  <div class="container">
+    <h1>ROTEIRO PERSONALIZADO</h1>
+
+    <div class="bloco">
+      <h3>Adicione um tema e roteiro...</h3>
+      <input id="temaInput" placeholder="Digite o tema aqui..." />
+    </div>
+
+    <!-- Box de adicionar roteiro, agora abaixo do tema e acima do botão "CRIAR" -->
+    <div class="bloco">
+      <textarea id="roteiroInput" placeholder="Digite o roteiro aqui..."></textarea>
+    </div>
+
+    <!-- Botão Criar que gera o roteiro -->
+    <button onclick="gerarTema()">CRIAR ROTEIRO</button>
+
+    <!-- O conteúdo gerado será agora inserido aqui, dentro de um box igual aos outros -->
+    <div id="textoFinal" class="bloco" style="display: none;">
+      <!-- Botão "Copiar Conteúdo" dentro do box -->
+      <button class="copy-button" onclick="copiarConteudo()">COPIAR ESTRUTURA</button>
+      <pre id="conteudoTexto"></pre>
+    </div>
+
+    <h3>Montar Roteiro</h3>
+
+    <textarea id="paragrafosInput" placeholder="Cole seus 3 parágrafos aqui..."></textarea>
+
+    <div class="gerar-partes-container">
+      <button onclick="gerarPartes()">GERAR PARTES</button>
+    </div>
+
+    <div id="blocos"></div>
+
+    <div id="mensagem">Todos as partes foram copiados com sucesso!</div>
+
+<div id="juntarContainer">
+  <h2>Juntar as Partes</h2>
+
+  <div class="titulo-token">
+    <h3>Início</h3>
+  </div>
+  <textarea id="inicio" placeholder="Cole a parte de Início aqui..." oninput="contarTokens('inicio')"></textarea>
+  <span id="contadorInicio">Tokens: 0</span> <!-- Contador de tokens aqui -->
+  <hr>
+
+  <div class="titulo-token">
+    <h3>Meio</h3>
+  </div>
+  <textarea id="meio" placeholder="Cole a parte de Meio aqui..." oninput="contarTokens('meio')"></textarea>
+  <span id="contadorMeio">Tokens: 0</span> <!-- Contador de tokens aqui -->
+  <br> 
+  <button class="botao-copiar" onclick="copiarTextoMeio()">CONTINUAR HISTÓRIA</button>
+  <hr>
+
+  <div class="titulo-token">
+    <h3>Fim</h3>
+  </div>
+  <textarea id="fim" placeholder="Cole a parte de Fim aqui..." oninput="contarTokens('fim')"></textarea>
+  <span id="contadorFim">Tokens: 0</span> <!-- Contador de tokens aqui -->
+  <hr>
+
+  <div class="bloco">
+    <h3>Colar Introdução Gerada</h3>
+    <textarea id="introducaoInput" placeholder="Cole a introdução gerada aqui..."></textarea>
+  </div>
+
+  <div class="button-container">
+    <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
+    <button onclick="juntarPartes()">COPIAR PARTES</button>
+    <button onclick="salvarTexto()">SALVAR</button>
+  </div>
+</div>
+
+
+<!-- Novo div adicionado para exibir o conteúdo gerado -->
+<div id="resultadoFinal" class="bloco" style="display: none;">
+  <h3>Resultado Final:</h3>
+  <pre id="textoFinal"></pre>
+</div>
+
+  <script>
+    function gerarTema() {
+      const temaInput = document.getElementById('temaInput').value.trim();
+      const roteiroInput = document.getElementById('roteiroInput').value.trim();
+
+      if (temaInput && !roteiroInput) {
+        // Caso apenas o tema seja preenchido
+        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) sobre o tema: ${temaInput}, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+        document.getElementById('textoFinal').style.display = 'block';
+        document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
+      } else if (temaInput && roteiroInput) {
+        // Caso tema e roteiro sejam preenchidos
+        const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) com o tema: "${temaInput}", baseado no roteiro abaixo, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.\n\n${roteiroInput}`;
+        document.getElementById('textoFinal').style.display = 'block';
+        document.getElementById('conteudoTexto').textContent = roteiroGerado; // Exibe o roteiro completo
+      }
+    }
+
+    function copiarConteudo() {
+      const texto = document.getElementById('conteudoTexto').textContent;
+      navigator.clipboard.writeText(texto);
+
+      // Modificar o botão para indicar que o conteúdo foi copiado
+      const copyButton = document.querySelector('.copy-button');
+      copyButton.classList.add('copied');
+      copyButton.textContent = 'Copiado!';
+    }
+
+    function gerarPartes() {
+      const paragrafosInput = document.getElementById('paragrafosInput').value.trim();
+
+      if (!paragrafosInput) {
+        return;
+      }
+
+      const blocosContainer = document.getElementById('blocos');
+      blocosContainer.innerHTML = '';
+
+      const paragrafos = paragrafosInput.split('\n').filter(p => p.trim() !== '');
+
+      if (paragrafos.length < 3) {
+        return;
+      }
+
+      const blocoInico = `Desenvolva o início da história abaixo de forma concistente utlizando aproximadamente (1300 tokens) para o meu roteiro utilizando uma linguagem simples e suave. Não entre no desenvolvimento ou na conclusão da história.\n${paragrafos[0]}`;
+      const blocoMeio = `Desenvolva o meio da história abaixo com no mínimo de (1700 tokens) para desenvolver o argumento deste texto. Use linguagem simples e suave com tom calmo. Não repita o começo da história e não mencione o final ou a conclusão.\n${paragrafos[1]}`;
+      const blocoFim = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens). Termine convidando o público a curtir, se inscrever no canal e ouvir outra história relaxante. Use uma despedida calorosa e calma, que ajude o espectador a se sentir acolhido e pronto para descansar.\n${paragrafos[2]}`;
+
+      const blocoElement = document.createElement('div');
+      blocoElement.classList.add('box-container');
+      blocoElement.innerHTML = `
+        <div id="resultado">
+          <button class="copy-button" onclick="copiarTexto('INICIO')">Copiar</button>
+          <pre>${blocoInico}</pre>
+        </div>
+        <div id="resultado">
+          <button class="copy-button" onclick="copiarTexto('MEIO')">Copiar</button>
+          <pre>${blocoMeio}</pre>
+        </div>
+        <div id="resultado">
+          <button class="copy-button" onclick="copiarTexto('FIM')">Copiar</button>
+          <pre>${blocoFim}</pre>
+        </div>
+      `;
+
+      blocosContainer.appendChild(blocoElement);
+      document.getElementById('juntarContainer').style.display = 'block';
+    }
+
+function juntarPartes() {
+  const introducao = document.getElementById('introducaoInput').value.trim();
+  const inicio = document.getElementById('inicio').value.trim();
+  const meio = document.getElementById('meio').value.trim();
+  const fim = document.getElementById('fim').value.trim();
+
+  // Verifica se todos os campos estão preenchidos
+  if (!introducao || !inicio || !meio || !fim) {
+    alert('Por favor, preencha todos os campos: Introdução, Início, Meio e Fim.');
+    return;
+  }
+
+  const textoFinal = introducao + '\n\n' + inicio + '\n\n' + meio + '\n\n' + fim;
+
+  // Exibe o conteúdo final no box de "Texto Final"
+  document.getElementById('textoFinal').textContent = textoFinal;
+
+  // Copia o conteúdo para a área de transferência
+  navigator.clipboard.writeText(textoFinal).then(() => {
+    // Opcional: Exibir uma mensagem de sucesso ou alterar o estilo do botão
+    alert('Conteúdo copiado com sucesso!');
+  }).catch(err => {
+    console.error('Erro ao copiar para a área de transferência: ', err);
+  });
+}
+    async function salvarTexto() {
+      const texto = document.getElementById('textoFinal').textContent.trim();
+      if (!texto) {
+        return;
+      }
+
+      const temaInput = document.getElementById('temaInput').value.trim();
+      if (!temaInput) {
+        return;
+      }
+
+      try {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: `${temaInput}.txt`,
+          types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
+        });
+
+        const writable = await handle.createWritable();
+        await writable.write(texto);
+        await writable.close();
+      } catch (e) {
+        console.error('Erro ao salvar:', e);
+      }
+    }
+
+    function copiarTexto(blocoNome) {
+      let texto = '';
+
+      if (blocoNome === 'INICIO') {
+        texto = 'Desenvolva o início da história abaixo de forma concistente utlizando aproximadamente (1300 tokens) para o meu roteiro utilizando uma linguagem simples e suave. Não entre no desenvolvimento ou na conclusão da história.\n' + document.getElementById('paragrafosInput').value.trim().split('\n')[0];
+      } else if (blocoNome === 'MEIO') {
+        texto = 'Desenvolva o meio da história abaixo com no mínimo de (1700 tokens) para desenvolver o argumento deste texto. Use linguagem simples e suave com tom calmo. Não repita o começo da história e não mencione o final ou a conclusão.\n' + document.getElementById('paragrafosInput').value.trim().split('\n')[1];
+      } else if (blocoNome === 'FIM') {
+        texto = 'Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens). Termine convidando o público a curtir, se inscrever no canal e ouvir outra história relaxante. Use uma despedida calorosa e calma, que ajude o espectador a se sentir acolhido e pronto para descansar.\n' + document.getElementById('paragrafosInput').value.trim().split('\n')[2];
+      }
+
+      // Copia o texto para a área de transferência
+      navigator.clipboard.writeText(texto);
+
+      // Altera o estilo e texto do botão
+      const button = document.querySelector(`button[onclick="copiarTexto('${blocoNome}')"]`);
+      button.classList.add('copied');
+      button.textContent = 'Copiado!';
+
+      // Exibe a seção de juntar partes, se ainda não estiver visível
+      document.getElementById('juntarContainer').style.display = 'block';
+    }
+
+    function contarTokens(id) {
+      const textarea = document.getElementById(id);
+      const contador = document.getElementById(`contador${id.charAt(0).toUpperCase() + id.slice(1)}`);
+      const palavras = textarea.value.trim().split(/\s+/).filter(Boolean);
+      const numTokens = Math.ceil(palavras.length * 1.33);
+      contador.textContent = `Tokens: ${numTokens}`;
+    }
+
+function copiarTextoMeio() {
+  const texto = "Continue a história com mais (1700 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples com tom suave e relaxante. Evite repetir o começo da história e o que você já gerou e também não mencione o final ou a conclusão.";  // Mensagem específica que você quer copiar
+  navigator.clipboard.writeText(texto);  // Copia a mensagem para a área de transferência
+}
+
+    function criarIntroducao() {
+      const introducaoTexto = "Crie uma introdução para o roteiro abaixo:";
+      const inicioTexto = document.getElementById('inicio').value.trim();
+      const meioTexto = document.getElementById('meio').value.trim();
+      const fimTexto = document.getElementById('fim').value.trim();
+
+      const textoFinal = `${introducaoTexto}\n\n${inicioTexto}\n\n${meioTexto}\n\n${fimTexto}`;
+      
+      navigator.clipboard.writeText(textoFinal);
+    }
+  </script>
+
+</body>
+</html>
