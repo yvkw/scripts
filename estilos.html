@@ -144,6 +144,12 @@
       color: #6B7280;
       font-size: 0.875rem;
     }
+
+    #numPrompt {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -182,6 +188,8 @@
   </div>
 
   <script>
+    let promptIndex = 0;
+
     function gerarImagens(estilo) {
       const roteiro = document.getElementById("roteiro").value.trim();
       if (!roteiro) {
@@ -193,16 +201,16 @@
       const imagensDiv = document.getElementById("imagens");
       imagensDiv.innerHTML = ''; // Limpa as imagens anteriores
 
-      paragrafos.forEach((paragrafo, index) => {
+      if (promptIndex < paragrafos.length) {
         let textoGerado = "";
         
         // Personalizando o conteúdo baseado no estilo
         if (estilo === 'realista') {
-          textoGerado = `Create an illustration in the realistic painting style, resembling Renaissance art or classical painting, ultra quality, 8k UHD, best quality, highly detailed. Focus on detailed human figures with soft yet defined features, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and environment. The background should include architectural elements or natural settings, rendered in soft hues with a focus on realism: ${paragrafo.trim()}`;
+          textoGerado = `Create an illustration in the realistic painting style, resembling Renaissance art or classical painting, ultra quality, 8k UHD, best quality, highly detailed. Focus on detailed human figures with soft yet defined features, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and environment. The background should include architectural elements or natural settings, rendered in soft hues with a focus on realism: ${paragrafos[promptIndex].trim()}`;
         } else if (estilo === 'grotesque') {
-          textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafo.trim()}.`;
+          textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafos[promptIndex].trim()}.`;
         } else if (estilo === 'flat') {
-          textoGerado = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafo.trim()}`;
+          textoGerado = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafos[promptIndex].trim()}`;
         }
 
         const divImagem = document.createElement("div");
@@ -216,13 +224,31 @@
         copiarButton.textContent = "Copiar";
         copiarButton.onclick = () => {
           copiarTexto(textoGerado);
-          divImagem.remove(); // Remove o parágrafo copiado da tela
+          if (promptIndex === 0) {
+            showMessage("Prompt 1 copiado", "green");
+          } else if (promptIndex === paragrafos.length - 1) {
+            showMessage("Texto copiado com sucesso!", "green");
+            document.getElementById("imagensGeradas").style.display = "none"; // Remove os prompts
+          } else {
+            showMessage(`Prompt ${promptIndex + 1} copiado`, "green");
+          }
+          promptIndex++; // Avança para o próximo prompt
+          if (promptIndex < paragrafos.length) {
+            gerarImagens(estilo); // Gera o próximo prompt
+          }
         };
 
         divImagem.appendChild(textoElement);
         divImagem.appendChild(copiarButton);
+
+        // Adiciona a numeração abaixo da mensagem
+        const numPrompt = document.createElement("div");
+        numPrompt.id = "numPrompt";
+        numPrompt.textContent = `Prompt ${promptIndex + 1} / ${paragrafos.length}`;
+        divImagem.appendChild(numPrompt);
+
         imagensDiv.appendChild(divImagem);
-      });
+      }
 
       document.getElementById("imagensGeradas").style.display = "block";
       showMessage("Imagens geradas com sucesso!", "green");
