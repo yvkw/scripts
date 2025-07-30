@@ -224,6 +224,10 @@
       <pre id="prompt4" class="response-block"></pre>
       <button onclick="copiarPrompt('prompt4')"><i class="fa-solid fa-copy"></i> Copiar Prompt 4</button>
 
+	  <h2 style="margin-top:2rem;">PROMPTS DE IMAGEM 2</h2>
+      <pre id="promptImagem2" class="response-block"></pre>
+      <button onclick="copiarPrompt('promptImagem2')"><i class="fa-solid fa-copy"></i> Copiar Prompt Imagem 2</button>
+
       <h2 style="margin-top:2rem;">GERAR TEMAS</h2>
       <pre id="prompt5" class="response-block"></pre>
       <button onclick="copiarPrompt('prompt5')"><i class="fa-solid fa-copy"></i> Copiar Prompt 5</button>
@@ -423,7 +427,7 @@ MODO ATIVADO: SEO Universal Adaptativo v1.0 🚀
       const prompt2Line2 = `Me entregue o contéudo em um idioma e pais por vez, sempre perguntando se pode seguir para o proximo idioma.\nPAIS: Brasil, Espanha e França\nIDIOMA: Português, espanhol e francês\nTEMA: [${tema}]\nROTEIRO: [${document.getElementById("roteiro").value.trim()}]`;
       const prompt2Line3 = "Siga com o próximo pais e idioma";
 
-      const prompt3 = `Grotesque cartoon illustration, earthy tones, flat lighting, yellowish beige background, reminiscent of aged paper, hand-drawn texture, storybook style about: "${tema}". Include Text at the top.`;
+      const prompt3 = `Create a realistic painting-style illustration reminiscent of Renaissance or classical painting, in ultra-high quality, 8k UHD (the highest quality), highly detailed, with flat lighting, a yellowish-beige background reminiscent of aged paper, and a hand-drawn texture. Create a storybook-style illustration about: "${tema}". Include text on the left side.`;
       const prompt4 = `Crie 25 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
 
 Seja altamente específico e detalhado ao descrever:
@@ -438,6 +442,8 @@ Importante: Não inclua títulos, divisões por parágrafos, resumos ou explica�
 
 História Antiga sobre: [Tema] - [Explicação]`;
 
+const promptImagem2 = `Crie prompts de imagens para o roteiro abaixo:\n\n${document.getElementById("roteiro").value.trim()}`;
+
       document.getElementById("prompt1").textContent = prompt1;
       document.getElementById("prompt2Line1").textContent = prompt2Line1;
       document.getElementById("prompt2Line2").textContent = prompt2Line2;
@@ -445,6 +451,7 @@ História Antiga sobre: [Tema] - [Explicação]`;
       document.getElementById("prompt3").textContent = prompt3;
       document.getElementById("prompt4").textContent = prompt4;
       document.getElementById("prompt5").textContent = prompt5;
+	  document.getElementById("promptImagem2").textContent = promptImagem2;
 
       document.getElementById("promptsGerados").style.display = "block";
       showMessage("Prompts gerados com sucesso!", "green");
