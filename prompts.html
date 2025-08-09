@@ -447,7 +447,18 @@ Importante: Não inclua títulos, divisões por parágrafos, resumos ou explica�
 
 História Antiga sobre: [Tema] - [Explicação]`;
 
-const promptImagem2 = `Crie prompts de imagens para o roteiro abaixo:\n\n${document.getElementById("roteiro").value.trim()}`;
+const promptImagem2 = `Crie 25 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
+
+Texto a ser ilustrado:\n\n${document.getElementById("roteiro").value.trim()}`;
 
       document.getElementById("prompt1").textContent = prompt1;
       document.getElementById("prompt2Line1").textContent = prompt2Line1;
@@ -479,6 +490,7 @@ const promptImagem2 = `Crie prompts de imagens para o roteiro abaixo:\n\n${docum
   </script>
 </body>
 </html>
+
 
 
 
