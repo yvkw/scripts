@@ -172,6 +172,7 @@
     <textarea id="roteiro" placeholder="Digite seu roteiro aqui..."></textarea>
     
     <button onclick="gerarImagens('realista')">Pintura Realista</button>
+	<button onclick="gerarImagens('classical_realism')">Classical Realism</button>
     <button onclick="gerarImagens('grotesque')">Grotesque</button>
     <button onclick="gerarImagens('flat')">Flat Design</button>
 
@@ -190,69 +191,72 @@
   <script>
     let promptIndex = 0;
 
-    function gerarImagens(estilo) {
-      const roteiro = document.getElementById("roteiro").value.trim();
-      if (!roteiro) {
-        showMessage("Por favor, cole um roteiro para gerar as imagens.", "red");
-        return;
-      }
+function gerarImagens(estilo) {
+  const roteiro = document.getElementById("roteiro").value.trim();
+  if (!roteiro) {
+    showMessage("Por favor, cole um roteiro para gerar as imagens.", "red");
+    return;
+  }
 
-      const paragrafos = roteiro.split("\n").filter(paragrafo => paragrafo.trim() !== "");
-      const imagensDiv = document.getElementById("imagens");
-      imagensDiv.innerHTML = ''; // Limpa as imagens anteriores
+  const paragrafos = roteiro.split("\n").filter(paragrafo => paragrafo.trim() !== "");
+  const imagensDiv = document.getElementById("imagens");
+  imagensDiv.innerHTML = ''; // Limpa as imagens anteriores
 
-      if (promptIndex < paragrafos.length) {
-        let textoGerado = "";
-        
-        // Personalizando o conteúdo baseado no estilo
-        if (estilo === 'realista') {
-          textoGerado = `Create a realistic painting-style illustration, reminiscent of Renaissance or classical painting, in ultra-high-quality 8k UHD, the highest quality, and highly detailed. Focus on detailed figures with soft yet defined lines, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and the environment. The background should include architectural elements or natural scenery, rendered in soft tones with a focus on realism: ${paragrafos[promptIndex].trim()}`;
-        } else if (estilo === 'grotesque') {
-          textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafos[promptIndex].trim()}.`;
-        } else if (estilo === 'flat') {
-          textoGerado = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafos[promptIndex].trim()}`;
-        }
-
-        const divImagem = document.createElement("div");
-        divImagem.classList.add("response-block");
-
-        const textoElement = document.createElement("span");
-        textoElement.textContent = textoGerado;
-
-        const copiarButton = document.createElement("button");
-        copiarButton.classList.add("copiar-button");
-        copiarButton.textContent = "Copiar";
-        copiarButton.onclick = () => {
-          copiarTexto(textoGerado);
-          if (promptIndex === 0) {
-            showMessage("Prompt 1 copiado", "green");
-          } else if (promptIndex === paragrafos.length - 1) {
-            showMessage("Texto copiado com sucesso!", "green");
-            document.getElementById("imagensGeradas").style.display = "none"; // Remove os prompts
-          } else {
-            showMessage(`Prompt ${promptIndex + 1} copiado`, "green");
-          }
-          promptIndex++; // Avança para o próximo prompt
-          if (promptIndex < paragrafos.length) {
-            gerarImagens(estilo); // Gera o próximo prompt
-          }
-        };
-
-        divImagem.appendChild(textoElement);
-        divImagem.appendChild(copiarButton);
-
-        // Adiciona a numeração abaixo da mensagem
-        const numPrompt = document.createElement("div");
-        numPrompt.id = "numPrompt";
-        numPrompt.textContent = `Prompt ${promptIndex + 1} / ${paragrafos.length}`;
-        divImagem.appendChild(numPrompt);
-
-        imagensDiv.appendChild(divImagem);
-      }
-
-      document.getElementById("imagensGeradas").style.display = "block";
-      showMessage("Imagens geradas com sucesso!", "green");
+  if (promptIndex < paragrafos.length) {
+    let textoGerado = "";
+    
+    // Personalizando o conteúdo baseado no estilo
+    if (estilo === 'realista') {
+      textoGerado = `Create a realistic painting-style illustration, reminiscent of Renaissance or classical painting, in ultra-high-quality 8k UHD, the highest quality, and highly detailed. Focus on detailed figures with soft yet defined lines, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and the environment. The background should include architectural elements or natural scenery, rendered in soft tones with a focus on realism: ${paragrafos[promptIndex].trim()}`;
+    } else if (estilo === 'grotesque') {
+      textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafos[promptIndex].trim()}.`;
+    } else if (estilo === 'flat') {
+      textoGerado = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafos[promptIndex].trim()}`;
+    } else if (estilo === 'classical_realism') {
+      textoGerado = `Create a highly detailed classical realism painting in the style, in ultra-high-quality 8k UHD, the highest quality, and highly detailed: ${paragrafos[promptIndex].trim()}`;
     }
+
+    const divImagem = document.createElement("div");
+    divImagem.classList.add("response-block");
+
+    const textoElement = document.createElement("span");
+    textoElement.textContent = textoGerado;
+
+    const copiarButton = document.createElement("button");
+    copiarButton.classList.add("copiar-button");
+    copiarButton.textContent = "Copiar";
+    copiarButton.onclick = () => {
+      copiarTexto(textoGerado);
+      if (promptIndex === 0) {
+        showMessage("Prompt 1 copiado", "green");
+      } else if (promptIndex === paragrafos.length - 1) {
+        showMessage("Texto copiado com sucesso!", "green");
+        document.getElementById("imagensGeradas").style.display = "none"; // Remove os prompts
+      } else {
+        showMessage(`Prompt ${promptIndex + 1} copiado`, "green");
+      }
+      promptIndex++; // Avança para o próximo prompt
+      if (promptIndex < paragrafos.length) {
+        gerarImagens(estilo); // Gera o próximo prompt
+      }
+    };
+
+    divImagem.appendChild(textoElement);
+    divImagem.appendChild(copiarButton);
+
+    // Adiciona a numeração abaixo da mensagem
+    const numPrompt = document.createElement("div");
+    numPrompt.id = "numPrompt";
+    numPrompt.textContent = `Prompt ${promptIndex + 1} / ${paragrafos.length}`;
+    divImagem.appendChild(numPrompt);
+
+    imagensDiv.appendChild(divImagem);
+  }
+
+  document.getElementById("imagensGeradas").style.display = "block";
+  showMessage("Imagens geradas com sucesso!", "green");
+}
+
 
     function copiarTexto(texto) {
       navigator.clipboard.writeText(texto).then(() => {
@@ -270,4 +274,5 @@
   </script>
 </body>
 </html>
+
 
