@@ -212,6 +212,15 @@
   <div class="container">
     <h1>ROTEIRO PERSONALIZADO</h1>
 
+<div id="campoIdeias" class="bloco">
+  <h3>GERAR TEMAS</h3>
+  <pre id="textoIdeias">Estou começando um canal no YouTube que foca em contar histórias relaxantes e lentas na hora de dormir, no estilo de história "chata" para dormir. Os vídeos são narrações longas e roteirizadas, com um tom suave, destinados a ajudar as pessoas a adormecer enquanto aprendem sobre história real. O conteúdo deve ser interessante, informativo e relaxante — sem ser dramático ou emocionalmente intenso. Gere 5 ideias únicas e criativas para vídeos nessa área. Os tópicos devem ser baseados em história antiga, vida medieval, impérios esquecidos, vida cotidiana em séculos passados, costumes bizarros, pestes, guerras (de forma suave), realeza e aspectos pouco conhecidos ou negligenciados da história. Evite tópicos excessivamente intensos ou perturbadores e garanta que cada ideia seja adequada para uma escuta relaxante na hora de dormir. Formate as ideias de maneira clara, com uma lista numerada.</pre>
+  <!-- Botão Copiar Texto -->
+  <button class="copy-button" onclick="copiarTextoIdeias()">COPIAR IDEIAS</button>
+</div>
+
+
+
     <div class="bloco">
       <h3>Adicione um tema e roteiro...</h3>
       <input id="temaInput" placeholder="Digite o tema aqui..." />
@@ -274,14 +283,34 @@
     <h3>Colar Introdução Gerada</h3>
     <textarea id="introducaoInput" placeholder="Cole a introdução gerada aqui..."></textarea>
   </div>
-
-  <div class="button-container">
+  
+    <div class="button-container">
     <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
     <button onclick="juntarPartes()">COPIAR PARTES</button>
     <button onclick="salvarTexto()">SALVAR</button>
   </div>
 </div>
 
+<div id="campoCriarImagens" class="bloco" style="display: none;">
+  <h3>Criar Imagens</h3>
+  <pre id="textoImagens"></pre>
+  <!-- Botão Copiar Texto -->
+  <button class="copy-button" onclick="copiarTextoImagens()">COPIAR TEXTO</button>
+</div>
+
+<div id="campoCriarThumb" class="bloco" style="display: none;">
+  <h3>Criar Thumb</h3>
+  <pre id="textoThumb">Crie uma thumb com o "{tema}" para o vídeo</pre>
+  <!-- Botão Copiar Texto -->
+  <button class="copy-button" onclick="copiarTextoThumb()">COPIAR TEXTO</button>
+</div>
+
+<div id="campoCriarTitulos" class="bloco" style="display: none;">
+  <h3>Criar Títulos</h3>
+  <pre id="textoTitulos">Crie 10 títulos com o tema "{tema}"</pre>
+  <!-- Botão Copiar Texto -->
+  <button class="copy-button" onclick="copiarTextoTitulos()">COPIAR TEXTO</button>
+</div>
 
 <!-- Novo div adicionado para exibir o conteúdo gerado -->
 <div id="resultadoFinal" class="bloco" style="display: none;">
@@ -290,22 +319,108 @@
 </div>
 
   <script>
-    function gerarTema() {
-      const temaInput = document.getElementById('temaInput').value.trim();
-      const roteiroInput = document.getElementById('roteiroInput').value.trim();
+ function copiarTextoThumb() {
+  const textoThumb = document.getElementById('textoThumb').textContent;
+  navigator.clipboard.writeText(textoThumb);
 
-      if (temaInput && !roteiroInput) {
-        // Caso apenas o tema seja preenchido
-        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
-        document.getElementById('textoFinal').style.display = 'block';
-        document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
-      } else if (temaInput && roteiroInput) {
-        // Caso tema e roteiro sejam preenchidos
-        const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) com o tema: "${temaInput}", baseado no roteiro abaixo, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.\n\n${roteiroInput}`;
-        document.getElementById('textoFinal').style.display = 'block';
-        document.getElementById('conteudoTexto').textContent = roteiroGerado; // Exibe o roteiro completo
-      }
-    }
+  // Modificar o botão para indicar que o conteúdo foi copiado
+  const copyButton = document.querySelector('#campoCriarThumb .copy-button');
+  copyButton.classList.add('copied');
+  copyButton.textContent = 'Copiado!';
+}
+ 
+function copiarTextoTitulos() {
+  const textoTitulos = document.getElementById('textoTitulos').textContent;
+  navigator.clipboard.writeText(textoTitulos);
+
+  // Modificar o botão para indicar que o conteúdo foi copiado
+  const copyButton = document.querySelector('#campoCriarTitulos .copy-button');
+  copyButton.classList.add('copied');
+  copyButton.textContent = 'Copiado!';
+}
+  
+  
+  
+  
+function copiarTextoIdeias() {
+  const textoIdeias = document.getElementById('textoIdeias').textContent;
+  navigator.clipboard.writeText(textoIdeias);
+
+  // Modificar o botão para indicar que o conteúdo foi copiado
+  const copyButton = document.querySelector('#campoIdeias .copy-button');
+  copyButton.classList.add('copied');
+  copyButton.textContent = 'Copiado!';
+}
+
+// Função para copiar os temas
+function copiarTextoTemas() {
+  const textoTemas = document.getElementById('textoTemas').textContent;
+  navigator.clipboard.writeText(textoTemas);
+
+  // Modificar o botão para indicar que o conteúdo foi copiado
+  const copyButton = document.querySelector('#textoTemas + .copy-button');
+  copyButton.classList.add('copied');
+  copyButton.textContent = 'Copiado!';
+}
+  
+  function copiarTextoImagens() {
+  const textoImagens = document.getElementById('textoImagens').textContent;
+  navigator.clipboard.writeText(textoImagens);
+
+  // Modificar o botão para indicar que o conteúdo foi copiado
+  const copyButton = document.querySelector('#campoCriarImagens .copy-button');
+  copyButton.classList.add('copied');
+  copyButton.textContent = 'Copiado!';
+}
+function gerarTema() {
+  const temaInput = document.getElementById('temaInput').value.trim();
+  const roteiroInput = document.getElementById('roteiroInput').value.trim();
+
+  if (temaInput && !roteiroInput) {
+    // Caso apenas o tema seja preenchido
+    const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
+    document.getElementById('textoFinal').style.display = 'block';
+    document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
+  } else if (temaInput && roteiroInput) {
+    // Caso tema e roteiro sejam preenchidos
+    const roteiroGerado = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) com o tema: "${temaInput}", baseado no roteiro abaixo, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.\n\n${roteiroInput}`;
+    document.getElementById('textoFinal').style.display = 'block';
+    document.getElementById('conteudoTexto').textContent = roteiroGerado; // Exibe o roteiro completo
+  }
+
+  // Nova parte para criar o campo "Criar Imagens"
+  const textoImagens = `Crie 25 prompts de imagem para ilustrar um vídeo com o tema: "${temaInput}". Os prompts devem ser escritos em inglês, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente, paisagem e cenário (incluindo hora do dia, clima, localização)
+– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem causar forte impacto visual e transmitir claramente a essência da história. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
+
+  // Exibe o campo "Criar Imagens"
+  document.getElementById('campoCriarImagens').style.display = 'block';
+  document.getElementById('textoImagens').textContent = textoImagens;  // Exibe o texto gerado
+
+  // Novo campo "Criar Thumb"
+  const textoThumb = `Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${temaInput}", usando contornos ousados e cores vivas e saturadas. O título "HISTÓRIA ANTIGA PARA DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIA ANTIGA PARA DORMIR", no lado esquerdo.
+
+Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${temaInput}", usando contornos ousados e cores vivas e saturadas. O título "HISTORIA ANTIGUA PARA DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTORIA ANTIGUA PARA DORMIR", no lado esquerdo.
+
+Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${temaInput}", usando contornos ousados e cores vivas e saturadas. O título "HISTOIRE ANCIENNE POUR DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTOIRE ANCIENNE POUR DORMIR", no lado esquerdo.`;
+
+  // Exibe o campo "Criar Thumb"
+  document.getElementById('campoCriarThumb').style.display = 'block';
+  document.getElementById('textoThumb').textContent = textoThumb;  // Exibe o texto gerado
+  
+    // Novo campo "Criar Títulos"
+  const textoTitulos = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol e francês com o tema: "${temaInput}". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.`;
+  document.getElementById('campoCriarTitulos').style.display = 'block';
+  document.getElementById('textoTitulos').textContent = textoTitulos;  // Exibe o texto gerado
+}
+
 
     function copiarConteudo() {
       const texto = document.getElementById('conteudoTexto').textContent;
@@ -478,7 +593,6 @@ function copiarTextoMeioContado() {
 
 </body>
 </html>
-
 
 
 
