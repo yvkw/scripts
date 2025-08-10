@@ -286,27 +286,27 @@
   
     <div class="button-container">
     <button onclick="criarIntroducao()">CRIAR INTRODUÇÃO</button>
-    <button onclick="juntarPartes()">COPIAR PARTES</button>
+    <button onclick="juntarPartes()">CRIAR IMAGENS</button>
     <button onclick="salvarTexto()">SALVAR</button>
   </div>
 </div>
 
 <div id="campoCriarImagens" class="bloco" style="display: none;">
-  <h3>Criar Imagens</h3>
+  <h3>GERAR IMAGENS</h3>
   <pre id="textoImagens"></pre>
   <!-- Botão Copiar Texto -->
   <button class="copy-button" onclick="copiarTextoImagens()">COPIAR TEXTO</button>
 </div>
 
 <div id="campoCriarThumb" class="bloco" style="display: none;">
-  <h3>Criar Thumb</h3>
+  <h3>GERAR THUMB</h3>
   <pre id="textoThumb">Crie uma thumb com o "{tema}" para o vídeo</pre>
   <!-- Botão Copiar Texto -->
   <button class="copy-button" onclick="copiarTextoThumb()">COPIAR TEXTO</button>
 </div>
 
 <div id="campoCriarTitulos" class="bloco" style="display: none;">
-  <h3>Criar Títulos</h3>
+  <h3>GERAR TITULOS</h3>
   <pre id="textoTitulos">Crie 10 títulos com o tema "{tema}"</pre>
   <!-- Botão Copiar Texto -->
   <button class="copy-button" onclick="copiarTextoTitulos()">COPIAR TEXTO</button>
@@ -378,7 +378,7 @@ function gerarTema() {
 
   if (temaInput && !roteiroInput) {
     // Caso apenas o tema seja preenchido
-    const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
+    const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de Boring History for Sleep, com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
     document.getElementById('textoFinal').style.display = 'block';
     document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
   } else if (temaInput && roteiroInput) {
@@ -389,14 +389,14 @@ function gerarTema() {
   }
 
   // Nova parte para criar o campo "Criar Imagens"
-  const textoImagens = `Crie 25 prompts de imagem para ilustrar um vídeo com o tema: "${temaInput}". Os prompts devem ser escritos em inglês e focar em cenas calmas, serenas e relaxantes que evoquem tranquilidade, imersão e curiosidade. Cada imagem deve traduzir a ideia central de forma simbólica ou literal, sempre com um toque suave e evocativo, adequado para um público que busca relaxamento e descanso.
+  const textoImagens = `Crie 25 prompts de imagem para ilustrar um vídeo com o tema: "${temaInput}". Os prompts devem ser escritos em inglês e focar em cenas que devem combinar com o estilo lento e relaxante — pense em cores suaves, obras de arte históricas, cenários tranquilos, animações simples ou ilustrações estáticas. Certifique-se de que o visual esteja alinhado com o que os espectadores esperariam de um vídeo relaxante e relaxante para o YouTube.
 
 Seja altamente específico e detalhado ao descrever:
 – Ambiente, paisagem e cenário (incluindo hora do dia, clima, localização)
-– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
+– Personagens (incluindo gênero, idade, aparência, roupas, poses, interações – mas de forma secundária, ou seja, focando mais no cenário do que neles. Eles devem complementar o ambiente, sem serem o centro da cena)
 – Iluminação, emoções, clima/atmosfera geral da cena
 
-As imagens devem ter um forte impacto visual, mas de maneira serena e contemplativa, sem ser dramáticas ou excessivamente intensas. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do vídeo, sempre com uma abordagem visual que inspire calma, leveza e uma sensação de segurança.
+As imagens devem ter um forte impacto visual, mas de maneira serena, sem ser dramáticas ou excessivamente intensas. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do vídeo, sempre com uma abordagem visual que inspire calma, leveza e uma sensação de segurança.
 
 Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
 
@@ -489,7 +489,20 @@ function juntarPartes() {
     return;
   }
 
-  const textoFinal = introducao + '\n\n' + inicio + '\n\n' + meio + '\n\n' + fim;
+  const textoFixo = `Crie 25 prompts de imagem para ilustrar o roteiro abaixo. Os prompts devem ser escritos em inglês e focar em cenas que devem combinar com o estilo lento e relaxante — pense em cores suaves, obras de arte históricas, cenários tranquilos, animações simples ou ilustrações estáticas. Certifique-se de que o visual esteja alinhado com o que os espectadores esperariam de um vídeo relaxante e relaxante para o YouTube.
+
+Seja altamente específico e detalhado ao descrever:
+– Ambiente, paisagem e cenário (incluindo hora do dia, clima, localização)
+– Personagens (incluindo gênero, idade, aparência, roupas, poses, interações – mas de forma secundária, ou seja, focando mais no cenário do que neles. Eles devem complementar o ambiente, sem serem o centro da cena)
+– Iluminação, emoções, clima/atmosfera geral da cena
+
+As imagens devem ter um forte impacto visual, mas de maneira serena, sem ser dramáticas ou excessivamente intensas. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do vídeo, sempre com uma abordagem visual que inspire calma, leveza e uma sensação de segurança.
+
+Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
+
+Roteiro:\n`;
+
+  const textoFinal = textoFixo + introducao + '\n\n' + inicio + '\n\n' + meio + '\n\n' + fim;
 
   // Exibe o conteúdo final no box de "Texto Final"
   document.getElementById('textoFinal').textContent = textoFinal;
@@ -497,11 +510,12 @@ function juntarPartes() {
   // Copia o conteúdo para a área de transferência
   navigator.clipboard.writeText(textoFinal).then(() => {
     // Opcional: Exibir uma mensagem de sucesso ou alterar o estilo do botão
-    alert('Conteúdo copiado com sucesso!');
   }).catch(err => {
     console.error('Erro ao copiar para a área de transferência: ', err);
   });
 }
+
+
     async function salvarTexto() {
       const texto = document.getElementById('textoFinal').textContent.trim();
       if (!texto) {
@@ -593,7 +607,6 @@ function copiarTextoMeioContado() {
 
 </body>
 </html>
-
 
 
 
