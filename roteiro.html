@@ -296,7 +296,7 @@
 
       if (temaInput && !roteiroInput) {
         // Caso apenas o tema seja preenchido
-        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Inclua uma introdução envolvente e tranquila, convidando o espectador a relaxar, e termine lentamente para ajudar a pessoa a adormecer. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
+        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
         document.getElementById('textoFinal').style.display = 'block';
         document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
       } else if (temaInput && roteiroInput) {
@@ -478,6 +478,7 @@ function copiarTextoMeioContado() {
 
 </body>
 </html>
+
 
 
 
