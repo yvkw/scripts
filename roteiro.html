@@ -516,30 +516,41 @@ Roteiro:\n`;
 }
 
 
-    async function salvarTexto() {
-      const texto = document.getElementById('textoFinal').textContent.trim();
-      if (!texto) {
-        return;
-      }
+async function salvarTexto() {
+  const introducao = document.getElementById('introducaoInput').value.trim();
+  const inicio = document.getElementById('inicio').value.trim();
+  const meio = document.getElementById('meio').value.trim();
+  const fim = document.getElementById('fim').value.trim();
 
-      const temaInput = document.getElementById('temaInput').value.trim();
-      if (!temaInput) {
-        return;
-      }
+  // Verifica se todos os campos estão preenchidos
+  if (!introducao || !inicio || !meio || !fim) {
+    alert('Por favor, preencha todos os campos: Introdução, Início, Meio e Fim.');
+    return;
+  }
 
-      try {
-        const handle = await window.showSaveFilePicker({
-          suggestedName: `${temaInput}.txt`,
-          types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
-        });
+  // Combina o conteúdo das partes, sem adicionar rótulos fixos
+  const textoFinal = `${introducao}\n\n${inicio}\n\n${meio}\n\n${fim}`;
 
-        const writable = await handle.createWritable();
-        await writable.write(texto);
-        await writable.close();
-      } catch (e) {
-        console.error('Erro ao salvar:', e);
-      }
+  try {
+    const temaInput = document.getElementById('temaInput').value.trim();
+    if (!temaInput) {
+      alert('Por favor, digite um tema antes de salvar.');
+      return;
     }
+
+    const handle = await window.showSaveFilePicker({
+      suggestedName: `${temaInput}.txt`,
+      types: [{ description: 'Arquivo de Texto', accept: { 'text/plain': ['.txt'] } }]
+    });
+
+    const writable = await handle.createWritable();
+    await writable.write(textoFinal);
+    await writable.close();
+  } catch (e) {
+    console.error('Erro ao salvar:', e);
+  }
+}
+
 
     function copiarTexto(blocoNome) {
   const paragrafos = document.getElementById('paragrafosInput').value
