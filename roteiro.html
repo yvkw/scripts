@@ -296,7 +296,7 @@
 
       if (temaInput && !roteiroInput) {
         // Caso apenas o tema seja preenchido
-        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) sobre o tema: ${temaInput}, com aproximadamente 600 tokens por parágrafo. com uma expressão (narrativa). Me dê os parágrafos limpos, sem títulos.`;
+        const texto = `Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo, semelhante ao estilo de NoteGPT e Boring History for Sleep com aproximadamente 600 tokens por parágrafo. O tema é: ${temaInput}. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Inclua uma introdução envolvente e tranquila, convidando o espectador a relaxar, e termine lentamente para ajudar a pessoa a adormecer. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`;
         document.getElementById('textoFinal').style.display = 'block';
         document.getElementById('conteudoTexto').textContent = texto; // Exibe o texto com tema
       } else if (temaInput && roteiroInput) {
@@ -333,9 +333,9 @@
         return;
       }
 
-      const blocoInico = `Desenvolva o início da história abaixo de forma concistente utlizando aproximadamente (1300 tokens) para o meu roteiro utilizando uma linguagem simples e suave. Não entre no desenvolvimento ou na conclusão da história.\n${paragrafos[0]}`;
-      const blocoMeio = `Desenvolva o meio da história abaixo com no mínimo de (1700 tokens) para desenvolver o argumento deste texto. Use linguagem simples e suave. Não repita o começo da história e não mencione o final ou a conclusão.\n${paragrafos[1]}`;
-      const blocoFim = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens). Termine convidando o público a curtir, se inscrever no canal e ouvir outra história.\n${paragrafos[2]}`;
+      const blocoInico = `Desenvolva o início da história abaixo de forma concistente utlizando aproximadamente (1300 tokens) para o meu roteiro, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Não entre no desenvolvimento ou na conclusão da história.\n${paragrafos[0]}`;
+      const blocoMeio = `Desenvolva o meio da história abaixo de forma concistente utlizando aproximadamente (1700 tokens) para desenvolver o argumento da história, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Não repita o começo da história e não mencione o final ou a conclusão.\n${paragrafos[1]}`;
+      const blocoFim = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens), projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Termine convidando o público a curtir, se inscrever no canal e ouvir outra história.\n${paragrafos[2]}`;
 
 const blocoElement = document.createElement('div');
 blocoElement.classList.add('box-container');
@@ -478,5 +478,6 @@ function copiarTextoMeioContado() {
 
 </body>
 </html>
+
 
 
