@@ -15,7 +15,6 @@
       padding: 2rem;
     }
 
-    /* Navbar fixa no topo */
     .navbar {
       position: fixed;
       top: 0;
@@ -50,14 +49,13 @@
       color: #6366F1;
     }
 
-    /* Espaçamento para o conteúdo abaixo da navbar */
     .container {
       max-width: 800px;
       margin: auto;
       background: #1F2937;
       padding: 2rem;
       border-radius: 12px;
-      margin-top: 60px; /* Deixa espaço para a navbar fixa */
+      margin-top: 60px;
     }
 
     h1 {
@@ -72,27 +70,52 @@
       color: #9CA3AF;
     }
 
-    input, textarea {
+    /* Estilo do box para "GERAR TEMAS" */
+    .gerar-temas-box {
+      background: #1F2937;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      height: 80px; /* Altura fixa para o campo de "GERAR TEMAS" */
+      overflow: hidden; /* Impede que o conteúdo ultrapasse */
+    }
+
+    .gerar-temas-texto {
+      color: #F9FAFB;
+      font-size: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis; /* Exibe reticências se o conteúdo for muito grande */
+      overflow: hidden;
+      display: block;
+    }
+
+    /* Ajuste no input e button */
+    input, button, textarea {
       width: 100%;
-      padding: 0.75rem;
+      padding: 1rem;
       border-radius: 8px;
       border: 1px solid #374151;
       background: #111827;
       color: white;
-      resize: vertical;
+      box-sizing: border-box; /* Garante que o padding não afete o tamanho total */
+    }
+
+    /* Ajuste para garantir que o botão e o campo tenham a mesma largura */
+    .button-container {
+      display: flex;
+      flex-direction: column;
     }
 
     button {
-      width: 100%;
-      padding: 1rem;
       background: #6366F1;
-      border: none;
-      border-radius: 8px;
-      color: white;
       font-weight: bold;
       font-size: 1rem;
-      margin-top: 1rem;
       cursor: pointer;
+      margin-top: 1rem;
     }
 
     button:hover {
@@ -106,6 +129,9 @@
       white-space: pre-wrap;
       border: 1px solid #374151;
       margin-top: 1rem;
+      max-height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     #notification {
@@ -121,7 +147,6 @@
       font-size: 0.875rem;
     }
 
-    /* Estilo para os botões de copiar dentro de cada caixa */
     .prompt-box {
       display: flex;
       justify-content: space-between;
@@ -133,105 +158,192 @@
       border: 1px solid #374151;
     }
 
-    /* Estilo do botão de copiar */
     .copiar-button-prompt2 {
-      padding: 0.4rem 0.6rem; /* Diminuindo o padding */
-      font-size: 0.8rem; /* Ajustando o tamanho da fonte */
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
       background-color: #6366F1;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      width: auto; /* Ajusta a largura do botão ao texto */
-      margin-left: 1rem; /* Espaço entre o texto e o botão */
+      width: auto;
+      margin-left: 1rem;
     }
 
     .copiar-button-prompt2:hover {
       background-color: #4F46E5;
     }
 
-    /* Ajuste para os boxes de texto no Prompt 2 */
-    #prompt2Line1,
-    #prompt2Line2,
-    #prompt2Line3 {
-      flex-grow: 1;
-      margin: 0;
-      padding-right: 1rem; /* Para dar espaço para o botão */
-      overflow-x: hidden; /* Impede o texto de transbordar horizontalmente */
-      white-space: nowrap; /* Impede quebra de linha */
-      text-overflow: ellipsis; /* Adiciona '...' ao final do texto */
+    .response-block-gerar-temas {
+      max-height: 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
       display: block;
-      max-width: 100%; /* Garante que o texto ocupe toda a largura do box */
-      overflow: hidden; /* Esconde qualquer texto que ultrapasse o box */
-      max-height: 50px; /* Limita a altura do box */
+      white-space: nowrap;
     }
+
+    .tema-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .numero-temas {
+      width: 50px;
+      padding: 0.5rem;
+      margin-left: 10px;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: white;
+    }
+
+    .prompt-container {
+      margin-top: 1.5rem;
+    }
+
+    /* Estilo para a área de texto do conteúdo */
+    .textarea-container {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #1F2937;
+      border-radius: 8px;
+      border: 1px solid #374151;
+    }
+
+    .text-info {
+      margin-top: 1rem;
+      color: #F9FAFB;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Botões "Copiar" e "Salvar" */
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .action-buttons button {
+      width: 48%;
+      padding: 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .action-buttons .copiar {
+      background: #6366F1;
+    }
+
+    .action-buttons .salvar {
+      background: #34D399;
+    }
+
+    .action-buttons button:hover {
+      opacity: 0.9;
+    }
+
+    /* Botão pequeno para copiar o conteúdo de "Gerar Temas" */
+.copiar-gerar-temas {
+  background: #6366F1;
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.5rem;  /* Diminui o padding */
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  margin: 1rem auto;  /* Centraliza o botão */
+  display: block;
+  width: 100%;  /* Define a largura como metade do tamanho original */
+}
+
+
+    .copiar-gerar-temas:hover {
+      background: #4F46E5;
+    }
+
+    /* Adiciona espaço entre o botão e o campo "Tema para os Prompts" */
+    .button-container {
+      margin-top: 0.5rem;
+    }
+
   </style>
 </head>
 <body>
-  <!-- Navbar fixa no topo -->
-<div class="navbar">
-  <ul>
-    <li><a href="index.html">Página Inicial</a></li>
-    <li><a href="roteiro.html">ROTEIRO</a></li>
-    <li><a href="prompts.html">PROMPTS</a></li>
-    <li><a href="estilos.html">ESTILOS</a></li>
-    <li><a href="legendas.html">LEGENDAS</a></li>
-	<li><a href="reescritor.html">REESCRITOR</a></li>
-  </ul>
-</div>
+  <div class="navbar">
+    <ul>
+      <li><a href="index.html">Página Inicial</a></li>
+      <li><a href="prompts.html">PROMPTS</a></li>
+      <li><a href="estilos.html">ESTILOS</a></li>
+      <li><a href="legendas.html">LEGENDAS</a></li>
+    </ul>
+  </div>
 
   <div class="container">
     <h1>Gerador de Prompts Personalizados</h1>
-
+	
+    <!-- Box de GERAR TEMAS -->
+    <div class="gerar-temas-box">
+      <p class="gerar-temas-texto" id="gerarTemas">Selecione a quantidade de temas, ao lado, para gerar as histórias.</p>
+      <input type="number" id="numeroTemas" class="numero-temas" placeholder="0" oninput="gerarTemas()" />
+    </div>
+	
+    <button class="copiar-gerar-temas" onclick="copiarGerarTemas()">COPIAR CONTEÚDO</button>
+	
     <label for="tema">Tema para os Prompts</label>
-    <input type="text" id="tema" placeholder="Digite o tema aqui...">
-    <label for="roteiro">Roteiro Resumido (3 partes)</label>
-    <textarea id="roteiro" placeholder="Digite o roteiro aqui..."></textarea>
-    <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
+    <div class="button-container">
+      <input type="text" id="tema" placeholder="Digite o tema aqui...">
+      <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
+    </div>
 
     <div id="notification"></div>
 
     <div id="promptsGerados" style="display:none;">
-      <h2>CRIAR TÍTULOS</h2>
-      <pre id="prompt1" class="response-block"></pre>
-      <button onclick="copiarPrompt('prompt1')"><i class="fa-solid fa-copy"></i> Copiar Prompt 1</button>
-
-      <h2 style="margin-top:2rem;">SEO DO YOUTUBE</h2>
-
-      <!-- Prompt 2 Line 1 -->
-      <div class="prompt-box">
-        <pre id="prompt2Line1" class="response-block"></pre>
-        <button onclick="copiarPrompt('prompt2Line1')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      <!-- Prompt 1 -->
+      <div class="prompt-container">
+        <label for="prompt1">ROTEIRO PERSONALIZADO</label>
+        <div class="prompt-box">
+          <pre id="prompt1" class="response-block"></pre>
+          <button onclick="copiarPrompt('prompt1')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+        </div>
       </div>
 
-      <!-- Prompt 2 Line 2 -->
-      <div class="prompt-box">
-        <pre id="prompt2Line2" class="response-block"></pre>
-        <button onclick="copiarPrompt('prompt2Line2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      <!-- Prompt 2 -->
+      <div class="prompt-container">
+        <label for="prompt2">IMAGENS PARA O ROTEIRO</label>
+        <div class="prompt-box">
+          <pre id="prompt2" class="response-block"></pre>
+          <button onclick="copiarPrompt('prompt2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+        </div>
       </div>
 
-      <!-- Prompt 2 Line 3 -->
-      <div class="prompt-box">
-        <pre id="prompt2Line3" class="response-block"></pre>
-        <button onclick="copiarPrompt('prompt2Line3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+      <!-- Prompt 3 -->
+      <div class="prompt-container">
+        <label for="prompt3">THUMBNIAL PARA O ROTEIRO</label>
+        <div class="prompt-box">
+          <pre id="prompt3" class="response-block"></pre>
+          <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caixa de Texto para inserir conteúdo e calcular palavras -->
+    <div class="textarea-container">
+      <label for="conteudoTexto">Insira seu texto:</label>
+      <textarea id="conteudoTexto" rows="6" oninput="calcularQualidade()" placeholder="Digite aqui um texto grande..."></textarea>
+      
+      <div id="infoTexto" class="text-info">
+        <span><strong>Quantidade de palavras:</strong> <span id="palavras">0</span></span>
       </div>
 
-      <h2 style="margin-top:2rem;">THUMBNAIL</h2>
-      <pre id="prompt3" class="response-block"></pre>
-      <button onclick="copiarPrompt('prompt3')"><i class="fa-solid fa-copy"></i> Copiar Prompt 3</button>
-
-      <h2 style="margin-top:2rem;">PROMPTS DE IMAGENS</h2>
-      <pre id="prompt4" class="response-block"></pre>
-      <button onclick="copiarPrompt('prompt4')"><i class="fa-solid fa-copy"></i> Copiar Prompt 4</button>
-
-	  <h2 style="margin-top:2rem;">PROMPTS DE IMAGEM 2</h2>
-      <pre id="promptImagem2" class="response-block"></pre>
-      <button onclick="copiarPrompt('promptImagem2')"><i class="fa-solid fa-copy"></i> Copiar Prompt Imagem 2</button>
-
-      <h2 style="margin-top:2rem;">GERAR TEMAS</h2>
-      <pre id="prompt5" class="response-block"></pre>
-      <button onclick="copiarPrompt('prompt5')"><i class="fa-solid fa-copy"></i> Copiar Prompt 5</button>
-
+      <!-- Botões "Copiar" e "Salvar" -->
+      <div class="action-buttons">
+        <button class="copiar" onclick="copiarConteudo()">Copiar</button>
+        <button class="salvar" onclick="salvarConteudo()">Salvar</button>
+      </div>
     </div>
 
     <footer>
@@ -240,6 +352,55 @@
   </div>
 
   <script>
+  
+  function copiarPrompt(id) {
+  const promptText = document.getElementById(id).textContent;  // Pega o conteúdo do prompt
+  navigator.clipboard.writeText(promptText).then(() => {
+    showMessage("Conteúdo copiado com sucesso!", "green");
+  }).catch(err => {
+    showMessage("Falha ao copiar o conteúdo!", "red");
+  });
+}
+    function gerarTemas() {
+      const numeroTemas = parseInt(document.getElementById("numeroTemas").value) || 10;
+      const gerarTemasElement = document.getElementById("gerarTemas");
+      let temas = `Função e Objetivo:
+Aja como um estrategista de conteúdo experiente no YouTube. Sua única tarefa é fazer um brainstorming de ideias inovadoras e clicáveis para temas de vídeo que combinem com este estilo: narrativa histórica em ritmo lento e levemente humorística, projetada para ajudar os espectadores a relaxar ou adormecer.
+Saída
+Cada título deve começar com um destes prefixos (gire-os naturalmente):
+“História chata para dormir | ”
+“A história chata do sono | ”
+“Mitos gregos chatos para dormir | ” (use com moderação para episódios centrados em mitos)
+“History Podcast For Sleep | ” (use com moderação para assuntos relacionados à alimentação/vida diária)
+Após o pipe (|), escreva um gancho conciso e curioso (≤ 14 palavras) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
+Quando relevante, anexe tags de tempo de execução exatamente como o público espera, por exemplo, “(2 HORAS)”, “(4 HORAS)” ou “Narrativa suave e sons ambientes (2 HORAS)”.
+Não repita nenhum tópico ou frase exata da lista de referências mostrada abaixo.
+Critérios de conteúdo
+Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.).
+Tom – Os títulos devem soar levemente irônicos, mas não sensacionalistas; eles devem prometer fatos estranhamente reconfortantes, humor suave e detalhes envolventes do tipo "você está lá" — nunca indignação moral moderna ou choque de isca de clique.
+Inclusão e atualidade – Pelo menos um terço da lista deve destacar culturas menos conhecidas ou figuras sub-representadas.
+Favorável ao sono – Evite palavras ásperas no título (“tortura horrível” → “punições peculiares”).
+Lógica de palavras-chave – Incorpore um ou dois substantivos otimizados para SEO em cada título (“rotas da seda”, “jardins astecas”, “curas vitorianas para insônia”), mantendo a formulação natural.
+Exemplos de formatação (NÃO reutilize esses tópicos)
+História Chata para Dormir | Como os Pastores Medievais Se Orientavam Pelos Sinos das Ovelhas (2 HORAS)
+A História Chata Para Dormir | Toda a Vida de Sun Tzu Para se Deixar Levar
+Mitos Gregos Chatos para Dormir | Por que a Hermès Inventou o Primeiro Par de Tênis
+Podcast de História para Dormir | Frutas Esquecidas que os Incas Domesticaram (Conto de Histórias Suave e Sons Ambientais 2 HORAS)
+Títulos de referência (apenas guia de estilo, não repetitivo):
+História Chata para Dormir | Por que Você Não Duraria um Dia na Era Medieval…
+História chata para dormir | Maneiras malucas como as cortesãs japonesas lidavam com a gravidez…
+A vida INTEIRA de Leonardo da Vinci para adormecer
+etc.
+Regras de entrega
+Produza apenas os títulos finalizados, sem comentários, sem texto extra.
+Mantenha cada título em sua própria linha.
+Verifique novamente se há palavras duplicadas ou erros já utilizados na sua saída.
+Pronto? Crie a lista agora.
+Gerar [${numeroTemas}] títulos de vídeo exclusivos
+`;
+      gerarTemasElement.textContent = temas;
+    }
+
     function gerarPrompts() {
       const tema = document.getElementById("tema").value.trim();
       if (!tema) {
@@ -247,239 +408,161 @@
         return;
       }
 
-      const prompt1 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol e francês com o tema: "[${tema}]". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.`;
-
-      const prompt2Line1 = `
-# ESPECIALISTA EM SEO UNIVERSAL
-Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
-
-# SISTEMA DE DETECÇÃO AUTOMÁTICA DE NICHO
-Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR".
-
-
-# PROCESSO DE TRABALHO
-
-ETAPA 1: AGUARDANDO INPUT
-Quando este prompt for ativado, você deve PRIMEIRO solicitar as informações necessárias:
-
-SEO YouTube Universal Ativado! Por favor, forneça:
-
-[PAÍS]: 
-[IDIOMA]: 
-[TÍTULO]: 
-[NARRAÇÃO]: 
-
-ETAPA 2: PROCESSAMENTO E ENTREGA
-Após receber o input, você criará e entregará 2 BLOCOS DE CÓDIGO PLAINTEXT SEPARADOS.
-
----
-
-PARTE 1: DESCRIÇÃO DO VÍDEO
-
-1. HOOK INICIAL ADAPTATIVO (Primeiras 50 caracteres)
-- Pergunta ou afirmação provocativa específica do nicho identificado
-- Deve aparecer no preview
-- Gerar curiosidade imediata usando gatilhos do nicho
-- Incluir palavras-chave principais do tema
-
- 2. PARÁGRAFO DE AUTORIDADE CONTEXTUALIZADO
-- Mencionar especialistas/conceitos relevantes ao nicho
-- Estabelecer credibilidade usando referências da área
-- Usar linguagem e jargões específicos do público-alvo
-- Incluir números, dados ou estatísticas pertinentes ao tema
-
-3. CORPO PRINCIPAL OTIMIZADO
-- Listar benefícios/promessas adequados ao tipo de conteúdo
-- Repetir palavras-chave naturalmente no contexto
-- Incluir variações de termos de busca populares no nicho
-- Criar conexão emocional apropriada ao público
-- Usar power words específicas da categoria
-
-4. PARÁGRAFO DE ENGAJAMENTO PERSONALIZADO
-- Call-to-action adaptado ao nicho
-- Criar senso de comunidade usando linguagem do grupo
-- Agradecer de forma contextualizada
-- Incentivar interação relevante ao tipo de conteúdo
-
-REQUISITO RÍGIDO: A soma dos 4 elementos acima = ~500 caracteres
-
-5. SEÇÃO DE HASHTAGS (45-50 hashtags)
-Formato: 
-Hashtags:
-#Hashtag1 #Hashtag2 #Hashtag3
-
-Distribuição adaptada ao nicho:
-- 10 hashtags ultra-populares da categoria
-- 15 hashtags de nicho específico do tema
-- 15 hashtags long-tail relacionadas
-- 10 hashtags emergentes/trending do setor
-
-6. SEÇÃO "SEARCH TERMS" (500 caracteres)
-Formato: 
-
-Search Terms:
-termo1, termo2, termo3, termo4
-
-Termos específicos do nicho:
-- 40-50 termos de busca relevantes ao tema
-- Frases que o público-alvo realmente busca
-- Variações e sinônimos do nicho
-- Perguntas comuns da área (sem interrogação)
-- Combos de palavras-chave high-value do setor
-- LIMITE RÍGIDO: 500 caracteres
-
-PARTE 2: TAGS PARA O YOUTUBE
-
-Formato: tag1, tag2, tag3, tag longa quatro
-- 10-20 tags estratégicas do nicho identificado
-- Mix de cauda curta e longa relevantes ao tema
-- Baseadas no comportamento de busca do público-alvo
-- LIMITE: 500 caracteres do campo de tags do YouTube
-
-----
-
-# REGRAS DE OTIMIZAÇÃO ADAPTATIVAS
-
-Repetição Estratégica:
-- Palavra-chave principal: 15-20x (contextualizada ao nicho)
-- Palavras-chave secundárias: 8-12x cada (naturais ao tema)
-
-Localização Cultural:
-- Usar expressões e gírias do país-alvo + nicho
-- Adaptar completamente ao SEO local e cultural
-- Incluir trending topics da categoria no país
-
-Limites Totais:
-- Total geral da descrição: até 500 caracteres permitidos
-
-----
-
-# PESQUISA SIMULADA ADAPTATIVA
-
-Antes de criar, você deve simular uma pesquisa específica do nicho identificado:
-- Top 10 vídeos similares da categoria no idioma/país
-- Trending hashtags e tags do nicho específico
-- Perguntas mais buscadas sobre o tema
-- Competidores diretos da área e suas estratégias
-- Gaps de palavras-chave não exploradas no setor
-
----
-
-# FORMATO DE ENTREGA OBRIGATÓRIO
-
-BLOCO 1: DESCRIÇÃO COMPLETA - [NÃO ME FORNEÇA ESSE TITULO]
-plaintext
-[Aqui vai TODO o texto da descrição, desde o Hook até a seção Search Terms, 
-otimizado especificamente para o nicho identificado,
-pronto para copiar e colar no campo de descrição do YouTube]
-
-
-BLOCO 2: TAGS DO YOUTUBE [NÃO ME FORNEÇA ESSE TITULO]
-plaintext
-[Aqui vai a lista de tags separadas por vírgulas,
-específicas do nicho identificado,
-pronta para copiar e colar no campo de tags do YouTube]
-
-
-ESTATÍSTICAS DE OTIMIZAÇÃO
-Apresentar FORA dos blocos de código:
-- Caracteres da Descrição (texto): [X/500]
-- Caracteres Search Terms: [X500]
-- Caracteres das Tags: [X/500]
-- Densidade de keywords (descrição): [X%]
-- Hashtags totais: [X]
-- Score de otimização: [X/100]
-- Nicho Identificado: [CATEGORIA DETECTADA]
-- Público-alvo: [PERFIL DO PÚBLICO]
-
----
-
-# INSTRUÇÕES ESPECIAIS
-
-- Se o título mencionar números, SEMPRE incluir variações escritas
-- Incluir termos de voice search apropriados ao nicho
-- Adaptar completamente ao SEO local e do setor
-- Manter estrutura e tamanhos EXATAMENTE como especificado
-- IMPORTANTE: Os títulos "Hashtags:" e "Search Terms:" devem ser traduzidos:
-  - Português: "Hashtags:" e "Termos de Busca:"
-  - Espanhol: "Hashtags:" e "Términos de Búsqueda:"
-  - Inglês: "Hashtags:" e "Search Terms:"
-  - Francês: "Hashtags:" e "Termes de Recherche:"
-  - Etc.
-
-# ADAPTAÇÃO INTELIGENTE POR NICHO
-- Notícias: Foco em urgência, exclusividade, timing
-- Saúde: Problema-solução, credibilidade médica
-- Fitness: Resultados, transformação, motivação
-- Games: Gameplay, dicas, conquistas
-- Educação: Aprendizado claro, passo a passo
-- Entretenimento: Diversão, emoção, viral
-- Negócios: ROI, estratégias, resultados
-- Espiritualidade: Fé, esperança, conexão
-- E assim por diante para cada nicho...
-
----
-
-# INÍCIO DO PROCESSO
-
-MODO ATIVADO: SEO Universal Adaptativo v1.0 🚀
-`;
-      const prompt2Line2 = `Me entregue o contéudo em um idioma e pais por vez, sempre perguntando se pode seguir para o proximo idioma.\nPAIS: Brasil, Espanha e França\nIDIOMA: Português, espanhol e francês\nTEMA: [${tema}]\nROTEIRO: [${document.getElementById("roteiro").value.trim()}]`;
-      const prompt2Line3 = "Siga com o próximo pais e idioma";
-
-const prompt3 = `Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: " ${tema}", usando contornos ousados e cores vivas e saturadas. O título "HISTÓRIA ANTIGA PARA DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIA ANTIGA PARA DORMIR", no lado esquerdo.
-
-Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: " ${tema}", usando contornos ousados e cores vivas e saturadas. O título "HISTORIA ANTIGUA PARA DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTORIA ANTIGUA PARA DORMIR", no lado esquerdo.
-
-Crie uma ilustração detalhada, desenhada à mão, com personagens cartunescos em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: " ${tema}", usando contornos ousados e cores vivas e saturadas. O título "HISTOIRE ANCIENNE POUR DORMIR" deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTOIRE ANCIENNE POUR DORMIR", no lado esquerdo.`;
-
-      const prompt4 = `Crie 30 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês e focar em cenas calmas, serenas e relaxantes que evoquem tranquilidade, imersão e curiosidade. Cada imagem deve traduzir a ideia central de forma simbólica ou literal, sempre com um toque suave e evocativo, adequado para um público que busca relaxamento e descanso.
-
-Seja altamente específico e detalhado ao descrever:
-– Ambiente, paisagem e cenário (incluindo hora do dia, clima, localização)
-– Personagens (incluindo gênero, idade, aparência, roupas, poses, interações – mas de forma secundária, ou seja, focando mais no cenário do que neles. Eles devem complementar o ambiente, sem serem o centro da cena)
-– Iluminação, emoções, clima/atmosfera geral da cena
-
-As imagens devem ter um forte impacto visual, mas de maneira serena e contemplativa, sem ser dramáticas ou excessivamente intensas. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do vídeo, sempre com uma abordagem visual que inspire calma, leveza e uma sensação de segurança.
-
-Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
-      const prompt5 = `Me dê 10 temas para vídeos do YouTube com alto potencial de viralização. O tema deve ser baseados no tema [histórias antigas de como era a vida cotidiana em tempos distantes]. Quero temas curiosos que chamem muito a atenção. Quero no seguite formato:
-
-História Antiga sobre: [Tema] - [Explicação]`;
-
-const promptImagem2 = `Crie 30 prompts de imagem baseado no texto abaixo. Os prompts devem ser escritos em inglês. NÃO copie frases do texto. Em vez disso, leia cada parágrafo, compreenda profundamente a ideia central, e então crie cenas visuais impactantes que expressem essa ideia de forma simbólica, emocional ou literal, conforme apropriado.
-
-Seja altamente específico e detalhado ao descrever:
-– Ambiente e cenário (incluindo hora do dia, clima, localização)
-– Personagens (gênero, idade, cor de cabelo, cor de olhos, etnia, roupas, expressões faciais, poses, interações)
-– Iluminação, emoções, clima/atmosfera geral da cena
-
-As imagens devem causar forte impacto visual e transmitir claramente a essência de cada parágrafo. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do texto.
-
-Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.
-
-Texto a ser ilustrado:\n\n${document.getElementById("roteiro").value.trim()}`;
+      const prompt1 = `Você está escrevendo uma narrativa histórica longa para a série "História Chata para Dormir". Este projeto incluirá de 15 a 20 histórias históricas distintas. Cada história será dividida em 3 seções. Cada seção deve ter entre 1.500 e 2.000 palavras.
+Contagem total de palavras: tente criar um vídeo com conteúdo de 5 horas (cerca de 30.000 a 40.000 palavras no total).
+Estrutura:
+Título principal: Um único título abrangente com várias histórias históricas.
+Cada história: Cada história será dividida em 3 seções.
+Por exemplo:
+História 1: [Título da história 1] (3 seções, 1.500–2.000 palavras cada).
+História 2: [Título da história 2] (3 seções, 1.500–2.000 palavras cada).
+Continue esse formato para todas as 15–20 histórias.
+Siga as instruções:
+Comece com a História 1, Seção 1 (1.500–2.000 palavras).
+Concentre-se no tópico principal ou na figura histórica, descrevendo-os detalhadamente e com precisão histórica.
+Termine a Seção 1 com um pensamento ou questão não resolvida, estimulando a curiosidade pela próxima parte.
+Depois que a Seção 1 estiver concluída, pergunte: "Você gostaria de continuar para a Seção 2 da História 1?"
+A Seção 2 dará continuidade à Seção 1, aprofundando a narrativa, adicionando mais contexto e aproximando a história de sua resolução.
+Termine a Seção 2 com um ponto ou questão não resolvida para se preparar para a Seção 3.
+Após concluir a Seção 2, pergunte: "Você gostaria de continuar para a Seção 3 da História 1?"
+A Seção 3 concluirá a história, focando no clímax ou resolução do evento e nos resultados finais ou lições aprendidas.
+Termine com uma reflexão instigante sobre como o evento impactou a história ou se relaciona com os tempos modernos.
+Repita esse processo para todas as 15 a 20 histórias. Após concluir as 3 seções da História 1, passe para a História 2 e continue o processo.
+Requisitos de estilo de escrita:
+Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
+Voz: Dirija-se diretamente ao ouvinte ("você"), criando uma sensação de imersão na história.
+Profundidade: Inclua contexto histórico, estratégias de sobrevivência no mundo real e histórias pessoais que moldaram o curso da história. Mesmo que os detalhes sejam tediosos, apresente-os de uma forma que pareça significativa.
+Linguagem: Use descrições envolventes e vívidas, mantendo um tom apropriado para a história do sono. Evite tornar o conteúdo excessivamente dramático ou fictício.
+Finais: Cada seção deve terminar com uma pergunta aberta ou um pensamento não resolvido, incentivando a curiosidade e a reflexão.
+Requisitos de conteúdo:
+Use eventos, figuras e lugares históricos reais, concentrando-se em histórias chatas — coisas como detalhes da vida cotidiana, eventos há muito esquecidos ou figuras menos conhecidas e seu impacto.
+Cada história deve destacar a resiliência humana, a sobrevivência ou os resultados inesperados de um evento ou figura histórica.
+Evite incluir quaisquer elementos fictícios, a menos que estejam diretamente vinculados a experimentos mentais históricos documentados ou ambiguidades.
+O foco deve estar nas vidas cotidianas, nos fatos históricos ocultos e nas histórias não contadas que compõem nosso passado.
+O primeiro parágrafo deve ser uma introdução de 10 segundos de forma contínua. Comece apresentando rapidamente o tema do vídeo. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo.
+Instruções
+Depois de fornecer o Título Principal, o assistente gerará de 15 a 20 títulos de histórias individuais para o tema abrangente.
+O assistente então gerará a Seção 1 da História 1 e continuará com o processo até que todas as seções das 15 a 20 histórias sejam concluídas.
+Importante:
+Cada seção deve ter entre 1.500 e 2.000 palavras.
+Certifique-se de que a história transite suavemente de uma seção para outra.
+Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
+Título: [${tema}]`;
+      const prompt2 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". Sua tarefa é analisar o título fornecido e gerar um conjunto de prompts visuais de alta qualidade, com base no número desejado de imagens. Esses prompts serão usados para gerar visuais por meio de ferramentas como ImageFX, MidJourney, DALL·E ou Canva AI.
+OBJETIVO
+Interprete o tema, o tom histórico e o arco emocional do título
+Crie prompts visualmente consistentes e pictóricos para imagens de vídeo envolventes
+Cada imagem deve seguir o mesmo esquema de cores, iluminação e estilo de arte para manter a coesão visual em todo o vídeo
+BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
+Manuscrito medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
+DIRETRIZES DE ESTILO VISUAL
+Estilo de arte:
+Ilustração de manuscrito medieval, inspirada em xilogravura, estilo de arte popular, sombreamento a óleo plano, linhas de tinta soltas, texturas envelhecidas
+Textura:
+Grão de pergaminho ou tela visível
+Rachaduras envelhecidas, imperfeições causadas por pinceladas
+Fuligem e danos causados pelo fogo são bem-vindos
+Esquema de cores (aplicado em todas as imagens):
+Vermelhos queimados
+Verde oliva
+Marrons empoeirados
+Fuligem preta
+Creme de pergaminho
+Evite brancos brilhantes, neon ou cores saturadas
+manuscritos
+Iluminação:
+Cenas quentes à luz de velas ou apenas com lareira
+Cantos profundos, sombras suaves
+Sempre quente, sem a luz do estúdio
+Personagens:
+Rostos suaves, cansados e expressivos
+Ombros para cima ou cintura para cima
+Roupas medievais ou camponesas, muitas vezes usadas ou remendadas
+Leve exagero anatômico como marginália
+Ambientes:
+Cozinhas de pedra, paredes de pergaminho, salas iluminadas por lareiras
+Pisos de barro, esteiras de palha, vigas de madeira
+Adicione adereços: espelhos rachados, ferramentas medievais, pães, tigelas de madeira
+Todos os fundos devem permanecer no mesmo estilo e iluminação
+FILOSOFIA DE DESIGN
+Todos os visuais devem transmitir a sensação de:
+Calmo, lento, melancólico
+Historicamente texturizado
+Visualmente consistente em todo o conjunto
+Como páginas do mesmo livro medieval ilustrado
+ ENTRADA
+Inserir título aqui: [${tema}]
+Número de imagens necessárias: [30]`;
+      const prompt3 = `Você é um gerador de prompts de IA treinado em visuais para contar histórias no YouTube. Sua tarefa é escrever prompts de design de miniaturas no estilo e tom artísticos exatos do canal do YouTube "Boring History For Sleep". O usuário fornecerá um título e você retornará um item:
+Saída: Um único e detalhado prompt de arte de IA
+Será gerado um prompt de imagem em miniatura completa para o título fornecido. Siga estas regras rígidas:
+BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
+Manuscrito medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
+Estilo visual e clima
+Estilo de arte: Ilustração de livro de histórias pintada à mão com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”)
+Use frases como:
+estilo de arte de livro de histórias
+ilustração pintada à mão
+textura de pastel a óleo plano
+sombreamento claro com tons terrosos
+Tom: calmo, histórico, aconchegante — com um leve toque humorístico ou assustador
+Paleta de cores: Cores quentes e suaves — vermelhos empoeirados, marrons suaves, creme-pergaminho, verdes-musgo. Tons suaves de tinta a óleo ou pastel são recomendados.
+Iluminação: Iluminação ambiente suave, sombras sutis para profundidade
+Fundo: Limpo, branco ou esbranquiçado
+Diretrizes de Personagem
+Todos os personagens devem estar em close-up (ombros para cima ou cintura para cima)
+Expressões faciais expressivas (confusão, cansaço, medo, curiosidade)
+Roupas e penteados de época
+Exagero suave para emoção (não caricatura)
+Composição e Layout
+Deixe os 30% da esquerda da imagem vazios para posicionamento do texto (sem texto na arte!)
+Lado direito: Personagens ou cena
+Fundo: Textura simples e leve, estilo pergaminho
+Adereços e narrativa
+Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja)
+Os adereços devem realçar o tema e reforçar o cenário
+Incentive a interação sutil entre personagens ou entre um personagem e um adereço
+O que NÃO fazer
+Não inclua nenhum texto ou título na imagem
+Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em quadrinhos)
+Evite cores brilhantes/neon ou gradientes digitais
+Seção de título: [${tema}]`;
 
       document.getElementById("prompt1").textContent = prompt1;
-      document.getElementById("prompt2Line1").textContent = prompt2Line1;
-      document.getElementById("prompt2Line2").textContent = prompt2Line2;
-      document.getElementById("prompt2Line3").textContent = prompt2Line3;
+      document.getElementById("prompt2").textContent = prompt2;
       document.getElementById("prompt3").textContent = prompt3;
-      document.getElementById("prompt4").textContent = prompt4;
-      document.getElementById("prompt5").textContent = prompt5;
-	  document.getElementById("promptImagem2").textContent = promptImagem2;
 
       document.getElementById("promptsGerados").style.display = "block";
       showMessage("Prompts gerados com sucesso!", "green");
     }
 
-    function copiarPrompt(id) {
-      const text = document.getElementById(id).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        showMessage(`Prompt copiado com sucesso!`, "green");
-      }).catch(() => {
-        showMessage("Erro ao copiar. Tente novamente.", "red");
-      });
+    function calcularQualidade() {
+      const texto = document.getElementById("conteudoTexto").value;
+      const palavras = texto.trim().split(/\s+/).length;
+      
+      document.getElementById("palavras").textContent = palavras;
+    }
+
+    function copiarConteudo() {
+      const texto = document.getElementById("conteudoTexto").value;
+      navigator.clipboard.writeText(texto);
+    }
+
+    function salvarConteudo() {
+      const tema = document.getElementById("tema").value.trim();
+      const texto = document.getElementById("conteudoTexto").value;
+
+      const filename = tema || "texto_salvo"; // Se não tiver tema, o arquivo será salvo como "texto_salvo.txt"
+      const blob = new Blob([texto], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `${filename}.txt`;
+      link.click();
+    }
+
+    function copiarGerarTemas() {
+      const gerarTemasText = document.getElementById("gerarTemas").textContent;
+      navigator.clipboard.writeText(gerarTemasText);
     }
 
     function showMessage(msg, color = 'white') {
@@ -490,14 +573,3 @@ Texto a ser ilustrado:\n\n${document.getElementById("roteiro").value.trim()}`;
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
