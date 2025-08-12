@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -174,7 +175,7 @@
     <button onclick="gerarImagens('realista')">Pintura Realista</button>
 	<button onclick="gerarImagens('classical_realism')">Classical Realism</button>
     <button onclick="gerarImagens('grotesque')">Grotesque</button>
-    <button onclick="gerarImagens('flat')">Flat Design</button>
+    <button onclick="gerarImagens('aquarela')">Aquarela</button>
 
     <div id="notification"></div>
 
@@ -210,8 +211,8 @@ function gerarImagens(estilo) {
       textoGerado = `Create a realistic painting-style illustration, reminiscent of Renaissance or classical painting, in ultra-high-quality 8k UHD, the highest quality, and highly detailed. Focus on detailed figures with soft yet defined lines, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and the environment. The background should include architectural elements or natural scenery, rendered in soft tones with a focus on realism: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'grotesque') {
       textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafos[promptIndex].trim()}.`;
-    } else if (estilo === 'flat') {
-      textoGerado = `Create an illustration in flat design and minimalist line art style, ultra quality, 8k UHD, best quality, highly detailed. Use simple lines with defined contours and a limited color palette of soft, solid colors. The scene should be clear and stylized, with no complex textures or detailed shading. The illustration should resemble vector style art, capturing the essence of the subject with simplicity and clarity: ${paragrafos[promptIndex].trim()}`;
+    } else if (estilo === 'aquarela') {
+      textoGerado = `Style water color wash: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'classical_realism') {
       textoGerado = `Create a highly detailed classical realism painting in the style, in ultra-high-quality 8k UHD, the highest quality, and highly detailed: ${paragrafos[promptIndex].trim()}`;
     }
