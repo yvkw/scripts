@@ -364,40 +364,41 @@
     function gerarTemas() {
       const numeroTemas = parseInt(document.getElementById("numeroTemas").value) || 10;
       const gerarTemasElement = document.getElementById("gerarTemas");
-      let temas = `Função e Objetivo:
-Aja como um estrategista de conteúdo experiente no YouTube. Sua única tarefa é fazer um brainstorming de ideias inovadoras e clicáveis para temas de vídeo que combinem com este estilo: narrativa histórica em ritmo lento e levemente humorística, projetada para ajudar os espectadores a relaxar ou adormecer.
-Saída
-Cada título deve começar com um destes prefixos (gire-os naturalmente):
+      let temas = `Você é um e um estrategista de conteúdo experiente no YouTube. Sua única tarefa é fazer um brainstorming de ideias inovadoras e clicáveis para temas de vídeo que combinem com este estilo: narrativa histórica em ritmo lento e levemente humorística, projetada para ajudar os espectadores a relaxar ou adormecer.
+
+Saída:
+Cada título deve começar com prefixo abaixo:
 “História chata para dormir | ”
-“A história chata do sono | ”
-“Mitos gregos chatos para dormir | ” (use com moderação para episódios centrados em mitos)
-“History Podcast For Sleep | ” (use com moderação para assuntos relacionados à alimentação/vida diária)
 Após o pipe (|), escreva um gancho conciso e curioso (≤ 14 palavras) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
-Quando relevante, anexe tags de tempo de execução exatamente como o público espera, por exemplo, “(2 HORAS)”, “(4 HORAS)” ou “Narrativa suave e sons ambientes (2 HORAS)”.
-Não repita nenhum tópico ou frase exata da lista de referências mostrada abaixo.
-Critérios de conteúdo
+
+Critérios de conteúdo:
 Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.).
+
 Tom – Os títulos devem soar levemente irônicos, mas não sensacionalistas; eles devem prometer fatos estranhamente reconfortantes, humor suave e detalhes envolventes do tipo "você está lá" — nunca indignação moral moderna ou choque de isca de clique.
 Inclusão e atualidade – Pelo menos um terço da lista deve destacar culturas menos conhecidas ou figuras sub-representadas.
+
 Favorável ao sono – Evite palavras ásperas no título (“tortura horrível” → “punições peculiares”).
+
 Lógica de palavras-chave – Incorpore um ou dois substantivos otimizados para SEO em cada título (“rotas da seda”, “jardins astecas”, “curas vitorianas para insônia”), mantendo a formulação natural.
-Exemplos de formatação (NÃO reutilize esses tópicos)
-História Chata para Dormir | Como os Pastores Medievais Se Orientavam Pelos Sinos das Ovelhas (2 HORAS)
-A História Chata Para Dormir | Toda a Vida de Sun Tzu Para se Deixar Levar
-Mitos Gregos Chatos para Dormir | Por que a Hermès Inventou o Primeiro Par de Tênis
-Podcast de História para Dormir | Frutas Esquecidas que os Incas Domesticaram (Conto de Histórias Suave e Sons Ambientais 2 HORAS)
-Títulos de referência (apenas guia de estilo, não repetitivo):
-História Chata para Dormir | Por que Você Não Duraria um Dia na Era Medieval…
-História chata para dormir | Maneiras malucas como as cortesãs japonesas lidavam com a gravidez…
-A vida INTEIRA de Leonardo da Vinci para adormecer
-etc.
-Regras de entrega
-Produza apenas os títulos finalizados, sem comentários, sem texto extra.
-Mantenha cada título em sua própria linha.
-Verifique novamente se há palavras duplicadas ou erros já utilizados na sua saída.
+
+Exemplos de formatação - (Não repita nenhum tópico ou frase exata da lista de referências mostrada abaixo):
+- História Chata para Dormir | Como os Pastores Medievais Se Orientavam Pelos Sinos das Ovelhas (2 HORAS)
+- A História Chata Para Dormir | Toda a Vida de Sun Tzu Para se Deixar Levar
+- Mitos Gregos Chatos para Dormir | Por que a Hermès Inventou o Primeiro Par de Tênis
+- Podcast de História para Dormir | Frutas Esquecidas que os Incas Domesticaram (Conto de Histórias Suave e Sons Ambientais 2 HORAS)
+- Títulos de referência (apenas guia de estilo, não repetitivo):
+- História Chata para Dormir | Por que Você Não Duraria um Dia na Era Medieval…
+- História chata para dormir | Maneiras malucas como as cortesãs japonesas lidavam com a gravidez…
+- A vida INTEIRA de Leonardo da Vinci para adormecer
+- etc.
+
+Regras de entrega:
+- Produza apenas os títulos finalizados, sem comentários, sem texto extra.
+- Mantenha cada título em sua própria linha.
+- Verifique novamente se há palavras duplicadas ou erros já utilizados na sua saída.
+
 Pronto? Crie a lista agora.
-Gerar [${numeroTemas}] títulos de vídeo exclusivos
-`;
+Gerar [${numeroTemas}] títulos de vídeo exclusivos.`;
       gerarTemasElement.textContent = temas;
     }
 
@@ -458,16 +459,23 @@ Certifique-se de que a história transite suavemente de uma seção para outra.
 Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
 
 Tema: [${tema}]`;
-      const prompt2 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". Sua tarefa é analisar o título fornecido e gerar um conjunto de prompts visuais de alta qualidade, com base no número desejado de imagens. Esses prompts serão usados para gerar visuais por meio de ferramentas como ImageFX, MidJourney, DALL·E ou Canva AI.
-OBJETIVO
+      const prompt2 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". 
+Sua tarefa é analisar o título fornecido e gerar um conjunto de prompts visuais de alta qualidade, com base no número desejado de imagens. 
+Esses prompts serão usados para gerar visuais por meio de ferramentas como ImageFX, MidJourney, DALL·E ou Canva AI.
+
+OBJETIVO:
 Interprete o tema, o tom histórico e o arco emocional do título
 Crie prompts visualmente consistentes e pictóricos para imagens de vídeo envolventes
 Cada imagem deve seguir o mesmo esquema de cores, iluminação e estilo de arte para manter a coesão visual em todo o vídeo
+
 BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
 Manuscrito medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
+
 DIRETRIZES DE ESTILO VISUAL
+
 Estilo de arte:
-Ilustração de manuscrito medieval, inspirada em xilogravura, estilo de arte popular, sombreamento a óleo plano, linhas de tinta soltas, texturas envelhecidas
+Ilustração de manuscrito medieval, inspirada em xilogravura, estilo de arte popular, sombreamento a óleo plano, linhas de tinta soltas, texturas envelhecidas.
+
 Textura:
 Grão de pergaminho ou tela visível
 Rachaduras envelhecidas, imperfeições causadas por pinceladas
@@ -480,63 +488,80 @@ Fuligem preta
 Creme de pergaminho
 Evite brancos brilhantes, neon ou cores saturadas
 manuscritos
+
 Iluminação:
 Cenas quentes à luz de velas ou apenas com lareira
 Cantos profundos, sombras suaves
 Sempre quente, sem a luz do estúdio
+
 Personagens:
 Rostos suaves, cansados e expressivos
 Ombros para cima ou cintura para cima
 Roupas medievais ou camponesas, muitas vezes usadas ou remendadas
 Leve exagero anatômico como marginália
+
 Ambientes:
 Cozinhas de pedra, paredes de pergaminho, salas iluminadas por lareiras
 Pisos de barro, esteiras de palha, vigas de madeira
 Adicione adereços: espelhos rachados, ferramentas medievais, pães, tigelas de madeira
 Todos os fundos devem permanecer no mesmo estilo e iluminação
-FILOSOFIA DE DESIGN
+
+FILOSOFIA DE DESIGN:
 Todos os visuais devem transmitir a sensação de:
 Calmo, lento, melancólico
 Historicamente texturizado
 Visualmente consistente em todo o conjunto
 Como páginas do mesmo livro medieval ilustrado
- ENTRADA
-Inserir título aqui: [${tema}]
+
+IMPORTANTE:
+Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua todos escritos em inglês.
+
+ENTRADA:
+Inserir título aqui: [${tema}]]
 Número de imagens necessárias: [30]`;
-      const prompt3 = `Você é um gerador de prompts de IA treinado em visuais para contar histórias no YouTube. Sua tarefa é escrever prompts de design de miniaturas no estilo e tom artísticos exatos do canal do YouTube "Boring History For Sleep". O usuário fornecerá um título e você retornará um item:
+      const prompt3 = `Você é um gerador de prompts de IA treinado em visuais para contar histórias no YouTube. 
+Sua tarefa é escrever prompts de design de miniaturas no estilo e tom artísticos exatos do canal do YouTube "Boring History For Sleep". O usuário fornecerá um título e você retornará um item:
 Saída: Um único e detalhado prompt de arte de IA
+
 Será gerado um prompt de imagem em miniatura completa para o título fornecido. Siga estas regras rígidas:
+
 BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
 Manuscrito medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
-Estilo visual e clima
+
+Estilo visual e clima:
 Estilo de arte: Ilustração de livro de histórias pintada à mão com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”)
+
 Use frases como:
 estilo de arte de livro de histórias
 ilustração pintada à mão
 textura de pastel a óleo plano
 sombreamento claro com tons terrosos
+
 Tom: calmo, histórico, aconchegante — com um leve toque humorístico ou assustador
 Paleta de cores: Cores quentes e suaves — vermelhos empoeirados, marrons suaves, creme-pergaminho, verdes-musgo. Tons suaves de tinta a óleo ou pastel são recomendados.
 Iluminação: Iluminação ambiente suave, sombras sutis para profundidade
-Fundo: Limpo, branco ou esbranquiçado
-Diretrizes de Personagem
+Fundo: Limpo, branco.
+
+Diretrizes de Personagem:
 Todos os personagens devem estar em close-up (ombros para cima ou cintura para cima)
 Expressões faciais expressivas (confusão, cansaço, medo, curiosidade)
 Roupas e penteados de época
 Exagero suave para emoção (não caricatura)
-Composição e Layout
+
+Composição e Layout:
 Deixe os 30% da esquerda da imagem vazios para posicionamento do texto (sem texto na arte!)
 Lado direito: Personagens ou cena
 Fundo: Textura simples e leve, estilo pergaminho
-Adereços e narrativa
-Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja)
-Os adereços devem realçar o tema e reforçar o cenário
-Incentive a interação sutil entre personagens ou entre um personagem e um adereço
-O que NÃO fazer
+
+Adereços e narrativa:
+Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja). Os adereços devem realçar o tema e reforçar o cenário Incentive a interação sutil entre personagens ou entre um personagem e um adereço.
+
+O que NÃO fazer:
 Não inclua nenhum texto ou título na imagem
 Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em quadrinhos)
 Evite cores brilhantes/neon ou gradientes digitais
-Seção de título: [${tema}]`;
+
+Tema: [${tema}]`;
 
       document.getElementById("prompt1").textContent = prompt1;
       document.getElementById("prompt2").textContent = prompt2;
@@ -583,5 +608,6 @@ Seção de título: [${tema}]`;
   </script>
 </body>
 </html>
+
 
 
