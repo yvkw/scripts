@@ -7,6 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
   <style>
+  #prompt5 {
+  white-space: normal;     /* Permite que o texto ocupe múltiplas linhas */
+  overflow: visible;       /* Deixa o texto visível, sem cortes */
+  text-overflow: unset;    /* Remove o uso das reticências */
+  max-height: none;        /* Remove a altura máxima para o prompt 5 */
+}
     body {
       font-family: 'Inter', sans-serif;
       background: #111827;
@@ -610,28 +616,16 @@ Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em 
 Evite cores brilhantes/neon ou gradientes digitais
 
 Tema: [${tema}]`;
-      const prompt5 = `Crie uma Ilustração de livro de histórias pintada à mão com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”). Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
+      const prompt5 = `Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "tema". O texto: "HISTÓRIA CHATA PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIA CHATA PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
 
-Diretrizes de Personagem:
-Todos os personagens devem estar em close-up (ombros para cima ou cintura para cima)
-Expressões faciais expressivas (confusão, cansaço, medo, curiosidade)
-Roupas e penteados de época
-Exagero suave para emoção (não caricatura)
 
-Composição e Layout:
-Deixe os 30% da esquerda da imagem vazios para posicionamento do texto (sem texto na arte!)
-Lado direito: Personagens ou cena
-Fundo: O fundo deve ser branco
+Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "tema". O texto: "HISTORIA ABURRIDA PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTORIA ABURRIDA PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
 
-Adereços e narrativa:
-Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja). Os adereços devem realçar o tema e reforçar o cenário Incentive a interação sutil entre personagens ou entre um personagem e um adereço.
 
-O que NÃO fazer:
-Não inclua nenhum texto ou título na imagem
-Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em quadrinhos)
-Evite cores brilhantes/neon ou gradientes digitais
+Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "tema". O texto: "HISTOIRE ENNUYEUSE POUR DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTOIRE ENNUYEUSE POUR DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
 
-Tema: [${tema}]`;
+
+Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "tema". O texto: "LANGWEILIGE GESCHICHTE ZUM EINSCHLAFEN", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. Inclua símbolos temáticos relevantes. O fundo deve ser branco. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "LANGWEILIGE GESCHICHTE ZUM EINSCHLAFEN", no lado esquerdo. Em anexo envio imagens como referência!`;
       const prompt6 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol, francês e alemão com o tema: "${tema}". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.`;
 
 
@@ -639,7 +633,7 @@ Tema: [${tema}]`;
       document.getElementById("prompt2").textContent = prompt2;
       document.getElementById("prompt3").textContent = prompt3;
       document.getElementById("prompt4").textContent = prompt4;
-      document.getElementById("prompt5").textContent = prompt5;
+      document.getElementById("prompt5").innerHTML = prompt5.replace(/\n/g, "<br>");
       document.getElementById("prompt6").textContent = prompt6;
 
       document.getElementById("promptsGerados").style.display = "block";
@@ -683,7 +677,6 @@ Tema: [${tema}]`;
   </script>
 </body>
 </html>
-
 
 
 
