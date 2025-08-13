@@ -174,8 +174,8 @@
     
     <button onclick="gerarImagens('realista')">Pintura Realista</button>
 	<button onclick="gerarImagens('classical_realism')">Classical Realism</button>
-    <button onclick="gerarImagens('grotesque')">Grotesque</button>
     <button onclick="gerarImagens('aquarela')">Aquarela</button>
+	<button onclick="gerarImagens('nenhum')">Nenhum</button>
 
     <div id="notification"></div>
 
@@ -209,8 +209,8 @@ function gerarImagens(estilo) {
     // Personalizando o conteúdo baseado no estilo
     if (estilo === 'realista') {
       textoGerado = `Create a realistic painting-style illustration, reminiscent of Renaissance or classical painting, in ultra-high-quality 8k UHD, the highest quality, and highly detailed. Focus on detailed figures with soft yet defined lines, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and the environment. The background should include architectural elements or natural scenery, rendered in soft tones with a focus on realism: ${paragrafos[promptIndex].trim()}`;
-    } else if (estilo === 'grotesque') {
-      textoGerado = `Grotesque cartoon illustration, earthy tones, flat lighting, serene expressions, calm gazes, hand-drawn texture: ${paragrafos[promptIndex].trim()}.`;
+    } else if (estilo === 'nenhum') {
+      textoGerado = `${paragrafos[promptIndex].trim()}.`;
     } else if (estilo === 'aquarela') {
       textoGerado = `Style water color wash: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'classical_realism') {
@@ -275,5 +275,6 @@ function gerarImagens(estilo) {
   </script>
 </body>
 </html>
+
 
 
