@@ -325,7 +325,7 @@
         <label for="prompt3">IMAGENS PARA O ROTEIRO 2</label>
         <div class="prompt-box">
           <pre id="prompt3" class="response-block"></pre>
-          <button onclick="copiarPrompt('prompt2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+          <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
         </div>
       </div>	  
 	  
@@ -334,25 +334,25 @@
         <label for="prompt4">THUMBNIAL PARA O ROTEIRO</label>
         <div class="prompt-box">
           <pre id="prompt4" class="response-block"></pre>
-          <button onclick="copiarPrompt('prompt2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+          <button onclick="copiarPrompt('prompt4')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
         </div>
       </div>
 	  
       <!-- Prompt 5 -->
       <div class="prompt-container">
-        <label for="prompt5">GERAR TITULOS</label>
+        <label for="prompt5">THUMBNIAL PARA O ROTEIRO 2</label>
         <div class="prompt-box">
           <pre id="prompt5" class="response-block"></pre>
-          <button onclick="copiarPrompt('prompt2')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+          <button onclick="copiarPrompt('prompt5')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
         </div>
       </div>
 	  
       <!-- Prompt 6 -->
       <div class="prompt-container">
-        <label for="prompt6">PROMPT</label>
+        <label for="prompt6">GERAR TITULOS</label>
         <div class="prompt-box">
           <pre id="prompt6" class="response-block"></pre>
-          <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
+          <button onclick="copiarPrompt('prompt6')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
         </div>
       </div>
     </div>
@@ -610,9 +610,29 @@ Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em 
 Evite cores brilhantes/neon ou gradientes digitais
 
 Tema: [${tema}]`;
-      const prompt5 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol, francês e alemão com o tema: "${tema}". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.
-`;
-      const prompt6 = `AAAAAAAAAAA`;
+      const prompt5 = `Crie uma Ilustração de livro de histórias pintada à mão com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”). Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
+
+Diretrizes de Personagem:
+Todos os personagens devem estar em close-up (ombros para cima ou cintura para cima)
+Expressões faciais expressivas (confusão, cansaço, medo, curiosidade)
+Roupas e penteados de época
+Exagero suave para emoção (não caricatura)
+
+Composição e Layout:
+Deixe os 30% da esquerda da imagem vazios para posicionamento do texto (sem texto na arte!)
+Lado direito: Personagens ou cena
+Fundo: O fundo deve ser branco
+
+Adereços e narrativa:
+Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja). Os adereços devem realçar o tema e reforçar o cenário Incentive a interação sutil entre personagens ou entre um personagem e um adereço.
+
+O que NÃO fazer:
+Não inclua nenhum texto ou título na imagem
+Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em quadrinhos)
+Evite cores brilhantes/neon ou gradientes digitais
+
+Tema: [${tema}]`;
+      const prompt6 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol, francês e alemão com o tema: "${tema}". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.`;
 
 
       document.getElementById("prompt1").textContent = prompt1;
