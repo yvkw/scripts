@@ -304,6 +304,11 @@
       <input type="text" id="tema" placeholder="Digite o tema aqui...">
       <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
     </div>
+	
+<label for="roteiro">Roteiro (opcional)</label>
+<textarea id="roteiro" rows="4" placeholder="Digite o roteiro aqui..."></textarea>
+
+
 
     <div id="notification"></div>
 
@@ -447,6 +452,7 @@ Gerar [${numeroTemas}] títulos de vídeo exclusivos.`;
 
     function gerarPrompts() {
       const tema = document.getElementById("tema").value.trim();
+	  const roteiro = document.getElementById("roteiro").value.trim();
       if (!tema) {
         showMessage("Digite um tema para gerar os prompts.", "red");
         return;
@@ -481,8 +487,8 @@ Termine a Parte 2 com um ponto ou questão não resolvida para se preparar para 
 Após concluir a Parte 2, pergunte: "Você gostaria de continuar para a Parte 3 da História 1?"
 A Parte 3 concluirá a história, focando no clímax ou resolução do evento e nos resultados finais ou lições aprendidas.
 Termine com uma reflexão instigante sobre como o evento impactou a história ou se relaciona com os tempos modernos.
-Repita esse processo para todas as outras dúvidas histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
-Antes de começar me de a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
+Repita esse processo para todas as outras histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
+Antes de começar me dê a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
 
 Requisitos de estilo de escrita:
 Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
@@ -503,7 +509,8 @@ Certifique-se de que a história transite suavemente de uma Parte para outra.
 Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
 A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
 
-Tema: [${tema}]`;
+Tema: [${tema}]
+Roteiro: [${roteiro}]`;
       const prompt2 = `Crie 30 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês e focar em cenas que devem combinar com o estilo lento e relaxante — pense em cores suaves, obras de arte históricas, cenários tranquilos, animações simples ou ilustrações estáticas. Certifique-se de que o visual esteja alinhado com o que os espectadores esperariam de um vídeo relaxante e relaxante para o YouTube.
 
 Seja altamente específico e detalhado ao descrever:
@@ -679,18 +686,3 @@ Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual mo
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
