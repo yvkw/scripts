@@ -304,11 +304,6 @@
       <input type="text" id="tema" placeholder="Digite o tema aqui...">
       <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
     </div>
-	
-<label for="roteiro">Roteiro (opcional)</label>
-<textarea id="roteiro" rows="4" placeholder="Digite o roteiro aqui..."></textarea>
-
-
 
     <div id="notification"></div>
 
@@ -452,7 +447,6 @@ Gerar [${numeroTemas}] títulos de vídeo exclusivos.`;
 
     function gerarPrompts() {
       const tema = document.getElementById("tema").value.trim();
-	  const roteiro = document.getElementById("roteiro").value.trim();
       if (!tema) {
         showMessage("Digite um tema para gerar os prompts.", "red");
         return;
@@ -509,8 +503,7 @@ Certifique-se de que a história transite suavemente de uma Parte para outra.
 Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
 A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
 
-Tema: [${tema}]
-Roteiro: [${roteiro}]`;
+Tema: [${tema}]`;
       const prompt2 = `Crie 30 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês e focar em cenas que devem combinar com o estilo lento e relaxante — pense em cores suaves, obras de arte históricas, cenários tranquilos, animações simples ou ilustrações estáticas. Certifique-se de que o visual esteja alinhado com o que os espectadores esperariam de um vídeo relaxante e relaxante para o YouTube.
 
 Seja altamente específico e detalhado ao descrever:
@@ -686,3 +679,4 @@ Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual mo
   </script>
 </body>
 </html>
+
