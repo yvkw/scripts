@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
   <style>
-  #prompt5 {
+  #prompt3 {
   white-space: normal;     /* Permite que o texto ocupe múltiplas linhas */
   overflow: visible;       /* Deixa o texto visível, sem cortes */
   text-overflow: unset;    /* Remove o uso das reticências */
@@ -328,7 +329,7 @@
 	  
       <!-- Prompt 3 -->
       <div class="prompt-container">
-        <label for="prompt3">IMAGENS PARA O ROTEIRO 2</label>
+        <label for="prompt3">THUMBNIAL PARA O ROTEIRO</label>
         <div class="prompt-box">
           <pre id="prompt3" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -337,7 +338,7 @@
 	  
       <!-- Prompt 4 -->
       <div class="prompt-container">
-        <label for="prompt4">THUMBNIAL PARA O ROTEIRO</label>
+        <label for="prompt4">TRADUZIR TÍTULOS</label>
         <div class="prompt-box">
           <pre id="prompt4" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt4')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -346,7 +347,7 @@
 	  
       <!-- Prompt 5 -->
       <div class="prompt-container">
-        <label for="prompt5">THUMBNIAL PARA O ROTEIRO 2</label>
+        <label for="prompt5">VAZIO</label>
         <div class="prompt-box">
           <pre id="prompt5" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt5')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -504,17 +505,7 @@ Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, 
 A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
 
 Tema: [${tema}]`;
-      const prompt2 = `Crie 30 prompts de imagem para ilustrar um vídeo com o tema: "${tema}". Os prompts devem ser escritos em inglês e focar em cenas que devem combinar com o estilo lento e relaxante — pense em cores suaves, obras de arte históricas, cenários tranquilos, animações simples ou ilustrações estáticas. Certifique-se de que o visual esteja alinhado com o que os espectadores esperariam de um vídeo relaxante e relaxante para o YouTube.
-
-Seja altamente específico e detalhado ao descrever:
-– Ambiente, paisagem e cenário (incluindo hora do dia, clima, localização)
-– Personagens (incluindo gênero, idade, aparência, roupas, poses, interações – mas de forma secundária, ou seja, focando mais no cenário do que neles. Eles devem complementar o ambiente, sem serem o centro da cena)
-– Iluminação, emoções, clima/atmosfera geral da cena
-
-As imagens devem ter um forte impacto visual, mas de maneira serena, sem ser dramáticas ou excessivamente intensas. As cenas podem ser interpretativas, mas precisam manter conexão conceitual com o conteúdo do vídeo, sempre com uma abordagem visual que inspire calma, leveza e uma sensação de segurança.
-
-Importante: Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua.`;
-      const prompt3 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". 
+      const prompt2 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". 
 Sua tarefa é analisar o título fornecido e gerar um conjunto de prompts visuais de alta qualidade, com base no número desejado de imagens. 
 Esses prompts serão usados para gerar visuais por meio de ferramentas como ImageFX, MidJourney, DALL·E ou Canva AI.
 
@@ -574,51 +565,7 @@ Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entre
 ENTRADA:
 Inserir título aqui: [${tema}]
 Número de imagens necessárias: [30]`;
-
-      const prompt4 = `Você é um gerador de prompts de IA treinado em visuais para contar histórias no YouTube. 
-Sua tarefa é escrever prompts de design de miniaturas no estilo e tom artísticos exatos do canal do YouTube "Boring History For Sleep". O usuário fornecerá um título e você retornará um item:
-Saída: Um único e detalhado prompt de arte de IA
-
-Será gerado um prompt de imagem em miniatura completa para o título fornecido. Siga estas regras rígidas:
-
-BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
-Manuscrito medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos.
-
-Estilo visual e clima:
-Estilo de arte: Ilustração de livro de histórias pintada à mão com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”)
-
-Use frases como:
-estilo de arte de livro de histórias
-ilustração pintada à mão
-textura de pastel a óleo plano
-sombreamento claro com tons terrosos
-
-Tom: calmo, histórico, aconchegante — com um leve toque humorístico ou assustador
-Paleta de cores: Cores quentes e suaves — vermelhos empoeirados, marrons suaves, creme-pergaminho, verdes-musgo. Tons suaves de tinta a óleo ou pastel são recomendados.
-Iluminação: Iluminação ambiente suave, sombras sutis para profundidade
-Fundo: Limpo, branco.
-
-Diretrizes de Personagem:
-Todos os personagens devem estar em close-up (ombros para cima ou cintura para cima)
-Expressões faciais expressivas (confusão, cansaço, medo, curiosidade)
-Roupas e penteados de época
-Exagero suave para emoção (não caricatura)
-
-Composição e Layout:
-Deixe os 30% da esquerda da imagem vazios para posicionamento do texto (sem texto na arte!)
-Lado direito: Personagens ou cena
-Fundo: Textura simples e leve, estilo pergaminho
-
-Adereços e narrativa:
-Inclua de 2 a 4 pequenos acessórios históricos relevantes espalhados para a narrativa visual (por exemplo, pergaminhos, canecas de taverna, máscaras de pragas, ferramentas de forja). Os adereços devem realçar o tema e reforçar o cenário Incentive a interação sutil entre personagens ou entre um personagem e um adereço.
-
-O que NÃO fazer:
-Não inclua nenhum texto ou título na imagem
-Evite estilos excessivamente cartunescos (visual moderno de TV ou histórias em quadrinhos)
-Evite cores brilhantes/neon ou gradientes digitais
-
-Tema: [${tema}]`;
-      const prompt5 = `Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTÓRIAS CHATAS PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIAS CHATAS PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
+      const prompt3 = `Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTÓRIAS CHATAS PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIAS CHATAS PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
 
 
 Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTORIAS ABURRIDAS PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTORIAS ABURRIDAS PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
@@ -628,14 +575,17 @@ Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual mo
 
 
 Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "LANGWEILIGE GESCHICHTEN ZUM EINSCHLAFEN", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "LANGWEILIGE GESCHICHTEN ZUM EINSCHLAFEN", no lado esquerdo. Em anexo envio imagens como referência!`;
-      const prompt6 = `Crie 5 sugestões de títulos chamativos para um vídeo do YouTube com os idiomas português, espanhol, francês e alemão com o tema: "${tema}". Os títulos devem ser curtos e claros com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério, prometendo revelações inéditas. O objetivo é despertar curiosidade imediata, atrair cliques e favorecer a performance no algoritmo do YouTube. Primeiro me forneça as 5 sugestões em português e após eu te informar qual escolhi você vai traduzir para os outros idiomas.`;
+
+      const prompt4 = `Me de o título: ${tema}, nos idiomas português, espanhol, francês e alemão. Me dê os títulos limpos sem identificar o idioma.`;
+      const prompt5 = `Sem informações..`;
+      const prompt6 = `Sem informações..`;
 
 
       document.getElementById("prompt1").textContent = prompt1;
       document.getElementById("prompt2").textContent = prompt2;
-      document.getElementById("prompt3").textContent = prompt3;
+	  document.getElementById("prompt3").innerHTML = prompt3.replace(/\n/g, "<br>");
       document.getElementById("prompt4").textContent = prompt4;
-      document.getElementById("prompt5").innerHTML = prompt5.replace(/\n/g, "<br>");
+      document.getElementById("prompt5").textContent = prompt5;
       document.getElementById("prompt6").textContent = prompt6;
 
       document.getElementById("promptsGerados").style.display = "block";
