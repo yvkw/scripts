@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerar Roteiro com Temas</title>
     <style>
+        #copyButton {
+            background-color: #28a745;  /* Cor personalizada para o botão Copiar */
+            color: white;  /* Cor do texto */
+        }
+
+        #copyButton:hover {
+            background-color: #218838;  /* Cor do botão Copiar ao passar o mouse */
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         #themeDisplay {
             margin-top: 20px;
             padding: 10px;
@@ -19,9 +29,11 @@
             justify-content: space-between;
             align-items: center;
         }
+
         #themeText {
             flex-grow: 1;
         }
+
         button {
             padding: 10px;
             background-color: #007bff;
@@ -30,9 +42,11 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
         button:hover {
             background-color: #0056b3;
         }
+
         #themeInput {
             padding: 10px;
             width: 100%;
@@ -41,16 +55,19 @@
             border: 1px solid #ccc;
             resize: none;
         }
+
         .success {
             color: green;
             font-weight: bold;
             margin-top: 20px;
         }
+
         .box-container {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
+
         .box {
             width: 30%;
             padding: 5px;
@@ -59,6 +76,7 @@
             text-align: center;
             min-height: 30px;
         }
+
         .box textarea {
             width: 100%;
             height: 40px;  /* Altura ajustada para duas linhas */
@@ -69,34 +87,17 @@
             font-size: 14px;
             resize: none;
         }
+
         /* Cores diferentes para cada box */
-        #box1 {
-            background-color: #FF0000;  /* Vermelho Padrão */
-        }
-        #box2 {
-            background-color: #4682b4;  /* Azul */
-        }
-        #box3 {
-            background-color: #f0e68c;  /* Amarelo */
-        }
-        #box4 {
-            background-color: #800080;  /* Roxo */
-        }
-        #box5 {
-            background-color: #ffa500;  /* Laranja Padrão */
-        }
-        #box6 {
-            background-color: #00bcd4;  /* Ciano */
-        }
-        #box7 {
-            background-color: #000000;  /* Preto */
-        }
-        #box8 {
-            background-color: #ff1493;  /* Rosa */
-        }
-        #box9 {
-            background-color: #32cd32;  /* Verde */
-        }
+        #box1 { background-color: #FF0000;  /* Vermelho Padrão */ }
+        #box2 { background-color: #4682b4;  /* Azul */ }
+        #box3 { background-color: #f0e68c;  /* Amarelo */ }
+        #box4 { background-color: #800080;  /* Roxo */ }
+        #box5 { background-color: #ffa500;  /* Laranja Padrão */ }
+        #box6 { background-color: #00bcd4;  /* Ciano */ }
+        #box7 { background-color: #000000;  /* Preto */ }
+        #box8 { background-color: #ff1493;  /* Rosa */ }
+        #box9 { background-color: #32cd32;  /* Verde */ }
     </style>
 </head>
 <body>
@@ -110,7 +111,7 @@
     <button onclick="saveContent()">Salvar</button>
     
     <div id="themeDisplay">
-        <span id="themeText">Tema:<span id="themeName"></span></span>
+        <span id="themeText">Tema: <span id="themeName"></span></span>
         <button id="copyButton" style="display:none;" onclick="copyTheme()">Copiar</button>
     </div>
     <div id="completionMessage" class="success" style="display: none;"></div>
@@ -240,7 +241,7 @@ Antes de começar com a historia me dê a estrutura de temas das 3 histórias e 
 
 Tema: [${theme}]`)
                 .then(() => {
-                    currentThemeIndex++;
+                    currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
                         generateTheme();
                     } else {
@@ -264,12 +265,15 @@ Tema: [${theme}]`)
         // Função para salvar os conteúdos dos boxes em um arquivo de texto
         function saveContent() {
             let content = '';
-            let themeName = themes[currentThemeIndex] || 'roteiro';
-            
+            let themeName = themes[currentThemeIndex - 1] || 'roteiro';  // Usa o tema correto, antes da mudança do índice
+
             // Coletando o conteúdo dos boxes
             document.querySelectorAll('.box textarea').forEach(textarea => {
                 let text = textarea.value.trim();
                 if (text) {
+                    // Remove os asteriscos usados para destaque de palavras
+                    text = text.replace(/\*{1,2}(.*?)\*{1,2}/g, '$1');  // Remove *palavra* e **palavra**
+
                     // Divide o texto em parágrafos e verifica cada um
                     const paragraphs = text.split('\n');
                     paragraphs.forEach(paragraph => {
@@ -279,13 +283,12 @@ Tema: [${theme}]`)
                     });
                 }
             });
-            
+
             if (content === '') {
-                alert("Nenhum parágrafo com 150 ou mais caracteres foi encontrado.");
                 return;
             }
-            
-            const filename = `${themeName}.txt`; // Usa o tema atual como nome do arquivo
+
+            const filename = `${themeName}.txt`;  // Usa o nome correto para salvar o arquivo
             const blob = new Blob([content.trim()], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
