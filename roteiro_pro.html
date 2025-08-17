@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Roteiro com Temas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #themeDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #themeText {
+            flex-grow: 1;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #themeInput {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .box-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .box {
+            width: 30%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            min-height: 30px;
+        }
+        .box textarea {
+            width: 100%;
+            height: 40px;  /* Altura ajustada para duas linhas */
+            border: none;
+            background-color: transparent;
+            padding: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerar Roteiro com Temas</h1>
+    
+    <label for="themeInput">Preencha os temas (quebre linha entre eles):</label><br>
+    <textarea id="themeInput" placeholder=""></textarea><br><br>
+    
+    <button onclick="generateTheme()">Gerar</button>
+    <button onclick="clearContent()">Limpar</button>
+    <button onclick="saveContent()">Salvar</button>
+    
+    <div id="themeDisplay">
+        <span id="themeText">Tema:<span id="themeName"></span></span>
+        <button id="copyButton" style="display:none;" onclick="copyTheme()">Copiar</button>
+    </div>
+    <div id="completionMessage" class="success" style="display: none;"></div>
+
+    <!-- História 1 -->
+    <div>
+        <h2>História 1</h2>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box1" placeholder="HISTORIA 1 - PARTE 01"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box2" placeholder="HISTORIA 1 - PARTE 02"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box3" placeholder="HISTORIA 1 - PARTE 03"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- História 2 -->
+    <div>
+        <h2>História 2</h2>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box4" placeholder="HISTORIA 2 - PARTE 01"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box5" placeholder="HISTORIA 2 - PARTE 02"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box6" placeholder="HISTORIA 2 - PARTE 03"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- História 3 -->
+    <div>
+        <h2>História 3</h2>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box7" placeholder="HISTORIA 3 - PARTE 01"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box8" placeholder="HISTORIA 3 - PARTE 02"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box9" placeholder="HISTORIA 3 - PARTE 03"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let themes = [];
+        let currentThemeIndex = 0;
+
+        function generateTheme() {
+            const input = document.getElementById('themeInput').value;
+            themes = input.split('\n').map(theme => theme.trim()).filter(theme => theme.length > 0);
+            
+            if (themes.length === 0) {
+                document.getElementById('themeDisplay').innerHTML = 'Por favor, adicione temas!';
+                return;
+            }
+
+            if (currentThemeIndex < themes.length) {
+                const theme = themes[currentThemeIndex];
+                document.getElementById('themeName').innerText = theme;
+                document.getElementById('copyButton').style.display = 'inline-block';
+            }
+        }
+
+        function copyTheme() {
+            const theme = themes[currentThemeIndex];
+            navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para a série "História Chata para Dormir". 
+Este projeto incluirá 3 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. 
+Cada Parte deve ter entre 1.500 e 2.000 palavras.
+
+Contagem total de palavras: tente criar um vídeo com conteúdo de 5 horas (cerca de 30.000 a 40.000 palavras no total).
+
+Instruções
+Depois de fornecer o Título Principal, o assistente gerará de 3 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
+O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 3 histórias sejam concluídas.
+
+Estrutura:
+Título principal: Um único título abrangente com várias histórias históricas.
+Cada história: Cada história será dividida em 3 partes.
+
+Por exemplo:
+História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada).
+História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada).
+História 3: [Título da história 3] (3 partes, 1.500–2.000 palavras cada).
+
+Siga as instruções:
+Comece com a História 1, Parte 1 (1.500–2.000 palavras).
+Concentre-se no tópico principal ou na figura histórica, descrevendo-os detalhadamente e com precisão histórica.
+Termine a Parte 1 com um pensamento ou questão não resolvida, estimulando a curiosidade pela próxima parte.
+Depois que a Parte 1 estiver concluída, pergunte: "Você gostaria de continuar para a Parte 2 da História 1?"
+A Parte 2 dará continuidade à Parte 1, aprofundando a narrativa, adicionando mais contexto e aproximando a história de sua resolução.
+Termine a Parte 2 com um ponto ou questão não resolvida para se preparar para a Parte 3.
+Após concluir a Parte 2, pergunte: "Você gostaria de continuar para a Parte 3 da História 1?"
+A Parte 3 concluirá a história, focando no clímax ou resolução do evento e nos resultados finais ou lições aprendidas.
+Termine com uma reflexão instigante sobre como o evento impactou a história ou se relaciona com os tempos modernos.
+Repita esse processo para todas as outras histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
+
+
+Requisitos de estilo de escrita:
+Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
+Voz: Dirija-se diretamente ao ouvinte ("você"), criando uma sensação de imersão na história.
+Profundidade: Inclua contexto histórico, estratégias de sobrevivência no mundo real e histórias pessoais que moldaram o curso da história. Mesmo que os detalhes sejam tediosos, apresente-os de uma forma que pareça significativa.
+Linguagem: Use palavras simples e diretas, para explicar os fatos de maneira clara e fácil de entender, sem exagerar nos detalhes, mantendo um tom apropriado para a história do sono. Evite tornar o conteúdo excessivamente dramático ou fictício.
+Finais: Cada Parte deve terminar com uma pergunta aberta ou um pensamento não resolvido, incentivando a curiosidade e a reflexão com no minimo caracteres.
+
+Requisitos de conteúdo:
+Use eventos, figuras e lugares históricos reais, concentrando-se em histórias chatas — coisas como detalhes da vida cotidiana, eventos há muito esquecidos ou figuras menos conhecidas e seu impacto.
+Cada história deve destacar a resiliência humana, a sobrevivência ou os resultados inesperados de um evento ou figura histórica.
+Evite incluir quaisquer elementos fictícios, a menos que estejam diretamente vinculados a experimentos mentais históricos documentados ou ambiguidades.
+O foco deve estar nas vidas cotidianas, nos fatos históricos ocultos e nas histórias não contadas que compõem nosso passado.
+
+Importante:
+Cada Parte deve ter entre 1.500 e 2.000 palavras.
+Certifique-se de que a história transite suavemente de uma Parte para outra.
+Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
+A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
+Antes de começar com a historia me dê a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
+
+
+Tema: [${theme}]`)
+                .then(() => {
+                    currentThemeIndex++;
+                    if (currentThemeIndex < themes.length) {
+                        generateTheme();
+                    } else {
+                        document.getElementById('completionMessage').innerText = 'Todos os temas foram gerados!';
+                        document.getElementById('completionMessage').style.display = 'block';
+                        document.getElementById('copyButton').style.display = 'none';
+                    }
+                })
+                .catch(err => {
+                    alert('Erro ao copiar para a área de transferência: ' + err);
+                });
+        }
+
+        // Função para limpar os conteúdos dos boxes
+        function clearContent() {
+            document.querySelectorAll('.box textarea').forEach(textarea => {
+                textarea.value = '';
+            });
+        }
+
+        // Função para salvar os conteúdos dos boxes em um arquivo de texto
+        function saveContent() {
+            let content = '';
+            let themeName = themes[currentThemeIndex] || 'roteiro';
+            
+            // Coletando o conteúdo dos boxes
+            document.querySelectorAll('.box textarea').forEach(textarea => {
+                let text = textarea.value.trim();
+                if (text) {
+                    // Divide o texto em parágrafos e verifica cada um
+                    const paragraphs = text.split('\n');
+                    paragraphs.forEach(paragraph => {
+                        if (paragraph.length >= 150) {  // Verifica se o parágrafo tem 150 ou mais caracteres
+                            content += paragraph + '\n\n';  // Adiciona duas quebras de linha entre os conteúdos de cada parágrafo
+                        }
+                    });
+                }
+            });
+            
+            if (content === '') {
+                alert("Nenhum parágrafo com 150 ou mais caracteres foi encontrado.");
+                return;
+            }
+            
+            const filename = `${themeName}.txt`; // Usa o tema atual como nome do arquivo
+            const blob = new Blob([content.trim()], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
+    </script>
+</body>
+</html>
