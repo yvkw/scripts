@@ -33,7 +33,7 @@
   </div>
 
   <!-- Mensagem de erro backlog -->
-  <p id="backlogError" class="hidden text-red-600 font-bold mb-4">⚠️ Você não tem mais vídeos no backlog para postar!</p>
+  <p id="backlogError" class="hidden text-red-600 font-bold mb-4">⚠️ Você não tem vídeos no backlog para selecionar dias!</p>
 
   <!-- Calendário -->
   <div class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-4xl">
@@ -173,6 +173,11 @@
           } else {
             btn.className = `mt-1 px-2 py-1 text-xs rounded text-white ${btn.innerText === "Env" ? "bg-blue-500" : "bg-red-500"}`;
             btn.addEventListener('click', () => {
+              if (backlog <= 0 && btn.innerText === "Post") {
+                backlogError.classList.remove('hidden');
+                return;
+              }
+              backlogError.classList.add('hidden');
               if (btn.innerText === "Post") {
                 btn.innerText = "Env";
                 btn.classList.remove("bg-red-500");
@@ -218,6 +223,12 @@
         dayDiv.innerText = day.getDate();
 
         dayDiv.addEventListener('click', () => {
+          if (backlog <= 0) {
+            backlogError.classList.remove('hidden');
+            return;
+          }
+          backlogError.classList.add('hidden');
+
           if (selectedDates.includes(iso)) {
             selectedDates = selectedDates.filter(d => d !== iso);
             delete dayStatuses[iso];
@@ -271,6 +282,11 @@
 
     // Modal
     openDatePicker.addEventListener('click', () => {
+      if (backlog <= 0) {
+        backlogError.classList.remove('hidden');
+        return;
+      }
+      backlogError.classList.add('hidden');
       modal.classList.remove('hidden');
       renderModalCalendar();
     });
