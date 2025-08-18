@@ -116,7 +116,7 @@
     let modalMonth = new Date();
     let selectedDates = [];
     let backlog = 0;
-    let dayStatuses = {}; // Novo: salvar status Post/Env
+    let dayStatuses = {}; // salvar status Post/Env/Ok
 
     // ----- Funções -----
     function saveState() {
@@ -163,20 +163,30 @@
         if (selectedDates.includes(iso)) {
           const btn = document.createElement('button');
           btn.innerText = dayStatuses[iso] || "Post";
-          btn.className = `mt-1 px-2 py-1 text-xs rounded text-white ${btn.innerText === "Env" ? "bg-blue-500" : "bg-red-500"}`;
-          btn.addEventListener('click', () => {
-            if (btn.innerText === "Post") {
-              btn.innerText = "Env";
-              btn.classList.remove("bg-red-500");
-              btn.classList.add("bg-blue-500");
-            } else {
-              btn.innerText = "Post";
-              btn.classList.remove("bg-blue-500");
-              btn.classList.add("bg-red-500");
-            }
-            dayStatuses[iso] = btn.innerText;
+
+          // se a data já passou e estava marcada, vira OK automático
+          if (new Date(iso) < today) {
+            btn.innerText = "Ok";
+            btn.className = "mt-1 px-2 py-1 text-xs rounded text-white bg-green-600";
+            dayStatuses[iso] = "Ok";
             saveState();
-          });
+          } else {
+            btn.className = `mt-1 px-2 py-1 text-xs rounded text-white ${btn.innerText === "Env" ? "bg-blue-500" : "bg-red-500"}`;
+            btn.addEventListener('click', () => {
+              if (btn.innerText === "Post") {
+                btn.innerText = "Env";
+                btn.classList.remove("bg-red-500");
+                btn.classList.add("bg-blue-500");
+              } else {
+                btn.innerText = "Post";
+                btn.classList.remove("bg-blue-500");
+                btn.classList.add("bg-red-500");
+              }
+              dayStatuses[iso] = btn.innerText;
+              saveState();
+            });
+          }
+
           dayDiv.appendChild(btn);
         }
 
