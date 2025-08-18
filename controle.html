@@ -162,7 +162,7 @@
         let iso = day.toISOString().split('T')[0];
         if (selectedDates.includes(iso)) {
           const btn = document.createElement('button');
-          btn.innerText = dayStatuses[iso] || "Post";
+          btn.innerText = dayStatuses[iso] || "Marcado";
 
           // se a data já passou e estava marcada, vira OK automático
           if (new Date(iso) < today) {
@@ -177,11 +177,15 @@
                 btn.innerText = "Env";
                 btn.classList.remove("bg-red-500");
                 btn.classList.add("bg-blue-500");
-              } else {
+                backlog--;
+              } else if (btn.innerText === "Env") {
                 btn.innerText = "Post";
                 btn.classList.remove("bg-blue-500");
                 btn.classList.add("bg-red-500");
+                backlog++;
               }
+              backlogCounter.innerText = `Backlog atual: ${backlog} vídeos`;
+              backlogInput.value = backlog;
               dayStatuses[iso] = btn.innerText;
               saveState();
             });
@@ -216,19 +220,11 @@
         dayDiv.addEventListener('click', () => {
           if (selectedDates.includes(iso)) {
             selectedDates = selectedDates.filter(d => d !== iso);
-            backlog++;
             delete dayStatuses[iso];
           } else {
-            if (backlog <= 0) {
-              backlogError.classList.remove('hidden');
-              return;
-            }
             selectedDates.push(iso);
-            backlog--;
-            backlogError.classList.add('hidden');
+            dayStatuses[iso] = "Post";
           }
-          backlogCounter.innerText = `Backlog atual: ${backlog} vídeos`;
-          backlogInput.value = backlog;
           renderModalCalendar();
           updateSelectedDays();
           saveState();
