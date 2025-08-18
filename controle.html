@@ -116,10 +116,11 @@
     let modalMonth = new Date();
     let selectedDates = [];
     let backlog = 0;
+    let dayStatuses = {}; // Novo: salvar status Post/Env
 
     // ----- Funções -----
     function saveState() {
-      const state = { selectedDates, backlog };
+      const state = { selectedDates, backlog, dayStatuses };
       localStorage.setItem("ytChannelState", JSON.stringify(state));
     }
 
@@ -128,6 +129,7 @@
       if (state) {
         selectedDates = state.selectedDates || [];
         backlog = state.backlog || 0;
+        dayStatuses = state.dayStatuses || {};
         backlogInput.value = backlog;
         backlogCounter.innerText = `Backlog atual: ${backlog} vídeos`;
         updateSelectedDays();
@@ -160,12 +162,20 @@
         let iso = day.toISOString().split('T')[0];
         if (selectedDates.includes(iso)) {
           const btn = document.createElement('button');
-          btn.innerText = "Post";
-          btn.className = "mt-1 px-2 py-1 text-xs rounded bg-red-500 text-white";
+          btn.innerText = dayStatuses[iso] || "Post";
+          btn.className = `mt-1 px-2 py-1 text-xs rounded text-white ${btn.innerText === "Env" ? "bg-blue-500" : "bg-red-500"}`;
           btn.addEventListener('click', () => {
-            btn.innerText = btn.innerText === "Post" ? "Env" : "Post";
-            btn.classList.toggle("bg-red-500");
-            btn.classList.toggle("bg-blue-500");
+            if (btn.innerText === "Post") {
+              btn.innerText = "Env";
+              btn.classList.remove("bg-red-500");
+              btn.classList.add("bg-blue-500");
+            } else {
+              btn.innerText = "Post";
+              btn.classList.remove("bg-blue-500");
+              btn.classList.add("bg-red-500");
+            }
+            dayStatuses[iso] = btn.innerText;
+            saveState();
           });
           dayDiv.appendChild(btn);
         }
@@ -197,6 +207,7 @@
           if (selectedDates.includes(iso)) {
             selectedDates = selectedDates.filter(d => d !== iso);
             backlog++;
+            delete dayStatuses[iso];
           } else {
             if (backlog <= 0) {
               backlogError.classList.remove('hidden');
@@ -274,7 +285,7 @@
 
     // Backup
     exportBtn.addEventListener('click', () => {
-      const data = JSON.stringify({ selectedDates, backlog });
+      const data = JSON.stringify({ selectedDates, backlog, dayStatuses });
       const blob = new Blob([data], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -293,6 +304,7 @@
         const data = JSON.parse(ev.target.result);
         selectedDates = data.selectedDates || [];
         backlog = data.backlog || 0;
+        dayStatuses = data.dayStatuses || {};
         backlogInput.value = backlog;
         backlogCounter.innerText = `Backlog atual: ${backlog} vídeos`;
         updateSelectedDays();
@@ -306,6 +318,7 @@
       if (confirm("Tem certeza que deseja limpar tudo?")) {
         selectedDates = [];
         backlog = 0;
+        dayStatuses = {};
         backlogInput.value = 0;
         backlogCounter.innerText = `Backlog atual: 0 vídeos`;
         selectedDaysDiv.innerHTML = '';
