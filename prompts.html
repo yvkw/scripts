@@ -411,9 +411,13 @@
       let temas = `Você é um e um estrategista de conteúdo experiente no YouTube. Sua única tarefa é fazer um brainstorming de ideias inovadoras e clicáveis para temas de vídeo que combinem com este estilo: narrativa histórica em ritmo lento e levemente humorística, projetada para ajudar os espectadores a relaxar ou adormecer.
 
 Saída:
-Cada título deve começar com prefixo abaixo:
-“História chata para dormir | ”
-Após o pipe (|), escreva um gancho conciso e curioso (≤ 14 palavras) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
+Cada título deve começar com os prefixos abaixo:
+
+“E se... ”
+“O que aconteceria se...”
+“Como seria se...”
+
+Após "...", escreva um gancho conciso e curioso (≤ 10 palavras) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
 
 Critérios de conteúdo:
 Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.).
@@ -423,18 +427,8 @@ Inclusão e atualidade – Pelo menos um terço da lista deve destacar culturas 
 
 Favorável ao sono – Evite palavras ásperas no título (“tortura horrível” → “punições peculiares”).
 
-Lógica de palavras-chave – Incorpore um ou dois substantivos otimizados para SEO em cada título (“rotas da seda”, “jardins astecas”, “curas vitorianas para insônia”), mantendo a formulação natural.
+Lógica de palavras-chave – Incorpore um ou dois substantivos otimizados para SEO em cada título, mantendo a formulação natural.
 
-Exemplos de formatação - (Não repita nenhum tópico ou frase exata da lista de referências mostrada abaixo):
-- História Chata para Dormir | Como os Pastores Medievais Se Orientavam Pelos Sinos das Ovelhas (2 HORAS)
-- A História Chata Para Dormir | Toda a Vida de Sun Tzu Para se Deixar Levar
-- Mitos Gregos Chatos para Dormir | Por que a Hermès Inventou o Primeiro Par de Tênis
-- Podcast de História para Dormir | Frutas Esquecidas que os Incas Domesticaram (Conto de Histórias Suave e Sons Ambientais 2 HORAS)
-- Títulos de referência (apenas guia de estilo, não repetitivo):
-- História Chata para Dormir | Por que Você Não Duraria um Dia na Era Medieval…
-- História chata para dormir | Maneiras malucas como as cortesãs japonesas lidavam com a gravidez…
-- A vida INTEIRA de Leonardo da Vinci para adormecer
-- etc.
 
 Regras de entrega:
 - Produza apenas os títulos finalizados, sem comentários, sem texto extra.
@@ -453,7 +447,7 @@ Gerar [${numeroTemas}] títulos de vídeo exclusivos.`;
         return;
       }
 
-      const prompt1 = `Você é um especialista em escrever uma narrativa histórica longa para a série "História Chata para Dormir". 
+      const prompt1 = `Você é um especialista em escrever uma narrativa histórica longa para a série "História para Dormir". 
 Este projeto incluirá 3 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. 
 Cada Parte deve ter entre 1.500 e 2.000 palavras.
 
@@ -576,7 +570,7 @@ Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual mo
 
 Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "BEDTIME STORIES", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "BEDTIME STORIES", no lado esquerdo. Em anexo envio imagens como referência!`;
 
-      const prompt4 = `Me de o título: ${tema}, nos idiomas português, espanhol, francês e alemão. Me dê os títulos limpos sem identificar o idioma.`;
+      const prompt4 = `Me de o título: ${tema}, nos idiomas português, espanhol, francês e inglês. Me dê os títulos limpos sem identificar o idioma.`;
       const prompt5 = `Sem informações..`;
       const prompt6 = `Sem informações..`;
 
@@ -629,6 +623,7 @@ Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual mo
   </script>
 </body>
 </html>
+
 
 
 
