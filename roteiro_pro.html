@@ -186,15 +186,17 @@
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para a série "História Chata para Dormir". 
-Este projeto incluirá 3 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. 
+            navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para a série "História para Dormir". 
+Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. 
 Cada Parte deve ter entre 1.500 e 2.000 palavras.
+
+Nicho: Histórias alternativas "e se...", "como seria se...", "o que aconteceria se...".
 
 Contagem total de palavras: tente criar um vídeo com conteúdo de 5 horas (cerca de 30.000 a 40.000 palavras no total).
 
 Instruções
-Depois de fornecer o Título Principal, o assistente gerará de 3 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
-O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 3 histórias sejam concluídas.
+Depois de fornecer o Título Principal, o assistente gerará de 2 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
+O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 2 histórias sejam concluídas.
 
 Estrutura:
 Título principal: Um único título abrangente com várias histórias históricas.
@@ -203,6 +205,7 @@ Cada história: Cada história será dividida em 3 partes.
 Por exemplo:
 História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada).
 História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada).
+
 
 Siga as instruções:
 Comece com a História 1, Parte 1 (1.500–2.000 palavras).
@@ -215,14 +218,14 @@ Após concluir a Parte 2, pergunte: "Você gostaria de continuar para a Parte 3 
 A Parte 3 concluirá a história, focando no clímax ou resolução do evento e nos resultados finais ou lições aprendidas.
 Termine com uma reflexão instigante sobre como o evento impactou a história ou se relaciona com os tempos modernos.
 Repita esse processo para todas as outras histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
-
+Antes de começar me dê a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
 
 Requisitos de estilo de escrita:
 Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
 Voz: Dirija-se diretamente ao ouvinte ("você"), criando uma sensação de imersão na história.
 Profundidade: Inclua contexto histórico, estratégias de sobrevivência no mundo real e histórias pessoais que moldaram o curso da história. Mesmo que os detalhes sejam tediosos, apresente-os de uma forma que pareça significativa.
 Linguagem: Use palavras simples e diretas, para explicar os fatos de maneira clara e fácil de entender, sem exagerar nos detalhes, mantendo um tom apropriado para a história do sono. Evite tornar o conteúdo excessivamente dramático ou fictício.
-Finais: Cada Parte deve terminar com uma pergunta aberta ou um pensamento não resolvido, incentivando a curiosidade e a reflexão com no minimo caracteres.
+Finais: Cada Parte deve terminar com uma pergunta aberta ou um pensamento não resolvido, incentivando a curiosidade e a reflexão.
 
 Requisitos de conteúdo:
 Use eventos, figuras e lugares históricos reais, concentrando-se em histórias chatas — coisas como detalhes da vida cotidiana, eventos há muito esquecidos ou figuras menos conhecidas e seu impacto.
@@ -235,8 +238,6 @@ Cada Parte deve ter entre 1.500 e 2.000 palavras.
 Certifique-se de que a história transite suavemente de uma Parte para outra.
 Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
 A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
-Antes de começar com a historia me dê a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
-
 
 Tema: [${theme}]`)
                 .then(() => {
@@ -297,4 +298,5 @@ Tema: [${theme}]`)
     </script>
 </body>
 </html>
+
 
