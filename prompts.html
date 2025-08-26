@@ -347,7 +347,7 @@
 	  
       <!-- Prompt 5 -->
       <div class="prompt-container">
-        <label for="prompt5">VAZIO</label>
+        <label for="prompt5">GERAR TEMAS 2</label>
         <div class="prompt-box">
           <pre id="prompt5" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt5')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -387,11 +387,11 @@
 Saída:
 Cada título deve começar com os prefixos abaixo:
 
-“E se... ”
-“O que aconteceria se...”
-“Como seria se...”
+“E se”
+“O que aconteceria se”
+“Como seria se”
 
-Após "...", escreva um gancho conciso e curioso (≤ 8 palavras) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
+Escreva um gancho conciso e curioso (no máximo 70 caracteres) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
 
 Critérios de conteúdo:
 Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.).
@@ -488,7 +488,9 @@ Número de imagens necessárias: [15]`;
 
 TÍTULO: ${tema}`;
 
-      const prompt4 = `Gere [${numeroTemas}] ideias únicas e criativas para vídeos do Youtube sobre (Histórias "E se...", "Como seria se...", e "o que aconteceria se.." ). Os tópicos devem ser baseados em história antiga, vida medieval, impérios esquecidos, vida cotidiana em séculos passados, costumes bizarros, pestes, guerras (de forma suave), realeza e aspectos pouco conhecidos ou negligenciados da história. Evite tópicos excessivamente intensos ou perturbadores e garanta que cada ideia seja adequada para uma escuta relaxante na hora de dormir. Formate as ideias de maneira clara e cada título com no máximo 70 caracteres.`;
+      const prompt4 = `Estou começando um canal no YouTube que foca em contar histórias relaxantes e lentas na hora de dormir, no estilo de (história "E se...", "Como seria se...", e "o que aconteceria se.." para dormir). Os vídeos são narrações longas e roteirizadas, com um tom suave, destinados a ajudar as pessoas a adormecer enquanto aprendem sobre história real. O conteúdo deve ser interessante, informativo e relaxante — sem ser dramático ou emocionalmente intenso. Gere ${numeroTemas} ideias únicas e criativas para vídeos nessa área. Os tópicos devem ser baseados em história antiga, vida medieval, impérios esquecidos, vida cotidiana em séculos passados, costumes bizarros, pestes, guerras (de forma suave), realeza e aspectos pouco conhecidos ou negligenciados da história. Evite tópicos excessivamente intensos ou perturbadores e garanta que cada ideia seja adequada para uma escuta relaxante na hora de dormir. Formate as ideias de maneira clara, com uma lista numerada. 
+
+Me de somente os temas curto sem explicações com no máximo 70 caracteres.`;
       const prompt5 = `Sem informações...`;
       const prompt6 = `Sem informações...`;
 
@@ -517,6 +519,7 @@ TÍTULO: ${tema}`;
   </script>
 </body>
 </html>
+
 
 
 
