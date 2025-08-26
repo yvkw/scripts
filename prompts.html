@@ -329,7 +329,7 @@
 	  
       <!-- Prompt 3 -->
       <div class="prompt-container">
-        <label for="prompt3">THUMBNIAL PARA O ROTEIRO</label>
+        <label for="prompt3">TRADUZIR TÍTULOS</label>
         <div class="prompt-box">
           <pre id="prompt3" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -338,7 +338,7 @@
 	  
       <!-- Prompt 4 -->
       <div class="prompt-container">
-        <label for="prompt4">TRADUZIR TÍTULOS</label>
+        <label for="prompt4">VAZIO</label>
         <div class="prompt-box">
           <pre id="prompt4" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt4')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -559,20 +559,11 @@ Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entre
 ENTRADA:
 Inserir título aqui: [${tema}]
 Número de imagens necessárias: [15]`;
-      const prompt3 = `Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTÓRIAS PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTÓRIAS PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
-
-
-Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTORIAS PARA DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTORIAS PARA DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
-
-
-Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "HISTOIRES POUR DORMIR", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "HISTOIRES POUR DORMIR", no lado esquerdo. Em anexo envio imagens como referência!
-
-
-Crie uma Ilustração com contornos ousados e texturas suaves (evite o visual moderno de “cartoon”), com personagens em poses dramáticas, expressando emoções e elementos simbólicos relacionados ao tema: "${tema}". O texto: "BEDTIME STORIES", deve ser escrito em negrito, na esquerda com a cor preta, usando uma fonte simples e marcante. A composição inclui de 1 a 2 figuras históricas, algumas interagindo e outras com acessórios temáticos. Use um fundo bege claro. As expressões faciais dos personagens devem ser o foco, e o estilo da ilustração deve ser simplificado, mas com considerável atenção aos detalhes nas roupas e nos elementos visuais. Certifique-se de que o texto incluído na imagem seja apenas: "BEDTIME STORIES", no lado esquerdo. Em anexo envio imagens como referência!`;
-
-      const prompt4 = `Formate e Organize o título abaixo para o padrão do Youtube e me devolva nos idiomas português, espanhol, francês e inglês.
+      const prompt3 = `Formate e Organize o título abaixo para o padrão do Youtube e me devolva nos idiomas português, espanhol, francês e inglês.
 
 TÍTULO: ${tema}`;
+
+      const prompt4 = `Sem informações..`;
       const prompt5 = `Sem informações..`;
       const prompt6 = `Sem informações..`;
 
@@ -625,6 +616,7 @@ TÍTULO: ${tema}`;
   </script>
 </body>
 </html>
+
 
 
 
