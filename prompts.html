@@ -382,35 +382,35 @@
     function gerarTemas() {
       const numeroTemas = parseInt(document.getElementById("numeroTemas").value) || 10;
       const gerarTemasElement = document.getElementById("gerarTemas");
-      let temas = `Você é um e um estrategista de conteúdo experiente no YouTube. Sua única tarefa é fazer um brainstorming de ideias inovadoras e clicáveis para temas de vídeo que combinem com este estilo: narrativa histórica em ritmo lento e levemente humorística, projetada para ajudar os espectadores a relaxar ou adormecer.
+      let temas = `Aja como um estrategista profissional do YouTube e redator especialista para canais de documentários históricos de longa duração. Você é especialista em criar títulos cinematográficos, emocionantes e instigantes para conteúdo baseado em história medieval, Idade das Trevas, civilizações perdidas e sobrevivência em condições adversas.
 
-Saída:
-Cada título deve começar com os prefixos abaixo:
+Sua tarefa é analisar cuidadosamente 5 títulos concorrentes que fornecerei abaixo. A partir dessa análise, gere ${numeroTemas} títulos originais do YouTube que sigam o mesmo tom emocional, estrutura e poder narrativo.
 
-“E se”
-“O que aconteceria se”
-“Como seria se”
+Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.)
 
-Escreva um gancho conciso e curioso (no máximo 70 caracteres) provocando um fato obscuro, um cenário vívido ou uma pergunta surpreendente.
+Sua produção deve seguir estas regras exatas:
+Tom: Sério, imersivo, cinematográfico, historicamente fundamentado
+Estrutura: Gancho + Assunto + Elemento de Curiosidade ou Reviravolta
+Linguagem: Use palavras vívidas, descritivas e cruas — sem iscas de clique ou enrolação
+Emoção: Cada título deve despertar curiosidade, tensão ou fascínio histórico
 
-Critérios de conteúdo:
-Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.).
-
-Tom – Os títulos devem soar levemente irônicos, mas não sensacionalistas; eles devem prometer fatos estranhamente reconfortantes, humor suave e detalhes envolventes do tipo "você está lá" — nunca indignação moral moderna ou choque de isca de clique.
-Inclusão e atualidade – Pelo menos um terço da lista deve destacar culturas menos conhecidas ou figuras sub-representadas.
-
-Favorável ao sono – Evite palavras ásperas no título (“tortura horrível” → “punições peculiares”).
+Formato:
+Numere os títulos (ex.: 1., 2., 3.)
+Use letras maiúsculas e minúsculas como títulos reais do YouTube
+Não explique os títulos — apenas publique-os diretamente
+Cada título deve ter de 8 a 14 palavras, máximo de 15
+Use palavras poderosas relevantes
 
 Lógica de palavras-chave – Incorpore um ou dois substantivos otimizados para SEO em cada título, mantendo a formulação natural.
 
+Agora analise os 5 títulos concorrentes a seguir:
+Como uma Vila Medieval Foi Organizada
+Os Trabalhos Mais Repugnantes da Idade Média
+Sobrevivendo à Idade Média: Você Não Duraria Uma Semana 
+A Magna Carta: Como Um Documento Abalou o Poder Medieva
+Os Cercos Medievais Mais Insanos que Realmente Aconteceram
 
-Regras de entrega:
-- Produza apenas os títulos finalizados, sem comentários, sem texto extra.
-- Mantenha cada título em sua própria linha.
-- Verifique novamente se há palavras duplicadas ou erros já utilizados na sua saída.
-
-Pronto? Crie a lista agora.
-Gerar [${numeroTemas}] títulos de vídeo exclusivos.`;
+Agora gere ${numeroTemas} títulos.`;
       gerarTemasElement.textContent = temas;
     }
 
@@ -519,6 +519,7 @@ Me de somente os temas curto sem explicações com no máximo 70 caracteres.`;
   </script>
 </body>
 </html>
+
 
 
 
