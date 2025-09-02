@@ -186,13 +186,9 @@
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para a série "História para Dormir". 
-Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. 
-Cada Parte deve ter entre 1.500 e 2.000 palavras.
+            navigator.clipboard.writeText(`Você é um roteirista cinematográfico do YouTube escrevendo um documentário medieval longo e emocionalmente impactante. Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes e cada Parte deve ter entre 1.500 e 2.000 palavras.
 
-Contagem total de palavras: tente criar um vídeo com conteúdo de 5 horas (cerca de 30.000 a 40.000 palavras no total).
-
-Instruções
+Instruções:
 Depois de fornecer o Título Principal, o assistente gerará de 2 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
 O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 2 histórias sejam concluídas.
 
@@ -204,6 +200,7 @@ Por exemplo:
 História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada).
 História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada).
 
+Sua tarefa é expandir isso para um roteiro narrativo completo e independente que flua naturalmente do capítulo anterior e se conecte emocionalmente ao próximo. Este roteiro deve estar pronto para narração direta, com ritmo fluido e intensidade poética.
 
 Siga as instruções:
 Comece com a História 1, Parte 1 (1.500–2.000 palavras).
@@ -218,26 +215,32 @@ Termine com uma reflexão instigante sobre como o evento impactou a história ou
 Repita esse processo para todas as outras histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
 Antes de começar me dê a estrutura de temas das 3 histórias e depois me pergunte se pode começar com a primeira história.
 
-Requisitos de estilo de escrita:
-Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
-Voz: Dirija-se diretamente ao ouvinte ("você"), criando uma sensação de imersão na história.
-Profundidade: Inclua contexto histórico, estratégias de sobrevivência no mundo real e histórias pessoais que moldaram o curso da história. Mesmo que os detalhes sejam tediosos, apresente-os de uma forma que pareça significativa.
-Linguagem: Use palavras simples e diretas, para explicar os fatos de maneira clara e fácil de entender, sem exagerar nos detalhes, mantendo um tom apropriado para a história do sono. Evite tornar o conteúdo excessivamente dramático ou fictício.
-Finais: Cada Parte deve terminar com uma pergunta aberta ou um pensamento não resolvido, incentivando a curiosidade e a reflexão.
+🎬 TOM E NARRAÇÃO:
+O tom deve ser cinematográfico, poético, envolvente e historicamente rico.
+Cada parágrafo deve evocar emoção: medo, fome, lealdade, traição, silêncio, esperança.
+Escreva como se a narrativa fosse feita com imagens assustadoras e reconstituições históricas.
+Mantenha a voz séria e poética, nunca casual ou factual.
 
-Requisitos de conteúdo:
-Use eventos, figuras e lugares históricos reais, concentrando-se em histórias chatas — coisas como detalhes da vida cotidiana, eventos há muito esquecidos ou figuras menos conhecidas e seu impacto.
-Cada história deve destacar a resiliência humana, a sobrevivência ou os resultados inesperados de um evento ou figura histórica.
-Evite incluir quaisquer elementos fictícios, a menos que estejam diretamente vinculados a experimentos mentais históricos documentados ou ambiguidades.
-O foco deve estar nas vidas cotidianas, nos fatos históricos ocultos e nas histórias não contadas que compõem nosso passado.
+✍️ LINGUAGEM E DETALHES:
+Use descrições vívidas: textura, temperatura, som, silêncio, tensão.
+Adicione diálogos sutis ou pensamentos íntimos somente quando necessário.
+Incorpore a história como experiência vivida, não como fatos clássicos.
+Use simbolismo e metáforas sensoriais (lama, fumaça, vento, tochas, correntes, sombras).
+Enfatize os riscos emocionais — o que está em risco, o que foi perdido.
 
-Importante:
-Cada Parte deve ter entre 1.500 e 2.000 palavras.
-Certifique-se de que a história transite suavemente de uma Parte para outra.
-Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo, mesmo em histórias "chatas".
-A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
+🔁 FLUXO E CONTINUIDADE
+O capítulo deve parecer parte de uma história maior em desenvolvimento, não uma peça independente.
+O final deve conectar ou fazer a transição para o que pode vir a seguir.
+Evite mudanças bruscas de cena — esta é uma jornada cinematográfica fluida.
 
-Tema: [${theme}]`)
+📌 REGRAS DE SAÍDA
+Não use marcadores, resumos ou rótulos de seção.
+Apenas produza o roteiro da narração — em um formato de narração limpo.
+Contagem de palavras-alvo: 1.500–2.000 palavras
+Mantenha a escrita fluida, emocional e envolvente — como uma narração profissional.
+Isso não deve precisar de edição antes de ser enviado para um dublador.
+
+🔽 Tema: [${theme}]`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -296,6 +299,7 @@ Tema: [${theme}]`)
     </script>
 </body>
 </html>
+
 
 
 
