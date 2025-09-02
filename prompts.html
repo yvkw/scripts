@@ -388,6 +388,8 @@ Sua tarefa é analisar cuidadosamente 5 títulos concorrentes que fornecerei aba
 
 Variedade – Abrange diversas eras (Antiga, Medieval, Moderna, séculos XIX e XX), regiões (África, Ásia, Europa, Américas, Oceania) e temas (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias famosas, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.)
 
+Os titulos devem ser baseados em história antiga, vida medieval, impérios esquecidos, vida cotidiana em séculos passados, costumes bizarros, pestes, guerras, realeza e aspectos pouco conhecidos ou negligenciados da história.
+
 Sua produção deve seguir estas regras exatas:
 Tom: Sério, imersivo, cinematográfico, historicamente fundamentado
 Estrutura: Gancho + Assunto + Elemento de Curiosidade ou Reviravolta
@@ -424,9 +426,11 @@ Agora gere ${numeroTemas} títulos.`;
       const prompt1 = `Crie uma introdução de 15 segundos de forma continua baseada no roteiro abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
 TEMA: [${tema}]`;
-      const prompt2 = `Você é uma IA treinada em design visual de imagens para canais do YouTube baseados em narrativas, como "Boring History For Sleep". 
-Sua tarefa é analisar o título fornecido e gerar um conjunto de prompts visuais de alta qualidade, com base no número desejado de imagens. 
-Esses prompts serão usados para gerar visuais por meio de ferramentas como ImageFX, MidJourney, DALL·E ou Canva AI.
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho medieval.
+
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias medieval — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário medieval ilustrado.
+
+Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
 
 OBJETIVO:
 Interprete o tema, o tom histórico e o arco emocional do título
@@ -452,7 +456,6 @@ Marrons empoeirados
 Fuligem preta
 Creme de pergaminho
 Evite brancos brilhantes, neon ou cores saturadas
-
 
 Iluminação:
 Cenas quentes à luz de velas ou apenas com lareira
@@ -482,7 +485,7 @@ IMPORTANTE:
 Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua todos escritos em inglês.
 
 ENTRADA:
-Inserir título aqui: [${tema}]
+Tema: ${tema}
 Número de imagens necessárias: [15]`;
       const prompt3 = `Formate e Organize o título abaixo para o padrão do Youtube e me devolva nos idiomas português, espanhol, francês e inglês.
 
@@ -519,6 +522,7 @@ Me de somente os temas curto sem explicações com no máximo 70 caracteres.`;
   </script>
 </body>
 </html>
+
 
 
 
