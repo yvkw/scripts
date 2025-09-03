@@ -233,7 +233,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Baseado na estrutura acima escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo com aproximadamente 1000 tokens por parágrafo. O tema é: [${theme}]. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
+            navigator.clipboard.writeText(`Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo com aproximadamente 1000 tokens por parágrafo. O tema é: [${theme}]. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -343,3 +343,4 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
     </script>
 </body>
 </html>
+
