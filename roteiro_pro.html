@@ -129,9 +129,9 @@
     <button onclick="generateTheme()">Gerar</button>
     <button onclick="clearContent()">Limpar</button>
     <button onclick="saveContent()">Salvar</button>
+	<button id="introButton" onclick="copyIntro()">Estrutura</button>
     <button id="inicioButton" onclick="copyInicio()">Início</button>
     <button id="meioButton" onclick="copyMeio()">Meio</button>
-    <button id="continuarButton" onclick="copyContinuar()">Continuar</button>
     <button id="fimButton" onclick="copyFim()">Fim</button>
     
     <div id="themeDisplay">
@@ -142,7 +142,7 @@
 
     <!-- Novo Box de Texto -->
     <div id="newBox">
-        <textarea id="newTextBox" placeholder="Digite os 3 parágrafos aqui..."></textarea>
+        <textarea id="newTextBox" placeholder="Digite os 3 parágrafos aqui. Separe por uma linha em branco OU coloque cada parágrafo em uma nova linha."></textarea>
     </div>
 
     <!-- História 1 -->
@@ -191,6 +191,27 @@
     </div>
 
     <script>
+	
+	        function copyIntro() {
+            const theme = themes[currentThemeIndex];
+            const introText = `Você é um roteirista cinematográfico do YouTube. Este projeto incluirá uma história dividida em 3 partes (inicio, meio e fim) todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
+
+Instruções:
+Depois de fornecer o Título Principal, o assistente gerará a estrutura da história.
+
+Estrutura:
+Tema: [${theme}]
+Inicio: [Tema do inicio]
+Meio: [Tema do meio]
+Fim: [Tema do fim]
+
+Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalmente da parte anterior e se conecte emocionalmente ao próximo.
+
+
+🔽 Tema: [${theme}]`;
+            navigator.clipboard.writeText(introText);
+        }
+		
         let themes = [];
         let currentThemeIndex = 0;
 
@@ -212,7 +233,7 @@
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo com aproximadamente 1000 tokens por parágrafo. O tema é: [${theme}]. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Me dê os parágrafos limpos, sem títulos.`)
+            navigator.clipboard.writeText(`Baseado na estrutura acima escreva (3 parágrafos para um roteiro sendo início, meio e fim) detalhado e relaxante de história para o YouTube, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo com aproximadamente 1000 tokens por parágrafo. O tema é: [${theme}]. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -228,24 +249,54 @@
                 });
         }
 
+        // ==== Utilitário robusto para extrair 3 parágrafos ====
+        function extractParagraphsFromNewTextBox() {
+            const raw = (document.getElementById('newTextBox').value || '').replace(/\r\n/g, '\n');
+
+            // 1) Tenta separar por LINHA EM BRANCO (parágrafo real)
+            let paras = raw.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length > 0);
+            if (paras.length >= 3) {
+                return [paras[0], paras[1], paras.slice(2).join('\n\n')];
+            }
+
+            // 2) Fallback: separa por QUEBRA DE LINHA simples
+            const parts = raw.split(/\n+/).map(p => p.trim()).filter(p => p.length > 0);
+            if (parts.length >= 3) {
+                return [parts[0], parts[1], parts.slice(2).join('\n')];
+            }
+
+            // 3) Completa com strings vazias se não houver 3
+            return [parts[0] || paras[0] || '', parts[1] || paras[1] || '', parts[2] || paras[2] || ''];
+        }
+
         function copyInicio() {
             const inicioText = `Desenvolva o início da história abaixo de forma consistente utlizando aproximadamente (1300 tokens) para o meu roteiro, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Não entre no desenvolvimento ou na conclusão da história. Escreva apenas o texto limpo, sem comentários antes ou depois.`;
-            navigator.clipboard.writeText(inicioText + "\n\n" + document.getElementById('newTextBox').value.split('\n')[0]);
+            const [p1] = extractParagraphsFromNewTextBox();
+            if (!p1) {
+                alert('Não encontrei o 1º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(inicioText + "\n\n" + p1);
         }
 
         function copyMeio() {
             const meioText = `Desenvolva o meio da história abaixo de forma consistente utlizando aproximadamente (1700 tokens) para desenvolver o argumento da história, projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Ele deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Evite momentos dramáticos repentinos ou linguagem intensa. A linguagem deve ser simples, envolvente e fácil de seguir, induzindo ao sono. Não repita o começo da história e não mencione o final ou a conclusão. Escreva apenas o texto limpo, sem comentários antes ou depois.`;
-            navigator.clipboard.writeText(meioText + "\n\n" + document.getElementById('newTextBox').value.split('\n')[1]);
-        }
-
-        function copyContinuar() {
-            const continuarText = `Continue a história com mais (1700 tokens), adicione mais detalhes sobre o tema. Utilize uma linguagem simples e suave. Evite repetir o começo da história e o que você já gerou e também não mencione o final ou a conclusão. Escreva apenas o texto limpo, sem comentários antes ou depois.`;
-            navigator.clipboard.writeText(continuarText);
+            const [, p2] = extractParagraphsFromNewTextBox();
+            if (!p2) {
+                alert('Não encontrei o 2º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(meioText + "\n\n" + p2);
         }
 
         function copyFim() {
             const fimText = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens), projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Termine convidando o público a curtir, se inscrever no canal e ouvir outra história.`;
-            navigator.clipboard.writeText(fimText + "\n\n" + document.getElementById('newTextBox').value.split('\n')[2]);
+            const [, , p3] = extractParagraphsFromNewTextBox();
+            if (!p3) {
+                alert('Não encontrei o 3º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(fimText + "\n\n" + p3);
         }
 
         // Função para limpar os conteúdos dos boxes
@@ -290,3 +341,5 @@
             link.click();
         }
     </script>
+</body>
+</html>
