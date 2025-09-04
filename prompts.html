@@ -329,7 +329,7 @@
 	  
       <!-- Prompt 3 -->
       <div class="prompt-container">
-        <label for="prompt3">TRADUZIR TÍTULOS</label>
+        <label for="prompt3">VAZIO</label>
         <div class="prompt-box">
           <pre id="prompt3" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt3')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -347,7 +347,7 @@
 	  
       <!-- Prompt 5 -->
       <div class="prompt-container">
-        <label for="prompt5">GERAR TEMAS 2</label>
+        <label for="prompt5">VAZIO</label>
         <div class="prompt-box">
           <pre id="prompt5" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt5')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -356,7 +356,7 @@
 	  
       <!-- Prompt 6 -->
       <div class="prompt-container">
-        <label for="prompt6">GERAR TITULOS</label>
+        <label for="prompt6">VAZIO</label>
         <div class="prompt-box">
           <pre id="prompt6" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt6')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -426,40 +426,35 @@ Agora gere ${numeroTemas} títulos.`;
       const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
 TEMA: [${tema}]`;
-      const prompt2 = `xxxxx`;
-      const prompt5 = `Aja como um engenheiro profissional de miniaturas visuais e estrategista de miniaturas do YouTube. Você é especialista em criar miniaturas visuais geradas por IA para documentários de história medieval. O objetivo é gerar miniaturas visualmente impressionantes e emocionalmente impactantes que se pareçam com ilustrações a óleo pintadas à mão — otimizadas para taxa de cliques (CTR) e narrativa cinematográfica.
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente nos nichos de sobrevivência medieval, idade das trevas, peste e vida em aldeias.
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias medieval assustador — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário medieval ilustrado.
+Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
+🎨 Estilo Visual:
+Estética de ilustração rústica dos anos 1300-1500
+Texturas pintadas à mão, com pincel a óleo ou em pergaminho
+Linhas de esboço visíveis, cores suaves (marrom, sépia, dourado empoeirado, cinza)
+Inspirado em xilogravuras antigas, manuais de sobrevivência ou manuscritos religiosos
+NÃO fotorrealista — deve ser histórico, cru e emocionante
+📍 Detalhes da Composição (Incluir Tudo):
+Cenário histórico: campo de batalha, salões de castelo, vilas infestadas de peste, fazendas de camponeses, antigas pousadas, mosteiros
+Personagens: camponeses famintos, monges, médicos da peste, mães em luto, cavaleiros com armaduras, crianças descalças
+Emoção ou ação: rezar, cavar, sussurrar, escapar, lutar, queimar, desabar, se esconder, gritar silenciosamente
+Atmosfera: neblina, luz de tochas, luz de velas, neve, nublado Céus, brilho de fogo, crepúsculo tempestuoso
+Textura de fundo: madeira apodrecida, paredes de pedra, cabanas de palha, ferramentas medievais, gado moribundo, capelas antigas
+🧠 Regras para Escrita de Prompts:
+Escreva 1 cena única por prompt, com o número total baseado na entrada do usuário.
+Cada cena deve ter de 1 a 2 frases — rica, visual e cinematográfica.
+Descreva o que está acontecendo, onde, quem está envolvido e como é a sensação.
+Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração medieval a tinta", "tom de tela desbotado", "vila encharcada de névoa do século XIV".
+Produza apenas os prompts numerados, sem explicações ou conteúdo extra.
+Certifique-se de que cada prompt seja independente como um conceito completo de ilustração medieval.
+Agora gere os prompts usando os detalhes abaixo:
+Título do Vídeo: [${tema}]
+Número de Prompts: [15]`;
 
-Você está gerando UMA miniatura cinematográfica com base no título do vídeo fornecido. O prompt deve corresponder ao tom visual pictórico único mostrado em miniaturas de sucesso — sério, corajoso, envolvente e medieval.
-
-🎯 ELEMENTOS OBRIGATÓRIOS PARA INCLUIR NO PROMPT:
-
-🎨 1. Estilo e Textura
-Ilustração a óleo pintada à mão
-Pinceladas ásperas, textura medieval
-Tons de pergaminho desbotados do século XIV (marrom empoeirado, amarelo-claro, dourado lamacento)
-Sombras suaves, brilho pictórico (como luz de velas ou neblina)
-Rostos emocionalmente expressivos, roupas ásperas, sujeira natural
-
-🖼️ 2. Composição
-Foco central do personagem (rei, camponês, monge, doente, prisioneiro, cavaleiro, vítima da peste, jovem, etc.)
-Emoção dramática ou momento de alto risco — olhar para cima com medo, chorar, desmaiar, sussurrar, ajoelhar, etc.
-Enquadramento claro — o personagem deve ser grande e expressivo em primeiro plano
-Fundo: vila medieval, sala do trono, campo de batalha enevoado, taverna mal iluminada, beco de pedra em ruínas
-
-🔥 3. Iluminação e Clima
-Luz de tocha quente Brilho, luz de velas, neblina sombria, nascer do sol enevoado, sombras tremeluzentes
-O tom emocional deve corresponder ao título — triste, intenso, medroso, desesperado, poderoso
-Evite luz do dia forte — mantenha-a escura, empoeirada, emocional
-
-🧾 4. Texto da Miniatura 
-COLOQUE UMA OBSERVAÇÃO NO FINAL PARA NÃO INCLUIR TEXTO NA IMAGEM
-
-🔚 FORMATO:
-Depois de fornecer o título do vídeo, sua tarefa é retornar:
-Uma imagem cinematográfica detalhada em miniatura (para uso em MidJourney, Leonardo AI, etc.)
-COLOQUE UMA OBSERVAÇÃO NO FINAL PARA NÃO INCLUIR TEXTO NA IMAGEM
-Sugestão de tom de cor correspondente à emoção e à história
-Título do Vídeo: [${tema}]`;
+      const prompt3 = `Sem informações...`;
+      const prompt4 = `Sem informações...`;
+      const prompt5 = `Sem informações...`;
       const prompt6 = `Sem informações...`;
 
 
@@ -484,26 +479,48 @@ Título do Vídeo: [${tema}]`;
       notification.textContent = msg;
       notification.style.color = color;
     }
+	
+	
+	
+	  // Monitorando erros globalmente
+  window.onerror = function(message, source, lineno, colno, error) {
+    const errorMsg = `Erro: ${message} em ${source} na linha ${lineno}, coluna ${colno}. Detalhes: ${error}`;
+    console.error(errorMsg); // Exibe o erro no console
+
+    // Notifica o usuário visualmente
+    showMessage("Ocorreu um erro inesperado. Verifique o console para mais detalhes.", "red");
+    
+    // Retorna true para evitar que o erro seja disparado novamente
+    return true;
+  };
+
+  // Função para capturar erros de execução
+  function captureError(fn) {
+    try {
+      fn();
+    } catch (e) {
+      console.error('Erro durante execução:', e);
+      showMessage("Houve um problema na execução de uma função. Verifique o console para mais detalhes.", "red");
+    }
+  }
+
+  // Função para mostrar mensagens no site
+  function showMessage(msg, color = 'white') {
+    const notification = document.getElementById("notification");
+    notification.textContent = msg;
+    notification.style.color = color;
+  }
+
+  // Exemplo de uso do captureError para garantir que o código dentro da função seja monitorado
+  captureError(() => {
+    // Coloque o código que você quer monitorar aqui
+    gerarTemas(); // Exemplo: função gerarTemas
+  });
+
+  // Exemplo de onde capturar erro ao gerar prompts
+  captureError(() => {
+    gerarPrompts();
+  });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
