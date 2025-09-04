@@ -426,70 +426,31 @@ Agora gere ${numeroTemas} títulos.`;
       const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
 TEMA: [${tema}]`;
-      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho medieval.
-
-Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias medieval — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário medieval ilustrado.
-
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente nos nichos de sobrevivência medieval, idade das trevas, peste e vida em aldeias.
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias medieval assustador — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário medieval ilustrado.
 Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
-
-OBJETIVO:
-Interprete o tema, o tom histórico e o arco emocional do título
-Crie prompts visualmente consistentes e pictóricos para imagens de vídeo envolventes
-Cada imagem deve seguir o mesmo esquema de cores, iluminação e estilo de arte para manter a coesão visual em todo o vídeo
-
-BLOQUEIO DE ESTILO (Deve ser aplicado a cada prompt)
-Estilo medieval pintado à mão, com rica granulação de papel e textura desbotada. Paleta de cores quentes e suaves: marrom queimado, ocre, creme pergaminho, verde-oliva empoeirado, carmesim desbotado, preto fuligem. Pinceladas visíveis. Iluminação apenas à luz de velas ou lareira. Clima levemente melancólico. Sem cores vibrantes, brilho digital ou elementos modernos. 
-
-DIRETRIZES DE ESTILO VISUAL
-
-Estilo de arte:
-Ilustração medieval pintado à mão, inspirada em xilogravura, estilo de arte popular, sombreamento a óleo plano, linhas de tinta soltas, texturas envelhecidas.
-
-Textura:
-Grão de pergaminho ou tela visível
-Rachaduras envelhecidas, imperfeições causadas por pinceladas
-Fuligem e danos causados pelo fogo são bem-vindos
-Esquema de cores (aplicado em todas as imagens):
-Vermelhos queimados
-Verde oliva
-Marrons empoeirados
-Fuligem preta
-Creme de pergaminho
-Evite brancos brilhantes, neon ou cores saturadas
-
-Iluminação:
-Cenas quentes à luz de velas ou apenas com lareira
-Cantos profundos, sombras suaves
-Sempre quente, sem a luz do estúdio
-
-Personagens:
-Rostos suaves, cansados e expressivos
-Ombros para cima ou cintura para cima
-Roupas medievais ou camponesas, muitas vezes usadas ou remendadas
-Leve exagero anatômico como marginália
-
-Ambientes:
-Cozinhas de pedra, paredes de pergaminho, salas iluminadas por lareiras
-Pisos de barro, esteiras de palha, vigas de madeira
-Adicione adereços: espelhos rachados, ferramentas medievais, pães, tigelas de madeira
-Todos os fundos devem permanecer no mesmo estilo e iluminação
-
-FILOSOFIA DE DESIGN:
-Todos os visuais devem transmitir a sensação de:
-Calmo, lento, melancólico
-Historicamente texturizado
-Visualmente consistente em todo o conjunto
-Como páginas do mesmo livro medieval ilustrado
-
-IMPORTANTE:
-Não inclua títulos, divisões por parágrafos, resumos ou explicações. Entregue apenas os prompts, um após o outro, como uma lista contínua todos escritos em inglês.
-
-ENTRADA:
-Tema: ${tema}
-Número de imagens necessárias: [15]`;
-      const prompt3 = `Formate e Organize o título abaixo para o padrão do Youtube e me devolva nos idiomas português, espanhol, francês e inglês.
-
-TÍTULO: ${tema}`;
+🎨 Estilo Visual:
+Estética de ilustração rústica dos anos 1300-1500
+Texturas pintadas à mão, com pincel a óleo ou em pergaminho
+Linhas de esboço visíveis, cores suaves (marrom, sépia, dourado empoeirado, cinza)
+Inspirado em xilogravuras antigas, manuais de sobrevivência ou manuscritos religiosos
+NÃO fotorrealista — deve ser histórico, cru e emocionante
+📍 Detalhes da Composição (Incluir Tudo):
+Cenário histórico: campo de batalha, salões de castelo, vilas infestadas de peste, fazendas de camponeses, antigas pousadas, mosteiros
+Personagens: camponeses famintos, monges, médicos da peste, mães em luto, cavaleiros com armaduras, crianças descalças
+Emoção ou ação: rezar, cavar, sussurrar, escapar, lutar, queimar, desabar, se esconder, gritar silenciosamente
+Atmosfera: neblina, luz de tochas, luz de velas, neve, nublado Céus, brilho de fogo, crepúsculo tempestuoso
+Textura de fundo: madeira apodrecida, paredes de pedra, cabanas de palha, ferramentas medievais, gado moribundo, capelas antigas
+🧠 Regras para Escrita de Prompts:
+Escreva 1 cena única por prompt, com o número total baseado na entrada do usuário.
+Cada cena deve ter de 1 a 2 frases — rica, visual e cinematográfica.
+Descreva o que está acontecendo, onde, quem está envolvido e como é a sensação.
+Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração medieval a tinta", "tom de tela desbotado", "vila encharcada de névoa do século XIV".
+Produza apenas os prompts numerados, sem explicações ou conteúdo extra.
+Certifique-se de que cada prompt seja independente como um conceito completo de ilustração medieval.
+Agora gere os prompts usando os detalhes abaixo:
+Título do Vídeo: [${tema}]
+Número de Prompts: [15]`;
 
       const prompt4 = `Aja como um engenheiro profissional de miniaturas visuais e estrategista de miniaturas do YouTube. Você é especialista em criar miniaturas visuais geradas por IA para documentários de história medieval. O objetivo é gerar miniaturas visualmente impressionantes e emocionalmente impactantes que se pareçam com ilustrações a óleo pintadas à mão — otimizadas para taxa de cliques (CTR) e narrativa cinematográfica.
 
@@ -594,6 +555,7 @@ Título do Vídeo: [${tema}]`;
   </script>
 </body>
 </html>
+
 
 
 
