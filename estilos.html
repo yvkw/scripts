@@ -173,7 +173,7 @@
     <textarea id="roteiro" placeholder="Digite seu roteiro aqui..."></textarea>
     
     <button onclick="gerarImagens('realista')">Pintura Realista</button>
-	<button onclick="gerarImagens('classical_realism')">Classical Realism</button>
+	<button onclick="gerarImagens('classical_realism')">Medieval 2</button>
     <button onclick="gerarImagens('medieval')">Medieval</button>
 	<button onclick="gerarImagens('nenhum')">Nenhum</button>
 
@@ -214,7 +214,7 @@ function gerarImagens(estilo) {
     } else if (estilo === 'medieval') {
       textoGerado = `Hand-painted medieval style with grainy paper texture: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'classical_realism') {
-      textoGerado = `Ilustração a óleo pintada à mão: ${paragrafos[promptIndex].trim()}`;
+      textoGerado = `Ilustração a óleo pintada à mão estilo medieval: ${paragrafos[promptIndex].trim()}`;
     }
 
     const divImagem = document.createElement("div");
@@ -275,6 +275,7 @@ function gerarImagens(estilo) {
   </script>
 </body>
 </html>
+
 
 
 
