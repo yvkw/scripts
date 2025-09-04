@@ -303,8 +303,13 @@
     <label for="tema">Tema para os Prompts</label>
     <div class="button-container">
       <input type="text" id="tema" placeholder="Digite o tema aqui...">
+	  <label for="roteiro">Adicione seu Roteiro</label>
+	 <textarea id="roteiro" placeholder="Digite seu roteiro aqui..." rows="4"></textarea>
       <button onclick="gerarPrompts()"><i class="fa-solid fa-magic"></i> Gerar Prompts Personalizados</button>
     </div>
+	
+	
+	
 
     <div id="notification"></div>
 
@@ -416,12 +421,14 @@ Agora gere ${numeroTemas} títulos.`;
       gerarTemasElement.textContent = temas;
     }
 
-    function gerarPrompts() {
-      const tema = document.getElementById("tema").value.trim();
-      if (!tema) {
-        showMessage("Digite um tema para gerar os prompts.", "red");
-        return;
-      }
+function gerarPrompts() {
+  const tema = document.getElementById("tema").value.trim();
+  const roteiro = document.getElementById("roteiro").value.trim();  // Novo campo de roteiro
+  
+  if (!tema && !roteiro) {
+    showMessage("Digite um tema ou um roteiro para gerar os prompts.", "red");
+    return;
+  }
 
       const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
@@ -450,9 +457,10 @@ Produza apenas os prompts numerados, sem explicações ou conteúdo extra.
 Certifique-se de que cada prompt seja independente como um conceito completo de ilustração medieval.
 Agora gere os prompts usando os detalhes abaixo:
 Título do Vídeo: [${tema}]
-Número de Prompts: [15]`;
+Número de Prompts: [15]
+ROTEIRO: [${roteiro}]`;
 
-      const prompt3 = `Sem informações...`;
+      const prompt3 = `ROTEIRO: [${roteiro}]`;
       const prompt4 = `Sem informações...`;
       const prompt5 = `Sem informações...`;
       const prompt6 = `Sem informações...`;
