@@ -233,7 +233,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Escreva (3 parágrafos sendo início, meio e fim) sobre o tema: [${theme}], com aproximadamente 600 tokens cada parágrafo. Deve ser escrito em um estilo de (narrativa relaxante), como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico suave. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
+            navigator.clipboard.writeText(`Escreva (3 parágrafos sendo início, meio e fim) sobre o tema: [${theme}], com aproximadamente 600 tokens cada parágrafo. Deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico de forma tranquila e envolvente. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. O texto deve transmitir a sensação de ser uma viagem no tempo, explorando um passado distante com um olhar atento e curioso sobre as pequenas coisas da vida cotidiana. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -343,3 +343,4 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
     </script>
 </body>
 </html>
+
