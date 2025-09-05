@@ -386,11 +386,11 @@
     function gerarTemas() {
       const numeroTemas = parseInt(document.getElementById("numeroTemas").value) || 10;
       const gerarTemasElement = document.getElementById("gerarTemas");
-      let temas = `Aja como um estrategista profissional de SEO do YouTube para canais de histórias históricas. Você é especialista em criar títulos chamativos para o YouTube para conteúdo baseado na vida cotidiana de civilizações antigas.
+      let temas = `Aja como um estrategista profissional de SEO do YouTube para canais de histórias históricas. Você é especialista em criar títulos chamativos para o YouTube para conteúdo baseado na vida cotidiana da idade média.
 
 Sua tarefa é gerar cuidadosamente ${numeroTemas} títulos originais do YouTube. Os títulos devem ser curtos e claros, com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério.
 
-Temas sobre a vida cotidiana em civilizações antigas e medievais (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.)
+Temas sobre a vida cotidiana na idade média (medicina, alimentação, rotinas diárias, punições, papéis de gênero, biografias, leis estranhas, invenções esquecidas, cidades perdidas, criaturas míticas, etc.)
 
 Sua produção deve seguir estas regras exatas:
 Tom: Sério, imersivo, cinematográfico, historicamente fundamentado
@@ -423,9 +423,9 @@ function gerarPrompts() {
       const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
 TEMA: [${tema}]`;
-      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho de histórias de civilizações antigas e medievais, incluindo a vida cotidiana, cultura, costumes e mistérios dessas civilizações.
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho de histórias antigas da idade média, incluindo a vida cotidiana, cultura, costumes e mistérios.
 
-Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias antigas — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário ilustrado, capturando o espírito das civilizações antigas e medievais de forma única e realista.
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias antigas — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário ilustrado, capturando o espírito das idade média de forma única e realista.
 Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
 
 🎨 Estilo Visual:
@@ -462,10 +462,10 @@ Use letras maiúsculas e minúsculas como títulos reais do YouTube
 Me entregue os títulos limpos sem nenhuma observação.
 Títulos: ${roteiro}`;
       const prompt4 = `# ESPECIALISTA EM SEO UNIVERSAL
-Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR SOBRE A VIDA COTIDIANA DE CIVILIZAÇÕES ANTIGAS E MEDIEVAIS". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
+Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR SOBRE A VIDA COTIDIANA NA IDADE MÉDIA". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
 
 # SISTEMA DE DETECÇÃO AUTOMÁTICA DE NICHO
-Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR".
+Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR SOBRE A VIDA COTIDIANA NA IDADE MÉDIA".
 
 
 # PROCESSO DE TRABALHO
@@ -707,5 +707,6 @@ TEMA: [${tema}]`;
   </script>
 </body>
 </html>
+
 
 
