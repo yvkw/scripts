@@ -422,34 +422,39 @@ function gerarPrompts() {
       const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
 
 TEMA: [${tema}]`;
-      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente nos nichos de sobrevivência medieval, idade das trevas, peste e vida em aldeias.
-Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias medieval assustador — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário medieval ilustrado.
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho de histórias de civilizações antigas e medievais, incluindo a vida cotidiana, cultura, costumes e mistérios dessas civilizações.
+
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas que pareçam ter sido retirados de um livro de histórias antigas — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem parecer quadros de um documentário ilustrado, capturando o espírito das civilizações antigas e medievais de forma única e realista.
 Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
+
 🎨 Estilo Visual:
 Estética de ilustração rústica dos anos 1300-1500
 Texturas pintadas à mão, com pincel a óleo ou em pergaminho
 Linhas de esboço visíveis, cores suaves (marrom, sépia, dourado empoeirado, cinza)
 Inspirado em xilogravuras antigas, manuais de sobrevivência ou manuscritos religiosos
 NÃO fotorrealista — deve ser histórico, cru e emocionante
+
 📍 Detalhes da Composição (Incluir Tudo):
-Cenário histórico: campo de batalha, salões de castelo, vilas infestadas de peste, fazendas de camponeses, antigas pousadas, mosteiros
-Personagens: camponeses famintos, monges, médicos da peste, mães em luto, cavaleiros com armaduras, crianças descalças
-Emoção ou ação: rezar, cavar, sussurrar, escapar, lutar, queimar, desabar, se esconder, gritar silenciosamente
-Atmosfera: neblina, luz de tochas, luz de velas, neve, nublado Céus, brilho de fogo, crepúsculo tempestuoso
-Textura de fundo: madeira apodrecida, paredes de pedra, cabanas de palha, ferramentas medievais, gado moribundo, capelas antigas
+Cenário histórico: campos de batalha antigos, salões de castelo, aldeias antigas, mercados medievais, templos, fazendas de camponeses, antigas pousadas
+Personagens: camponeses, sacerdotes, médicos da peste, guerrreiros, crianças, comerciantes, mulheres em trajes antigos
+Emoção ou ação: rezar, negociar, viajar, lutar, comer, trabalhar, descansar, caçar, cantar, construir
+Atmosfera: neblina, luz de tochas, luz de velas, céus nublados, brilhos de fogo, crepúsculo tempestuoso, mistério, alvorada suave
+Textura de fundo: pedras antigas, madeira envelhecida, mercados lotados, tendas de acampamento, utensílios de cozinha rústicos, utensílios de guerra, tapetes, tapeçarias antigas
+
 🧠 Regras para Escrita de Prompts:
 Escreva 1 cena única por prompt, com o número total baseado na entrada do usuário.
 Cada cena deve ter de 1 a 2 frases — rica, visual e cinematográfica.
 Descreva o que está acontecendo, onde, quem está envolvido e como é a sensação.
-Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração medieval a tinta", "tom de tela desbotado", "vila encharcada de névoa do século XIV".
+Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração medieval a tinta", "tom de tela desbotado", "vila envolta em nevoeiro do século XIV".
 Produza apenas os prompts numerados, sem explicações ou conteúdo extra.
 Certifique-se de que cada prompt seja independente como um conceito completo de ilustração medieval.
+
 Agora gere os prompts usando os detalhes abaixo:
 Título do Vídeo: [${tema}]
 Número de Prompts: [15]
 ROTEIRO: [${roteiro}]
 
-Me entregue todos os prompts em inglês de forma limpa sem titulos`;
+Me entregue todos os prompts em inglês de forma limpa sem titulos.`;
 
       const prompt3 = `Traduza os Títulos abaixo para o [Português, Espanhol e Frances]
 Use letras maiúsculas e minúsculas como títulos reais do YouTube
@@ -526,6 +531,7 @@ Títulos: ${roteiro}`;
   </script>
 </body>
 </html>
+
 
 
 
