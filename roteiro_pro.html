@@ -233,7 +233,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
 
         function copyTheme() {
             const theme = themes[currentThemeIndex];
-            navigator.clipboard.writeText(`Escreva (3 parágrafos sendo início, meio e fim) sobre o tema: [${theme}], com aproximadamente 600 tokens cada parágrafo. Deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico de forma tranquila e envolvente. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. O texto deve transmitir a sensação de ser uma viagem no tempo, explorando um passado distante com um olhar atento e curioso sobre as pequenas coisas da vida cotidiana. Escreva apenas o texto limpo, sem comentários antes ou depois.`)
+            navigator.clipboard.writeText(`Escreva (3 parágrafos sendo início, meio e fim) sobre o tema: [${theme}], com aproximadamente 600 tokens cada parágrafo. Deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave — não como um documentário, mas como alguém narrando um conto histórico de forma tranquila e envolvente. Foque na vida cotidiana, costumes interessantes, detalhes esquecidos, fatos históricos suaves e imagens pacíficas. O texto deve transmitir a sensação de ser uma viagem no tempo, explorando um passado distante com um olhar atento e curioso sobre as pequenas coisas da vida cotidiana. Lembre-se de escrever apenas o texto limpo, sem comentários, sem introduções e sem sugestões no final.`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -270,7 +270,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
         }
 
         function copyInicio() {
-            const inicioText = `Desenvolva o início da história abaixo de forma consistente utlizando aproximadamente (1200 tokens) para o meu roteiro. Com uma expressão narrativa relaxante. A linguagem deve ser simples, envolvente e fácil de seguir. Não entre no desenvolvimento ou na conclusão da história. Escreva o texto limpo, sem comentários antes ou depois.`;
+            const inicioText = `Desenvolva o início da história abaixo de forma consistente utlizando aproximadamente (1200 tokens) para o meu roteiro. Com uma expressão narrativa relaxante. A linguagem deve ser simples, envolvente e fácil de seguir. Lembre-se de escrever apenas o texto limpo, sem comentários, sem introduções e sem sugestões no final.`;
             const [p1] = extractParagraphsFromNewTextBox();
             if (!p1) {
                 alert('Não encontrei o 1º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
@@ -280,7 +280,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
         }
 
         function copyMeio() {
-            const meioText = `Desenvolva o meio da história abaixo de forma consistente utlizando aproximadamente (2000 tokens) para desenvolver o argumento da história. Com uma expressão (narrativa relaxante). A linguagem deve ser simples, envolvente e fácil de seguir. Não repita o começo da história e não mencione o final ou a conclusão. Escreva o texto limpo, sem comentários antes ou depois.`;
+            const meioText = `Desenvolva o meio da história abaixo de forma consistente utlizando aproximadamente (2000 tokens) para desenvolver o argumento da história. Com uma expressão (narrativa relaxante). A linguagem deve ser simples, envolvente e fácil de seguir. Lembre-se de escrever apenas o texto limpo, sem comentários, sem introduções e sem sugestões no final.`;
             const [, p2] = extractParagraphsFromNewTextBox();
             if (!p2) {
                 alert('Não encontrei o 2º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
@@ -290,7 +290,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
         }
 
         function copyFim() {
-            const fimText = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens), projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Termine convidando o público a curtir, se inscrever no canal e ouvir outra história. Escreva o texto limpo, sem comentários antes ou depois.`;
+            const fimText = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens), projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Termine convidando o público a curtir, se inscrever no canal e ouvir outra história. Lembre-se de escrever apenas o texto limpo, sem comentários, sem introduções e sem sugestões no final.`;
             const [, , p3] = extractParagraphsFromNewTextBox();
             if (!p3) {
                 alert('Não encontrei o 3º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
@@ -343,4 +343,5 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
     </script>
 </body>
 </html>
+
 
