@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Roteiro com Temas</title>
+    <style>
+        #copyButton, #introButton, #inicioButton, #meioButton, #continuarButton, #fimButton {
+            background-color: #28a745;  /* Cor personalizada para o botão Copiar */
+            color: white;  /* Cor do texto */
+        }
+
+        #copyButton:hover, #introButton:hover, #inicioButton:hover, #meioButton:hover, #continuarButton:hover, #fimButton:hover {
+            background-color: #218838;  /* Cor do botão ao passar o mouse */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #themeDisplay {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #themeText {
+            flex-grow: 1;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #themeInput {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .box-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .box {
+            width: 30%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            min-height: 30px;
+        }
+
+        .box textarea {
+            width: 100%;
+            height: 40px;  /* Altura ajustada para duas linhas */
+            border: none;
+            background-color: transparent;
+            padding: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: none;
+        }
+
+        /* Cores diferentes para cada box */
+        #box1 { background-color: #FF0000;  /* Vermelho Padrão */ }
+        #box2 { background-color: #4682b4;  /* Azul */ }
+        #box3 { background-color: #f0e68c;  /* Amarelo */ }
+        #box4 { background-color: #800080;  /* Roxo */ }
+        #box5 { background-color: #ffa500;  /* Laranja Padrão */ }
+        #box6 { background-color: #00bcd4;  /* Ciano */ }
+        #box7 { background-color: #000000;  /* Preto */ }
+        #box8 { background-color: #ff1493;  /* Rosa */ }
+        #box9 { background-color: #32cd32;  /* Verde */ }
+
+        /* Estilo do novo box */
+        #newBox {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #newBox textarea {
+            width: 100%;
+            height: 100px; /* Ajustado para mais espaço */
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: none;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerar Roteiro com Temas</h1>
+    
+    <label for="themeInput">Preencha os temas (quebre linha entre eles):</label><br>
+    <textarea id="themeInput" placeholder=""></textarea><br><br>
+    
+    <button onclick="generateTheme()">Gerar</button>
+    <button onclick="clearContent()">Limpar</button>
+    <button onclick="saveContent()">Salvar</button>
+	<button id="introButton" onclick="copyIntro()">Estrutura</button>
+    <button id="inicioButton" onclick="copyInicio()">Início</button>
+    <button id="meioButton" onclick="copyMeio()">Meio</button>
+    <button id="fimButton" onclick="copyFim()">Fim</button>
+    
+    <div id="themeDisplay">
+        <span id="themeText">Tema: <span id="themeName"></span></span>
+        <button id="copyButton" style="display:none;" onclick="copyTheme()">Copiar</button>
+    </div>
+    <div id="completionMessage" class="success" style="display: none;"></div>
+
+    <!-- Novo Box de Texto -->
+    <div id="newBox">
+        <textarea id="newTextBox" placeholder="Digite os 3 parágrafos aqui. Separe por uma linha em branco OU coloque cada parágrafo em uma nova linha."></textarea>
+    </div>
+
+    <!-- História 1 -->
+    <div>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box1"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box2"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- História 2 -->
+    <div>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box4"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box5"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box6"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- História 3 -->
+    <div>
+        <div class="box-container">
+            <div class="box">
+                <textarea id="box7"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box8"></textarea>
+            </div>
+            <div class="box">
+                <textarea id="box9"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+	
+	        function copyIntro() {
+            const theme = themes[currentThemeIndex];
+            const introText = `Você é um roteirista cinematográfico do YouTube. Este projeto incluirá uma história dividida em 3 partes (inicio, meio e fim) todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema.
+
+Instruções:
+Depois de fornecer o Título Principal, o assistente gerará a estrutura da história.
+
+Estrutura:
+Tema: [${theme}]
+Inicio: [Tema do inicio]
+Meio: [Tema do meio]
+Fim: [Tema do fim]
+
+Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalmente da parte anterior e se conecte emocionalmente ao próximo.
+
+
+🔽 Tema: [${theme}]`;
+            navigator.clipboard.writeText(introText);
+        }
+		
+        let themes = [];
+        let currentThemeIndex = 0;
+
+        function generateTheme() {
+            const input = document.getElementById('themeInput').value;
+            themes = input.split('\n').map(theme => theme.trim()).filter(theme => theme.length > 0);
+            
+            if (themes.length === 0) {
+                document.getElementById('themeDisplay').innerHTML = 'Por favor, adicione temas!';
+                return;
+            }
+
+            if (currentThemeIndex < themes.length) {
+                const theme = themes[currentThemeIndex];
+                document.getElementById('themeName').innerText = theme;
+                document.getElementById('copyButton').style.display = 'inline-block';
+            }
+        }
+
+        function copyTheme() {
+            const theme = themes[currentThemeIndex];
+            navigator.clipboard.writeText(`Escreva (3 parágrafos sendo início, meio e fim) sobre o tema: [${theme}], com aproximadamente 600 tokens cada parágrafo. Deve ser escrito em um estilo de narrativa relaxante, como uma história contada de maneira suave como se fosse alguém narrando um conto histórico de forma tranquila e envolvente. A história deve transmitir a sensação de ser uma viagem no tempo, onde o passado ganha novos rumos e surpresas.
+			
+   Escreva somente o texto, não faça comentários, não escreva introdução, não inclua sugestões, não explique nada. Apenas o texto, nada mais.`)
+                .then(() => {
+                    currentThemeIndex++; // Aqui o índice é incrementado
+                    if (currentThemeIndex < themes.length) {
+                        generateTheme();
+                    } else {
+                        document.getElementById('completionMessage').innerText = 'Todos os temas foram gerados!';
+                        document.getElementById('completionMessage').style.display = 'block';
+                        document.getElementById('copyButton').style.display = 'none';
+                    }
+                })
+                .catch(err => {
+                    alert('Erro ao copiar para a área de transferência: ' + err);
+                });
+        }
+
+        // ==== Utilitário robusto para extrair 3 parágrafos ====
+        function extractParagraphsFromNewTextBox() {
+            const raw = (document.getElementById('newTextBox').value || '').replace(/\r\n/g, '\n');
+
+            // 1) Tenta separar por LINHA EM BRANCO (parágrafo real)
+            let paras = raw.split(/\n\s*\n/).map(p => p.trim()).filter(p => p.length > 0);
+            if (paras.length >= 3) {
+                return [paras[0], paras[1], paras.slice(2).join('\n\n')];
+            }
+
+            // 2) Fallback: separa por QUEBRA DE LINHA simples
+            const parts = raw.split(/\n+/).map(p => p.trim()).filter(p => p.length > 0);
+            if (parts.length >= 3) {
+                return [parts[0], parts[1], parts.slice(2).join('\n')];
+            }
+
+            // 3) Completa com strings vazias se não houver 3
+            return [parts[0] || paras[0] || '', parts[1] || paras[1] || '', parts[2] || paras[2] || ''];
+        }
+
+        function copyInicio() {
+            const inicioText = `Desenvolva o início da história abaixo de forma consistente utlizando aproximadamente (1200 tokens) para o meu roteiro. Com uma expressão narrativa relaxante. A linguagem deve ser simples, envolvente e fácil de seguir. Começe com uma introdução de 20s chamativa que tenha haver com a história: apresente o tema de forma rápida e intrigante, peça para curtirem, se inscreverem e comentarem de onde e que horas estão assistindo. Depois inicie a narrativa do vídeo. 
+			
+   Escreva somente o texto, não faça comentários, não escreva introdução, não inclua sugestões, não explique nada. Apenas o texto, nada mais.`;
+            const [p1] = extractParagraphsFromNewTextBox();
+            if (!p1) {
+                alert('Não encontrei o 1º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(inicioText + "\n\n" + p1);
+        }
+
+        function copyMeio() {
+            const meioText = `Desenvolva o meio da história abaixo de forma consistente utlizando aproximadamente (2000 tokens) para desenvolver o argumento da história. Com uma expressão (narrativa relaxante). A linguagem deve ser simples, envolvente e fácil de seguir. 
+			
+   Escreva somente o texto, não faça comentários, não escreva introdução, não inclua sugestões, não explique nada. Apenas o texto, nada mais.`;
+            const [, p2] = extractParagraphsFromNewTextBox();
+            if (!p2) {
+                alert('Não encontrei o 2º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(meioText + "\n\n" + p2);
+        }
+
+        function copyFim() {
+            const fimText = `Desenvolva o fim e conclusão da história com no mínimo de (1000 tokens), projetado para ajudar os espectadores a adormecer. O tom deve ser calmo, suave e descritivo. Termine convidando o público a curtir, se inscrever no canal e ouvir outra história. 
+			
+   Escreva somente o texto, não faça comentários, não escreva introdução, não inclua sugestões, não explique nada. Apenas o texto, nada mais.`;
+            const [, , p3] = extractParagraphsFromNewTextBox();
+            if (!p3) {
+                alert('Não encontrei o 3º parágrafo. Separe os parágrafos por uma linha em branco ou coloque cada um em uma nova linha.');
+                return;
+            }
+            navigator.clipboard.writeText(fimText + "\n\n" + p3);
+        }
+
+        // Função para limpar os conteúdos dos boxes
+        function clearContent() {
+            document.querySelectorAll('.box textarea').forEach(textarea => {
+                textarea.value = '';
+            });
+            document.getElementById('newTextBox').value = '';
+        }
+
+        // Função para salvar os conteúdos dos boxes em um arquivo de texto
+        function saveContent() {
+            let content = '';
+            let themeName = themes[currentThemeIndex - 1] || 'roteiro';  // Usa o tema correto, antes da mudança do índice
+
+            // Coletando o conteúdo dos boxes
+            document.querySelectorAll('.box textarea').forEach(textarea => {
+                let text = textarea.value.trim();
+                if (text) {
+                    // Remove os asteriscos usados para destaque de palavras
+                    text = text.replace(/\*{1,2}(.*?)\*{1,2}/g, '$1');  // Remove *palavra* e **palavra**
+
+                    // Divide o texto em parágrafos e verifica cada um
+                    const paragraphs = text.split('\n');
+                    paragraphs.forEach(paragraph => {
+                        if (paragraph.length >= 150) {  // Verifica se o parágrafo tem 150 ou mais caracteres
+                            content += paragraph + '\n\n';  // Adiciona duas quebras de linha entre os conteúdos de cada parágrafo
+                        }
+                    });
+                }
+            });
+
+            if (content === '') {
+                return;
+            }
+
+            const filename = `${themeName}.txt`;  // Usa o nome correto para salvar o arquivo
+            const blob = new Blob([content.trim()], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
