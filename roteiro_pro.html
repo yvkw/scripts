@@ -234,7 +234,7 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
         function copyTheme() {
             const theme = themes[currentThemeIndex];
             navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para um canal sobre "História Antiga para Dormir". 
-Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. Cada Parte deve ter entre 1.500 e 2.000 palavras.
+Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. Cada Parte deve ter entre 1.500 e 2.000 palavras e cada parágrafo terá em média 400 caracteres (para manter a uniformidade).
 
 Instruções
 Depois de fornecer o Título Principal, o assistente gerará de 3 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 2 histórias sejam concluídas.
@@ -244,11 +244,11 @@ Título principal: Um único título abrangente com várias histórias históric
 Cada história: Cada história será dividida em 3 partes.
 
 Por exemplo:
-História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada).
-História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada).
+História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada)
+História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada) 
 
 Siga as instruções:
-Comece com a História 1, Parte 1 (1.500–2.000 palavras).
+Comece com a História 1, Parte 1 (1.500–2.000 palavras) 
 Concentre-se no tópico principal ou na figura histórica, descrevendo-os detalhadamente e com precisão histórica.
 Termine a Parte 1 com um pensamento ou questão não resolvida, estimulando a curiosidade pela próxima parte.
 Depois que a Parte 1 estiver concluída, pergunte em poucas palavras: "Continuar para a Parte 2 da História 1?"
@@ -280,10 +280,10 @@ Importante:
 - Certifique-se de que a história transite suavemente de uma Parte para outra.
 - Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo.
 - A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
-Antes de começar com a historia me dê a estrutura de temas das 2 histórias e depois me pergunte se pode começar com a primeira história.
-- Por favor, evite incluir perguntas de transição ou conclusões desnecessárias. Comece diretamente com a narrativa e siga sem essas interações.
+- Antes de começar com a historia me dê a estrutura de temas das 2 histórias e depois me pergunte se pode começar com a primeira história.
+- Evite interações, perguntas ou conclusões desnecessárias.
 
-Tema: [${theme}]`)
+Tema: [${theme}].`)
                 .then(() => {
                     currentThemeIndex++; // Aqui o índice é incrementado
                     if (currentThemeIndex < themes.length) {
@@ -402,6 +402,7 @@ function saveContent() {
     </script>
 </body>
 </html>
+
 
 
 
