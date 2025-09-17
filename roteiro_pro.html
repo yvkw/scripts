@@ -234,33 +234,32 @@ Sua tarefa é criar somente a estutura do roteiro narrativo que flua naturalment
         function copyTheme() {
             const theme = themes[currentThemeIndex];
             navigator.clipboard.writeText(`Você é um especialista em escrever uma narrativa histórica longa para um canal sobre "História Antiga para Dormir". 
-Este projeto incluirá 2 histórias, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. Cada história será dividida em 3 partes. Cada Parte deve ter entre 1.500 e 2.000 palavras e cada parágrafo terá em média 400 caracteres (para manter a uniformidade).
+Este projeto incluirá uma história com 3 partes, todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. A história será dividida em 3 partes. Cada Parte deve ter entre 1.500 e 2.000 palavras e cada parágrafo terá em média 400 caracteres (para manter a uniformidade).
 
 Instruções
-Depois de fornecer o Título Principal, o assistente gerará de 3 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. O assistente então gerará a Parte 1 da História 1 e continuará com o processo até que todas as partes das 2 histórias sejam concluídas.
+Depois de fornecer o Título Principal, o assistente gerará 3 títulos de histórias todas com o mesmo tema, mas abordando diferentes aspectos ou momentos dentro desse tema. O assistente então gerará a Parte 1 da História e continuará com o processo até que todas as partes da história sejam concluídas.
 
 Estrutura:
-Título principal: Um único título abrangente com várias histórias históricas.
-Cada história: Cada história será dividida em 3 partes.
+Título principal: Um único título abrangente com vários temas da história.
+A história: A história será dividida em 3 partes.
 
 Por exemplo:
-História 1: [Título da história 1] (3 partes, 1.500–2.000 palavras cada)
-História 2: [Título da história 2] (3 partes, 1.500–2.000 palavras cada) 
+História: [Título da história] (3 partes, 1.500–2.000 palavras cada)
 
 Siga as instruções:
-Comece com a História 1, Parte 1 (1.500–2.000 palavras) 
+Comece com a História, Parte 1 (1.500–2.000 palavras) 
 Concentre-se no tópico principal ou na figura histórica, descrevendo-os detalhadamente e com precisão histórica.
 Termine a Parte 1 com um pensamento ou questão não resolvida, estimulando a curiosidade pela próxima parte.
-Depois que a Parte 1 estiver concluída, pergunte em poucas palavras: "Continuar para a Parte 2 da História 1?"
+Depois que a Parte 1 estiver concluída, pergunte em poucas palavras: "Continuar para a Parte 2 da História?"
 A Parte 2 dará continuidade à Parte 1, aprofundando a narrativa, adicionando mais contexto e aproximando a história de sua resolução.
 Termine a Parte 2 com um ponto ou questão não resolvida para se preparar para a Parte 3.
-Após concluir a Parte 2, pergunte em poucas palavras: "Continuar para a Parte 3 da História 1?"
+Após concluir a Parte 2, pergunte em poucas palavras: "Continuar para a Parte 3 da História?"
 A Parte 3 concluirá a história, focando no clímax ou resolução do evento e nos resultados finais ou lições aprendidas.
 Termine com uma reflexão instigante sobre como o evento impactou a história ou se relaciona com os tempos modernos.
-Repita esse processo para todas as outras histórias. Após concluir as 3 partes da História 1, passe para a História 2 e continue o processo.
+Repita esse processo para todas as outras história. Após concluir as 3 partes da História, passe para a História 2 e continue o processo.
 
 Introdução:
-Quero que somente na (História 1 da parte 1) você começe com uma introdução de 20s chamativa que tenha haver com a história: apresente o tema de forma rápida e intrigante, peça para curtirem, se inscreverem e comentarem de onde e que horas estão assistindo. Depois inicie a narrativa do vídeo. 
+Quero que somente na (parte 1) você começe com uma introdução de 20s chamativa que tenha haver com a história: apresente o tema de forma rápida e intrigante, peça para curtirem, se inscreverem e comentarem de onde e que horas estão assistindo. Depois inicie a narrativa do vídeo. 
 
 Requisitos de estilo de escrita:
 Tom: Calmo, informativo e ligeiramente imparcial, com foco em fatos históricos. Enfatize os detalhes tediosos, mas significativos, que moldaram a história, usando um estilo narrativo descritivo e rico.
@@ -280,7 +279,7 @@ Importante:
 - Certifique-se de que a história transite suavemente de uma Parte para outra.
 - Garanta que a imersão e o envolvimento sejam mantidos durante todo o processo.
 - A narrativa deve ser sem divisões, seguindo com o desenvolvimento direto.
-- Antes de começar com a historia me dê a estrutura de temas das 2 histórias e depois me pergunte se pode começar com a primeira história.
+- Antes de começar com a história me dê a estrutura de temas da história e depois me pergunte se pode começar com a história.
 - Evite interações, perguntas ou conclusões desnecessárias.
 
 Tema: [${theme}].`)
@@ -402,6 +401,7 @@ function saveContent() {
     </script>
 </body>
 </html>
+
 
 
 
