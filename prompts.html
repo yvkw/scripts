@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -315,7 +316,7 @@
     <div id="promptsGerados" style="display:none;">
       <!-- Prompt 1 -->
       <div class="prompt-container">
-        <label for="prompt1">INTRODUÇÃO</label>
+        <label for="prompt1">ANALISAR TEMAS</label>
         <div class="prompt-box">
           <pre id="prompt1" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt1')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -359,7 +360,7 @@
 	  
       <!-- Prompt 6 -->
       <div class="prompt-container">
-        <label for="prompt6">COMENTÁRIOS</label>
+        <label for="prompt6">THUMBNAIL</label>
         <div class="prompt-box">
           <pre id="prompt6" class="response-block"></pre>
           <button onclick="copiarPrompt('prompt6')" class="copiar-button-prompt2"><i class="fa-solid fa-copy"></i> Copiar</button>
@@ -385,28 +386,21 @@
     function gerarTemas() {
       const numeroTemas = parseInt(document.getElementById("numeroTemas").value) || 10;
       const gerarTemasElement = document.getElementById("gerarTemas");
-      let temas = `Aja como um estrategista profissional de SEO do YouTube para canais de histórias históricas. Você é especialista em criar títulos chamativos para o YouTube para conteúdo baseado na vida cotidiana da idade média.
+      let temas = `Sua função agora é atuar como um estrategista de conteúdo experiente no YouTube. Sua única tarefa gerar ideias inovadoras e clicáveis ​​para temas de vídeo que combinem com um canal sobre: "Histórias Antigas". 
+	  
+	  O conteúdo deve ser interessante, informativo e relaxante — sem ser dramático ou emocionalmente intenso. 
 
-Sua tarefa é gerar cuidadosamente ${numeroTemas} títulos originais do YouTube. Os títulos devem ser curtos e claros, com no máximo até 60 caracteres, utilizando gramática correta e capitalização adequada, com uso de clickbait leve e mistério.
+Gere ${numeroTemas} ideias únicas e criativas para vídeos nessa área. Os tópicos devem ser baseados em história antiga, vida medieval, impérios esquecidos, vida cotidiana em séculos passados, costumes bizarros, pestes, guerras (de forma suave), realeza e aspectos pouco conhecidos ou negligenciados da história. Evite tópicos excessivamente intensos ou perturbadores e garanta que cada ideia seja adequada para uma escuta relaxante na hora de dormir. 
 
-Temas sobre a vida cotidiana na idade média.
-
-Sua produção deve seguir estas regras exatas:
-Tom: Sério, imersivo, cinematográfico, historicamente fundamentado
-Estrutura: Gancho + Assunto + Elemento de Curiosidade ou Reviravolta
-Linguagem: Use palavras vívidas, descritivas e cruas — sem iscas de clique ou enrolação
-Emoção: Cada título deve despertar curiosidade, tensão ou fascínio histórico
-
-Formato:
-
+- Regras:
 Numere os títulos (ex.: 1., 2., 3.)
 Use capitalização de título (cada palavra importante com inicial maiúscula), igual aos títulos do YouTube
 Não explique os títulos — apenas publique-os diretamente
 Use palavras poderosas relevantes
+Cada título deve ter no máximo 50 caracteres. Não ultrapasse esse limite
 
 Lógica de palavras-chave: Incorpore um ou dois substantivos otimizados para SEO em cada título, mantendo a formulação natural.
-
-Lembre-se: O foco deve ser na vida cotidiana.`;
+Cada título deve ter no máximo 50 caracteres. Não ultrapasse esse limite.`;
       gerarTemasElement.textContent = temas;
     }
 
@@ -419,35 +413,42 @@ function gerarPrompts() {
     return;
   }
 
-      const prompt1 = `Crie uma introdução de 20 segundos de forma continua baseada no tema abaixo. Comece apresentando rapidamente o tema do vídeo de maneira intrigante e cativante, mantendo o tom direto e envolvente. Peça para os espectadores curtirem o vídeo e se inscreverem. Em seguida, incentive-os a comentar de onde estão assistindo e que horas são, gerando engajamento. Sugira que os espectadores criem um ambiente tranquilo para assistir. Por fim, inicie a narrativa do vídeo com uma frase instigante que desperte o interesse e envie o espectador em uma jornada, criando um mistério ou contexto envolvente sem entrar em muitos detalhes.
+      const prompt1 = `Você é um agente especializado em identificar temas de conteúdo de sucesso para YouTube. Vou fornecer uma lista de temas e você deve analisar cada um deles com base nos seguintes critérios: relevância do público, potencial de engajamento, busca e tendências atuais, e concorrência. Para cada tema, forneça:
 
-TEMA: [${tema}]`;
-      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho de histórias antigas da idade média, incluindo a vida cotidiana, cultura, costumes e mistérios.
+Análise do Tema: Uma breve descrição de como o tema pode se destacar no YouTube.
 
-Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas sobre histórias antigas — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem capturar o espírito das idade média de forma única e realista.
+Nota de Viabilidade (1 a 10): A nota representa o quão provável é que esse tema tenha sucesso no YouTube.
+
+Racionalização da Nota: Explique brevemente por que você deu essa nota, mencionando fatores como demanda de pesquisa, potencial de viralização, ou outros aspectos relevantes.
+
+Após analisar todos os temas, forneça um Top 5 com os cinco temas mais promissores, classificados pela sua nota de viabilidade.`;
+      const prompt2 = `Atuar como engenheiro profissional de prompts visuais para geradores avançados de arte com IA, como MidJourney, Leonardo AI, ImageFX e BlueWillow. Você é especialista em criar visuais pictóricos, realistas e cinematográficos para documentários históricos de longa duração no YouTube, especialmente no nicho de histórias antigas sobre eventos históricos, personagens, civilizações e mitologias, incluindo figuras notáveis, culturas antigas e mitos perdidos.
+
+Sua tarefa é gerar um conjunto de prompts de cenas cinematográficas sobre eventos históricos — com textura áspera, emocionalmente intenso e repleto de atmosfera histórica. Esses visuais devem capturar o espírito das diferentes épocas e mitologias de forma única e realista.
+
 Cada imagem deve ser cuidadosamente elaborada e incluir os seguintes elementos:
 
 🎨 Estilo Visual:
-Estética de ilustração rústica dos anos 1300-1500
+Estética de ilustração rústica de várias épocas históricas
 Texturas pintadas à mão, com pincel a óleo ou em pergaminho
 Linhas de esboço visíveis, cores suaves (marrom, sépia, dourado empoeirado, cinza)
 NÃO fotorrealista — deve ser histórico, cru e emocionante
 
 📍 Detalhes da Composição (Incluir Tudo):
-Cenário histórico: campos de batalha antigos, salões de castelo, aldeias antigas, mercados medievais, templos, fazendas de camponeses, antigas pousadas
-Personagens: camponeses, sacerdotes, médicos da peste, guerrreiros, crianças, comerciantes, mulheres em trajes antigos
-Emoção ou ação: rezar, negociar, viajar, lutar, comer, trabalhar, descansar, caçar, cantar, construir
+Cenário histórico: campos de batalha antigos, templos mitológicos, palácios, aldeias antigas, mercados, ruínas antigas, civilizações esquecidas
+Personagens: líderes históricos, guerreiros lendários, sacerdotes, exploradores, comerciantes, figuras mitológicas, povos nativos, heróis antigos
+Emoção ou ação: lutando, descobrindo, rezando, negociando, invocando deuses, enfrentando monstros, governando, explorando, celebrando rituais antigos
 Atmosfera: neblina, luz de tochas, luz de velas, céus nublados, brilhos de fogo, crepúsculo tempestuoso, mistério, alvorada suave
-Textura de fundo: pedras antigas, madeira envelhecida, mercados lotados, tendas de acampamento, utensílios de cozinha rústicos, utensílios de guerra, tapetes, tapeçarias antigas
+Textura de fundo: pedras antigas, ruínas de templos, cavernas misteriosas, mercados lotados, utensílios de guerra antigos, tapeçarias mitológicas, artefatos sagrados
 
 🧠 Regras para Escrita de Prompts:
 Escreva 1 cena única por prompt, com o número total baseado na entrada do usuário.
 Descreva o que está acontecendo, onde, quem está envolvido e como é a sensação.
-Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração medieval a tinta", "tom de tela desbotado", "vila envolta em nevoeiro do século XIV".
+Use termos descritivos como: "esboço arenoso", "sombras pictóricas", "ilustração mítica a tinta", "tom de tela desbotado", "ruínas antigas de uma civilização perdida".
 Produza apenas os prompts numerados, sem explicações ou conteúdo extra.
-Certifique-se de que cada prompt seja independente como um conceito completo de ilustração medieval.
+Certifique-se de que cada prompt seja independente como um conceito completo de ilustração histórica ou mitológica.
 
-Agora gere os prompts usando os detalhes abaixo:
+Agora, gere os prompts usando os detalhes abaixo:
 Título do Vídeo: [${tema}]
 Número de Prompts: [18]
 
@@ -458,10 +459,10 @@ Use letras maiúsculas e minúsculas como títulos reais do YouTube
 Me entregue os títulos limpos sem nenhuma observação.
 Títulos: ${roteiro}`;
       const prompt4 = `# ESPECIALISTA EM SEO UNIVERSAL
-Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR SOBRE A VIDA COTIDIANA NA IDADE MÉDIA". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
+Você é um especialista em SEO para YouTube com 10 anos de experiência em crescimento viral e otimização de conteúdo multilíngue para o nicho de "histórias antigas para dormir sobre eventos históricos, personagens, civilizações e mitologias". Sua especialidade é criar descrições e metadados ultra-otimizados que dominam os resultados de busca em QUALQUER TIPO DE CONTEÚDO.
 
 # SISTEMA DE DETECÇÃO AUTOMÁTICA DE NICHO
-Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "HISTÓRIAS ANTIGAS PARA DORMIR SOBRE A VIDA COTIDIANA NA IDADE MÉDIA".
+Ao receber o título e narração, você irá automaticamente identificar o tipo de conteúdo e aplicar as estratégias específicas para o nicho de "histórias antigas sobre eventos históricos, personagens, civilizações e mitologias".
 
 
 # PROCESSO DE TRABALHO
@@ -590,7 +591,38 @@ IDIOMA: Português, Espanhol e Francês
 TEMA: [${tema}]
 
 Você criará e entregará 2 BLOCOS DE CÓDIGO, cada um dentro de plaintext, separados, para que eu possa copiar cada bloco inteiro com um clique. Use bloco de código markdown com plaintext no início e no final.`;
-      const prompt6 = `Crie 9 comentários elogiando um vídeo sobre história antiga para dormir. Quero 3 em português, 3 em espanhol e 3 em francês, ambos diferentes um do outro. Quero que esses comentários sejam universal tanto pra homem quanto mulher comentando. Me entregue o conteúdo sem aspas...`;
+      const prompt6 = `Atuar como engenheiro profissional de prompts visuais e estrategista de miniaturas para o YouTube. Você é especialista na criação de miniaturas visuais geradas por IA para documentários de histórias antigas sobre eventos históricos, personagens, civilizações e mitologias. O objetivo é gerar miniaturas cinematográficas altamente impactantes e visualmente impressionantes, com uma estética realista e cinematográfica, otimizadas para uma taxa de cliques (CTR) elevada e narrativa envolvente.
+
+Você está gerando UMA miniatura cinematográfica com base no título do vídeo fornecido. A miniatura deve refletir um estilo de ilustração digital realista com iluminação equilibrada e dramática, criando uma atmosfera única e imersiva que evoque a reinterpretação histórica de maneira épica e envolvente.
+
+🎯 ELEMENTOS OBRIGATÓRIOS PARA INCLUIR NO PROMPT:
+
+🎨 1. Estilo e Textura
+Ilustração digital com detalhes realistas e iluminação cinematográfica
+Pinceladas realistas e texturizadas, com ênfase em iluminação suave e contrastes bem definidos, como luz dourada suave, luz natural do dia ou luz indireta de fontes suaves
+Uso de uma paleta de cores cinematográficas mais equilibrada, com tons mais quentes como bege, dourado, laranja suave, juntamente com azul profundo e escarlate, criando um ambiente histórico alternativo com mais luminosidade
+Personagens com expressões faciais intensas e emocionais, especialmente figuras lendárias ou modificadas de personagens históricos
+Roupas detalhadas e imersivas, combinando uma interpretação histórica com elementos alternativos ou fantasiosos
+Ambientes cinematográficos ricos, como paisagens épicas, ruínas misteriosas ou cidades perdidas, com atmosferas de mistério, mas com mais luminosidade e contraste nas sombras
+
+🖼️ 2. Composição
+A composição deve colocar o personagem principal no centro da imagem, em um close-up dramático, com o fundo suavizado para manter o foco no protagonista, mas ainda com detalhes que contextualizem a cena histórica ou mítica.
+Emoção intensa e visualmente impactante, como momentos de luta histórica, revelações ou destruição épica de civilizações
+
+🔥 3. Iluminação e Clima
+Iluminação suave e equilibrada, com fontes de luz mais claras, como luz dourada do amanhecer ou luz suave de tarde
+Evitar luz excessivamente escura, favorecendo ambientes de mistério e drama, mas mantendo uma boa visibilidade e contraste com luz suave que cria uma sensação de profundidade e clareza
+O tom emocional da miniatura deve refletir a reinterpretação histórica, com atmosferas introspectivas, épicas, reveladoras ou até aterrorizantes, mas com clareza na imagem
+
+🧾 4. Texto
+Nenhum texto deve ser incluído na miniatura. O foco está exclusivamente na imagem, que deve ser suficientemente impactante para contar a história visualmente.
+
+🔚 FORMATO:
+Depois de fornecer o título do vídeo, sua tarefa é retornar:
+Uma miniatura cinematográfica detalhada em estilo realista, pronta para uso em plataformas como MidJourney, Leonardo AI, etc.
+Sugestão de tom de cor correspondente à emoção e à história
+
+Título do Vídeo: [${tema}]`;
 
 
       document.getElementById("prompt1").textContent = prompt1;
@@ -659,17 +691,3 @@ Você criará e entregará 2 BLOCOS DE CÓDIGO, cada um dentro de plaintext, sep
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
