@@ -173,8 +173,8 @@
     <textarea id="roteiro" placeholder="Digite seu roteiro aqui..."></textarea>
     
     <button onclick="gerarImagens('realista')">Pintura Realista</button>
-	<button onclick="gerarImagens('classical_realism')">Medieval 2</button>
-    <button onclick="gerarImagens('medieval')">Medieval</button>
+	<button onclick="gerarImagens('medieval')">Medieval</button>
+    <button onclick="gerarImagens('oleo')">Óleo</button>
 	<button onclick="gerarImagens('nenhum')">Nenhum</button>
 
     <div id="notification"></div>
@@ -211,9 +211,9 @@ function gerarImagens(estilo) {
       textoGerado = `Create a realistic painting-style illustration, reminiscent of Renaissance or classical painting, in ultra-high-quality 8k UHD, the highest quality, and highly detailed. Focus on detailed figures with soft yet defined lines, using rich textures and shadows. The scene should convey a sense of depth, with natural lighting illuminating the figures and the environment. The background should include architectural elements or natural scenery, rendered in soft tones with a focus on realism: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'nenhum') {
       textoGerado = `${paragrafos[promptIndex].trim()}.`;
+    } else if (estilo === 'oleo') {
+      textoGerado = `Hand-painted oil illustration: ${paragrafos[promptIndex].trim()}`;
     } else if (estilo === 'medieval') {
-      textoGerado = `Hand-painted medieval style with grainy paper texture: ${paragrafos[promptIndex].trim()}`;
-    } else if (estilo === 'classical_realism') {
       textoGerado = `Medieval style hand-painted oil illustration: ${paragrafos[promptIndex].trim()}`;
     }
 
@@ -275,6 +275,7 @@ function gerarImagens(estilo) {
   </script>
 </body>
 </html>
+
 
 
 
